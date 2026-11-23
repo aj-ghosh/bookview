@@ -606,6 +606,12 @@
   .ai-input .mic-btn:hover{background:#f6f7fb}
   .ai-input .mic-btn.rec{background:#e2445c;color:#fff;animation:micpulse 1.2s ease-in-out infinite}
   @keyframes micpulse{0%,100%{box-shadow:0 0 0 0 rgba(226,68,92,.45)}50%{box-shadow:0 0 0 7px rgba(226,68,92,0)}}
+  .orb-tile{display:inline-flex;align-items:center;justify-content:center;background:#000;overflow:hidden;flex:none}
+  .orb-tile canvas{width:100%;height:100%;display:block}
+  .orb-tile.tab{width:22px;height:22px;border-radius:6px}
+  .orb-tile.lg{width:38px;height:38px;border-radius:11px}
+  .seg button.va-tab{display:inline-flex;align-items:center;gap:7px}
+  .ai h2 .orb-tile{margin-right:2px}
 &lt;/style&gt;
   &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
   &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
@@ -622,7 +628,7 @@
     &lt;div class=&quot;seg-inner&quot;&gt;
       &lt;button id=&quot;tab-dash&quot; class=&quot;active&quot; onclick=&quot;showTab(&#x27;dash&#x27;)&quot;&gt;Dashboard&lt;/button&gt;
       &lt;button id=&quot;tab-tasks&quot; onclick=&quot;showTab(&#x27;tasks&#x27;)&quot;&gt;Tasks&lt;/button&gt;
-      &lt;button id=&quot;tab-va&quot; class=&quot;va-tab&quot; onclick=&quot;openVA()&quot;&gt;VA&lt;/button&gt;
+      &lt;button id=&quot;tab-va&quot; class=&quot;va-tab&quot; onclick=&quot;openVA()&quot;&gt;&lt;span class=&quot;orb-tile tab&quot;&gt;&lt;canvas class=&quot;va-orb&quot; width=&quot;44&quot; height=&quot;44&quot;&gt;&lt;/canvas&gt;&lt;/span&gt;VA&lt;/button&gt;
       &lt;button id=&quot;tab-lic&quot; onclick=&quot;showTab(&#x27;lic&#x27;)&quot;&gt;Licenses&lt;/button&gt;
       &lt;button id=&quot;tab-cal&quot; onclick=&quot;showTab(&#x27;cal&#x27;)&quot;&gt;Calendar&lt;/button&gt;
     &lt;/div&gt;
@@ -705,7 +711,7 @@
 
     &lt;!-- AI ASSISTANT --&gt;
     &lt;aside class=&quot;card ai&quot; id=&quot;vaPanel&quot;&gt;
-      &lt;h2&gt;&lt;span class=&quot;dotlive&quot;&gt;&lt;/span&gt;VA&lt;button class=&quot;va-x&quot; onclick=&quot;closeVA()&quot; aria-label=&quot;Close VA&quot;&gt;×&lt;/button&gt;&lt;/h2&gt;
+      &lt;h2&gt;&lt;span class=&quot;orb-tile lg&quot;&gt;&lt;canvas class=&quot;va-orb&quot; width=&quot;76&quot; height=&quot;76&quot;&gt;&lt;/canvas&gt;&lt;/span&gt;VA&lt;button class=&quot;va-x&quot; onclick=&quot;closeVA()&quot; aria-label=&quot;Close VA&quot;&gt;×&lt;/button&gt;&lt;/h2&gt;
       &lt;p class=&quot;card-sub&quot;&gt;Your Virtual Assistant. Talk instead of typing into forms — drafts are shown before anything is saved.&lt;/p&gt;
       &lt;div class=&quot;chat&quot; id=&quot;chat&quot;&gt;&lt;/div&gt;
       &lt;div class=&quot;chips-ai&quot; id=&quot;chips&quot;&gt;&lt;/div&gt;
@@ -730,7 +736,7 @@
     &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;path d=&quot;M3.5 6.2 5.2 7.9 8.6 4.6M3.5 12.2l1.7 1.7 3.4-3.3M3.5 18.2l1.7 1.7 3.4-3.3M12 6h9M12 12h9M12 18h9&quot;/&gt;&lt;/svg&gt;
     Tasks&lt;/button&gt;
   &lt;button data-mv=&quot;ai&quot; onclick=&quot;showMobile(&#x27;ai&#x27;)&quot;&gt;
-    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;path d=&quot;M21 12a8 8 0 0 1-8 8H4l2.2-2.9A8 8 0 1 1 21 12Z&quot;/&gt;&lt;/svg&gt;
+    &lt;span class=&quot;orb-tile tab&quot;&gt;&lt;canvas class=&quot;va-orb&quot; width=&quot;44&quot; height=&quot;44&quot;&gt;&lt;/canvas&gt;&lt;/span&gt;
     VA&lt;/button&gt;
   &lt;button data-mv=&quot;lic&quot; onclick=&quot;showMobile(&#x27;lic&#x27;)&quot;&gt;
     &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;5&quot; width=&quot;18&quot; height=&quot;14&quot; rx=&quot;3&quot;/&gt;&lt;circle cx=&quot;8.5&quot; cy=&quot;11&quot; r=&quot;2&quot;/&gt;&lt;path d=&quot;M6 16.5c.6-1.4 1.4-2 2.5-2s1.9.6 2.5 2M14.5 9.5h4M14.5 13h4&quot;/&gt;&lt;/svg&gt;
@@ -1674,6 +1680,36 @@ function frChoose(mode){
   if (mode === &quot;import&quot;) openImport();
 }
 function maybeFirstRun(){ if (!S.onboarded) document.getElementById(&quot;firstrunBack&quot;).classList.add(&quot;open&quot;); }
+
+function drawOrb(ctx, S, t){
+  ctx.clearRect(0, 0, S, S);
+  const cx = S / 2, cy = S / 2, R = S * 0.37, rings = 7;
+  for (let j = 0; j &lt; rings; j++){
+    const fr = j / (rings - 1);
+    const n = Math.max(5, Math.round(8 + fr * 30));
+    for (let i = 0; i &lt; n; i++){
+      const a = (i / n) * Math.PI * 2 + t * 0.12 * (j % 2 ? -1 : 1) + fr * 0.9;
+      const w = 1 + 0.16 * Math.sin(3 * a + t * 1.15 + fr * 2.2) + 0.11 * Math.sin(5 * a - t * 0.9 + fr * 4.1) + 0.07 * Math.sin(2 * a + t * 0.6);
+      const r = Math.max(0.6, R * fr * w);
+      const x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r * 0.94;
+      let g = (y / S) * 1.25 + 0.16 * Math.sin(a * 2 + t * 0.8) - 0.08;
+      g = Math.min(1, Math.max(0, g));
+      const cr = Math.round(77 + (177 - 77) * g), cg = Math.round(178 + (109 - 178) * g), cb = 255;
+      ctx.fillStyle = &quot;rgb(&quot; + cr + &quot;,&quot; + cg + &quot;,&quot; + cb + &quot;)&quot;;
+      ctx.beginPath();
+      ctx.arc(x, y, Math.max(0.5, (0.55 + fr * 1.35) * (0.78 + 0.3 * Math.sin(3 * a + t * 1.15)) * (S / 76)), 0, 7);
+      ctx.fill();
+    }
+  }
+}
+(function initOrbs(){
+  const list = [];
+  document.querySelectorAll(&quot;canvas.va-orb&quot;).forEach(cv =&gt; list.push({ctx: cv.getContext(&quot;2d&quot;), S: cv.width}));
+  if (!list.length) return;
+  if (window.matchMedia &amp;&amp; matchMedia(&quot;(prefers-reduced-motion: reduce)&quot;).matches){ list.forEach(o =&gt; drawOrb(o.ctx, o.S, 0.8)); return; }
+  const loop = ts =&gt; { const t = ts / 1000; list.forEach(o =&gt; drawOrb(o.ctx, o.S, t)); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+})();
 
 maybeFirstRun();
 &lt;/script&gt;
