@@ -868,7 +868,7 @@ function familyOf(p){
 function caseVisible(c){
   if (filter === &quot;All&quot;) return true;
   if (filter === &quot;Stuck only&quot;) return c.stuck;
-  if (filter === &quot;Done&quot;) return DONE.includes(statusOf(c));
+  if (filter === &quot;Completed&quot;) return DONE.includes(statusOf(c));
   return statusOf(c) === filter;
 }
 function statusSums(rows){
@@ -878,7 +878,7 @@ function statusSums(rows){
   return (one ? money(one) + &quot; mine&quot; : &quot;&quot;) + (rec ? (one ? &quot; + &quot; : &quot;&quot;) + money(rec) + &quot;/yr&quot; : &quot;&quot;) + (st ? &#x27; \u00B7 &lt;span class=&quot;sstuck&quot;&gt;&#x27; + st + &quot; stuck&lt;/span&gt;&quot; : &quot;&quot;);
 }
 function renderFilters(){
-  const lines = [&quot;All&quot;].concat(INFLIGHT, [&quot;Done&quot;, &quot;Declined&quot;, &quot;Stuck only&quot;]);
+  const lines = [&quot;All&quot;].concat(INFLIGHT, [&quot;Completed&quot;, &quot;Declined&quot;, &quot;Stuck only&quot;]);
   document.getElementById(&quot;filters&quot;).innerHTML = lines.map(l =&gt;
     &#x27;&lt;button class=&quot;&#x27; + (filter===l ? &quot;active&quot; : &quot;&quot;) + &#x27;&quot; onclick=&quot;setFilter(\&#x27;&#x27; + l + &#x27;\&#x27;)&quot;&gt;&#x27; + l + &#x27;&lt;/button&gt;&#x27;).join(&quot;&quot;);
 }
