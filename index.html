@@ -560,6 +560,9 @@
   .pill.pln{background:#f3e8fd;color:#6d28d9}
   .btn.import-red{background:#d92d20;border-color:#d92d20;color:#fff;font-weight:650}
   .btn.import-red:hover{background:#b42318;border-color:#b42318}
+  .btn.import-blue{background:#0071e3;border-color:#0071e3;color:#fff;font-weight:650}
+  .btn.import-blue:hover{background:#0060c9;border-color:#0060c9}
+  .bic{width:15px;height:15px;vertical-align:-2px;margin-right:7px}
 &lt;/style&gt;
   &lt;/head&gt;
 &lt;body&gt;
@@ -587,7 +590,7 @@
         &lt;div class=&quot;card casescard&quot;&gt;
           &lt;h2&gt;Pipeline&lt;/h2&gt;
           &lt;div class=&quot;filters&quot; id=&quot;filters&quot;&gt;&lt;/div&gt;
-          &lt;div class=&quot;import-row&quot;&gt;&lt;button class=&quot;btn import-red&quot; onclick=&quot;openImport()&quot;&gt;Import a CSV&lt;/button&gt;&lt;span&gt;Load your existing book — identifiers are stripped on your device, never saved.&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;import-row&quot;&gt;&lt;button class=&quot;btn import-red&quot; onclick=&quot;openImport()&quot;&gt;&lt;svg class=&quot;bic&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 16V5&quot;/&gt;&lt;path d=&quot;M6 11l6-6 6 6&quot;/&gt;&lt;path d=&quot;M4 20h16&quot;/&gt;&lt;/svg&gt;Import a CSV&lt;/button&gt;&lt;button class=&quot;btn import-blue&quot; onclick=&quot;downloadTemplate()&quot;&gt;&lt;svg class=&quot;bic&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 5v11&quot;/&gt;&lt;path d=&quot;M6 10l6 6 6-6&quot;/&gt;&lt;path d=&quot;M4 20h16&quot;/&gt;&lt;/svg&gt;Download a Template&lt;/button&gt;&lt;span&gt;Load your existing book — identifiers are stripped on your device, never saved.&lt;/span&gt;&lt;/div&gt;
           &lt;table&gt;
             &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Case&lt;/th&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Stage&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;My FYC&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
             &lt;tbody id=&quot;caseRows&quot;&gt;&lt;/tbody&gt;
@@ -1454,6 +1457,15 @@ let impHeaders = [], impData = [], impFields = [];
 function openImport(){ document.getElementById(&quot;importBack&quot;).classList.add(&quot;open&quot;); document.getElementById(&quot;importStep1&quot;).style.display = &quot;block&quot;; document.getElementById(&quot;importStep2&quot;).style.display = &quot;none&quot;; }
 function closeImport(){ document.getElementById(&quot;importBack&quot;).classList.remove(&quot;open&quot;); }
 function backImport(){ document.getElementById(&quot;importStep1&quot;).style.display = &quot;block&quot;; document.getElementById(&quot;importStep2&quot;).style.display = &quot;none&quot;; }
+function downloadTemplate(){
+  const csv = &quot;Client Name,Status,Product,FYC,Premium/Investment Amount,Agent Share,App Date,Notes\n&quot; +
+    &quot;Example Client,Funds Pending,NYL: Annuity,2500,100000,1,2026-11-01,\n&quot;;
+  const a = document.createElement(&quot;a&quot;);
+  a.href = URL.createObjectURL(new Blob([csv], {type: &quot;text/csv&quot;}));
+  a.download = &quot;bookview-template.csv&quot;;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() =&gt; URL.revokeObjectURL(a.href), 2000);
+}
 function sampleCSV(){ document.getElementById(&quot;csvText&quot;).value = SAMPLE_CSV; previewImport(); }
 function fileCSV(ev){ const f = ev.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () =&gt; { document.getElementById(&quot;csvText&quot;).value = r.result; previewImport(); }; r.readAsText(f); }
 function inferStatus(raw){
