@@ -565,8 +565,44 @@
   .bic{width:15px;height:15px;vertical-align:-2px;margin-right:7px}
   td{vertical-align:top}
   .pname{display:block;color:var(--sub);font-size:13px;margin-top:2px}
+  .va-tab{color:var(--blue);font-weight:700}
+  .va-x{display:none;margin-left:auto;border:0;background:var(--fill);color:var(--sub);width:30px;height:30px;border-radius:50%;font-size:17px;cursor:pointer;line-height:1}
+  @media(min-width:901px){
+    .layout{grid-template-columns:1fr}
+    .ai{position:fixed;top:50%;right:26px;width:400px;max-width:calc(100vw - 40px);height:min(760px,calc(100vh - 48px));z-index:60;box-shadow:0 24px 70px rgba(0,0,0,.28);opacity:0;visibility:hidden;transform:translate(24px,-50%);transition:opacity .18s ease,transform .18s ease,visibility .18s}
+    .ai.open{opacity:1;visibility:visible;transform:translate(0,-50%)}
+    .va-x{display:block}
+  }
+  /* ============ Monday-inspired skin ============ */
+  body{font-family:&#x27;Figtree&#x27;,-apple-system,&#x27;Segoe UI&#x27;,Roboto,sans-serif;background:#f6f7fb;color:#323338}
+  .card{border:1px solid #d0d4e4;box-shadow:0 4px 14px rgba(50,51,56,.07);border-radius:16px}
+  .logo span{color:#0073ea}
+  .seg{background:#eceff8}
+  .seg button{color:#323338}
+  .seg button.active{background:#0073ea;color:#fff;box-shadow:0 2px 8px rgba(0,115,234,.35)}
+  .seg button.va-tab{background:linear-gradient(90deg,#a25ddc,#0073ea);color:#fff}
+  .seg button.va-tab.active{background:linear-gradient(90deg,#a25ddc,#0073ea);color:#fff;box-shadow:0 2px 10px rgba(162,93,220,.45)}
+  .kpi{border:1px solid #d0d4e4;box-shadow:0 4px 14px rgba(50,51,56,.07)}
+  .kpi:nth-child(1){border-top:5px solid #0073ea}
+  .kpi:nth-child(2){border-top:5px solid #e2445c}
+  .kpi:nth-child(3){border-top:5px solid #fdab3d}
+  .kpi:nth-child(4){border-top:5px solid #00c875}
+  .kpi .num{color:#323338}
+  .pill{background:#579bfc;color:#fff}
+  .pill.ann{background:#a25ddc;color:#fff}
+  .pill.adv{background:#00c875;color:#fff}
+  .pill.med{background:#ff642e;color:#fff}
+  .pill.mdc{background:#0085a3;color:#fff}
+  .pill.den{background:#ff158a;color:#fff}
+  .pill.pln{background:#225091;color:#fff}
+  th{color:#676879}
+  tbody tr:hover td{background:#f6f7fb}
+  tr.srow-h td{background:#eceff8}
+  .btn{border-radius:10px}
 &lt;/style&gt;
-  &lt;/head&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;/head&gt;
 &lt;body&gt;
 &lt;div class=&quot;wrap&quot;&gt;
   &lt;header&gt;
@@ -579,6 +615,7 @@
     &lt;div class=&quot;seg-inner&quot;&gt;
       &lt;button id=&quot;tab-dash&quot; class=&quot;active&quot; onclick=&quot;showTab(&#x27;dash&#x27;)&quot;&gt;Dashboard&lt;/button&gt;
       &lt;button id=&quot;tab-tasks&quot; onclick=&quot;showTab(&#x27;tasks&#x27;)&quot;&gt;Tasks&lt;/button&gt;
+      &lt;button id=&quot;tab-va&quot; class=&quot;va-tab&quot; onclick=&quot;openVA()&quot;&gt;VA&lt;/button&gt;
       &lt;button id=&quot;tab-lic&quot; onclick=&quot;showTab(&#x27;lic&#x27;)&quot;&gt;Licenses&lt;/button&gt;
       &lt;button id=&quot;tab-cal&quot; onclick=&quot;showTab(&#x27;cal&#x27;)&quot;&gt;Calendar&lt;/button&gt;
     &lt;/div&gt;
@@ -660,8 +697,8 @@
     &lt;/main&gt;
 
     &lt;!-- AI ASSISTANT --&gt;
-    &lt;aside class=&quot;card ai&quot;&gt;
-      &lt;h2&gt;&lt;span class=&quot;dotlive&quot;&gt;&lt;/span&gt;VA&lt;/h2&gt;
+    &lt;aside class=&quot;card ai&quot; id=&quot;vaPanel&quot;&gt;
+      &lt;h2&gt;&lt;span class=&quot;dotlive&quot;&gt;&lt;/span&gt;VA&lt;button class=&quot;va-x&quot; onclick=&quot;closeVA()&quot; aria-label=&quot;Close VA&quot;&gt;×&lt;/button&gt;&lt;/h2&gt;
       &lt;p class=&quot;card-sub&quot;&gt;Your Virtual Assistant. Talk instead of typing into forms — drafts are shown before anything is saved.&lt;/p&gt;
       &lt;div class=&quot;chat&quot; id=&quot;chat&quot;&gt;&lt;/div&gt;
       &lt;div class=&quot;chips-ai&quot; id=&quot;chips&quot;&gt;&lt;/div&gt;
@@ -684,15 +721,15 @@
   &lt;button data-mv=&quot;tasks&quot; onclick=&quot;showMobile(&#x27;tasks&#x27;)&quot;&gt;
     &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;path d=&quot;M3.5 6.2 5.2 7.9 8.6 4.6M3.5 12.2l1.7 1.7 3.4-3.3M3.5 18.2l1.7 1.7 3.4-3.3M12 6h9M12 12h9M12 18h9&quot;/&gt;&lt;/svg&gt;
     Tasks&lt;/button&gt;
+  &lt;button data-mv=&quot;ai&quot; onclick=&quot;showMobile(&#x27;ai&#x27;)&quot;&gt;
+    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;path d=&quot;M21 12a8 8 0 0 1-8 8H4l2.2-2.9A8 8 0 1 1 21 12Z&quot;/&gt;&lt;/svg&gt;
+    VA&lt;/button&gt;
   &lt;button data-mv=&quot;lic&quot; onclick=&quot;showMobile(&#x27;lic&#x27;)&quot;&gt;
     &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;5&quot; width=&quot;18&quot; height=&quot;14&quot; rx=&quot;3&quot;/&gt;&lt;circle cx=&quot;8.5&quot; cy=&quot;11&quot; r=&quot;2&quot;/&gt;&lt;path d=&quot;M6 16.5c.6-1.4 1.4-2 2.5-2s1.9.6 2.5 2M14.5 9.5h4M14.5 13h4&quot;/&gt;&lt;/svg&gt;
     Licenses&lt;/button&gt;
   &lt;button data-mv=&quot;cal&quot; onclick=&quot;showMobile(&#x27;cal&#x27;)&quot;&gt;
     &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;5&quot; width=&quot;18&quot; height=&quot;16&quot; rx=&quot;3&quot;/&gt;&lt;path d=&quot;M3 10h18M8 3v4M16 3v4&quot;/&gt;&lt;/svg&gt;
     Calendar&lt;/button&gt;
-  &lt;button data-mv=&quot;ai&quot; onclick=&quot;showMobile(&#x27;ai&#x27;)&quot;&gt;
-    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;path d=&quot;M21 12a8 8 0 0 1-8 8H4l2.2-2.9A8 8 0 1 1 21 12Z&quot;/&gt;&lt;/svg&gt;
-    VA&lt;/button&gt;
 &lt;/nav&gt;
 
 &lt;!-- IMPORT SHEET (v4.0) --&gt;
@@ -1137,7 +1174,7 @@ function draftCard(summary, onOk){
   d.querySelector(&quot;.no&quot;).onclick = () =&gt; { pending = null; d.querySelector(&quot;.draft&quot;).remove(); botMsg(&quot;Cancelled — nothing was saved.&quot;); };
   chat.appendChild(d); chat.scrollTop = chat.scrollHeight;
 }
-const CHIPS = [&quot;What\u2019s stuck?&quot;, &quot;Add a case&quot;, &quot;What\u2019s on my Thursday?&quot;, &quot;When does my Arizona license expire?&quot;, &quot;Am I appointed with Foresters in Arizona?&quot;, &quot;What\u2019s funds pending?&quot;];
+const CHIPS = [&quot;What\u2019s stuck?&quot;, &quot;Add a case&quot;, &quot;What\u2019s on my Thursday?&quot;, &quot;When does my Arizona license expire?&quot;, &quot;Am I appointed with Foresters in Arizona?&quot;, &quot;What\u2019s awaiting funds?&quot;];
 document.getElementById(&quot;chips&quot;).innerHTML = CHIPS.map(c =&gt; &#x27;&lt;button onclick=&quot;chipSend(this)&quot;&gt;&#x27; + c + &#x27;&lt;/button&gt;&#x27;).join(&quot;&quot;);
 function chipSend(b){ document.getElementById(&quot;aiText&quot;).value = b.textContent; sendAI(); }
 
@@ -1336,6 +1373,18 @@ function sendAI(){
   inp.value = &quot;&quot;; userMsg(v); handleAI(v);
 }
 document.getElementById(&quot;aiText&quot;).addEventListener(&quot;keydown&quot;, e =&gt; { if (e.key === &quot;Enter&quot;) sendAI(); });
+
+/* ============ VA POP-UP ============ */
+function openVA(){
+  document.getElementById(&quot;vaPanel&quot;).classList.add(&quot;open&quot;);
+  document.getElementById(&quot;tab-va&quot;).classList.add(&quot;active&quot;);
+  const inp = document.getElementById(&quot;aiText&quot;); if (inp &amp;&amp; window.innerWidth &gt; 900) setTimeout(() =&gt; inp.focus(), 120);
+}
+function closeVA(){
+  document.getElementById(&quot;vaPanel&quot;).classList.remove(&quot;open&quot;);
+  document.getElementById(&quot;tab-va&quot;).classList.remove(&quot;active&quot;);
+}
+document.addEventListener(&quot;keydown&quot;, e =&gt; { if (e.key === &quot;Escape&quot;) closeVA(); });
 
 /* ============ MOBILE APP SHELL (v2.1) ============ */
 function showMobile(v){
