@@ -119,7 +119,7 @@
 &lt;meta name=&quot;mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
 &lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
 &lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;default&quot;&gt;
-&lt;title&gt;BookView LLC — Prototype v4.0&lt;/title&gt;
+&lt;title&gt;BookView LLC — Prototype v4.1&lt;/title&gt;
 &lt;style&gt;
   :root{
     --bg:#f5f5f7; --surface:#ffffff; --ink:#1d1d1f; --sub:#6e6e73; --faint:#86868b;
@@ -554,6 +554,10 @@
   .lic-form{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
   .lic-form input,.lic-form select{border:1px solid #d1d1d6;border-radius:10px;padding:9px 12px;font:inherit;font-size:14px;background:#fff;color:#1d1d1f}
   .lic-form input[type=text]{flex:1;min-width:180px}
+  /* ============ v4.1 \u2014 pipeline model: detail grid, plan pill ============ */
+  .dgrid{display:grid;grid-template-columns:118px 1fr;gap:7px 14px;font-size:13.5px;margin:12px 0 6px}
+  .dgrid .dk{color:#6e6e73}
+  .pill.pln{background:#f3e8fd;color:#6d28d9}
 &lt;/style&gt;
   &lt;/head&gt;
 &lt;body&gt;
@@ -561,7 +565,7 @@
   &lt;header&gt;
     &lt;div class=&quot;logo&quot;&gt;Book&lt;span&gt;View&lt;/span&gt; &lt;span class=&quot;llc&quot;&gt;LLC&lt;/span&gt;&lt;/div&gt;
     &lt;div class=&quot;tagline&quot;&gt;Your whole book. One screen.&lt;/div&gt;
-    &lt;div class=&quot;sample-note&quot;&gt;PROTOTYPE v4.0 · SAMPLE DATA — CASE LABELS ONLY · NO CLIENT PII, BY DESIGN&lt;/div&gt;
+    &lt;div class=&quot;sample-note&quot;&gt;PROTOTYPE v4.1 · SAMPLE DATA — CASE LABELS ONLY · NO CLIENT PII, BY DESIGN&lt;/div&gt;
   &lt;/header&gt;
 
   &lt;div class=&quot;seg&quot;&gt;
@@ -580,14 +584,19 @@
         &lt;div class=&quot;kpis&quot; id=&quot;kpis&quot;&gt;&lt;/div&gt;
         &lt;div class=&quot;card casescard&quot;&gt;
           &lt;h2&gt;Pending cases&lt;/h2&gt;
-          &lt;p class=&quot;card-sub&quot;&gt;Grouped by where each case stands — the kind of case is on every row. Click a case for its task stack.&lt;/p&gt;
+          &lt;p class=&quot;card-sub&quot;&gt;Grouped by status, the way a real pipeline runs — product on every row, your share of FYC on the right. Click a case for its details and task stack.&lt;/p&gt;
           &lt;div class=&quot;filters&quot; id=&quot;filters&quot;&gt;&lt;/div&gt;
           &lt;div class=&quot;import-row&quot;&gt;&lt;button class=&quot;btn ghost&quot; onclick=&quot;openImport()&quot;&gt;Import a CSV&lt;/button&gt;&lt;span&gt;Load your existing book — identifiers are stripped on your device, never saved.&lt;/span&gt;&lt;/div&gt;
           &lt;table&gt;
-            &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Case&lt;/th&gt;&lt;th&gt;Line&lt;/th&gt;&lt;th&gt;Carrier&lt;/th&gt;&lt;th&gt;Stage&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;Commission&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+            &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Case&lt;/th&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Stage&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;My FYC&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
             &lt;tbody id=&quot;caseRows&quot;&gt;&lt;/tbody&gt;
           &lt;/table&gt;
           &lt;div class=&quot;case-list&quot; id=&quot;caseList&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;card&quot;&gt;
+          &lt;h2&gt;Production&lt;/h2&gt;
+          &lt;p class=&quot;card-sub&quot;&gt;Deposited + delivered business, by quarter — your share of FYC.&lt;/p&gt;
+          &lt;div id=&quot;production&quot;&gt;&lt;/div&gt;
         &lt;/div&gt;
         &lt;div class=&quot;card&quot;&gt;
           &lt;h2&gt;Renewals — next 30 days&lt;/h2&gt;
@@ -658,7 +667,7 @@
   &lt;/div&gt;
 
   &lt;div class=&quot;reset&quot; onclick=&quot;resetDemo()&quot;&gt;Reset demo data&lt;/div&gt;
-  &lt;footer&gt;BookView LLC prototype v4.0 — a dashboard, not a CRM. Built for validation conversations.&lt;/footer&gt;
+  &lt;footer&gt;BookView LLC prototype v4.1 — a dashboard, not a CRM. Built for validation conversations.&lt;/footer&gt;
 &lt;/div&gt;
 
 &lt;!-- MOBILE TAB BAR (app format) --&gt;
@@ -684,7 +693,7 @@
 &lt;div class=&quot;sheet-back&quot; id=&quot;importBack&quot; onclick=&quot;if(event.target===this)closeImport()&quot;&gt;
   &lt;div class=&quot;sheet import-sheet&quot;&gt;
     &lt;h3&gt;Import your book&lt;/h3&gt;
-    &lt;p class=&quot;dim&quot;&gt;Export a case list from any carrier or your CRM and paste it here. BookView maps the status columns it recognizes. Columns that look like client identifiers — names, SSNs, policy numbers — are converted or stripped &lt;b&gt;on your device&lt;/b&gt; and never saved. Names become initials-only labels.&lt;/p&gt;
+    &lt;p class=&quot;dim&quot;&gt;Export a case list from any carrier or your CRM and paste it here. BookView maps the status columns it recognizes. Columns that look like client identifiers — names, SSNs, policy numbers, free-text notes — are converted or stripped &lt;b&gt;on your device&lt;/b&gt; and never saved. Names become initials-only labels.&lt;/p&gt;
     &lt;div id=&quot;importStep1&quot;&gt;
       &lt;textarea id=&quot;csvText&quot; rows=&quot;8&quot; placeholder=&quot;Paste CSV here — header row first (Carrier, Product, Stage, Commission…)&quot;&gt;&lt;/textarea&gt;
       &lt;div class=&quot;imp-btns&quot;&gt;
@@ -730,32 +739,38 @@ function inDays(n){ const d = new Date(Date.now() + n*DAY); return d.toISOString
 
 const SEED = {
   cases: [
-    {id:1, who:&quot;JMS 214&quot;, line:&quot;Life&quot;, carrier:&quot;North American&quot;, product:&quot;Term 20&quot;, stage:&quot;Underwriting&quot;, age:23, commission:2450, stuck:true, tasks:[
+    {id:1, who:&quot;JMS 214&quot;, product:&quot;NYL: Life&quot;, desc:&quot;Term 20&quot;, status:&quot;Underwriting&quot;, detail:&quot;APS pending&quot;, age:23, fyc:2450, credits:2450, size:40000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
       {t:&quot;Schedule paramed exam&quot;, done:false, due:inDays(1)}, {t:&quot;Order APS from clinic&quot;, done:true}, {t:&quot;Confirm beneficiary split&quot;, done:true}]},
-    {id:2, who:&quot;RKP 387&quot;, line:&quot;Annuity&quot;, carrier:&quot;Allianz&quot;, product:&quot;MYGA 5&quot;, stage:&quot;Suitability review&quot;, age:16, commission:3900, stuck:true, tasks:[]},
-    {id:3, who:&quot;MAK 442&quot;, line:&quot;Life&quot;, carrier:&quot;Foresters&quot;, product:&quot;Whole Life&quot;, stage:&quot;Issued — delivery&quot;, age:4, commission:1150, stuck:false, tasks:[
+    {id:2, who:&quot;RKP 387&quot;, product:&quot;Non-NYL: Annuity&quot;, desc:&quot;Allianz MYGA 5&quot;, status:&quot;Funds Pending&quot;, detail:&quot;Suitability review&quot;, age:16, fyc:3900, credits:0, size:250000, share:1, splits:[], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[]},
+    {id:3, who:&quot;MAK 442&quot;, product:&quot;NYL: Life&quot;, desc:&quot;Whole Life&quot;, status:&quot;Delivery Pending&quot;, detail:&quot;Issued \u2014 awaiting delivery&quot;, age:4, fyc:1150, credits:1150, size:15000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Deliver policy &amp; collect receipt&quot;, done:false, due:inDays(0)}]},
-    {id:4, who:&quot;DLT 276&quot;, line:&quot;Medicare&quot;, carrier:&quot;UnitedHealthcare&quot;, product:&quot;MA Plan&quot;, stage:&quot;Enrollment submitted&quot;, age:6, commission:310, stuck:false, tasks:[
+    {id:4, who:&quot;DLT 276&quot;, product:&quot;UHC: Medicare Advantage&quot;, desc:&quot;MA Plan&quot;, status:&quot;Submitted&quot;, detail:&quot;Enrollment submitted&quot;, age:6, fyc:310, credits:310, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Verify PCP in network&quot;, done:true}, {t:&quot;Send scope-of-appointment copy&quot;, done:false, due:inDays(2)}]},
-    {id:5, who:&quot;ASR 318&quot;, line:&quot;Advisory&quot;, carrier:&quot;Schwab&quot;, product:&quot;Managed portfolio&quot;, stage:&quot;Onboarding&quot;, age:9, commission:1800, recurring:true, stuck:false, tasks:[
+    {id:5, who:&quot;ASR 318&quot;, product:&quot;Eagle&quot;, desc:&quot;Managed portfolio&quot;, status:&quot;Funds Pending&quot;, detail:&quot;Onboarding&quot;, age:9, fyc:1800, credits:0, size:190000, share:1, splits:[], docs:false, funding:&quot;Transfer&quot;, waitingOn:&quot;Client&quot;, recurring:true, stuck:false, tasks:[
       {t:&quot;Collect signed advisory agreement&quot;, done:false, due:inDays(1)}, {t:&quot;Link bank for contributions&quot;, done:false}]},
-    {id:6, who:&quot;SRN 548&quot;, line:&quot;Life&quot;, carrier:&quot;Mutual of Omaha&quot;, product:&quot;IUL&quot;, stage:&quot;Underwriting&quot;, age:12, commission:2980, stuck:true, tasks:[
+    {id:6, who:&quot;SRN 548&quot;, product:&quot;NYL: Life&quot;, desc:&quot;IUL&quot;, status:&quot;Underwriting&quot;, detail:&quot;Medical records requested&quot;, age:12, fyc:2980, credits:2980, size:60000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(-2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
       {t:&quot;Request medical records release&quot;, done:false, due:inDays(-1)}, {t:&quot;Call underwriter re: rating class&quot;, done:false}]},
-    {id:7, who:&quot;KJL 731&quot;, line:&quot;Annuity&quot;, carrier:&quot;National Life&quot;, product:&quot;FIA&quot;, stage:&quot;Funded — pending issue&quot;, age:3, commission:4250, stuck:false, tasks:[
+    {id:7, who:&quot;KJL 731&quot;, product:&quot;NYL: Annuity&quot;, desc:&quot;FIA&quot;, status:&quot;Funds Pending&quot;, detail:&quot;Funded \u2014 pending issue&quot;, age:3, fyc:4250, credits:4250, size:212000, share:0.4, splits:[{code:&quot;138338&quot;, pct:60}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Confirm beneficiary designations&quot;, done:true}]},
-    {id:8, who:&quot;BAH 127&quot;, line:&quot;Medicare&quot;, carrier:&quot;Humana&quot;, product:&quot;Med Supp&quot;, stage:&quot;Underwriting&quot;, age:8, commission:275, stuck:false, tasks:[
+    {id:8, who:&quot;BAH 127&quot;, product:&quot;Humana: Med Supp&quot;, desc:&quot;Med Supp&quot;, status:&quot;Underwriting&quot;, detail:&quot;Health questions&quot;, age:8, fyc:275, credits:275, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Upload ID card copy&quot;, done:true}, {t:&quot;Answer health-question follow-up&quot;, done:false, due:inDays(3)}]},
-    {id:9, who:&quot;PMG 195&quot;, line:&quot;Life&quot;, carrier:&quot;Transamerica&quot;, product:&quot;Term 30&quot;, stage:&quot;Application taken&quot;, age:1, commission:1720, stuck:false, tasks:[
+    {id:9, who:&quot;PMG 195&quot;, product:&quot;NYL: Life&quot;, desc:&quot;Term 30&quot;, status:&quot;App Pending&quot;, detail:&quot;Application taken&quot;, age:1, fyc:1720, credits:1720, size:30000, share:1, splits:[], exam:inDays(5), docs:false, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Complete Part 2 health questions&quot;, done:false, due:inDays(0)}]},
-    {id:10, who:&quot;LJM 103&quot;, line:&quot;Advisory&quot;, carrier:&quot;Fidelity&quot;, product:&quot;401(k) rollover&quot;, stage:&quot;Transfer in progress&quot;, age:14, commission:2300, recurring:true, stuck:true, tasks:[]},
-    {id:11, who:&quot;TAW 471&quot;, line:&quot;Life&quot;, carrier:&quot;Protective&quot;, product:&quot;GUL&quot;, stage:&quot;Illustration approved&quot;, age:5, commission:1940, stuck:false, tasks:[
+    {id:10, who:&quot;LJM 103&quot;, product:&quot;Eagle&quot;, desc:&quot;401(k) rollover&quot;, status:&quot;Funds Pending&quot;, detail:&quot;Transfer in progress&quot;, age:14, fyc:2300, credits:0, size:210000, share:0.5, splits:[{code:&quot;138338&quot;, pct:50}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, recurring:true, stuck:true, tasks:[]},
+    {id:11, who:&quot;TAW 471&quot;, product:&quot;NYL: Life&quot;, desc:&quot;GUL&quot;, status:&quot;App Pending&quot;, detail:&quot;Illustration approved&quot;, age:5, fyc:1940, credits:1940, size:136000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Send illustration for signature&quot;, done:false, due:inDays(2)}]},
-    {id:12, who:&quot;NMD 856&quot;, line:&quot;Annuity&quot;, carrier:&quot;Athene&quot;, product:&quot;MYGA 3&quot;, stage:&quot;Issued&quot;, age:2, commission:2650, stuck:false, tasks:[
+    {id:12, who:&quot;NMD 856&quot;, product:&quot;Non-NYL: Annuity&quot;, desc:&quot;Athene MYGA 3&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:30, fyc:2650, credits:2650, size:100000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
       {t:&quot;Schedule welcome call&quot;, done:false, due:inDays(4)}]},
-    {id:15, who:&quot;KRD 509&quot;, line:&quot;Medical&quot;, carrier:&quot;Anthem Blue Cross&quot;, product:&quot;ACA Silver PPO&quot;, stage:&quot;Enrollment submitted&quot;, age:6, commission:340, stuck:false, tasks:[
+    {id:15, who:&quot;KRD 509&quot;, product:&quot;Anthem: ACA Health&quot;, desc:&quot;Silver PPO&quot;, status:&quot;Submitted&quot;, detail:&quot;Enrollment submitted&quot;, age:6, fyc:340, credits:340, size:0, share:1, splits:[], docs:false, funding:&quot;&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Upload income verification docs&quot;, done:false, due:inDays(2)}]},
-    {id:16, who:&quot;PSN 623&quot;, line:&quot;Dental&quot;, carrier:&quot;Delta Dental&quot;, product:&quot;PPO Premier&quot;, stage:&quot;Issued&quot;, age:2, commission:85, stuck:false, tasks:[
-      {t:&quot;Send ID card and welcome packet&quot;, done:false, due:inDays(3)}]}
+    {id:16, who:&quot;PSN 623&quot;, product:&quot;Delta: Dental&quot;, desc:&quot;PPO Premier&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:41, fyc:85, credits:85, size:1200, share:1, splits:[], docs:true, postDocs:false, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
+      {t:&quot;Send ID card and welcome packet&quot;, done:false, due:inDays(3)}]},
+    {id:17, who:&quot;PRS 340&quot;, product:&quot;Eagle&quot;, desc:&quot;Investment account&quot;, status:&quot;Prospect&quot;, detail:&quot;Discovery call done&quot;, age:2, fyc:0, credits:0, size:250000, share:0.5, splits:[{code:&quot;076284&quot;, pct:50}], docs:false, funding:&quot;&quot;, waitingOn:&quot;Me&quot;, stuck:false, tasks:[
+      {t:&quot;Send follow-up with account options&quot;, done:false, due:inDays(1)}]},
+    {id:18, who:&quot;DVM 918&quot;, product:&quot;Eagle&quot;, desc:&quot;Trust account&quot;, status:&quot;Deposited&quot;, detail:&quot;Funded&quot;, age:18, fyc:6000, credits:12000, size:600000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Transfer&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
+    {id:19, who:&quot;HTS 227&quot;, product:&quot;NYL: Life&quot;, desc:&quot;Whole Life&quot;, status:&quot;Declined&quot;, detail:&quot;Freelook \u2014 not taken&quot;, age:47, fyc:0, credits:0, size:150000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], docs:true, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
+    {id:20, who:&quot;KMN 512&quot;, product:&quot;NYL: Annuity&quot;, desc:&quot;IndexFlex VA&quot;, status:&quot;Submitted&quot;, detail:&quot;App submitted to carrier&quot;, age:9, fyc:3000, credits:3000, size:220000, share:0.95, splits:[{code:&quot;197328&quot;, pct:5}], docs:false, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
+      {t:&quot;Confirm funds release from prior carrier&quot;, done:false, due:inDays(3)}]}
   ],
   renewals: [
     {who:&quot;GAH 664&quot;, line:&quot;Life&quot;, carrier:&quot;Foresters&quot;, date:inDays(6), premium:1840},
@@ -788,11 +803,11 @@ const SEED = {
 /* ============ STATE ============ */
 let S;
 try {
-  const saved = localStorage.getItem(&quot;bookviewV6&quot;);
+  const saved = localStorage.getItem(&quot;bookviewV7&quot;);
   S = saved ? JSON.parse(saved) : structuredClone(SEED);
 } catch(e){ S = structuredClone(SEED); }
-function save(){ try{ localStorage.setItem(&quot;bookviewV6&quot;, JSON.stringify(S)); }catch(e){} }
-function resetDemo(){ try{ localStorage.removeItem(&quot;bookviewV6&quot;); }catch(e){} location.reload(); }
+function save(){ try{ localStorage.setItem(&quot;bookviewV7&quot;, JSON.stringify(S)); }catch(e){} }
+function resetDemo(){ try{ localStorage.removeItem(&quot;bookviewV7&quot;); }catch(e){} location.reload(); }
 
 const money = n =&gt; &quot;$&quot; + n.toLocaleString();
 const openTasks = c =&gt; c.tasks.filter(t =&gt; !t.done);
@@ -811,67 +826,92 @@ function showTab(name){
 /* ============ DASHBOARD ============ */
 let filter = &quot;All&quot;;
 function renderKPIs(){
-  const inflight = S.cases.length;
-  const stuck = S.cases.filter(c =&gt; c.stuck);
-  const pending = S.cases.filter(c =&gt; !c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
-  const stuckMoney = stuck.filter(c =&gt; !c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
-  const rec = S.cases.filter(c =&gt; c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
+  const inflight = S.cases.filter(c =&gt; INFLIGHT.includes(statusOf(c)));
+  const stuck = S.cases.filter(c =&gt; c.stuck &amp;&amp; INFLIGHT.includes(statusOf(c)));
+  const pending = inflight.reduce((a,c) =&gt; a + myFyc(c), 0);
+  const stuckMoney = stuck.reduce((a,c) =&gt; a + myFyc(c), 0);
+  const q = quarterOf({age: 0});
+  const produced = S.cases.filter(c =&gt; DONE.includes(statusOf(c)) &amp;&amp; quarterOf(c) === q).reduce((a,c) =&gt; a + myFyc(c), 0);
   document.getElementById(&quot;kpis&quot;).innerHTML =
-    kpi(inflight, &quot;cases in flight&quot;) +
+    kpi(inflight.length, &quot;cases in flight&quot;) +
     kpi(stuck.length, &quot;stuck over 7 days&quot;, &quot;bad&quot;) +
-    kpi(money(pending), &quot;commissions pending&quot;) +
-    kpi(money(rec) + &quot;/yr&quot;, &quot;advisory recurring&quot;);
-  function kpi(n, l, cls){ return &#x27;&lt;div class=&quot;kpi &#x27; + (cls||&quot;&quot;) + &#x27;&quot;&gt;&lt;div class=&quot;num&quot;&gt;&#x27; + n + &#x27;&lt;/div&gt;&lt;div class=&quot;lbl&quot;&gt;&#x27; + l + (cls===&quot;bad&quot; &amp;&amp; stuckMoney ? &quot; · &quot; + money(stuckMoney) + &quot; held up&quot; : &quot;&quot;) + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;; }
+    kpi(money(pending), &quot;my commissions pending&quot;) +
+    kpi(money(produced), &quot;produced this quarter&quot;);
+  function kpi(n, l, cls){ return &#x27;&lt;div class=&quot;kpi &#x27; + (cls||&quot;&quot;) + &#x27;&quot;&gt;&lt;div class=&quot;num&quot;&gt;&#x27; + n + &#x27;&lt;/div&gt;&lt;div class=&quot;lbl&quot;&gt;&#x27; + l + (cls===&quot;bad&quot; &amp;&amp; stuckMoney ? &quot; \u00B7 &quot; + money(stuckMoney) + &quot; of mine held up&quot; : &quot;&quot;) + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;; }
+  renderProduction();
 }
-const STATUSES = [&quot;App pending&quot;, &quot;Underwriting&quot;, &quot;Funds pending&quot;, &quot;Delivery pending&quot;];
-const STATUS_OF = {&quot;Application taken&quot;: &quot;App pending&quot;, &quot;Enrollment submitted&quot;: &quot;App pending&quot;, &quot;Illustration approved&quot;: &quot;App pending&quot;, &quot;Underwriting&quot;: &quot;Underwriting&quot;, &quot;Suitability review&quot;: &quot;Underwriting&quot;, &quot;Onboarding&quot;: &quot;Funds pending&quot;, &quot;Transfer in progress&quot;: &quot;Funds pending&quot;, &quot;Funded — pending issue&quot;: &quot;Funds pending&quot;, &quot;Issued — delivery&quot;: &quot;Delivery pending&quot;, &quot;Issued&quot;: &quot;Delivery pending&quot;};
-function statusOf(c){ return STATUS_OF[c.stage] || &quot;App pending&quot;; }
+const STATUSES = [&quot;Prospect&quot;, &quot;Submitted&quot;, &quot;App Pending&quot;, &quot;Underwriting&quot;, &quot;Funds Pending&quot;, &quot;Deposited&quot;, &quot;Delivery Pending&quot;, &quot;Delivered&quot;, &quot;Declined&quot;];
+const INFLIGHT = [&quot;Prospect&quot;, &quot;Submitted&quot;, &quot;App Pending&quot;, &quot;Underwriting&quot;, &quot;Funds Pending&quot;, &quot;Delivery Pending&quot;];
+const DONE = [&quot;Deposited&quot;, &quot;Delivered&quot;];
+function statusOf(c){ return c.status || &quot;App Pending&quot;; }
+const myFyc = c =&gt; Math.round((c.fyc || 0) * (c.share == null ? 1 : c.share));
+function appDateOf(c){ const d = new Date(); d.setDate(d.getDate() - (c.age || 0)); return d.getFullYear() + &quot;-&quot; + String(d.getMonth() + 1).padStart(2, &quot;0&quot;) + &quot;-&quot; + String(d.getDate()).padStart(2, &quot;0&quot;); }
+function quarterOf(c){ const d = new Date(); d.setDate(d.getDate() - (c.age || 0)); return &quot;Q&quot; + (Math.floor(d.getMonth() / 3) + 1) + &quot; &quot; + d.getFullYear(); }
+function qKey(c){ const d = new Date(); d.setDate(d.getDate() - (c.age || 0)); return d.getFullYear() * 10 + Math.floor(d.getMonth() / 3) + 1; }
+function familyOf(p){
+  p = (p || &quot;&quot;).toLowerCase();
+  if (/dental/.test(p)) return &quot;Dental&quot;;
+  if (/medicare|med supp/.test(p)) return &quot;Medicare&quot;;
+  if (/annuit|myga|fia/.test(p)) return &quot;Annuity&quot;;
+  if (/eagle|advisor|managed|401/.test(p)) return &quot;Advisory&quot;;
+  if (/securit/.test(p)) return &quot;Securities&quot;;
+  if (/life|svul|gul/.test(p)) return &quot;Life&quot;;
+  if (/health|aca|medical/.test(p)) return &quot;Medical&quot;;
+  if (/plan/.test(p)) return &quot;Plan&quot;;
+  if (/disab/.test(p)) return &quot;Disability&quot;;
+  return &quot;Other&quot;;
+}
 function caseVisible(c){
   if (filter === &quot;All&quot;) return true;
   if (filter === &quot;Stuck only&quot;) return c.stuck;
+  if (filter === &quot;Done&quot;) return DONE.includes(statusOf(c));
   return statusOf(c) === filter;
 }
 function statusSums(rows){
-  const one = rows.filter(c =&gt; !c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
-  const rec = rows.filter(c =&gt; c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
+  const one = rows.filter(c =&gt; !c.recurring).reduce((a,c) =&gt; a + myFyc(c), 0);
+  const rec = rows.filter(c =&gt; c.recurring).reduce((a,c) =&gt; a + myFyc(c), 0);
   const st = rows.filter(c =&gt; c.stuck).length;
-  return (one ? money(one) : &quot;&quot;) + (rec ? (one ? &quot; + &quot; : &quot;&quot;) + money(rec) + &quot;/yr&quot; : &quot;&quot;) + (st ? &#x27; \u00B7 &lt;span class=&quot;sstuck&quot;&gt;&#x27; + st + &quot; stuck&lt;/span&gt;&quot; : &quot;&quot;);
+  return (one ? money(one) + &quot; mine&quot; : &quot;&quot;) + (rec ? (one ? &quot; + &quot; : &quot;&quot;) + money(rec) + &quot;/yr&quot; : &quot;&quot;) + (st ? &#x27; \u00B7 &lt;span class=&quot;sstuck&quot;&gt;&#x27; + st + &quot; stuck&lt;/span&gt;&quot; : &quot;&quot;);
 }
 function renderFilters(){
-  const lines = [&quot;All&quot;].concat(STATUSES, [&quot;Stuck only&quot;]);
+  const lines = [&quot;All&quot;].concat(INFLIGHT, [&quot;Done&quot;, &quot;Declined&quot;, &quot;Stuck only&quot;]);
   document.getElementById(&quot;filters&quot;).innerHTML = lines.map(l =&gt;
     &#x27;&lt;button class=&quot;&#x27; + (filter===l ? &quot;active&quot; : &quot;&quot;) + &#x27;&quot; onclick=&quot;setFilter(\&#x27;&#x27; + l + &#x27;\&#x27;)&quot;&gt;&#x27; + l + &#x27;&lt;/button&gt;&#x27;).join(&quot;&quot;);
 }
 function setFilter(l){ filter = l; renderFilters(); renderCases(); }
 function linePill(line){
-  const cls = line===&quot;Annuity&quot; ? &quot;ann&quot; : line===&quot;Advisory&quot; ? &quot;adv&quot; : line===&quot;Medicare&quot; ? &quot;med&quot; : line===&quot;Medical&quot; ? &quot;mdc&quot; : line===&quot;Dental&quot; ? &quot;den&quot; : &quot;&quot;;
+  const cls = line===&quot;Annuity&quot; ? &quot;ann&quot; : line===&quot;Advisory&quot; ? &quot;adv&quot; : line===&quot;Securities&quot; ? &quot;adv&quot; : line===&quot;Medicare&quot; ? &quot;med&quot; : line===&quot;Medical&quot; ? &quot;mdc&quot; : line===&quot;Dental&quot; ? &quot;den&quot; : line===&quot;Plan&quot; ? &quot;pln&quot; : line===&quot;Disability&quot; ? &quot;mdc&quot; : &quot;&quot;;
   return &#x27;&lt;span class=&quot;pill &#x27; + cls + &#x27;&quot;&gt;&#x27; + line + &#x27;&lt;/span&gt;&#x27;;
 }
 function renderCases(){
   if (!S.cases.length) {
-    document.getElementById(&quot;caseRows&quot;).innerHTML = &#x27;&lt;tr&gt;&lt;td colspan=&quot;7&quot; class=&quot;empty-cell&quot;&gt;No cases yet. Import your book from a CSV, or tell the assistant to add a case — the board fills in from there.&lt;/td&gt;&lt;/tr&gt;&#x27;;
+    document.getElementById(&quot;caseRows&quot;).innerHTML = &#x27;&lt;tr&gt;&lt;td colspan=&quot;6&quot; class=&quot;empty-cell&quot;&gt;No cases yet. Import your book from a CSV, or tell the assistant to add a case \u2014 the board fills in from there.&lt;/td&gt;&lt;/tr&gt;&#x27;;
     document.getElementById(&quot;caseList&quot;).innerHTML = &#x27;&lt;div class=&quot;empty-cell&quot;&gt;No cases yet. Import your book from a CSV, or tell the assistant to add a case.&lt;/div&gt;&#x27;;
     return;
   }
   const groups = STATUSES
     .map(s =&gt; ({s, rows: S.cases.filter(c =&gt; statusOf(c) === s &amp;&amp; caseVisible(c)).slice().sort((a,b) =&gt; b.age - a.age)}))
-    .filter(g =&gt; filter === &quot;All&quot; || g.rows.length);
+    .filter(g =&gt; g.rows.length || filter === g.s);
   const total = groups.reduce((a,g) =&gt; a + g.rows.length, 0);
-  const tableRow = c =&gt; {
+  const flagOf = c =&gt; {
     const ot = openTasks(c).length;
-    let flag = &quot;&quot;;
-    if (c.stuck &amp;&amp; ot === 0) flag = &#x27;&lt;span class=&quot;flag court&quot;&gt;●&lt;span class=&quot;ftxt&quot;&gt; carrier\u2019s court&lt;/span&gt;&lt;/span&gt;&#x27;;
-    else if (c.stuck) flag = &#x27;&lt;span class=&quot;flag&quot;&gt;●&lt;span class=&quot;ftxt&quot;&gt; stuck&lt;/span&gt;&lt;/span&gt;&#x27;;
-    else if (ot) flag = &#x27;&lt;span class=&quot;dim&quot;&gt;&#x27; + ot + &quot; open task&quot; + (ot&gt;1?&quot;s&quot;:&quot;&quot;) + &#x27;&lt;/span&gt;&#x27;;
-    const car = c.carrier;
+    if (c.stuck &amp;&amp; ot === 0) return &#x27;&lt;span class=&quot;flag court&quot;&gt;\u25CF&lt;span class=&quot;ftxt&quot;&gt; carrier\u2019s court&lt;/span&gt;&lt;/span&gt;&#x27;;
+    if (c.stuck) return &#x27;&lt;span class=&quot;flag&quot;&gt;\u25CF&lt;span class=&quot;ftxt&quot;&gt; stuck&lt;/span&gt;&lt;/span&gt;&#x27;;
+    if (ot) return &#x27;&lt;span class=&quot;dim&quot;&gt;&#x27; + ot + &quot; open task&quot; + (ot&gt;1?&quot;s&quot;:&quot;&quot;) + &#x27;&lt;/span&gt;&#x27;;
+    return &quot;&quot;;
+  };
+  const tableRow = c =&gt; {
+    const fam = familyOf(c.product);
     return &#x27;&lt;tr onclick=&quot;openCase(&#x27; + c.id + &#x27;)&quot;&gt;&#x27; +
-      &#x27;&lt;td&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + c.who + &#x27;&lt;/span&gt; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.product + &#x27;&lt;/span&gt;&lt;/td&gt;&#x27; +
-      &#x27;&lt;td data-label=&quot;Line&quot;&gt;&#x27; + linePill(c.line) + &#x27;&lt;/td&gt;&lt;td data-label=&quot;Carrier&quot;&gt;&#x27; + car + &#x27;&lt;/td&gt;&lt;td data-label=&quot;Stage&quot; class=&quot;stagec&quot;&gt;&#x27; + c.stage + &#x27;&lt;/td&gt;&#x27; +
-      &#x27;&lt;td data-label=&quot;Age&quot; class=&quot;age &#x27; + (c.age&gt;7 ? &quot;hot&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + c.age + &#x27;d&lt;/td&gt;&#x27; +
-      &#x27;&lt;td data-label=&quot;Commission&quot; class=&quot;money&quot;&gt;&#x27; + money(c.commission) + (c.recurring ? &#x27;&lt;span class=&quot;dim&quot;&gt;/yr&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
-      &#x27;&lt;td&gt;&#x27; + flag + &#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;;
+      &#x27;&lt;td&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + c.who + &#x27;&lt;/span&gt;&#x27; + (c.desc ? &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.desc + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
+      &#x27;&lt;td data-label=&quot;Product&quot;&gt;&#x27; + linePill(fam) + &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.product + &#x27;&lt;/span&gt;&lt;/td&gt;&#x27; +
+      &#x27;&lt;td data-label=&quot;Stage&quot; class=&quot;stagec&quot;&gt;&#x27; + (c.detail || c.status) + &#x27;&lt;/td&gt;&#x27; +
+      &#x27;&lt;td data-label=&quot;Age&quot; class=&quot;age &#x27; + (c.age&gt;7 &amp;&amp; INFLIGHT.includes(c.status) ? &quot;hot&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + c.age + &#x27;d&lt;/td&gt;&#x27; +
+      &#x27;&lt;td data-label=&quot;My FYC&quot; class=&quot;money&quot;&gt;&#x27; + money(myFyc(c)) + (c.share != null &amp;&amp; c.share &lt; 1 &amp;&amp; c.fyc ? &#x27; &lt;span class=&quot;dim&quot;&gt;of &#x27; + money(c.fyc) + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + (c.recurring ? &#x27;&lt;span class=&quot;dim&quot;&gt;/yr&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
+      &#x27;&lt;td&gt;&#x27; + flagOf(c) + &#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;;
   };
   const listRow = c =&gt; {
+    const fam = familyOf(c.product);
     const ot = openTasks(c).length;
     let flag = &quot;&quot;;
     if (c.stuck &amp;&amp; ot === 0) flag = &#x27; \u00B7 &lt;span class=&quot;flag court&quot;&gt;\u25CF carrier\u2019s court&lt;/span&gt;&#x27;;
@@ -879,18 +919,27 @@ function renderCases(){
     else if (ot) flag = &#x27; \u00B7 &lt;span class=&quot;dim&quot;&gt;&#x27; + ot + &quot; open task&quot; + (ot &gt; 1 ? &quot;s&quot; : &quot;&quot;) + &#x27;&lt;/span&gt;&#x27;;
     return &#x27;&lt;div class=&quot;crow&quot; onclick=&quot;openCase(&#x27; + c.id + &#x27;)&quot;&gt;&#x27; +
       &#x27;&lt;div class=&quot;crow-top&quot;&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + c.who + &#x27;&lt;/span&gt;&#x27; +
-      &#x27;&lt;span class=&quot;cmoney&quot;&gt;&#x27; + money(c.commission) + (c.recurring ? &#x27;&lt;span class=&quot;dim&quot;&gt;/yr&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
-      &#x27;&lt;div class=&quot;crow-sub&quot;&gt;&#x27; + linePill(c.line) + &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.product + &#x27; \u00B7 &#x27; + c.carrier + &#x27; \u00B7 &#x27; + c.stage + &#x27; \u00B7 &lt;/span&gt;&#x27; +
-      &#x27;&lt;span class=&quot;age&#x27; + (c.age &gt; 7 ? &quot; hot&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + c.age + &#x27;d&lt;/span&gt;&#x27; + flag + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+      &#x27;&lt;span class=&quot;cmoney&quot;&gt;&#x27; + money(myFyc(c)) + (c.recurring ? &#x27;&lt;span class=&quot;dim&quot;&gt;/yr&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
+      &#x27;&lt;div class=&quot;crow-sub&quot;&gt;&#x27; + linePill(fam) + &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.product + (c.desc ? &#x27; \u00B7 &#x27; + c.desc : &#x27;&#x27;) + &#x27; \u00B7 &#x27; + (c.detail || c.status) + &#x27; \u00B7 &lt;/span&gt;&#x27; +
+      &#x27;&lt;span class=&quot;age&#x27; + (c.age &gt; 7 &amp;&amp; INFLIGHT.includes(c.status) ? &quot; hot&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + c.age + &#x27;d&lt;/span&gt;&#x27; + flag + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
   };
   document.getElementById(&quot;caseRows&quot;).innerHTML = total ? groups.map(g =&gt;
-    &#x27;&lt;tr class=&quot;srow-h&quot;&gt;&lt;td colspan=&quot;7&quot;&gt;&lt;span class=&quot;sgname&quot;&gt;&#x27; + g.s + &#x27; \u00B7 &#x27; + g.rows.length + &#x27;&lt;/span&gt;&lt;span class=&quot;sgmeta&quot;&gt;&#x27; + statusSums(g.rows) + &#x27;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&#x27; +
-    (g.rows.length ? g.rows.map(tableRow).join(&quot;&quot;) : &#x27;&lt;tr&gt;&lt;td colspan=&quot;7&quot; class=&quot;dim&quot; style=&quot;padding:10px 8px 16px&quot;&gt;No cases in this status.&lt;/td&gt;&lt;/tr&gt;&#x27;)
-  ).join(&quot;&quot;) : &#x27;&lt;tr&gt;&lt;td colspan=&quot;7&quot; class=&quot;dim&quot; style=&quot;padding:18px 8px&quot;&gt;Nothing here under this filter.&lt;/td&gt;&lt;/tr&gt;&#x27;;
+    &#x27;&lt;tr class=&quot;srow-h&quot;&gt;&lt;td colspan=&quot;6&quot;&gt;&lt;span class=&quot;sgname&quot;&gt;&#x27; + g.s + &#x27; \u00B7 &#x27; + g.rows.length + &#x27;&lt;/span&gt;&lt;span class=&quot;sgmeta&quot;&gt;&#x27; + statusSums(g.rows) + &#x27;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&#x27; +
+    (g.rows.length ? g.rows.map(tableRow).join(&quot;&quot;) : &#x27;&lt;tr&gt;&lt;td colspan=&quot;6&quot; class=&quot;dim&quot; style=&quot;padding:10px 8px 16px&quot;&gt;No cases in this status.&lt;/td&gt;&lt;/tr&gt;&#x27;)
+  ).join(&quot;&quot;) : &#x27;&lt;tr&gt;&lt;td colspan=&quot;6&quot; class=&quot;dim&quot; style=&quot;padding:18px 8px&quot;&gt;Nothing here under this filter.&lt;/td&gt;&lt;/tr&gt;&#x27;;
   document.getElementById(&quot;caseList&quot;).innerHTML = total ? groups.map(g =&gt;
     &#x27;&lt;div class=&quot;sgroup&quot;&gt;&lt;span&gt;&#x27; + g.s + &#x27; \u00B7 &#x27; + g.rows.length + &#x27;&lt;/span&gt;&lt;span class=&quot;sgmeta&quot;&gt;&#x27; + statusSums(g.rows) + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
     (g.rows.length ? g.rows.map(listRow).join(&quot;&quot;) : &#x27;&lt;div class=&quot;dim&quot; style=&quot;padding:8px 4px 14px&quot;&gt;No cases in this status.&lt;/div&gt;&#x27;)
   ).join(&quot;&quot;) : &#x27;&lt;div class=&quot;dim&quot; style=&quot;padding:18px 4px&quot;&gt;Nothing here under this filter.&lt;/div&gt;&#x27;;
+}
+function renderProduction(){
+  const el = document.getElementById(&quot;production&quot;); if (!el) return;
+  const done = S.cases.filter(c =&gt; DONE.includes(statusOf(c)));
+  if (!done.length) { el.innerHTML = &#x27;&lt;div class=&quot;dim&quot; style=&quot;padding:6px 2px&quot;&gt;Nothing deposited or delivered yet.&lt;/div&gt;&#x27;; return; }
+  const byQ = {};
+  done.forEach(c =&gt; { const q = quarterOf(c); byQ[q] = byQ[q] || {n:0, mine:0, size:0, key:qKey(c), open:0}; byQ[q].n++; byQ[q].mine += myFyc(c); byQ[q].size += (c.size || 0); if (!c.postDocs) byQ[q].open++; });
+  const qs = Object.keys(byQ).sort((a,b) =&gt; byQ[b].key - byQ[a].key);
+  el.innerHTML = qs.map(q =&gt; &#x27;&lt;div class=&quot;renew-row&quot;&gt;&lt;span&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + q + &#x27;&lt;/span&gt; &lt;span class=&quot;dim&quot;&gt;&#x27; + byQ[q].n + &#x27; case&#x27; + (byQ[q].n &gt; 1 ? &quot;s&quot; : &quot;&quot;) + &#x27; \u00B7 &#x27; + money(byQ[q].size) + &#x27; in case size&#x27; + (byQ[q].open ? &#x27; \u00B7 &#x27; + byQ[q].open + &#x27; awaiting post-delivery filing&#x27; : &#x27;&#x27;) + &#x27;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;dim&quot;&gt;&#x27; + money(byQ[q].mine) + &#x27; my FYC&lt;/span&gt;&lt;/div&gt;&#x27;).join(&quot;&quot;);
 }
 function renderRenewals(){
   document.getElementById(&quot;renewals&quot;).innerHTML = S.renewals.length ? S.renewals.map(r =&gt;
@@ -920,17 +969,30 @@ function renderSheet(){
   const taskRow = x =&gt;
     &#x27;&lt;label class=&quot;task &#x27; + (x.t.done ? &quot;done&quot; : &quot;&quot;) + &#x27;&quot;&gt;&lt;input type=&quot;checkbox&quot; &#x27; + (x.t.done ? &quot;checked&quot; : &quot;&quot;) +
     &#x27; onchange=&quot;toggleTask(&#x27; + x.i + &#x27;)&quot;&gt;&lt;span&gt;&lt;span class=&quot;t&quot;&gt;&#x27; + x.t.t + &#x27;&lt;/span&gt;&#x27; + (x.t.done ? &quot;&quot; : dueLabel(x.t)) + &#x27;&lt;/span&gt;&lt;/label&gt;&#x27;;
+  const splits = (c.splits || []).map(s =&gt; s.code + &quot; \u00B7 &quot; + s.pct + &quot;%&quot;).join(&quot;, &quot;);
+  const rows = [
+    [&quot;Status&quot;, c.status + (c.detail ? &quot; \u2014 &quot; + c.detail : &quot;&quot;)],
+    [&quot;Product&quot;, c.product + (c.desc ? &quot; \u00B7 &quot; + c.desc : &quot;&quot;)],
+    [&quot;App date&quot;, fmtDate(appDateOf(c)) + &quot; \u00B7 &quot; + c.age + &quot; days in flight&quot;],
+    c.size ? [&quot;Case size&quot;, money(c.size)] : null,
+    [&quot;FYC&quot;, money(c.fyc || 0) + &quot; gross \u00B7 my share &quot; + Math.round((c.share == null ? 1 : c.share) * 100) + &quot;% \u2192 &quot; + money(myFyc(c)) + &quot; mine&quot;],
+    splits ? [&quot;Split with&quot;, splits] : null,
+    c.exam ? [&quot;Medical exam&quot;, fmtDate(c.exam)] : null,
+    [&quot;Case files&quot;, c.docs ? &quot;\u2713 In cloud storage&quot; : &quot;Not filed yet&quot;],
+    DONE.includes(c.status) ? [&quot;Post-delivery files&quot;, c.postDocs ? &quot;\u2713 Stored in cloud&quot; : &quot;Not stored yet&quot;] : null,
+    c.funding ? [&quot;Funding&quot;, c.funding] : null,
+    c.waitingOn ? [&quot;Waiting on&quot;, c.waitingOn] : null
+  ].filter(Boolean);
   document.getElementById(&quot;sheet&quot;).innerHTML =
-    &#x27;&lt;button class=&quot;sheet-close&quot; onclick=&quot;closeSheet()&quot;&gt;✕&lt;/button&gt;&#x27; +
-    &#x27;&lt;h3&gt;&#x27; + c.who + &#x27; — &#x27; + c.product + &#x27;&lt;/h3&gt;&#x27; +
-    &#x27;&lt;div class=&quot;meta&quot;&gt;&#x27; + c.line + &#x27; · &#x27; + c.carrier + &#x27; · &#x27; + (statusOf(c) === c.stage ? c.stage : statusOf(c) + &#x27; — &#x27; + c.stage) + &#x27; · &#x27; + c.age + &#x27; days in flight · &#x27; +
-      money(c.commission) + (c.recurring ? &#x27;/yr recurring&#x27; : &#x27; commission&#x27;) + &#x27;&lt;/div&gt;&#x27; +
+    &#x27;&lt;button class=&quot;sheet-close&quot; onclick=&quot;closeSheet()&quot;&gt;\u2715&lt;/button&gt;&#x27; +
+    &#x27;&lt;h3&gt;&#x27; + c.who + (c.desc ? &#x27; \u2014 &#x27; + c.desc : &#x27;&#x27;) + &#x27;&lt;/h3&gt;&#x27; +
+    &#x27;&lt;div class=&quot;dgrid&quot;&gt;&#x27; + rows.map(r =&gt; &#x27;&lt;div class=&quot;dk&quot;&gt;&#x27; + r[0] + &#x27;&lt;/div&gt;&lt;div&gt;&#x27; + r[1] + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;) + &#x27;&lt;/div&gt;&#x27; +
     (c.stuck &amp;&amp; open.length === 0
-      ? &#x27;&lt;div class=&quot;court-banner&quot;&gt;⏳ This case is stalled with &lt;b&gt;no open tasks on your side&lt;/b&gt; — the ball is in the carrier\u2019s court. A status call is the only move.&lt;/div&gt;&#x27; : &#x27;&#x27;) +
-    &#x27;&lt;div class=&quot;stack-lbl&quot;&gt;Task stack — open (&#x27; + open.length + &#x27;)&lt;/div&gt;&#x27; +
+      ? &#x27;&lt;div class=&quot;court-banner&quot;&gt;\u23F3 This case is stalled with &lt;b&gt;no open tasks on your side&lt;/b&gt; \u2014 the ball is in the carrier\u2019s court. A status call is the only move.&lt;/div&gt;&#x27; : &#x27;&#x27;) +
+    &#x27;&lt;div class=&quot;stack-lbl&quot;&gt;Task stack \u2014 open (&#x27; + open.length + &#x27;)&lt;/div&gt;&#x27; +
     (open.length ? open.map(taskRow).join(&quot;&quot;) : &#x27;&lt;p class=&quot;dim&quot; style=&quot;padding:6px 0&quot;&gt;No open tasks.&lt;/p&gt;&#x27;) +
     (done.length ? &#x27;&lt;div class=&quot;stack-lbl&quot;&gt;Closed (&#x27; + done.length + &#x27;)&lt;/div&gt;&#x27; + done.map(taskRow).join(&quot;&quot;) : &#x27;&#x27;) +
-    &#x27;&lt;div class=&quot;add-task&quot;&gt;&lt;input id=&quot;newTask&quot; type=&quot;text&quot; placeholder=&quot;Add a task to this case…&quot; onkeydown=&quot;if(event.key===\&#x27;Enter\&#x27;)addTask()&quot;&gt;&#x27; +
+    &#x27;&lt;div class=&quot;add-task&quot;&gt;&lt;input id=&quot;newTask&quot; type=&quot;text&quot; placeholder=&quot;Add a task to this case\u2026&quot; onkeydown=&quot;if(event.key===\&#x27;Enter\&#x27;)addTask()&quot;&gt;&#x27; +
     &#x27;&lt;button class=&quot;btn&quot; onclick=&quot;addTask()&quot;&gt;Add&lt;/button&gt;&lt;/div&gt;&#x27;;
 }
 function toggleTask(i){
@@ -1078,7 +1140,7 @@ function stuckText(){
   if (!st.length) return &quot;Nothing is stuck right now. Clean board.&quot;;
   return &quot;You have &quot; + st.length + &quot; stuck cases:\n&quot; + st.map(c =&gt; {
     const ot = openTasks(c).length;
-    return &quot;• &quot; + c.who + &quot; — &quot; + c.carrier + &quot; &quot; + c.product + &quot;, &quot; + c.age + &quot;d, &quot; + money(c.commission) +
+    return &quot;• &quot; + c.who + &quot; — &quot; + c.product + (c.desc ? &quot; &quot; + c.desc : &quot;&quot;) + &quot;, &quot; + c.age + &quot;d, &quot; + money(myFyc(c)) + &quot; mine&quot; +
       (ot === 0 ? &quot; — no open tasks: ball is in the carrier\u2019s court&quot; : &quot; — &quot; + ot + &quot; open task&quot; + (ot&gt;1?&quot;s&quot;:&quot;&quot;) + &quot; on your side&quot;);
   }).join(&quot;\n&quot;);
 }
@@ -1091,7 +1153,7 @@ function statusText(st){
   const rows = S.cases.filter(c =&gt; statusOf(c) === st).slice().sort((a,b) =&gt; b.age - a.age);
   if (!rows.length) return &quot;Nothing is &quot; + st.toLowerCase() + &quot; right now.&quot;;
   return rows.length + &quot; case&quot; + (rows.length === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; &quot; + st.toLowerCase() + &quot;:\n&quot; + rows.map(c =&gt;
-    &quot;\u2022 &quot; + c.who + &quot; \u2014 &quot; + c.line + &quot; \u00B7 &quot; + c.carrier + &quot; &quot; + c.product + &quot;, &quot; + c.stage.toLowerCase() + &quot;, &quot; + c.age + &quot;d, &quot; + money(c.commission) + (c.recurring ? &quot;/yr&quot; : &quot;&quot;) + (c.stuck ? &quot; \u2014 stuck&quot; : &quot;&quot;)).join(&quot;\n&quot;);
+    &quot;\u2022 &quot; + c.who + &quot; \u2014 &quot; + c.product + (c.desc ? &quot; &quot; + c.desc : &quot;&quot;) + &quot;, &quot; + (c.detail || c.status).toLowerCase() + &quot;, &quot; + c.age + &quot;d, &quot; + money(myFyc(c)) + (c.recurring ? &quot;/yr&quot; : &quot;&quot;) + (c.stuck ? &quot; \u2014 stuck&quot; : &quot;&quot;)).join(&quot;\n&quot;);
 }
 function findDayEvents(name){
   const now = new Date();
@@ -1119,19 +1181,19 @@ function handleAI(raw){
   }
   /* --- v4.0: import / move case / add license / schedule --- */
   if (/\b(import|csv|spreadsheet|upload)\b/.test(t)) {
-    botMsg(&#x27;You can load your existing book from a CSV — carrier exports work. BookView maps the status columns, and anything that looks like a client identifier (names, SSNs, policy numbers) is stripped on your device and never saved: names become initials-only labels.&lt;br&gt;&lt;button class=&quot;okbtn&quot; onclick=&quot;openImport()&quot;&gt;Open the importer&lt;/button&gt;&#x27;);
+    botMsg(&#x27;You can load your existing book from a CSV — carrier exports work. BookView maps the status columns, and anything that looks like a client identifier (names, SSNs, policy numbers, free-text notes) is stripped on your device and never saved: names become initials-only labels.&lt;br&gt;&lt;button class=&quot;okbtn&quot; onclick=&quot;openImport()&quot;&gt;Open the importer&lt;/button&gt;&#x27;);
     return;
   }
   const mvLabel = text.match(/\b([A-Z]{3})\s+(\d{3})\b/);
   if (/\b(move|advance|update)\b/.test(t) &amp;&amp; mvLabel) {
     const who = mvLabel[1] + &quot; &quot; + mvLabel[2];
     const c = S.cases.find(x =&gt; x.who === who);
-    const stName = /underwrit/.test(t) ? &quot;Underwriting&quot; : /fund|financ/.test(t) ? &quot;Funds pending&quot; : /deliver|issued/.test(t) ? &quot;Delivery pending&quot; : /app|application|start/.test(t) ? &quot;App pending&quot; : null;
+    const stName = /prospect/.test(t) ? &quot;Prospect&quot; : /deposit/.test(t) ? &quot;Deposited&quot; : /delivered/.test(t) ? &quot;Delivered&quot; : /delivery/.test(t) ? &quot;Delivery Pending&quot; : /declin/.test(t) ? &quot;Declined&quot; : /underwrit/.test(t) ? &quot;Underwriting&quot; : /fund/.test(t) ? &quot;Funds Pending&quot; : /submitted/.test(t) ? &quot;Submitted&quot; : /app|application/.test(t) ? &quot;App Pending&quot; : null;
     if (c &amp;&amp; stName) {
-      const stageFor = {&quot;App pending&quot;:&quot;Application taken&quot;,&quot;Underwriting&quot;:&quot;Underwriting&quot;,&quot;Funds pending&quot;:&quot;Funded — pending issue&quot;,&quot;Delivery pending&quot;:&quot;Issued — delivery&quot;};
-      draftCard(&quot;&lt;b&gt;Move case:&lt;/b&gt; &quot; + who + &quot; → &quot; + stName + &quot; (stage: &quot; + stageFor[stName] + &quot;)&quot;, () =&gt; {
-        c.stage = stageFor[stName]; save(); renderCases(); renderKPIs();
-        botMsg(&quot;Moved — &quot; + who + &quot; is now &quot; + stName.toLowerCase() + &quot;.&quot;);
+      draftCard(&quot;&lt;b&gt;Move case:&lt;/b&gt; &quot; + who + &quot; \u2192 &quot; + stName, () =&gt; {
+        c.status = stName; c.detail = &quot;&quot;; if (!INFLIGHT.includes(stName)) c.stuck = false;
+        save(); renderCases(); renderKPIs();
+        botMsg(&quot;Moved \u2014 &quot; + who + &quot; is now &quot; + stName.toLowerCase() + &quot;.&quot;);
       });
       return;
     }
@@ -1171,25 +1233,32 @@ function handleAI(raw){
     });
     return;
   }
+  /* --- production --- */
+  if (/production|produced/.test(t)) {
+    const q = quarterOf({age: 0});
+    const done = S.cases.filter(c =&gt; DONE.includes(statusOf(c)) &amp;&amp; quarterOf(c) === q);
+    const mine = done.reduce((a,c) =&gt; a + myFyc(c), 0);
+    botMsg(done.length ? &quot;Production &quot; + q + &quot;: &quot; + money(mine) + &quot; \u2014 your share of FYC across &quot; + done.length + &quot; deposited/delivered case&quot; + (done.length &gt; 1 ? &quot;s&quot; : &quot;&quot;) + &quot;.&quot;
+      : &quot;No deposited or delivered business yet this quarter (&quot; + q + &quot;).&quot;);
+    return;
+  }
   /* --- stuck --- */
   if (/\bstuck\b|\boverdue\b/.test(t)) { botMsg(stuckText()); return; }
   /* --- status: where cases stand --- */
   const stHit = STATUSES.find(s =&gt; t.includes(s.toLowerCase()));
   if (stHit || /\bstatus\b|\bpipeline\b/.test(t)) { botMsg(statusText(stHit)); return; }
   /* --- add a case --- */
-  if (/add.*case|new case|submitted/.test(t)) {
-    const line = /annuit/.test(t) ? &quot;Annuity&quot; : /medicare|advantage|supp/.test(t) ? &quot;Medicare&quot; : /medical|health plan/.test(t) ? &quot;Medical&quot; : /dental/.test(t) ? &quot;Dental&quot; : /advisor|rollover|managed/.test(t) ? &quot;Advisory&quot; : &quot;Life&quot;;
-    const carriers = [&quot;North American&quot;,&quot;Foresters&quot;,&quot;Mutual of Omaha&quot;,&quot;Allianz&quot;,&quot;Transamerica&quot;,&quot;Protective&quot;,&quot;National Life&quot;,&quot;Athene&quot;,&quot;UnitedHealthcare&quot;,&quot;Humana&quot;,&quot;Schwab&quot;,&quot;Fidelity&quot;];
-    const carrier = carriers.find(c =&gt; t.includes(c.toLowerCase())) || &quot;North American&quot;;
+  if (/add.*case|new case/.test(t)) {
+    const product = /eagle prosper/.test(t) ? &quot;Eagle Prosper&quot; : /eagle/.test(t) ? &quot;Eagle&quot; : /annuit|myga|fia/.test(t) ? (/allianz|athene|protective/.test(t) ? &quot;Non-NYL: Annuity&quot; : &quot;NYL: Annuity&quot;) : /medicare advantage/.test(t) ? &quot;Medicare Advantage&quot; : /med supp|supplement/.test(t) ? &quot;Medicare Supplement&quot; : /dental/.test(t) ? &quot;Dental&quot; : /financial plan/.test(t) ? &quot;Financial Plan&quot; : /securit/.test(t) ? &quot;NYL: Securities&quot; : /svul/.test(t) ? &quot;NYL: SVUL&quot; : /health|aca/.test(t) ? &quot;Health&quot; : /advisor|rollover|managed|401/.test(t) ? &quot;Eagle&quot; : &quot;NYL: Life&quot;;
     const lm = text.match(/\b([A-Z]{3})\s+(\d{3})\b/);
     const who = lm ? lm[1] + &quot; &quot; + lm[2] : &quot;JMS 214&quot;;
     const commText = lm ? text.replace(lm[0], &quot; &quot;) : text;
     const comm = (commText.match(/\$?\s?([\d,]{3,})/) || [null,&quot;1,500&quot;])[1].replace(/,/g,&quot;&quot;);
-    draftCard(&quot;&lt;b&gt;New case:&lt;/b&gt; &quot; + who + &quot; · &quot; + line + &quot; · &quot; + carrier + &quot; · stage: Application taken · commission &quot; + money(parseInt(comm,10)),
+    draftCard(&quot;&lt;b&gt;New case:&lt;/b&gt; &quot; + who + &quot; \u00B7 &quot; + product + &quot; \u00B7 status: App Pending \u00B7 FYC &quot; + money(parseInt(comm,10)),
       () =&gt; {
-        S.cases.push({id: Date.now(), who, line, carrier, product:&quot;—&quot;, stage:&quot;Application taken&quot;, age:0, commission:parseInt(comm,10), stuck:false, tasks:[]});
+        S.cases.push({id: Date.now(), who, product, desc: &quot;&quot;, status: &quot;App Pending&quot;, detail: &quot;Application taken&quot;, age: 0, fyc: parseInt(comm,10), credits: 0, size: 0, share: 1, splits: [], docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []});
         save(); renderKPIs(); renderCases(); renderTasks();
-        botMsg(&quot;Saved. &quot; + who + &quot; is on the board — I\u2019ll start aging it from today. Add its first task any time: \u201Cadd a task to &quot; + who + &quot;\u201D.&quot;);
+        botMsg(&quot;Saved. &quot; + who + &quot; is on the board \u2014 I\u2019ll start aging it from today. Add its first task any time: \u201Cadd a task to &quot; + who + &quot;\u201D.&quot;);
       });
     return;
   }
@@ -1203,7 +1272,7 @@ function handleAI(raw){
     }));
     if (best) {
       const task = best.task, c = bestCase;
-      draftCard(&quot;&lt;b&gt;Close task:&lt;/b&gt; \u201C&quot; + task.t + &quot;\u201D on case &quot; + c.who + &quot; (&quot; + c.carrier + &quot;)&quot;,
+      draftCard(&quot;&lt;b&gt;Close task:&lt;/b&gt; \u201C&quot; + task.t + &quot;\u201D on case &quot; + c.who + &quot; (&quot; + c.product + &quot;)&quot;,
         () =&gt; { task.done = true; save(); renderCases(); renderKPIs(); renderTasks(); botMsg(&quot;Done — \u201C&quot; + task.t + &quot;\u201D is closed on &quot; + c.who + &quot;. &quot; + openTasks(c).length + &quot; open task(s) left on that case.&quot;); });
       return;
     }
@@ -1238,13 +1307,14 @@ function handleAI(raw){
   }
   /* --- commissions --- */
   if (/commission|owed|pending money/.test(t)) {
-    const pending = S.cases.filter(c =&gt; !c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
-    const stuckM = S.cases.filter(c =&gt; c.stuck &amp;&amp; !c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
-    botMsg(&quot;Commissions pending: &quot; + money(pending) + &quot; across &quot; + S.cases.filter(c=&gt;!c.recurring).length + &quot; cases — &quot; + money(stuckM) + &quot; of it is stuck.&quot;);
+    const pend = S.cases.filter(c =&gt; INFLIGHT.includes(statusOf(c)));
+    const pending = pend.reduce((a,c) =&gt; a + myFyc(c), 0);
+    const stuckM = pend.filter(c =&gt; c.stuck).reduce((a,c) =&gt; a + myFyc(c), 0);
+    botMsg(&quot;Your commissions pending: &quot; + money(pending) + &quot; (your share) across &quot; + pend.length + &quot; in-flight cases — &quot; + money(stuckM) + &quot; of it is stuck.&quot;);
     return;
   }
   if (/help|what can you/.test(t)) {
-    botMsg(&quot;I can:\n• Report what\u2019s stuck\n• Add a case (try \u201Cadd a case, life, Foresters, TJB 902, 1800\u201D)\n• Close a task (\u201Cthe paramed exam is scheduled\u201D)\n• Answer license &amp; appointment questions\n• Tell you what\u2019s on any day this week\nI draft first — nothing saves without your confirm.&quot;);
+    botMsg(&quot;I can:\n• Report what\u2019s stuck\n• Add a case (try \u201Cadd a case, NYL life, TJB 902, 1800\u201D)\n• Close a task (\u201Cthe paramed exam is scheduled\u201D)\n• Answer license &amp; appointment questions\n• Tell you what\u2019s on any day this week\nI draft first — nothing saves without your confirm.&quot;);
     return;
   }
   botMsg(&quot;I didn\u2019t catch that one — this prototype understands a defined set of commands (the full product won\u2019t have that limit). Try one of the suggestions below, or type \u201Chelp\u201D.&quot;);
@@ -1279,7 +1349,7 @@ function taskListRow(x){
     &#x27;&lt;button class=&quot;tcbox&#x27; + (x.t.done ? &quot; done&quot; : &quot;&quot;) + &#x27;&quot; onclick=&quot;toggleListTask(&#x27; + x.c.id + &#x27;,&#x27; + x.i + &#x27;)&quot; aria-label=&quot;Mark task done&quot;&gt;&#x27; + (x.t.done ? &quot;\u2713&quot; : &quot;&quot;) + &#x27;&lt;/button&gt;&#x27; +
     &#x27;&lt;div class=&quot;tmain&quot; onclick=&quot;openCase(&#x27; + x.c.id + &#x27;)&quot;&gt;&#x27; +
       &#x27;&lt;div class=&quot;ttitle&#x27; + (x.t.done ? &quot; done&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + x.t.t + &#x27;&lt;/div&gt;&#x27; +
-      &#x27;&lt;div class=&quot;tmeta&quot;&gt;&#x27; + x.c.who + &#x27; \u00B7 &#x27; + x.c.product + &#x27; \u00B7 &#x27; + x.c.carrier +
+      &#x27;&lt;div class=&quot;tmeta&quot;&gt;&#x27; + x.c.who + &#x27; \u00B7 &#x27; + x.c.product + (x.c.desc ? &#x27; \u00B7 &#x27; + x.c.desc : &#x27;&#x27;) +
       &#x27; &lt;span class=&quot;tdue &#x27; + x.m.cls + &#x27;&quot;&gt;&#x27; + x.m.label + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
     &#x27;&lt;/div&gt;&lt;span class=&quot;tchev&quot;&gt;\u203A&lt;/span&gt;&lt;/div&gt;&#x27;;
 }
@@ -1311,7 +1381,7 @@ function findOrCreateCase(label){
   if (!norm) return null;
   let c = S.cases.find(x =&gt; x.who.toUpperCase() === norm);
   if (!c) {
-    c = {id: Date.now(), who: norm, line: &quot;Other&quot;, carrier: &quot;\u2014&quot;, product: &quot;\u2014&quot;, stage: &quot;New case&quot;, age: 0, commission: 0, stuck: false, tasks: []};
+    c = {id: Date.now(), who: norm, product: &quot;&quot;, desc: &quot;&quot;, status: &quot;App Pending&quot;, detail: &quot;New case&quot;, age: 0, fyc: 0, credits: 0, size: 0, share: 1, splits: [], docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []};
     S.cases.push(c);
   }
   return c;
@@ -1330,20 +1400,20 @@ function quickAddTask(){
 
 /* ============ INIT ============ */
 renderKPIs(); renderFilters(); renderCases(); renderTasks(); renderRenewals(); renderLicenses(); renderCalendar();
-botMsg(&quot;Evening. Your board: &quot; + S.cases.length + &quot; cases in flight, &quot; + S.cases.filter(c=&gt;c.stuck).length + &quot; stuck. Ask me what\u2019s stuck, tell me a case to add, or check a license — I\u2019ll draft it before anything saves.&quot;);
+botMsg(&quot;Evening. Your board: &quot; + S.cases.filter(c=&gt;INFLIGHT.includes(statusOf(c))).length + &quot; cases in flight, &quot; + S.cases.filter(c=&gt;c.stuck).length + &quot; stuck. Ask me what\u2019s stuck, tell me a case to add, or check a license — I\u2019ll draft it before anything saves.&quot;);
 &lt;/script&gt;
 &lt;script&gt;
 /* ============ v4.0 — CSV import, first run, license form ============ */
 const STATES = [&quot;Alabama&quot;,&quot;Alaska&quot;,&quot;Arizona&quot;,&quot;Arkansas&quot;,&quot;California&quot;,&quot;Colorado&quot;,&quot;Connecticut&quot;,&quot;Delaware&quot;,&quot;Florida&quot;,&quot;Georgia&quot;,&quot;Hawaii&quot;,&quot;Idaho&quot;,&quot;Illinois&quot;,&quot;Indiana&quot;,&quot;Iowa&quot;,&quot;Kansas&quot;,&quot;Kentucky&quot;,&quot;Louisiana&quot;,&quot;Maine&quot;,&quot;Maryland&quot;,&quot;Massachusetts&quot;,&quot;Michigan&quot;,&quot;Minnesota&quot;,&quot;Mississippi&quot;,&quot;Missouri&quot;,&quot;Montana&quot;,&quot;Nebraska&quot;,&quot;Nevada&quot;,&quot;New Hampshire&quot;,&quot;New Jersey&quot;,&quot;New Mexico&quot;,&quot;New York&quot;,&quot;North Carolina&quot;,&quot;North Dakota&quot;,&quot;Ohio&quot;,&quot;Oklahoma&quot;,&quot;Oregon&quot;,&quot;Pennsylvania&quot;,&quot;Rhode Island&quot;,&quot;South Carolina&quot;,&quot;South Dakota&quot;,&quot;Tennessee&quot;,&quot;Texas&quot;,&quot;Utah&quot;,&quot;Vermont&quot;,&quot;Virginia&quot;,&quot;Washington&quot;,&quot;West Virginia&quot;,&quot;Wisconsin&quot;,&quot;Wyoming&quot;];
 const MONTHS = [&quot;jan&quot;,&quot;feb&quot;,&quot;mar&quot;,&quot;apr&quot;,&quot;may&quot;,&quot;jun&quot;,&quot;jul&quot;,&quot;aug&quot;,&quot;sep&quot;,&quot;oct&quot;,&quot;nov&quot;,&quot;dec&quot;];
 
-const SAMPLE_CSV = &quot;Client Name,SSN,Carrier,Product,Stage,Commission,Age (days)\n&quot; +
-&quot;Daniel R Kim,000-12-3456,National Life,FIA,Funded - pending issue,4100,5\n&quot; +
-&quot;Maria L Torres,000-23-4567,Humana,Med Supp,Underwriting,290,11\n&quot; +
-&quot;James P O&#x27;Neil,000-34-5678,Foresters,Whole Life,Application taken,1350,2\n&quot; +
-&quot;Kavita S Nair,000-45-6789,Schwab,401(k) rollover,Transfer in progress,2100,19\n&quot; +
-&quot;Tom W Becker,000-56-7890,Delta Dental,PPO Premier,Issued,95,3\n&quot; +
-&quot;Angela D Ruiz,000-67-8901,Allianz,MYGA 3,Suitability review,3300,9&quot;;
+const SAMPLE_CSV = &quot;Client Name,SSN,Status,Product,FYC,Premium/Investment Amount,Agent Share,Notes\n&quot; +
+&quot;Daniel R Kim,000-12-3456,Funds Pending,NYL: Annuity,4100,212000,0.4,Funds coming from account 778899 - rollover\n&quot; +
+&quot;Maria L Torres,000-23-4567,Underwriting,NYL: Life,2900,40000,0.5,APS pending at clinic\n&quot; +
+&quot;James P O&#x27;Neil,000-34-5678,App Pending,NYL: Life,1350,20000,1,New money\n&quot; +
+&quot;Kavita S Nair,000-45-6789,Deposited,Eagle,2100,225000,1,Transfer in from Schwab\n&quot; +
+&quot;Tom W Becker,000-56-7890,Delivered,Delta: Dental,95,1200,1,\n&quot; +
+&quot;Angela D Ruiz,000-67-8901,Submitted,NYL: Annuity,3300,150000,0.95,IndexFlex VA - bank acct ending 4417&quot;;
 
 function parseCSV(text){
   const rows = []; let row = [], cur = &quot;&quot;, q = false;
@@ -1365,14 +1435,18 @@ const PII_COL = /(ssn|social|dob|birth|phone|email|address|policy\s*(no|num|#)|a
 function guessField(h){
   const x = &quot; &quot; + h.toLowerCase().trim() + &quot; &quot;;
   if (PII_COL.test(h)) return &quot;pii&quot;;
+  if (/note/.test(x)) return &quot;notes&quot;;
   if (/label|case\s*ref|reference/.test(x)) return &quot;label&quot;;
   if (/name|client/.test(x)) return &quot;name&quot;;
-  if (/carrier|company|insurer/.test(x)) return &quot;carrier&quot;;
+  if (h.toLowerCase().trim() === &quot;app&quot; || /app.*date/.test(x)) return &quot;appdate&quot;;
   if (/product|plan/.test(x)) return &quot;product&quot;;
-  if (/stage|status|step/.test(x)) return &quot;stage&quot;;
-  if (/line|type|kind/.test(x)) return &quot;line&quot;;
-  if (/commission|comm/.test(x)) return &quot;commission&quot;;
+  if (/fyc/.test(x)) return &quot;fyc&quot;;
+  if (/premium|investment|amount|case size/.test(x)) return &quot;size&quot;;
+  if (/share/.test(x)) return &quot;share&quot;;
+  if (/status|stage|step/.test(x)) return &quot;status&quot;;
+  if (/commission|comm/.test(x)) return &quot;fyc&quot;;
   if (/age|days/.test(x)) return &quot;age&quot;;
+  if (/carrier|company|insurer/.test(x)) return &quot;product&quot;;
   return &quot;skip&quot;;
 }
 let impHeaders = [], impData = [], impFields = [];
@@ -1381,19 +1455,18 @@ function closeImport(){ document.getElementById(&quot;importBack&quot;).classLis
 function backImport(){ document.getElementById(&quot;importStep1&quot;).style.display = &quot;block&quot;; document.getElementById(&quot;importStep2&quot;).style.display = &quot;none&quot;; }
 function sampleCSV(){ document.getElementById(&quot;csvText&quot;).value = SAMPLE_CSV; previewImport(); }
 function fileCSV(ev){ const f = ev.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () =&gt; { document.getElementById(&quot;csvText&quot;).value = r.result; previewImport(); }; r.readAsText(f); }
-function inferStage(raw){
+function inferStatus(raw){
   const x = (raw || &quot;&quot;).toLowerCase().trim();
-  const keys = Object.keys(STATUS_OF);
-  for (const k of keys) if (k.toLowerCase() === x) return k;
-  if (/underwrit/.test(x)) return &quot;Underwriting&quot;;
-  if (/suitab/.test(x)) return &quot;Suitability review&quot;;
-  if (/fund|financ/.test(x)) return &quot;Funded — pending issue&quot;;
-  if (/transfer/.test(x)) return &quot;Transfer in progress&quot;;
-  if (/onboard/.test(x)) return &quot;Onboarding&quot;;
-  if (/issued|deliver/.test(x)) return &quot;Issued — delivery&quot;;
-  if (/enroll/.test(x)) return &quot;Enrollment submitted&quot;;
-  if (/illustrat/.test(x)) return &quot;Illustration approved&quot;;
-  return &quot;Application taken&quot;;
+  if (/prospect/.test(x)) return &quot;Prospect&quot;;
+  if (/deposit/.test(x)) return &quot;Deposited&quot;;
+  if (/delivered/.test(x)) return &quot;Delivered&quot;;
+  if (/declin|not taken|freelook/.test(x)) return &quot;Declined&quot;;
+  if (/underwrit|suitab/.test(x)) return &quot;Underwriting&quot;;
+  if (/fund|financ|transfer|onboard/.test(x)) return &quot;Funds Pending&quot;;
+  if (/deliver/.test(x)) return &quot;Delivery Pending&quot;;
+  if (/submit|enroll/.test(x)) return &quot;Submitted&quot;;
+  if (/issued/.test(x)) return &quot;Delivered&quot;;
+  return &quot;App Pending&quot;;
 }
 function inferLine(product, carrier, given){
   if (given) { const g = [&quot;Life&quot;,&quot;Annuity&quot;,&quot;Advisory&quot;,&quot;Medicare&quot;,&quot;Medical&quot;,&quot;Dental&quot;].find(L =&gt; given.toLowerCase().includes(L.toLowerCase())); if (g) return g; }
@@ -1419,15 +1492,20 @@ function impLabelFor(r, ri){
   if (lab) return lab.toUpperCase();
   return deriveLabel(impCell(r, &quot;name&quot;), ri + 1);
 }
+function shareOf(r){
+  const v = parseFloat(String(impCell(r, &quot;share&quot;)).replace(/[^0-9.]/g, &quot;&quot;));
+  if (isNaN(v)) return 1;
+  return v &gt; 1 ? v / 100 : v;
+}
 function previewImport(){
   const rows = parseCSV(document.getElementById(&quot;csvText&quot;).value);
   if (rows.length &lt; 2){ botMsg(&quot;That CSV needs a header row plus at least one case row.&quot;); return; }
   impHeaders = rows[0]; impData = rows.slice(1); impFields = impHeaders.map(guessField);
-  const fieldName = {pii:&quot;Identifier — always stripped&quot;, name:&quot;Name → initials label&quot;, label:&quot;Case label&quot;, carrier:&quot;Carrier&quot;, product:&quot;Product&quot;, stage:&quot;Stage&quot;, line:&quot;Line&quot;, commission:&quot;Commission&quot;, age:&quot;Age (days)&quot;, skip:&quot;Not imported&quot;};
+  const fieldName = {pii:&quot;Identifier \u2014 always stripped&quot;, notes:&quot;Notes \u2014 stripped (can carry account details)&quot;, name:&quot;Name \u2192 initials label&quot;, label:&quot;Case label&quot;, product:&quot;Product&quot;, status:&quot;Status&quot;, fyc:&quot;FYC&quot;, size:&quot;Case size&quot;, share:&quot;My share&quot;, appdate:&quot;App date&quot;, age:&quot;Age (days)&quot;, skip:&quot;Not imported&quot;};
   let html = &#x27;&lt;table class=&quot;mapt&quot;&gt;&lt;tr&gt;&lt;th&gt;Your column&lt;/th&gt;&lt;th&gt;BookView does this&lt;/th&gt;&lt;/tr&gt;&#x27; + impHeaders.map((h, i) =&gt;
-    &#x27;&lt;tr&#x27; + (impFields[i] === &quot;pii&quot; ? &#x27; class=&quot;piirow&quot;&#x27; : &quot;&quot;) + &#x27;&gt;&lt;td&gt;&#x27; + h + &#x27;&lt;/td&gt;&lt;td&gt;&#x27; + fieldName[impFields[i]] + &#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;).join(&quot;&quot;) + &#x27;&lt;/table&gt;&#x27;;
-  html += &#x27;&lt;p class=&quot;dim&quot; style=&quot;margin:12px 0 4px&quot;&gt;First rows as they will land — identifiers never shown, never saved:&lt;/p&gt;&#x27;;
-  html += impData.slice(0, 5).map((r, ri) =&gt; &#x27;&lt;div class=&quot;improw&quot;&gt;&#x27; + impLabelFor(r, ri) + &#x27; · &#x27; + impCell(r, &quot;carrier&quot;) + &#x27; · &#x27; + impCell(r, &quot;product&quot;) + &#x27; · &#x27; + inferStage(impCell(r, &quot;stage&quot;)) + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;);
+    &#x27;&lt;tr&#x27; + ((impFields[i] === &quot;pii&quot; || impFields[i] === &quot;notes&quot;) ? &#x27; class=&quot;piirow&quot;&#x27; : &quot;&quot;) + &#x27;&gt;&lt;td&gt;&#x27; + h + &#x27;&lt;/td&gt;&lt;td&gt;&#x27; + fieldName[impFields[i]] + &#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;).join(&quot;&quot;) + &#x27;&lt;/table&gt;&#x27;;
+  html += &#x27;&lt;p class=&quot;dim&quot; style=&quot;margin:12px 0 4px&quot;&gt;First rows as they will land \u2014 identifiers and notes never shown, never saved:&lt;/p&gt;&#x27;;
+  html += impData.slice(0, 5).map((r, ri) =&gt; &#x27;&lt;div class=&quot;improw&quot;&gt;&#x27; + impLabelFor(r, ri) + &#x27; \u00B7 &#x27; + (impCell(r, &quot;product&quot;) || &quot;\u2014&quot;) + &#x27; \u00B7 &#x27; + inferStatus(impCell(r, &quot;status&quot;)) + &#x27; \u00B7 my FYC &#x27; + money(Math.round((parseInt(String(impCell(r, &quot;fyc&quot;)).replace(/[^0-9]/g, &quot;&quot;), 10) || 0) * shareOf(r))) + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;);
   document.getElementById(&quot;importPreview&quot;).innerHTML = html;
   document.getElementById(&quot;importGo&quot;).textContent = &quot;Import &quot; + impData.length + &quot; case&quot; + (impData.length === 1 ? &quot;&quot; : &quot;s&quot;);
   document.getElementById(&quot;importStep1&quot;).style.display = &quot;none&quot;;
@@ -1436,20 +1514,21 @@ function previewImport(){
 function doImport(){
   let added = 0, skipped = 0;
   impData.forEach((r, ri) =&gt; {
-    const carrier = impCell(r, &quot;carrier&quot;);
+    const product = impCell(r, &quot;product&quot;);
     const who = impLabelFor(r, ri);
-    if (!carrier || !who || S.cases.find(c =&gt; c.who === who)){ skipped++; return; }
-    const product = impCell(r, &quot;product&quot;) || &quot;—&quot;;
-    S.cases.push({id: Date.now() + ri, who, line: inferLine(product, carrier, impCell(r, &quot;line&quot;)), carrier, product,
-      stage: inferStage(impCell(r, &quot;stage&quot;)), age: parseInt(impCell(r, &quot;age&quot;), 10) || 0,
-      commission: parseInt(String(impCell(r, &quot;commission&quot;)).replace(/[^0-9]/g, &quot;&quot;), 10) || 0, stuck: false, tasks: []});
+    if (!product || !who || S.cases.find(c =&gt; c.who === who)){ skipped++; return; }
+    let age = parseInt(impCell(r, &quot;age&quot;), 10);
+    if (isNaN(age)) { const ad = impCell(r, &quot;appdate&quot;); const d = ad ? new Date(ad) : null; age = d &amp;&amp; !isNaN(d) ? Math.max(0, Math.round((Date.now() - d.getTime()) / 86400000)) : 0; }
+    S.cases.push({id: Date.now() + ri, who, product, desc: &quot;&quot;, status: inferStatus(impCell(r, &quot;status&quot;)), detail: &quot;&quot;,
+      age: age || 0, fyc: parseInt(String(impCell(r, &quot;fyc&quot;)).replace(/[^0-9]/g, &quot;&quot;), 10) || 0, credits: 0,
+      size: parseInt(String(impCell(r, &quot;size&quot;)).replace(/[^0-9]/g, &quot;&quot;), 10) || 0, share: shareOf(r), splits: [],
+      docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []});
     added++;
   });
   save(); renderKPIs(); renderFilters(); renderCases(); renderTasks(); renderCalendar();
   closeImport();
-  botMsg(&quot;Imported &quot; + added + &quot; case&quot; + (added === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; onto your board&quot; + (skipped ? &quot; — &quot; + skipped + &quot; row&quot; + (skipped === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; skipped (missing a carrier, or the label was already on the board)&quot; : &quot;&quot;) + &quot;. Anything that looked like a client identifier was stripped on your device and never saved.&quot;);
+  botMsg(&quot;Imported &quot; + added + &quot; case&quot; + (added === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; onto your board&quot; + (skipped ? &quot; \u2014 &quot; + skipped + &quot; row&quot; + (skipped === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; skipped (missing a product, or the label was already on the board)&quot; : &quot;&quot;) + &quot;. Anything that looked like a client identifier \u2014 and every free-text note \u2014 was stripped on your device and never saved.&quot;);
 }
-
 function addLicenseForm(){
   const st = document.getElementById(&quot;lfState&quot;).value.trim();
   const exp = document.getElementById(&quot;lfExp&quot;).value;
@@ -1474,7 +1553,7 @@ function frChoose(mode){
 }
 function maybeFirstRun(){ if (!S.onboarded) document.getElementById(&quot;firstrunBack&quot;).classList.add(&quot;open&quot;); }
 
-document.getElementById(&quot;chips&quot;).innerHTML += [&quot;Move JMS 214 to underwriting&quot;, &quot;Import my book&quot;, &quot;Schedule a call tomorrow at 10am&quot;, &quot;Add my Florida license, expires Jun 2028&quot;].map(c =&gt; &#x27;&lt;button onclick=&quot;chipSend(this)&quot;&gt;&#x27; + c + &#x27;&lt;/button&gt;&#x27;).join(&quot;&quot;);
+document.getElementById(&quot;chips&quot;).innerHTML += [&quot;Move JMS 214 to underwriting&quot;, &quot;Import my book&quot;, &quot;Schedule a call tomorrow at 10am&quot;, &quot;Add my Florida license, expires Jun 2028&quot;, &quot;What&#x27;s my production this quarter?&quot;].map(c =&gt; &#x27;&lt;button onclick=&quot;chipSend(this)&quot;&gt;&#x27; + c + &#x27;&lt;/button&gt;&#x27;).join(&quot;&quot;);
 maybeFirstRun();
 &lt;/script&gt;
 &lt;/body&gt;
