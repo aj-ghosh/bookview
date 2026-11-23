@@ -110,7 +110,454 @@
         <div class="dot" style="background:#28c840"></div>
         <div class="demo-url">bookview.llc/demo — sample data</div>
       </div>
-      <iframe title="BookView dashboard demo" srcdoc="&lt;div class=&quot;wrap&quot;&gt;
+      <iframe title="BookView dashboard demo" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, viewport-fit=cover&quot;&gt;
+&lt;meta name=&quot;theme-color&quot; content=&quot;#f5f5f7&quot;&gt;
+&lt;meta name=&quot;mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
+&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
+&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;default&quot;&gt;
+&lt;title&gt;BookView LLC — Prototype v4.0&lt;/title&gt;
+&lt;style&gt;
+  :root{
+    --bg:#f5f5f7; --surface:#ffffff; --ink:#1d1d1f; --sub:#6e6e73; --faint:#86868b;
+    --hair:#e8e8ed; --blue:#0071e3; --green:#34c759; --amber:#ff9f0a; --red:#ff3b30;
+    --bubble:#e9e9eb; --radius:20px;
+    --shadow:0 4px 24px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,&quot;SF Pro Text&quot;,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;padding:0 20px 60px}
+  .wrap{max-width:1120px;margin:0 auto}
+  /* header */
+  header{padding:44px 0 8px;text-align:center}
+  .logo{font-size:30px;font-weight:700;letter-spacing:3px}
+  .logo span{color:var(--blue)}
+  .tagline{color:var(--sub);font-size:15px;margin-top:4px;font-weight:400}
+  .sample-note{color:var(--faint);font-size:12.5px;margin-top:8px;letter-spacing:.2px}
+  /* segmented tabs */
+  .seg{display:flex;justify-content:center;margin:26px 0 30px}
+  .seg-inner{display:inline-flex;background:#e8e8ed;border-radius:12px;padding:2px;gap:2px}
+  .seg button{border:0;background:transparent;font:500 14.5px -apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink);padding:7px 18px;border-radius:10px;cursor:pointer;transition:all .18s}
+  .seg button.active{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12);font-weight:600}
+  /* layout */
+  .layout{display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:start}
+  @media(max-width:900px){.layout{grid-template-columns:1fr}}
+  .card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+  .card + .card{margin-top:22px}
+  h2{font-size:19px;font-weight:600;letter-spacing:-.2px;margin-bottom:4px}
+  .card-sub{color:var(--sub);font-size:13.5px;margin-bottom:16px}
+  /* KPI */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+  @media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 18px}
+  .kpi .num{font-size:26px;font-weight:700;letter-spacing:-.5px}
+  .kpi .lbl{color:var(--sub);font-size:13px;margin-top:2px}
+  .kpi.warn .num{color:var(--amber)} .kpi.bad .num{color:var(--red)}
+  /* filters */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .filters button{border:0;background:#eef0f3;color:var(--ink);font:500 13.5px -apple-system,sans-serif;
+    padding:6px 14px;border-radius:999px;cursor:pointer;transition:all .15s}
+  .filters button.active{background:var(--ink);color:#fff}
+  /* cases table */
+  table{width:100%;border-collapse:collapse}
+  th{font-size:12px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;
+    text-align:left;padding:10px 8px;border-bottom:1px solid var(--hair)}
+  td{padding:8px;border-bottom:1px solid var(--hair);font-size:14px;vertical-align:middle}
+  tr:last-child td{border-bottom:0}
+  tbody tr{cursor:pointer;transition:background .12s}
+  tbody tr:hover{background:#fafafc}
+  .who{font-weight:600}
+  .dim{color:var(--sub);font-size:13.5px}
+  .pill{display:inline-block;font-size:12px;font-weight:600;padding:2.5px 9px;border-radius:999px;background:#eef4fd;color:var(--blue)}
+  .pill.ann{background:#f3eafd;color:#7d3ff2}.pill.adv{background:#e6f7ec;color:#1d8a4e}
+  .pill.med{background:#fdf0e4;color:#c77400}
+  .pill.mdc{background:#e0f5f2;color:#0b6e5d}.pill.den{background:#fdeef3;color:#a4133c}
+  .age{font-variant-numeric:tabular-nums}
+  .age.hot{color:var(--red);font-weight:600}
+  .flag{color:var(--red);font-size:12.5px;font-weight:600}
+  .flag.court{color:var(--amber)}
+  .money{font-variant-numeric:tabular-nums;font-weight:600}
+  /* renewals */
+  .renew-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--hair);font-size:14.5px}
+  .renew-row:last-child{border-bottom:0}
+  /* sheet (case detail) */
+  .sheet-back{position:fixed;inset:0;background:rgba(0,0,0,.28);backdrop-filter:blur(3px);
+    display:none;align-items:flex-end;justify-content:center;z-index:50}
+  .sheet-back.open{display:flex}
+  .sheet{background:#fff;width:min(620px,100%);max-height:86vh;overflow:auto;border-radius:24px 24px 0 0;
+    padding:28px 28px 34px;animation:up .25s ease}
+  @media(min-width:700px){.sheet-back{align-items:center}.sheet{border-radius:24px}}
+  @keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+  .sheet h3{font-size:22px;font-weight:700;letter-spacing:-.3px}
+  .sheet .meta{color:var(--sub);font-size:14px;margin:4px 0 16px}
+  .court-banner{background:#fff7ea;border:1px solid #ffe1ae;color:#8a5a00;border-radius:14px;
+    padding:12px 14px;font-size:14px;margin-bottom:16px}
+  .task{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--hair)}
+  .task:last-child{border-bottom:0}
+  .task input[type=checkbox]{width:19px;height:19px;margin-top:2px;accent-color:var(--blue);cursor:pointer;flex:none}
+  .task .t{font-size:15px}
+  .task.done .t{color:var(--faint);text-decoration:line-through}
+  .task .due{color:var(--faint);font-size:12.5px}
+  .task .due.over{color:var(--red);font-weight:600}
+  .stack-lbl{font-size:12px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;margin:18px 0 4px}
+  .add-task{display:flex;gap:8px;margin-top:16px}
+  .add-task input{flex:1;border:1px solid var(--hair);border-radius:999px;padding:9px 15px;font-size:14.5px;outline:none}
+  .add-task input:focus{border-color:var(--blue)}
+  .btn{border:0;background:var(--blue);color:#fff;font:600 14.5px -apple-system,sans-serif;
+    padding:9px 18px;border-radius:999px;cursor:pointer}
+  .btn.plain{background:#eef0f3;color:var(--ink)}
+  .sheet-close{float:right;border:0;background:#eef0f3;width:30px;height:30px;border-radius:50%;
+    font-size:15px;cursor:pointer;color:var(--sub)}
+  /* licenses */
+  .lic{border:1px solid var(--hair);border-radius:16px;padding:18px;margin-bottom:14px}
+  .lic-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
+  .lic-state{font-size:17px;font-weight:600}
+  .lic-exp{font-size:14px;color:var(--sub);font-variant-numeric:tabular-nums}
+  .lic-exp.soon{color:var(--amber);font-weight:600}.lic-exp.ok{color:var(--green);font-weight:600}
+  .lic-ce{font-size:13.5px;color:var(--sub);margin-top:2px}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+  .chip{font-size:13px;font-weight:500;padding:4.5px 11px;border-radius:999px;background:#e6f7ec;color:#1d8a4e}
+  .chip.no{background:#fdeceb;color:var(--red)}
+  .chip-lbl{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;font-weight:600;width:100%;margin-bottom:1px}
+  /* calendar */
+  .cal-tools{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  .cal-nav{display:flex;align-items:center;gap:8px}
+  .navbtn{border:1px solid var(--hair);background:#fff;width:30px;height:30px;border-radius:50%;
+    font-size:16px;cursor:pointer;color:var(--sub);line-height:1;padding:0}
+  .mini-seg{display:inline-flex;background:#e8e8ed;border-radius:10px;padding:2px;gap:2px}
+  .mini-seg button{border:0;background:transparent;font:500 13px -apple-system,BlinkMacSystemFont,sans-serif;
+    padding:5px 13px;border-radius:8px;cursor:pointer;color:var(--ink)}
+  .mini-seg button.active{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12);font-weight:600}
+  /* month view — Google Calendar style: continuous full-bleed grid, solid bars */
+  .mhead{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin-bottom:4px}
+  .mhead div{font-size:12.5px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.5px;text-align:center}
+  .mcal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+  .mday{background:#fff;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);
+    min-height:118px;padding:5px 3px 6px;min-width:0;overflow:hidden}
+  .mday.out{opacity:.42}
+  .mnum{font-size:15px;font-weight:600;width:27px;height:27px;line-height:27px;border-radius:50%;
+    margin:0 auto 4px;text-align:center}
+  .mday.today .mnum{background:var(--blue);color:#fff;font-weight:700}
+  .mchip{font-size:11.5px;font-weight:600;color:#fff;background:#0071e3;border-radius:4px;
+    padding:2.5px 6px;margin:0 1px 3px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mchip.task{background:#e37400}.mchip.ren{background:#188038}.mchip.lic{background:#9334e6}.mchip.due{background:#b06000}
+  .mmore{font-size:11px;color:var(--sub);font-weight:600;padding-left:5px}
+  @media(max-width:640px){.mday{min-height:66px}.mchip{font-size:9.8px;padding:2px 4px}.calcard{padding:14px 8px}}
+  /* month mode on phone: full-bleed, whole month on one screen */
+  @media(max-width:900px){
+    /* month view takes over the screen, like the Google Calendar app */
+    body.monthfull header{display:none}
+    .calcard.monthmode .card-sub{display:none}
+    .calcard.monthmode{margin:0 -20px;border-radius:0;box-shadow:none;background:transparent;padding:8px 0 12px}
+    .calcard.monthmode .cal-tools, .calcard.monthmode .card-sub{padding:0 16px}
+    .calcard.monthmode .mcal{grid-auto-rows:1fr;border-left:0;border-right:0}
+    .calcard.monthmode .mday{min-height:0;background:#fff}
+    .calcard.monthmode .mchip{font-size:11.5px}
+  }
+  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+  @media(max-width:900px){.cal{grid-template-columns:repeat(2,1fr)}}
+  .day{background:#fbfbfd;border:1px solid var(--hair);border-radius:16px;padding:12px;min-height:118px}
+  .day.today{border-color:var(--blue);background:#f4f9ff}
+  .day .dname{font-size:12px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.5px}
+  .day .dnum{font-size:19px;font-weight:700;margin-bottom:7px}
+  .ev{font-size:12.8px;line-height:1.4;padding:6px 8px;border-radius:9px;background:#eef4fd;margin-bottom:6px}
+  .ev.task{background:#fdf0e4}.ev.due{background:#f3eafd}.ev.lic{background:#fff3d6}.ev.ren{background:#e6f7ec}
+  .ev .tm{color:var(--sub);font-size:11.8px;font-weight:600}
+  /* AI panel */
+  .ai{position:sticky;top:20px;display:flex;flex-direction:column;height:min(720px,calc(100vh - 40px))}
+  @media(max-width:900px){.ai{position:static;height:560px}}
+  .ai h2{display:flex;align-items:center;gap:8px}
+  .ai .dotlive{width:9px;height:9px;border-radius:50%;background:var(--green)}
+  .chat{flex:1;overflow-y:auto;padding:6px 2px;display:flex;flex-direction:column;gap:9px}
+  .msg{max-width:88%;padding:10px 14px;border-radius:19px;font-size:14.8px;line-height:1.5;white-space:pre-wrap}
+  .msg.bot{background:var(--bubble);align-self:flex-start;border-bottom-left-radius:6px}
+  .msg.user{background:var(--blue);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
+  .draft{background:#fff;border:1px solid var(--hair);border-radius:14px;padding:12px 14px;margin-top:8px}
+  .draft .dt{font-size:14px;margin-bottom:9px}
+  .draft .row{display:flex;gap:8px}
+  .draft button{border:0;font:600 13.5px -apple-system,sans-serif;padding:7px 15px;border-radius:999px;cursor:pointer}
+  .draft .ok{background:var(--blue);color:#fff}.draft .no{background:#eef0f3;color:var(--ink)}
+  .chips-ai{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+  .chips-ai button{border:1px solid var(--hair);background:#fff;color:var(--blue);
+    font:500 13px -apple-system,sans-serif;padding:6px 12px;border-radius:999px;cursor:pointer}
+  .ai-input{display:flex;gap:8px;border-top:1px solid var(--hair);padding-top:13px}
+  .ai-input input{flex:1;border:1px solid var(--hair);border-radius:999px;padding:10px 16px;font-size:14.8px;outline:none}
+  .ai-input input:focus{border-color:var(--blue)}
+  .ai-input button{border:0;background:var(--blue);color:#fff;width:40px;height:40px;border-radius:50%;
+    font-size:17px;cursor:pointer;flex:none}
+  .reset{color:var(--faint);font-size:12.5px;text-align:center;margin-top:26px;cursor:pointer}
+  footer{color:var(--faint);font-size:12.5px;text-align:center;margin-top:14px}
+  /* ===== v2.1 — app format: phone portrait / landscape ===== */
+  .tabbar{display:none}
+  @media(max-width:900px){
+    .seg{display:none}
+    body{padding-bottom:112px}
+    .layout{grid-template-columns:1fr}
+    .ai{display:none;position:static;height:calc(100vh - 200px)}
+    body.mv-ai .ai{display:flex}
+    body.mv-ai main{display:none}
+    .tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;justify-content:space-around;
+      background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      border-top:1px solid var(--hair);padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
+    .tabbar button{border:0;background:none;font:500 10.5px -apple-system,BlinkMacSystemFont,sans-serif;
+      color:var(--faint);display:flex;flex-direction:column;align-items:center;gap:3px;padding:2px 10px;cursor:pointer}
+    .tabbar button.active{color:var(--blue)}
+    .tabbar svg{width:23px;height:23px}
+    header{padding-top:30px}
+  }
+  @media(max-width:640px){
+    /* phone keeps the desktop&#x27;s one-line table — compact, not cards */
+    .card{padding:19px}
+    .casescard{padding:16px 10px}
+    table{table-layout:fixed}
+    th{font-size:10.5px;padding:8px 4px}
+    th:nth-child(1){width:15%} th:nth-child(2){width:13%} th:nth-child(3){width:21%}
+    th:nth-child(4){width:22%} th:nth-child(5){width:8%} th:nth-child(6){width:14%} th:nth-child(7){width:7%}
+    td{font-size:12px;padding:7px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    td .dim{font-size:11px}
+    td.stagec{white-space:normal}
+    .pill{font-size:10.5px;padding:2px 7px}
+    .flag .ftxt{display:none}
+    .seg{flex-wrap:wrap}
+    .cal{grid-template-columns:1fr}
+    .day{min-height:0}
+    .kpis{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (orientation: landscape) and (max-height: 540px){
+    /* landscape phone: back to two columns, top tabs return */
+    .layout{grid-template-columns:1fr 320px}
+    .ai{display:flex;height:calc(100vh - 36px)}
+    body.mv-ai main{display:block}
+    .tabbar{display:none}
+    .seg{display:flex}
+    body{padding-bottom:56px}
+    header{padding-top:20px}
+  }
+
+  /* ================= v3.0 — Apple design layer =================
+     Grounded in Apple&#x27;s Human Interface Guidelines: Dynamic Type scale
+     (Large Title 34 / Title 3 20 / Headline 17 / Body 17 / Footnote 13),
+     semantic colors (label / secondaryLabel / separator), grouped
+     background #f2f2f7 with white cards, translucent materials reserved
+     for the navigation layer (segmented bar, tab bar), 8pt spacing grid,
+     44pt targets, group with space first, then separators. */
+  :root{
+    --bg:#f2f2f7; --surface:#ffffff; --ink:#1c1c1e; --sub:rgba(60,60,67,.62); --faint:rgba(60,60,67,.42);
+    --hair:rgba(60,60,67,.14); --blue:#007aff; --green:#34c759; --amber:#ff9500; --red:#ff3b30;
+    --bubble:#e9e9eb; --radius:22px;
+    --shadow:0 1px 2px rgba(0,0,0,.03), 0 10px 30px rgba(0,0,0,.05);
+    --track:rgba(120,120,128,.14); --fill:rgba(120,120,128,.09);
+  }
+  body{font-size:16.5px;line-height:1.5;padding:0 20px 72px}
+  /* header — large-title treatment */
+  header{padding:40px 0 4px}
+  .logo{font-size:32px;font-weight:800;letter-spacing:2.5px}
+  .tagline{font-size:15.5px;color:var(--sub)}
+  .sample-note{font-size:11.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--faint)}
+  /* segmented control — translucent material, navigation layer only */
+  .seg{position:sticky;top:12px;z-index:30;margin:22px 0 26px}
+  .seg-inner{background:var(--track);border-radius:12px;padding:3px;
+    backdrop-filter:blur(18px) saturate(1.7);-webkit-backdrop-filter:blur(18px) saturate(1.7)}
+  .seg button{font-size:14.5px;padding:7px 20px;border-radius:9px;color:#3a3a3c}
+  .seg button.active{box-shadow:0 3px 10px rgba(0,0,0,.14), 0 0 1px rgba(0,0,0,.08)}
+  /* cards and type scale */
+  .card{padding:24px}
+  h2{font-size:20px;font-weight:700;letter-spacing:-.35px}
+  .card-sub{font-size:14.5px;color:var(--sub);margin-bottom:18px;line-height:1.45}
+  /* KPI summary cards */
+  .kpi{padding:18px 20px}
+  .kpi .num{font-size:33px;font-weight:750;letter-spacing:-.8px}
+  .kpi .lbl{font-size:13.5px;color:var(--sub);margin-top:3px}
+  /* filter chips */
+  .filters button{background:var(--fill);font-size:14px;padding:7px 15px}
+  /* cases table — one line per case, larger and airier */
+  th{font-size:11.5px;color:var(--sub);padding:10px}
+  td{font-size:15px;padding:13px 10px}
+  .who{font-size:16px;font-weight:650}
+  .dim{font-size:14px;color:var(--sub)}
+  tbody tr:hover{background:rgba(120,120,128,.05)}
+  .pill{font-size:12px;font-weight:650;padding:3.5px 9px;border-radius:7px;background:rgba(0,122,255,.12);color:#0066d6}
+  .pill.ann{background:rgba(175,82,222,.13);color:#9333c7}
+  .pill.adv{background:rgba(52,199,89,.15);color:#1d8a3f}
+  .pill.med{background:rgba(255,149,0,.16);color:#ad6800}
+  .pill.mdc{background:rgba(90,200,250,.2);color:#0b7ea4}
+  .pill.den{background:rgba(255,45,85,.1);color:#d7003f}
+  .flag{font-size:13px}
+  /* renewals */
+  .renew-row{font-size:15px;padding:11px 0}
+  /* case sheet */
+  .sheet{border-radius:26px 26px 0 0;padding:30px 30px 38px}
+  @media(min-width:700px){.sheet{border-radius:26px}}
+  .sheet h3{font-size:23px}
+  .sheet .meta{font-size:14.5px}
+  .court-banner{background:rgba(255,149,0,.12);border:0;color:#8a5a00;font-size:14.5px;border-radius:13px}
+  .task .t{font-size:16px}
+  .task input[type=checkbox]{width:21px;height:21px}
+  .task .due{font-size:13px;color:var(--sub)}
+  .add-task input{border:0;background:var(--fill);border-radius:12px;padding:11px 15px;font-size:15px}
+  .btn{background:var(--blue);border-radius:12px;padding:10px 20px;font-size:15px}
+  .btn.plain{background:var(--fill);color:var(--ink)}
+  .sheet-close{background:var(--fill);width:32px;height:32px}
+  /* licenses — grouped sub-cards */
+  #licenses .lic{border:0;background:var(--fill);border-radius:18px;padding:20px}
+  .lic-state{font-size:17.5px;font-weight:650}
+  .chip{background:rgba(52,199,89,.14);color:#1d8a3f;font-size:13.5px;padding:5px 12px}
+  .chip.no{background:rgba(255,59,48,.09);color:#d70015}
+  /* calendar */
+  .navbtn{border:0;background:var(--fill);width:34px;height:34px;font-size:18px;color:var(--ink)}
+  .mini-seg{background:var(--track);border-radius:10px;padding:2.5px}
+  .mini-seg button{border-radius:8px;padding:5.5px 14px;font-size:13.5px}
+  .mini-seg button.active{box-shadow:0 3px 8px rgba(0,0,0,.13)}
+  .day{background:rgba(120,120,128,.055);border:0;border-radius:14px;padding:11px}
+  .day.today{border:0;background:rgba(0,122,255,.07);box-shadow:inset 0 0 0 1.5px rgba(0,122,255,.55)}
+  .day .dname{color:var(--sub)}
+  .day .dnum{font-size:20px}
+  .ev{font-size:13px;border-radius:7px;padding:5.5px 8px;background:rgba(0,122,255,.12);color:#0057b8}
+  .ev.task{background:rgba(255,149,0,.17);color:#8a5a00}
+  .ev.due{background:rgba(175,82,222,.13);color:#7d2fb3}
+  .ev.lic{background:rgba(255,204,0,.22);color:#7a5c00}
+  .ev.ren{background:rgba(52,199,89,.16);color:#14713a}
+  .ev .tm{color:inherit;opacity:.65}
+  .mhead div{color:var(--sub)}
+  .mchip{background:#007aff}
+  .mchip.task{background:#ff9500}.mchip.ren{background:#34c759}.mchip.lic{background:#af52de}.mchip.due{background:#e37400}
+  /* assistant — iMessage metrics */
+  .msg{font-size:15.5px;padding:11px 15px;border-radius:20px}
+  .msg.bot{background:#e9e9eb}
+  .draft{border:0;background:var(--fill);border-radius:16px;padding:14px 16px}
+  .draft button{padding:8px 17px}
+  .draft .no{background:rgba(120,120,128,.16);color:var(--ink)}
+  .chips-ai button{border:0;background:var(--fill);color:var(--blue);font-size:13.5px;padding:7px 13px}
+  .ai-input{border-top:0}
+  .ai-input input{border:0;background:var(--fill);padding:11px 17px;font-size:15.5px}
+  /* tab bar — translucent material */
+  @media(max-width:900px){
+    .tabbar{background:rgba(250,250,252,.85);border-top:1px solid rgba(60,60,67,.16);
+      backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8)}
+    .tabbar button{color:var(--sub);font-size:11px}
+  }
+  @media(max-width:640px){
+    td{font-size:12.5px;padding:10px 4px}
+    .who{font-size:13px}
+  }
+  /* ============ TASKS TAB (v3.0) — iOS Reminders pattern ============ */
+  .qa{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+  .qa input{flex:1;min-width:150px;border:0;background:var(--fill);border-radius:12px;
+    padding:11px 15px;font-size:15px;outline:none;font-family:inherit;color:var(--ink)}
+  .qa select{border:0;background:var(--fill);border-radius:12px;padding:11px 12px;
+    font-size:14.5px;font-family:inherit;color:var(--ink)}
+  .tgroup{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sub);margin:22px 0 4px}
+  .tgroup.ov{color:var(--red)}
+  .tgroup.done{color:var(--faint)}
+  .trow{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:1px solid var(--hair)}
+  .trow:last-child{border-bottom:0}
+  .tcbox{flex:none;width:25px;height:25px;border-radius:50%;border:2px solid #c7c7cc;background:#fff;color:#fff;
+    font-size:14px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;margin-top:1px}
+  .tcbox.done{background:var(--blue);border-color:var(--blue)}
+  .tmain{flex:1;cursor:pointer;min-width:0}
+  .ttitle{font-size:16.5px;line-height:1.35}
+  .ttitle.done{color:var(--faint);text-decoration:line-through}
+  .tmeta{font-size:13.5px;color:var(--sub);margin-top:2px}
+  .tdue{font-weight:650}
+  .tdue.ov{color:var(--red)} .tdue.td{color:#e37400} .tdue.up{color:var(--sub)} .tdue.nod{color:var(--faint)}
+  .tchev{color:var(--faint);font-size:19px;line-height:1.4}
+  .tempty{padding:22px 0 8px;color:var(--sub);font-size:15px;text-align:center}
+  :focus-visible{outline:2px solid rgba(0,122,255,.55);outline-offset:2px}
+
+  /* ============ DAY VIEW (v3.1) ============ */
+  .day, .mday{cursor:pointer}
+  .dlist{display:flex;flex-direction:column}
+  .drow{display:flex;align-items:center;gap:13px;padding:13px 2px;border-bottom:1px solid var(--hair)}
+  .drow:last-child{border-bottom:0}
+  .ddot{flex:none;width:10px;height:10px;border-radius:50%;background:var(--blue)}
+  .drow.task .ddot, .drow.due .ddot{background:var(--amber)}
+  .drow.ren .ddot{background:var(--green)}
+  .drow.lic .ddot{background:#af52de}
+  .dmain{flex:1;min-width:0}
+  .dtitle{font-size:16.5px;line-height:1.35}
+  .dsub{font-size:13.5px;color:var(--sub);margin-top:1px}
+  .dwhen{flex:none;font-size:13.5px;font-weight:650;color:var(--sub);font-variant-numeric:tabular-nums}
+
+  /* ============ v3.2 — phone table: wrap, never truncate ============ */
+  @media(max-width:640px){
+    th{font-size:9.5px;letter-spacing:.3px;padding:8px 3px;white-space:normal}
+    th:nth-child(1){width:15%} th:nth-child(2){width:17%} th:nth-child(3){width:19%}
+    th:nth-child(4){width:17%} th:nth-child(5){width:8%} th:nth-child(6){width:16%} th:nth-child(7){width:8%}
+    td{font-size:12.5px;padding:10px 3px;white-space:normal;overflow:visible;text-overflow:clip;
+      line-height:1.35;overflow-wrap:anywhere;vertical-align:top}
+    td .who{font-size:13px;white-space:nowrap;overflow-wrap:normal}
+    td:first-child .dim{display:block;font-size:11px;margin-top:1px}
+    .pill{font-size:11px;padding:3px 8px;white-space:nowrap}
+    td.money{white-space:nowrap;overflow-wrap:normal;font-size:12px}
+    td.age{white-space:nowrap;overflow-wrap:normal}
+  }
+
+  /* ============ v3.3 — phone: two-line list rows, no table ============ */
+  .case-list{display:none}
+  @media(max-width:640px){
+    .casescard table{display:none}
+    .case-list{display:block}
+    .crow{padding:13px 4px;border-bottom:1px solid var(--hair);cursor:pointer}
+    .crow:last-child{border-bottom:0}
+    .crow-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+    .crow-top .who{font-size:15.5px;font-weight:700}
+    .cmoney{font-size:15.5px;font-weight:650;font-variant-numeric:tabular-nums;white-space:nowrap}
+    .crow-sub{margin-top:5px;font-size:13.5px;line-height:1.55;color:var(--sub)}
+    .crow-sub .pill{font-size:11px;padding:3px 8px;white-space:nowrap}
+    .crow-sub .age{font-weight:650;color:var(--ink)}
+    .crow-sub .age.hot{color:var(--red)}
+  }
+
+  /* ============ v3.4 — slim month bars, chip guard ============ */
+  .mchip{font-size:10.5px;padding:1.5px 5px;line-height:1.3;border-radius:3.5px;margin:0 1px 2px;border:0}
+  .calcard.monthmode .mchip{font-size:10.5px}
+
+  /* ============ v3.5 — Pending Cases organized by status ============ */
+  .sgroup{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink);margin:22px 0 4px}
+  .sgroup:first-child{margin-top:4px}
+  .sgroup .sgmeta{font-size:12.5px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--sub);white-space:nowrap}
+  .sgmeta .sstuck{color:var(--red)}
+  tr.srow-h td{padding:20px 8px 7px;font-size:13px}
+  tr.srow-h:first-child td{padding-top:8px}
+  tr.srow-h .sgname{font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+  tr.srow-h .sgmeta{float:right;font-size:12.5px;font-weight:600;color:var(--sub)}
+
+  /* ============ v3.7 — free case label on the Tasks tab ============ */
+  #qaCase{flex:0 1 210px;min-width:140px}
+
+  /* ============ v3.9 — BookView LLC wordmark ============ */
+  .logo{font-size:27px;letter-spacing:.5px}
+  .logo .llc{color:var(--muted);font-size:.42em;font-weight:600;letter-spacing:1.5px}
+&lt;/style&gt;
+  /* ============ v4.0 — import, first run, forms ============ */
+  .import-row{display:flex;align-items:center;gap:12px;margin:12px 0 4px;flex-wrap:wrap}
+  .import-row span{color:var(--mut);font-size:13px}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+  .import-sheet textarea{width:100%;box-sizing:border-box;border:1px solid #d1d1d6;border-radius:12px;padding:12px;font:13px/1.5 ui-monospace,Menlo,monospace;color:#1d1d1f;background:#fbfbfd}
+  .imp-btns{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .mapt{width:100%;border-collapse:collapse;font-size:13.5px}
+  .mapt th,.mapt td{text-align:left;padding:7px 8px;border-bottom:1px solid #e5e5ea}
+  .mapt .piirow td{color:#b42318;text-decoration:line-through}
+  .improw{padding:6px 2px;border-bottom:1px solid #f2f2f7;font-size:13.5px}
+  .okbtn{margin-top:8px;background:#0071e3;color:#fff;border:0;border-radius:980px;padding:7px 14px;font-size:13.5px;cursor:pointer}
+  .fr-logo{font-size:26px;font-weight:700;letter-spacing:.5px}
+  .fr-logo span{color:#0071e3}
+  .fr-choices{display:grid;gap:10px;margin-top:16px}
+  .fr-choice{text-align:left;background:#f5f5f7;border:1px solid #e5e5ea;border-radius:14px;padding:14px 16px;cursor:pointer;font:inherit;color:#1d1d1f}
+  .fr-choice b{display:block;font-size:15.5px;margin-bottom:2px}
+  .fr-choice span{color:#6e6e73;font-size:13.5px}
+  .empty-cell{color:#6e6e73;padding:18px 8px;font-size:14px}
+  .lic-form{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .lic-form input,.lic-form select{border:1px solid #d1d1d6;border-radius:10px;padding:9px 12px;font:inherit;font-size:14px;background:#fff;color:#1d1d1f}
+  .lic-form input[type=text]{flex:1;min-width:180px}
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;wrap&quot;&gt;
   &lt;header&gt;
     &lt;div class=&quot;logo&quot;&gt;Book&lt;span&gt;View&lt;/span&gt; &lt;span class=&quot;llc&quot;&gt;LLC&lt;/span&gt;&lt;/div&gt;
     &lt;div class=&quot;tagline&quot;&gt;Your whole book. One screen.&lt;/div&gt;
@@ -1029,7 +1476,10 @@ function maybeFirstRun(){ if (!S.onboarded) document.getElementById(&quot;firstr
 
 document.getElementById(&quot;chips&quot;).innerHTML += [&quot;Move JMS 214 to underwriting&quot;, &quot;Import my book&quot;, &quot;Schedule a call tomorrow at 10am&quot;, &quot;Add my Florida license, expires Jun 2028&quot;].map(c =&gt; &#x27;&lt;button onclick=&quot;chipSend(this)&quot;&gt;&#x27; + c + &#x27;&lt;/button&gt;&#x27;).join(&quot;&quot;);
 maybeFirstRun();
-&lt;/script&gt;"></iframe>
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
     </div>
     <p class="demo-cap">This is the actual screen, running on sample data. Filter by line, show only what's stuck, click any case for detail.</p>
     <p class="demo-cap" style="color:var(--acc2);font-weight:600">No client PII — ever. BookView tracks case status, not client identity. Your clients' information stays in your CRM and carrier portals, where it belongs.</p>
