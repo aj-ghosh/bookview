@@ -563,6 +563,7 @@
   .btn.import-blue{background:#0071e3;border-color:#0071e3;color:#fff;font-weight:650}
   .btn.import-blue:hover{background:#0060c9;border-color:#0060c9}
   .bic{width:15px;height:15px;vertical-align:-2px;margin-right:7px}
+  td{vertical-align:top}
 &lt;/style&gt;
   &lt;/head&gt;
 &lt;body&gt;
@@ -875,7 +876,7 @@ function statusSums(rows){
   const one = rows.filter(c =&gt; !c.recurring).reduce((a,c) =&gt; a + myFyc(c), 0);
   const rec = rows.filter(c =&gt; c.recurring).reduce((a,c) =&gt; a + myFyc(c), 0);
   const st = rows.filter(c =&gt; c.stuck).length;
-  return (one ? money(one) + &quot; mine&quot; : &quot;&quot;) + (rec ? (one ? &quot; + &quot; : &quot;&quot;) + money(rec) + &quot;/yr&quot; : &quot;&quot;) + (st ? &#x27; \u00B7 &lt;span class=&quot;sstuck&quot;&gt;&#x27; + st + &quot; stuck&lt;/span&gt;&quot; : &quot;&quot;);
+  return (one ? money(one) + &quot; FYC&quot; : &quot;&quot;) + (rec ? (one ? &quot; + &quot; : &quot;&quot;) + money(rec) + &quot;/yr&quot; : &quot;&quot;) + (st ? &#x27; \u00B7 &lt;span class=&quot;sstuck&quot;&gt;&#x27; + st + &quot; stuck&lt;/span&gt;&quot; : &quot;&quot;);
 }
 function renderFilters(){
   const lines = [&quot;All&quot;].concat(INFLIGHT, [&quot;Completed&quot;, &quot;Declined&quot;, &quot;Stuck only&quot;]);
