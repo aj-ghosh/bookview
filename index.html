@@ -110,437 +110,11 @@
         <div class="dot" style="background:#28c840"></div>
         <div class="demo-url">bookview.llc/demo — sample data</div>
       </div>
-      <iframe title="BookView dashboard demo" srcdoc="&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;UTF-8&quot;&gt;
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, viewport-fit=cover&quot;&gt;
-&lt;meta name=&quot;theme-color&quot; content=&quot;#f5f5f7&quot;&gt;
-&lt;meta name=&quot;mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
-&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
-&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;default&quot;&gt;
-&lt;title&gt;BookView LLC — Prototype v3.9&lt;/title&gt;
-&lt;style&gt;
-  :root{
-    --bg:#f5f5f7; --surface:#ffffff; --ink:#1d1d1f; --sub:#6e6e73; --faint:#86868b;
-    --hair:#e8e8ed; --blue:#0071e3; --green:#34c759; --amber:#ff9f0a; --red:#ff3b30;
-    --bubble:#e9e9eb; --radius:20px;
-    --shadow:0 4px 24px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);
-    font:16px/1.55 -apple-system,BlinkMacSystemFont,&quot;SF Pro Text&quot;,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing:antialiased;padding:0 20px 60px}
-  .wrap{max-width:1120px;margin:0 auto}
-  /* header */
-  header{padding:44px 0 8px;text-align:center}
-  .logo{font-size:30px;font-weight:700;letter-spacing:3px}
-  .logo span{color:var(--blue)}
-  .tagline{color:var(--sub);font-size:15px;margin-top:4px;font-weight:400}
-  .sample-note{color:var(--faint);font-size:12.5px;margin-top:8px;letter-spacing:.2px}
-  /* segmented tabs */
-  .seg{display:flex;justify-content:center;margin:26px 0 30px}
-  .seg-inner{display:inline-flex;background:#e8e8ed;border-radius:12px;padding:2px;gap:2px}
-  .seg button{border:0;background:transparent;font:500 14.5px -apple-system,BlinkMacSystemFont,sans-serif;
-    color:var(--ink);padding:7px 18px;border-radius:10px;cursor:pointer;transition:all .18s}
-  .seg button.active{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12);font-weight:600}
-  /* layout */
-  .layout{display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:start}
-  @media(max-width:900px){.layout{grid-template-columns:1fr}}
-  .card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
-  .card + .card{margin-top:22px}
-  h2{font-size:19px;font-weight:600;letter-spacing:-.2px;margin-bottom:4px}
-  .card-sub{color:var(--sub);font-size:13.5px;margin-bottom:16px}
-  /* KPI */
-  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
-  @media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}}
-  .kpi{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 18px}
-  .kpi .num{font-size:26px;font-weight:700;letter-spacing:-.5px}
-  .kpi .lbl{color:var(--sub);font-size:13px;margin-top:2px}
-  .kpi.warn .num{color:var(--amber)} .kpi.bad .num{color:var(--red)}
-  /* filters */
-  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-  .filters button{border:0;background:#eef0f3;color:var(--ink);font:500 13.5px -apple-system,sans-serif;
-    padding:6px 14px;border-radius:999px;cursor:pointer;transition:all .15s}
-  .filters button.active{background:var(--ink);color:#fff}
-  /* cases table */
-  table{width:100%;border-collapse:collapse}
-  th{font-size:12px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;
-    text-align:left;padding:10px 8px;border-bottom:1px solid var(--hair)}
-  td{padding:8px;border-bottom:1px solid var(--hair);font-size:14px;vertical-align:middle}
-  tr:last-child td{border-bottom:0}
-  tbody tr{cursor:pointer;transition:background .12s}
-  tbody tr:hover{background:#fafafc}
-  .who{font-weight:600}
-  .dim{color:var(--sub);font-size:13.5px}
-  .pill{display:inline-block;font-size:12px;font-weight:600;padding:2.5px 9px;border-radius:999px;background:#eef4fd;color:var(--blue)}
-  .pill.ann{background:#f3eafd;color:#7d3ff2}.pill.adv{background:#e6f7ec;color:#1d8a4e}
-  .pill.med{background:#fdf0e4;color:#c77400}
-  .pill.mdc{background:#e0f5f2;color:#0b6e5d}.pill.den{background:#fdeef3;color:#a4133c}
-  .age{font-variant-numeric:tabular-nums}
-  .age.hot{color:var(--red);font-weight:600}
-  .flag{color:var(--red);font-size:12.5px;font-weight:600}
-  .flag.court{color:var(--amber)}
-  .money{font-variant-numeric:tabular-nums;font-weight:600}
-  /* renewals */
-  .renew-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--hair);font-size:14.5px}
-  .renew-row:last-child{border-bottom:0}
-  /* sheet (case detail) */
-  .sheet-back{position:fixed;inset:0;background:rgba(0,0,0,.28);backdrop-filter:blur(3px);
-    display:none;align-items:flex-end;justify-content:center;z-index:50}
-  .sheet-back.open{display:flex}
-  .sheet{background:#fff;width:min(620px,100%);max-height:86vh;overflow:auto;border-radius:24px 24px 0 0;
-    padding:28px 28px 34px;animation:up .25s ease}
-  @media(min-width:700px){.sheet-back{align-items:center}.sheet{border-radius:24px}}
-  @keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
-  .sheet h3{font-size:22px;font-weight:700;letter-spacing:-.3px}
-  .sheet .meta{color:var(--sub);font-size:14px;margin:4px 0 16px}
-  .court-banner{background:#fff7ea;border:1px solid #ffe1ae;color:#8a5a00;border-radius:14px;
-    padding:12px 14px;font-size:14px;margin-bottom:16px}
-  .task{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--hair)}
-  .task:last-child{border-bottom:0}
-  .task input[type=checkbox]{width:19px;height:19px;margin-top:2px;accent-color:var(--blue);cursor:pointer;flex:none}
-  .task .t{font-size:15px}
-  .task.done .t{color:var(--faint);text-decoration:line-through}
-  .task .due{color:var(--faint);font-size:12.5px}
-  .task .due.over{color:var(--red);font-weight:600}
-  .stack-lbl{font-size:12px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;margin:18px 0 4px}
-  .add-task{display:flex;gap:8px;margin-top:16px}
-  .add-task input{flex:1;border:1px solid var(--hair);border-radius:999px;padding:9px 15px;font-size:14.5px;outline:none}
-  .add-task input:focus{border-color:var(--blue)}
-  .btn{border:0;background:var(--blue);color:#fff;font:600 14.5px -apple-system,sans-serif;
-    padding:9px 18px;border-radius:999px;cursor:pointer}
-  .btn.plain{background:#eef0f3;color:var(--ink)}
-  .sheet-close{float:right;border:0;background:#eef0f3;width:30px;height:30px;border-radius:50%;
-    font-size:15px;cursor:pointer;color:var(--sub)}
-  /* licenses */
-  .lic{border:1px solid var(--hair);border-radius:16px;padding:18px;margin-bottom:14px}
-  .lic-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
-  .lic-state{font-size:17px;font-weight:600}
-  .lic-exp{font-size:14px;color:var(--sub);font-variant-numeric:tabular-nums}
-  .lic-exp.soon{color:var(--amber);font-weight:600}.lic-exp.ok{color:var(--green);font-weight:600}
-  .lic-ce{font-size:13.5px;color:var(--sub);margin-top:2px}
-  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
-  .chip{font-size:13px;font-weight:500;padding:4.5px 11px;border-radius:999px;background:#e6f7ec;color:#1d8a4e}
-  .chip.no{background:#fdeceb;color:var(--red)}
-  .chip-lbl{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;font-weight:600;width:100%;margin-bottom:1px}
-  /* calendar */
-  .cal-tools{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-  .cal-nav{display:flex;align-items:center;gap:8px}
-  .navbtn{border:1px solid var(--hair);background:#fff;width:30px;height:30px;border-radius:50%;
-    font-size:16px;cursor:pointer;color:var(--sub);line-height:1;padding:0}
-  .mini-seg{display:inline-flex;background:#e8e8ed;border-radius:10px;padding:2px;gap:2px}
-  .mini-seg button{border:0;background:transparent;font:500 13px -apple-system,BlinkMacSystemFont,sans-serif;
-    padding:5px 13px;border-radius:8px;cursor:pointer;color:var(--ink)}
-  .mini-seg button.active{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12);font-weight:600}
-  /* month view — Google Calendar style: continuous full-bleed grid, solid bars */
-  .mhead{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin-bottom:4px}
-  .mhead div{font-size:12.5px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.5px;text-align:center}
-  .mcal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
-  .mday{background:#fff;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);
-    min-height:118px;padding:5px 3px 6px;min-width:0;overflow:hidden}
-  .mday.out{opacity:.42}
-  .mnum{font-size:15px;font-weight:600;width:27px;height:27px;line-height:27px;border-radius:50%;
-    margin:0 auto 4px;text-align:center}
-  .mday.today .mnum{background:var(--blue);color:#fff;font-weight:700}
-  .mchip{font-size:11.5px;font-weight:600;color:#fff;background:#0071e3;border-radius:4px;
-    padding:2.5px 6px;margin:0 1px 3px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .mchip.task{background:#e37400}.mchip.ren{background:#188038}.mchip.lic{background:#9334e6}.mchip.due{background:#b06000}
-  .mmore{font-size:11px;color:var(--sub);font-weight:600;padding-left:5px}
-  @media(max-width:640px){.mday{min-height:66px}.mchip{font-size:9.8px;padding:2px 4px}.calcard{padding:14px 8px}}
-  /* month mode on phone: full-bleed, whole month on one screen */
-  @media(max-width:900px){
-    /* month view takes over the screen, like the Google Calendar app */
-    body.monthfull header{display:none}
-    .calcard.monthmode .card-sub{display:none}
-    .calcard.monthmode{margin:0 -20px;border-radius:0;box-shadow:none;background:transparent;padding:8px 0 12px}
-    .calcard.monthmode .cal-tools, .calcard.monthmode .card-sub{padding:0 16px}
-    .calcard.monthmode .mcal{grid-auto-rows:1fr;border-left:0;border-right:0}
-    .calcard.monthmode .mday{min-height:0;background:#fff}
-    .calcard.monthmode .mchip{font-size:11.5px}
-  }
-  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
-  @media(max-width:900px){.cal{grid-template-columns:repeat(2,1fr)}}
-  .day{background:#fbfbfd;border:1px solid var(--hair);border-radius:16px;padding:12px;min-height:118px}
-  .day.today{border-color:var(--blue);background:#f4f9ff}
-  .day .dname{font-size:12px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.5px}
-  .day .dnum{font-size:19px;font-weight:700;margin-bottom:7px}
-  .ev{font-size:12.8px;line-height:1.4;padding:6px 8px;border-radius:9px;background:#eef4fd;margin-bottom:6px}
-  .ev.task{background:#fdf0e4}.ev.due{background:#f3eafd}.ev.lic{background:#fff3d6}.ev.ren{background:#e6f7ec}
-  .ev .tm{color:var(--sub);font-size:11.8px;font-weight:600}
-  /* AI panel */
-  .ai{position:sticky;top:20px;display:flex;flex-direction:column;height:min(720px,calc(100vh - 40px))}
-  @media(max-width:900px){.ai{position:static;height:560px}}
-  .ai h2{display:flex;align-items:center;gap:8px}
-  .ai .dotlive{width:9px;height:9px;border-radius:50%;background:var(--green)}
-  .chat{flex:1;overflow-y:auto;padding:6px 2px;display:flex;flex-direction:column;gap:9px}
-  .msg{max-width:88%;padding:10px 14px;border-radius:19px;font-size:14.8px;line-height:1.5;white-space:pre-wrap}
-  .msg.bot{background:var(--bubble);align-self:flex-start;border-bottom-left-radius:6px}
-  .msg.user{background:var(--blue);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
-  .draft{background:#fff;border:1px solid var(--hair);border-radius:14px;padding:12px 14px;margin-top:8px}
-  .draft .dt{font-size:14px;margin-bottom:9px}
-  .draft .row{display:flex;gap:8px}
-  .draft button{border:0;font:600 13.5px -apple-system,sans-serif;padding:7px 15px;border-radius:999px;cursor:pointer}
-  .draft .ok{background:var(--blue);color:#fff}.draft .no{background:#eef0f3;color:var(--ink)}
-  .chips-ai{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
-  .chips-ai button{border:1px solid var(--hair);background:#fff;color:var(--blue);
-    font:500 13px -apple-system,sans-serif;padding:6px 12px;border-radius:999px;cursor:pointer}
-  .ai-input{display:flex;gap:8px;border-top:1px solid var(--hair);padding-top:13px}
-  .ai-input input{flex:1;border:1px solid var(--hair);border-radius:999px;padding:10px 16px;font-size:14.8px;outline:none}
-  .ai-input input:focus{border-color:var(--blue)}
-  .ai-input button{border:0;background:var(--blue);color:#fff;width:40px;height:40px;border-radius:50%;
-    font-size:17px;cursor:pointer;flex:none}
-  .reset{color:var(--faint);font-size:12.5px;text-align:center;margin-top:26px;cursor:pointer}
-  footer{color:var(--faint);font-size:12.5px;text-align:center;margin-top:14px}
-  /* ===== v2.1 — app format: phone portrait / landscape ===== */
-  .tabbar{display:none}
-  @media(max-width:900px){
-    .seg{display:none}
-    body{padding-bottom:112px}
-    .layout{grid-template-columns:1fr}
-    .ai{display:none;position:static;height:calc(100vh - 200px)}
-    body.mv-ai .ai{display:flex}
-    body.mv-ai main{display:none}
-    .tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;justify-content:space-around;
-      background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-      border-top:1px solid var(--hair);padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
-    .tabbar button{border:0;background:none;font:500 10.5px -apple-system,BlinkMacSystemFont,sans-serif;
-      color:var(--faint);display:flex;flex-direction:column;align-items:center;gap:3px;padding:2px 10px;cursor:pointer}
-    .tabbar button.active{color:var(--blue)}
-    .tabbar svg{width:23px;height:23px}
-    header{padding-top:30px}
-  }
-  @media(max-width:640px){
-    /* phone keeps the desktop&#x27;s one-line table — compact, not cards */
-    .card{padding:19px}
-    .casescard{padding:16px 10px}
-    table{table-layout:fixed}
-    th{font-size:10.5px;padding:8px 4px}
-    th:nth-child(1){width:15%} th:nth-child(2){width:13%} th:nth-child(3){width:21%}
-    th:nth-child(4){width:22%} th:nth-child(5){width:8%} th:nth-child(6){width:14%} th:nth-child(7){width:7%}
-    td{font-size:12px;padding:7px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    td .dim{font-size:11px}
-    td.stagec{white-space:normal}
-    .pill{font-size:10.5px;padding:2px 7px}
-    .flag .ftxt{display:none}
-    .seg{flex-wrap:wrap}
-    .cal{grid-template-columns:1fr}
-    .day{min-height:0}
-    .kpis{grid-template-columns:repeat(2,1fr)}
-  }
-  @media (orientation: landscape) and (max-height: 540px){
-    /* landscape phone: back to two columns, top tabs return */
-    .layout{grid-template-columns:1fr 320px}
-    .ai{display:flex;height:calc(100vh - 36px)}
-    body.mv-ai main{display:block}
-    .tabbar{display:none}
-    .seg{display:flex}
-    body{padding-bottom:56px}
-    header{padding-top:20px}
-  }
-
-  /* ================= v3.0 — Apple design layer =================
-     Grounded in Apple&#x27;s Human Interface Guidelines: Dynamic Type scale
-     (Large Title 34 / Title 3 20 / Headline 17 / Body 17 / Footnote 13),
-     semantic colors (label / secondaryLabel / separator), grouped
-     background #f2f2f7 with white cards, translucent materials reserved
-     for the navigation layer (segmented bar, tab bar), 8pt spacing grid,
-     44pt targets, group with space first, then separators. */
-  :root{
-    --bg:#f2f2f7; --surface:#ffffff; --ink:#1c1c1e; --sub:rgba(60,60,67,.62); --faint:rgba(60,60,67,.42);
-    --hair:rgba(60,60,67,.14); --blue:#007aff; --green:#34c759; --amber:#ff9500; --red:#ff3b30;
-    --bubble:#e9e9eb; --radius:22px;
-    --shadow:0 1px 2px rgba(0,0,0,.03), 0 10px 30px rgba(0,0,0,.05);
-    --track:rgba(120,120,128,.14); --fill:rgba(120,120,128,.09);
-  }
-  body{font-size:16.5px;line-height:1.5;padding:0 20px 72px}
-  /* header — large-title treatment */
-  header{padding:40px 0 4px}
-  .logo{font-size:32px;font-weight:800;letter-spacing:2.5px}
-  .tagline{font-size:15.5px;color:var(--sub)}
-  .sample-note{font-size:11.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--faint)}
-  /* segmented control — translucent material, navigation layer only */
-  .seg{position:sticky;top:12px;z-index:30;margin:22px 0 26px}
-  .seg-inner{background:var(--track);border-radius:12px;padding:3px;
-    backdrop-filter:blur(18px) saturate(1.7);-webkit-backdrop-filter:blur(18px) saturate(1.7)}
-  .seg button{font-size:14.5px;padding:7px 20px;border-radius:9px;color:#3a3a3c}
-  .seg button.active{box-shadow:0 3px 10px rgba(0,0,0,.14), 0 0 1px rgba(0,0,0,.08)}
-  /* cards and type scale */
-  .card{padding:24px}
-  h2{font-size:20px;font-weight:700;letter-spacing:-.35px}
-  .card-sub{font-size:14.5px;color:var(--sub);margin-bottom:18px;line-height:1.45}
-  /* KPI summary cards */
-  .kpi{padding:18px 20px}
-  .kpi .num{font-size:33px;font-weight:750;letter-spacing:-.8px}
-  .kpi .lbl{font-size:13.5px;color:var(--sub);margin-top:3px}
-  /* filter chips */
-  .filters button{background:var(--fill);font-size:14px;padding:7px 15px}
-  /* cases table — one line per case, larger and airier */
-  th{font-size:11.5px;color:var(--sub);padding:10px}
-  td{font-size:15px;padding:13px 10px}
-  .who{font-size:16px;font-weight:650}
-  .dim{font-size:14px;color:var(--sub)}
-  tbody tr:hover{background:rgba(120,120,128,.05)}
-  .pill{font-size:12px;font-weight:650;padding:3.5px 9px;border-radius:7px;background:rgba(0,122,255,.12);color:#0066d6}
-  .pill.ann{background:rgba(175,82,222,.13);color:#9333c7}
-  .pill.adv{background:rgba(52,199,89,.15);color:#1d8a3f}
-  .pill.med{background:rgba(255,149,0,.16);color:#ad6800}
-  .pill.mdc{background:rgba(90,200,250,.2);color:#0b7ea4}
-  .pill.den{background:rgba(255,45,85,.1);color:#d7003f}
-  .flag{font-size:13px}
-  /* renewals */
-  .renew-row{font-size:15px;padding:11px 0}
-  /* case sheet */
-  .sheet{border-radius:26px 26px 0 0;padding:30px 30px 38px}
-  @media(min-width:700px){.sheet{border-radius:26px}}
-  .sheet h3{font-size:23px}
-  .sheet .meta{font-size:14.5px}
-  .court-banner{background:rgba(255,149,0,.12);border:0;color:#8a5a00;font-size:14.5px;border-radius:13px}
-  .task .t{font-size:16px}
-  .task input[type=checkbox]{width:21px;height:21px}
-  .task .due{font-size:13px;color:var(--sub)}
-  .add-task input{border:0;background:var(--fill);border-radius:12px;padding:11px 15px;font-size:15px}
-  .btn{background:var(--blue);border-radius:12px;padding:10px 20px;font-size:15px}
-  .btn.plain{background:var(--fill);color:var(--ink)}
-  .sheet-close{background:var(--fill);width:32px;height:32px}
-  /* licenses — grouped sub-cards */
-  #licenses .lic{border:0;background:var(--fill);border-radius:18px;padding:20px}
-  .lic-state{font-size:17.5px;font-weight:650}
-  .chip{background:rgba(52,199,89,.14);color:#1d8a3f;font-size:13.5px;padding:5px 12px}
-  .chip.no{background:rgba(255,59,48,.09);color:#d70015}
-  /* calendar */
-  .navbtn{border:0;background:var(--fill);width:34px;height:34px;font-size:18px;color:var(--ink)}
-  .mini-seg{background:var(--track);border-radius:10px;padding:2.5px}
-  .mini-seg button{border-radius:8px;padding:5.5px 14px;font-size:13.5px}
-  .mini-seg button.active{box-shadow:0 3px 8px rgba(0,0,0,.13)}
-  .day{background:rgba(120,120,128,.055);border:0;border-radius:14px;padding:11px}
-  .day.today{border:0;background:rgba(0,122,255,.07);box-shadow:inset 0 0 0 1.5px rgba(0,122,255,.55)}
-  .day .dname{color:var(--sub)}
-  .day .dnum{font-size:20px}
-  .ev{font-size:13px;border-radius:7px;padding:5.5px 8px;background:rgba(0,122,255,.12);color:#0057b8}
-  .ev.task{background:rgba(255,149,0,.17);color:#8a5a00}
-  .ev.due{background:rgba(175,82,222,.13);color:#7d2fb3}
-  .ev.lic{background:rgba(255,204,0,.22);color:#7a5c00}
-  .ev.ren{background:rgba(52,199,89,.16);color:#14713a}
-  .ev .tm{color:inherit;opacity:.65}
-  .mhead div{color:var(--sub)}
-  .mchip{background:#007aff}
-  .mchip.task{background:#ff9500}.mchip.ren{background:#34c759}.mchip.lic{background:#af52de}.mchip.due{background:#e37400}
-  /* assistant — iMessage metrics */
-  .msg{font-size:15.5px;padding:11px 15px;border-radius:20px}
-  .msg.bot{background:#e9e9eb}
-  .draft{border:0;background:var(--fill);border-radius:16px;padding:14px 16px}
-  .draft button{padding:8px 17px}
-  .draft .no{background:rgba(120,120,128,.16);color:var(--ink)}
-  .chips-ai button{border:0;background:var(--fill);color:var(--blue);font-size:13.5px;padding:7px 13px}
-  .ai-input{border-top:0}
-  .ai-input input{border:0;background:var(--fill);padding:11px 17px;font-size:15.5px}
-  /* tab bar — translucent material */
-  @media(max-width:900px){
-    .tabbar{background:rgba(250,250,252,.85);border-top:1px solid rgba(60,60,67,.16);
-      backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8)}
-    .tabbar button{color:var(--sub);font-size:11px}
-  }
-  @media(max-width:640px){
-    td{font-size:12.5px;padding:10px 4px}
-    .who{font-size:13px}
-  }
-  /* ============ TASKS TAB (v3.0) — iOS Reminders pattern ============ */
-  .qa{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
-  .qa input{flex:1;min-width:150px;border:0;background:var(--fill);border-radius:12px;
-    padding:11px 15px;font-size:15px;outline:none;font-family:inherit;color:var(--ink)}
-  .qa select{border:0;background:var(--fill);border-radius:12px;padding:11px 12px;
-    font-size:14.5px;font-family:inherit;color:var(--ink)}
-  .tgroup{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sub);margin:22px 0 4px}
-  .tgroup.ov{color:var(--red)}
-  .tgroup.done{color:var(--faint)}
-  .trow{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:1px solid var(--hair)}
-  .trow:last-child{border-bottom:0}
-  .tcbox{flex:none;width:25px;height:25px;border-radius:50%;border:2px solid #c7c7cc;background:#fff;color:#fff;
-    font-size:14px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;margin-top:1px}
-  .tcbox.done{background:var(--blue);border-color:var(--blue)}
-  .tmain{flex:1;cursor:pointer;min-width:0}
-  .ttitle{font-size:16.5px;line-height:1.35}
-  .ttitle.done{color:var(--faint);text-decoration:line-through}
-  .tmeta{font-size:13.5px;color:var(--sub);margin-top:2px}
-  .tdue{font-weight:650}
-  .tdue.ov{color:var(--red)} .tdue.td{color:#e37400} .tdue.up{color:var(--sub)} .tdue.nod{color:var(--faint)}
-  .tchev{color:var(--faint);font-size:19px;line-height:1.4}
-  .tempty{padding:22px 0 8px;color:var(--sub);font-size:15px;text-align:center}
-  :focus-visible{outline:2px solid rgba(0,122,255,.55);outline-offset:2px}
-
-  /* ============ DAY VIEW (v3.1) ============ */
-  .day, .mday{cursor:pointer}
-  .dlist{display:flex;flex-direction:column}
-  .drow{display:flex;align-items:center;gap:13px;padding:13px 2px;border-bottom:1px solid var(--hair)}
-  .drow:last-child{border-bottom:0}
-  .ddot{flex:none;width:10px;height:10px;border-radius:50%;background:var(--blue)}
-  .drow.task .ddot, .drow.due .ddot{background:var(--amber)}
-  .drow.ren .ddot{background:var(--green)}
-  .drow.lic .ddot{background:#af52de}
-  .dmain{flex:1;min-width:0}
-  .dtitle{font-size:16.5px;line-height:1.35}
-  .dsub{font-size:13.5px;color:var(--sub);margin-top:1px}
-  .dwhen{flex:none;font-size:13.5px;font-weight:650;color:var(--sub);font-variant-numeric:tabular-nums}
-
-  /* ============ v3.2 — phone table: wrap, never truncate ============ */
-  @media(max-width:640px){
-    th{font-size:9.5px;letter-spacing:.3px;padding:8px 3px;white-space:normal}
-    th:nth-child(1){width:15%} th:nth-child(2){width:17%} th:nth-child(3){width:19%}
-    th:nth-child(4){width:17%} th:nth-child(5){width:8%} th:nth-child(6){width:16%} th:nth-child(7){width:8%}
-    td{font-size:12.5px;padding:10px 3px;white-space:normal;overflow:visible;text-overflow:clip;
-      line-height:1.35;overflow-wrap:anywhere;vertical-align:top}
-    td .who{font-size:13px;white-space:nowrap;overflow-wrap:normal}
-    td:first-child .dim{display:block;font-size:11px;margin-top:1px}
-    .pill{font-size:11px;padding:3px 8px;white-space:nowrap}
-    td.money{white-space:nowrap;overflow-wrap:normal;font-size:12px}
-    td.age{white-space:nowrap;overflow-wrap:normal}
-  }
-
-  /* ============ v3.3 — phone: two-line list rows, no table ============ */
-  .case-list{display:none}
-  @media(max-width:640px){
-    .casescard table{display:none}
-    .case-list{display:block}
-    .crow{padding:13px 4px;border-bottom:1px solid var(--hair);cursor:pointer}
-    .crow:last-child{border-bottom:0}
-    .crow-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
-    .crow-top .who{font-size:15.5px;font-weight:700}
-    .cmoney{font-size:15.5px;font-weight:650;font-variant-numeric:tabular-nums;white-space:nowrap}
-    .crow-sub{margin-top:5px;font-size:13.5px;line-height:1.55;color:var(--sub)}
-    .crow-sub .pill{font-size:11px;padding:3px 8px;white-space:nowrap}
-    .crow-sub .age{font-weight:650;color:var(--ink)}
-    .crow-sub .age.hot{color:var(--red)}
-  }
-
-  /* ============ v3.4 — slim month bars, chip guard ============ */
-  .mchip{font-size:10.5px;padding:1.5px 5px;line-height:1.3;border-radius:3.5px;margin:0 1px 2px;border:0}
-  .calcard.monthmode .mchip{font-size:10.5px}
-
-  /* ============ v3.5 — Pending Cases organized by status ============ */
-  .sgroup{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink);margin:22px 0 4px}
-  .sgroup:first-child{margin-top:4px}
-  .sgroup .sgmeta{font-size:12.5px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--sub);white-space:nowrap}
-  .sgmeta .sstuck{color:var(--red)}
-  tr.srow-h td{padding:20px 8px 7px;font-size:13px}
-  tr.srow-h:first-child td{padding-top:8px}
-  tr.srow-h .sgname{font-weight:700;text-transform:uppercase;letter-spacing:.6px}
-  tr.srow-h .sgmeta{float:right;font-size:12.5px;font-weight:600;color:var(--sub)}
-
-  /* ============ v3.7 — free case label on the Tasks tab ============ */
-  #qaCase{flex:0 1 210px;min-width:140px}
-
-  /* ============ v3.9 — BookView LLC wordmark ============ */
-  .logo{font-size:27px;letter-spacing:.5px}
-  .logo .llc{color:var(--muted);font-size:.42em;font-weight:600;letter-spacing:1.5px}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div class=&quot;wrap&quot;&gt;
+      <iframe title="BookView dashboard demo" srcdoc="&lt;div class=&quot;wrap&quot;&gt;
   &lt;header&gt;
     &lt;div class=&quot;logo&quot;&gt;Book&lt;span&gt;View&lt;/span&gt; &lt;span class=&quot;llc&quot;&gt;LLC&lt;/span&gt;&lt;/div&gt;
     &lt;div class=&quot;tagline&quot;&gt;Your whole book. One screen.&lt;/div&gt;
-    &lt;div class=&quot;sample-note&quot;&gt;PROTOTYPE v3.9 · SAMPLE DATA — CASE LABELS ONLY · NO CLIENT PII, BY DESIGN&lt;/div&gt;
+    &lt;div class=&quot;sample-note&quot;&gt;PROTOTYPE v4.0 · SAMPLE DATA — CASE LABELS ONLY · NO CLIENT PII, BY DESIGN&lt;/div&gt;
   &lt;/header&gt;
 
   &lt;div class=&quot;seg&quot;&gt;
@@ -561,6 +135,7 @@
           &lt;h2&gt;Pending cases&lt;/h2&gt;
           &lt;p class=&quot;card-sub&quot;&gt;Grouped by where each case stands — the kind of case is on every row. Click a case for its task stack.&lt;/p&gt;
           &lt;div class=&quot;filters&quot; id=&quot;filters&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;import-row&quot;&gt;&lt;button class=&quot;btn ghost&quot; onclick=&quot;openImport()&quot;&gt;Import a CSV&lt;/button&gt;&lt;span&gt;Load your existing book — identifiers are stripped on your device, never saved.&lt;/span&gt;&lt;/div&gt;
           &lt;table&gt;
             &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Case&lt;/th&gt;&lt;th&gt;Line&lt;/th&gt;&lt;th&gt;Carrier&lt;/th&gt;&lt;th&gt;Stage&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;Commission&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
             &lt;tbody id=&quot;caseRows&quot;&gt;&lt;/tbody&gt;
@@ -595,6 +170,13 @@
           &lt;h2&gt;Licenses &amp;amp; appointments&lt;/h2&gt;
           &lt;p class=&quot;card-sub&quot;&gt;Know before you submit. Status and dates only — no license numbers stored.&lt;/p&gt;
           &lt;div id=&quot;licenses&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;lic-form&quot;&gt;
+            &lt;input id=&quot;lfState&quot; type=&quot;text&quot; placeholder=&quot;Add a license — state (e.g. Florida)&quot;&gt;
+            &lt;input id=&quot;lfExp&quot; type=&quot;date&quot; aria-label=&quot;Renewal date&quot;&gt;
+            &lt;select id=&quot;lfCE&quot; aria-label=&quot;CE status&quot;&gt;&lt;option&gt;CE complete&lt;/option&gt;&lt;option&gt;CE in progress&lt;/option&gt;&lt;option&gt;CE outstanding&lt;/option&gt;&lt;/select&gt;
+            &lt;button class=&quot;btn&quot; onclick=&quot;addLicenseForm()&quot;&gt;Add&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;p class=&quot;dim&quot; style=&quot;margin-top:8px&quot;&gt;Or just tell the assistant: “Add my Florida license, expires Jun 2028.”&lt;/p&gt;
         &lt;/div&gt;
       &lt;/section&gt;
 
@@ -629,7 +211,7 @@
   &lt;/div&gt;
 
   &lt;div class=&quot;reset&quot; onclick=&quot;resetDemo()&quot;&gt;Reset demo data&lt;/div&gt;
-  &lt;footer&gt;BookView LLC prototype v3.9 — a dashboard, not a CRM. Built for validation conversations.&lt;/footer&gt;
+  &lt;footer&gt;BookView LLC prototype v4.0 — a dashboard, not a CRM. Built for validation conversations.&lt;/footer&gt;
 &lt;/div&gt;
 
 &lt;!-- MOBILE TAB BAR (app format) --&gt;
@@ -650,6 +232,44 @@
     &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;path d=&quot;M21 12a8 8 0 0 1-8 8H4l2.2-2.9A8 8 0 1 1 21 12Z&quot;/&gt;&lt;/svg&gt;
     Assistant&lt;/button&gt;
 &lt;/nav&gt;
+
+&lt;!-- IMPORT SHEET (v4.0) --&gt;
+&lt;div class=&quot;sheet-back&quot; id=&quot;importBack&quot; onclick=&quot;if(event.target===this)closeImport()&quot;&gt;
+  &lt;div class=&quot;sheet import-sheet&quot;&gt;
+    &lt;h3&gt;Import your book&lt;/h3&gt;
+    &lt;p class=&quot;dim&quot;&gt;Export a case list from any carrier or your CRM and paste it here. BookView maps the status columns it recognizes. Columns that look like client identifiers — names, SSNs, policy numbers — are converted or stripped &lt;b&gt;on your device&lt;/b&gt; and never saved. Names become initials-only labels.&lt;/p&gt;
+    &lt;div id=&quot;importStep1&quot;&gt;
+      &lt;textarea id=&quot;csvText&quot; rows=&quot;8&quot; placeholder=&quot;Paste CSV here — header row first (Carrier, Product, Stage, Commission…)&quot;&gt;&lt;/textarea&gt;
+      &lt;div class=&quot;imp-btns&quot;&gt;
+        &lt;button class=&quot;btn&quot; onclick=&quot;previewImport()&quot;&gt;Preview import&lt;/button&gt;
+        &lt;button class=&quot;btn ghost&quot; onclick=&quot;document.getElementById(&#x27;csvFile&#x27;).click()&quot;&gt;Choose a file…&lt;/button&gt;
+        &lt;button class=&quot;btn ghost&quot; onclick=&quot;sampleCSV()&quot;&gt;Try a sample CSV&lt;/button&gt;
+        &lt;input type=&quot;file&quot; id=&quot;csvFile&quot; accept=&quot;.csv,text/csv,text/plain&quot; style=&quot;display:none&quot; onchange=&quot;fileCSV(event)&quot;&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;importStep2&quot; style=&quot;display:none&quot;&gt;
+      &lt;div id=&quot;importPreview&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;imp-btns&quot;&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;importGo&quot; onclick=&quot;doImport()&quot;&gt;Import&lt;/button&gt;
+        &lt;button class=&quot;btn ghost&quot; onclick=&quot;backImport()&quot;&gt;Back&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- FIRST RUN (v4.0) --&gt;
+&lt;div class=&quot;sheet-back&quot; id=&quot;firstrunBack&quot;&gt;
+  &lt;div class=&quot;sheet fr-sheet&quot;&gt;
+    &lt;div class=&quot;fr-logo&quot;&gt;Book&lt;span&gt;View&lt;/span&gt; &lt;span class=&quot;logo llc&quot;&gt;LLC&lt;/span&gt;&lt;/div&gt;
+    &lt;h3&gt;Your whole book. One screen.&lt;/h3&gt;
+    &lt;p class=&quot;dim&quot;&gt;BookView is a dashboard, not a CRM — one view across every carrier and line, and it never stores client identifiers. Cases are labels only: initials plus a number. How do you want to start?&lt;/p&gt;
+    &lt;div class=&quot;fr-choices&quot;&gt;
+      &lt;button class=&quot;fr-choice&quot; onclick=&quot;frChoose(&#x27;explore&#x27;)&quot;&gt;&lt;b&gt;Explore the demo book&lt;/b&gt;&lt;span&gt;Look around a sample book of 14 cases first.&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;fr-choice&quot; onclick=&quot;frChoose(&#x27;import&#x27;)&quot;&gt;&lt;b&gt;Import my book&lt;/b&gt;&lt;span&gt;Bring a carrier CSV — identifiers are stripped on your device.&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;fr-choice&quot; onclick=&quot;frChoose(&#x27;empty&#x27;)&quot;&gt;&lt;b&gt;Start empty&lt;/b&gt;&lt;span&gt;A clean board — add cases by talking to the assistant.&lt;/span&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;!-- CASE SHEET --&gt;
 &lt;div class=&quot;sheet-back&quot; id=&quot;sheetBack&quot; onclick=&quot;if(event.target===this)closeSheet()&quot;&gt;
@@ -721,11 +341,11 @@ const SEED = {
 /* ============ STATE ============ */
 let S;
 try {
-  const saved = localStorage.getItem(&quot;bookviewV5&quot;);
+  const saved = localStorage.getItem(&quot;bookviewV6&quot;);
   S = saved ? JSON.parse(saved) : structuredClone(SEED);
 } catch(e){ S = structuredClone(SEED); }
-function save(){ try{ localStorage.setItem(&quot;bookviewV5&quot;, JSON.stringify(S)); }catch(e){} }
-function resetDemo(){ try{ localStorage.removeItem(&quot;bookviewV5&quot;); }catch(e){} location.reload(); }
+function save(){ try{ localStorage.setItem(&quot;bookviewV6&quot;, JSON.stringify(S)); }catch(e){} }
+function resetDemo(){ try{ localStorage.removeItem(&quot;bookviewV6&quot;); }catch(e){} location.reload(); }
 
 const money = n =&gt; &quot;$&quot; + n.toLocaleString();
 const openTasks = c =&gt; c.tasks.filter(t =&gt; !t.done);
@@ -781,6 +401,11 @@ function linePill(line){
   return &#x27;&lt;span class=&quot;pill &#x27; + cls + &#x27;&quot;&gt;&#x27; + line + &#x27;&lt;/span&gt;&#x27;;
 }
 function renderCases(){
+  if (!S.cases.length) {
+    document.getElementById(&quot;caseRows&quot;).innerHTML = &#x27;&lt;tr&gt;&lt;td colspan=&quot;7&quot; class=&quot;empty-cell&quot;&gt;No cases yet. Import your book from a CSV, or tell the assistant to add a case — the board fills in from there.&lt;/td&gt;&lt;/tr&gt;&#x27;;
+    document.getElementById(&quot;caseList&quot;).innerHTML = &#x27;&lt;div class=&quot;empty-cell&quot;&gt;No cases yet. Import your book from a CSV, or tell the assistant to add a case.&lt;/div&gt;&#x27;;
+    return;
+  }
   const groups = STATUSES
     .map(s =&gt; ({s, rows: S.cases.filter(c =&gt; statusOf(c) === s &amp;&amp; caseVisible(c)).slice().sort((a,b) =&gt; b.age - a.age)}))
     .filter(g =&gt; filter === &quot;All&quot; || g.rows.length);
@@ -821,9 +446,9 @@ function renderCases(){
   ).join(&quot;&quot;) : &#x27;&lt;div class=&quot;dim&quot; style=&quot;padding:18px 4px&quot;&gt;Nothing here under this filter.&lt;/div&gt;&#x27;;
 }
 function renderRenewals(){
-  document.getElementById(&quot;renewals&quot;).innerHTML = S.renewals.map(r =&gt;
+  document.getElementById(&quot;renewals&quot;).innerHTML = S.renewals.length ? S.renewals.map(r =&gt;
     &#x27;&lt;div class=&quot;renew-row&quot;&gt;&lt;span&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + r.who + &#x27;&lt;/span&gt; &lt;span class=&quot;dim&quot;&gt;&#x27; + r.line + &#x27; · &#x27; + r.carrier + &#x27;&lt;/span&gt;&lt;/span&gt;&#x27; +
-    &#x27;&lt;span class=&quot;dim&quot;&gt;&#x27; + fmtDate(r.date) + &#x27; · &#x27; + money(r.premium) + &#x27;/yr&lt;/span&gt;&lt;/div&gt;&#x27;).join(&quot;&quot;);
+    &#x27;&lt;span class=&quot;dim&quot;&gt;&#x27; + fmtDate(r.date) + &#x27; · &#x27; + money(r.premium) + &#x27;/yr&lt;/span&gt;&lt;/div&gt;&#x27;).join(&quot;&quot;) : &#x27;&lt;div class=&quot;dim&quot; style=&quot;padding:6px 2px&quot;&gt;No renewals in the next 30 days.&lt;/div&gt;&#x27;;
 }
 
 /* ============ CASE SHEET + TASK STACK ============ */
@@ -877,7 +502,7 @@ function addTask(){
 &lt;script&gt;
 /* ============ LICENSES ============ */
 function renderLicenses(){
-  document.getElementById(&quot;licenses&quot;).innerHTML = S.licenses.map(L =&gt; {
+  document.getElementById(&quot;licenses&quot;).innerHTML = S.licenses.length ? S.licenses.map(L =&gt; {
     const d = daysUntil(L.expires);
     const cls = d &lt;= 45 ? &quot;soon&quot; : &quot;ok&quot;;
     const chips = Object.keys(L.appts).map(k =&gt;
@@ -886,7 +511,7 @@ function renderLicenses(){
       &#x27;&lt;span class=&quot;lic-exp &#x27; + cls + &#x27;&quot;&gt;Renews &#x27; + fmtDate(L.expires) + &#x27; · &#x27; + d + &#x27; days left&lt;/span&gt;&lt;/div&gt;&#x27; +
       &#x27;&lt;div class=&quot;lic-ce&quot;&gt;&#x27; + L.ce + &#x27;&lt;/div&gt;&#x27; +
       &#x27;&lt;div class=&quot;chips&quot;&gt;&lt;span class=&quot;chip-lbl&quot;&gt;Carrier appointments&lt;/span&gt;&#x27; + chips + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
-  }).join(&quot;&quot;);
+  }).join(&quot;&quot;) : &#x27;&lt;div class=&quot;dim&quot; style=&quot;padding:6px 2px&quot;&gt;No licenses tracked yet — add your first one below, or ask the assistant.&lt;/div&gt;&#x27;;
 }
 
 /* ============ CALENDAR (week + month, Google-Calendar style) ============ */
@@ -1043,6 +668,60 @@ function handleAI(raw){
   /* --- Rule 1 guardrail: no client PII --- */
   if (/\d{3}-\d{2}-\d{4}/.test(text) || /\b(ssn|social security|date of birth|dob|policy number|account number)\b/.test(t)) {
     botMsg(&quot;⛔ I can\u2019t take that — BookView never stores client identifiers (no SSNs, birth dates, or policy/account numbers). Refer to the case by initials instead, like \u201CJMS 214\u201D, and I\u2019ll log it right away.&quot;);
+    return;
+  }
+  /* --- v4.0: import / move case / add license / schedule --- */
+  if (/\b(import|csv|spreadsheet|upload)\b/.test(t)) {
+    botMsg(&#x27;You can load your existing book from a CSV — carrier exports work. BookView maps the status columns, and anything that looks like a client identifier (names, SSNs, policy numbers) is stripped on your device and never saved: names become initials-only labels.&lt;br&gt;&lt;button class=&quot;okbtn&quot; onclick=&quot;openImport()&quot;&gt;Open the importer&lt;/button&gt;&#x27;);
+    return;
+  }
+  const mvLabel = text.match(/\b([A-Z]{3})\s+(\d{3})\b/);
+  if (/\b(move|advance|update)\b/.test(t) &amp;&amp; mvLabel) {
+    const who = mvLabel[1] + &quot; &quot; + mvLabel[2];
+    const c = S.cases.find(x =&gt; x.who === who);
+    const stName = /underwrit/.test(t) ? &quot;Underwriting&quot; : /fund|financ/.test(t) ? &quot;Funds pending&quot; : /deliver|issued/.test(t) ? &quot;Delivery pending&quot; : /app|application|start/.test(t) ? &quot;App pending&quot; : null;
+    if (c &amp;&amp; stName) {
+      const stageFor = {&quot;App pending&quot;:&quot;Application taken&quot;,&quot;Underwriting&quot;:&quot;Underwriting&quot;,&quot;Funds pending&quot;:&quot;Funded — pending issue&quot;,&quot;Delivery pending&quot;:&quot;Issued — delivery&quot;};
+      draftCard(&quot;&lt;b&gt;Move case:&lt;/b&gt; &quot; + who + &quot; → &quot; + stName + &quot; (stage: &quot; + stageFor[stName] + &quot;)&quot;, () =&gt; {
+        c.stage = stageFor[stName]; save(); renderCases(); renderKPIs();
+        botMsg(&quot;Moved — &quot; + who + &quot; is now &quot; + stName.toLowerCase() + &quot;.&quot;);
+      });
+      return;
+    }
+    if (!c) { botMsg(&quot;I don&#x27;t see &quot; + who + &quot; on your board.&quot;); return; }
+  }
+  if (/\blicense\b/.test(t) &amp;&amp; /\b(add|track|new)\b/.test(t)) {
+    const st = STATES.find(s =&gt; t.includes(s.toLowerCase()));
+    if (st) {
+      const isoM = text.match(/\b(20\d{2})-(\d{2})-(\d{2})\b/);
+      let exp = null;
+      if (isoM) exp = isoM[0];
+      else { const mn = t.match(/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s+(20\d{2})\b/); if (mn) { const mi = MONTHS.indexOf(mn[1]); exp = isoOf(new Date(+mn[2], mi + 1, 0)); } }
+      if (exp &amp;&amp; !S.licenses.find(l =&gt; l.state === st)) {
+        draftCard(&quot;&lt;b&gt;New license:&lt;/b&gt; &quot; + st + &quot; · renews &quot; + fmtDate(exp) + &quot; · CE in progress · no appointments yet&quot;, () =&gt; {
+          S.licenses.push({state: st, expires: exp, ce: &quot;CE in progress&quot;, appts: {}});
+          save(); renderLicenses(); renderCalendar();
+          botMsg(&quot;Added — &quot; + st + &quot; is on your Licenses tab, and its renewal is on the calendar.&quot;);
+        });
+        return;
+      }
+      if (exp) { botMsg(&quot;You&#x27;re already tracking &quot; + st + &quot; — it renews &quot; + fmtDate(S.licenses.find(l =&gt; l.state === st).expires) + &quot;.&quot;); return; }
+      botMsg(&quot;I can add it — tell me the renewal month too, like “add my Texas license, expires Mar 2028”.&quot;); return;
+    }
+  }
+  if (/^(schedule|book)\b/.test(t) || /\bschedule (a|an|the)\b/.test(t)) {
+    const dayM = t.match(/\b(today|tomorrow|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/);
+    let off = 1, dayWord = &quot;tomorrow&quot;;
+    if (dayM) { dayWord = dayM[1]; if (dayWord === &quot;today&quot;) off = 0; else if (dayWord === &quot;tomorrow&quot;) off = 1; else { const days = [&quot;sunday&quot;,&quot;monday&quot;,&quot;tuesday&quot;,&quot;wednesday&quot;,&quot;thursday&quot;,&quot;friday&quot;,&quot;saturday&quot;]; off = (days.indexOf(dayWord) - new Date().getDay() + 7) % 7; } }
+    const timeM = text.match(/\b(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b/i);
+    const time = timeM ? (timeM[1] + (timeM[2] ? &quot;:&quot; + timeM[2] : &quot;:00&quot;) + &quot; &quot; + timeM[3].toUpperCase()) : &quot;&quot;;
+    let title = text.replace(/^(schedule|book)\s+/i, &quot;&quot;).replace(/\b(today|tomorrow|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/i, &quot;&quot;).replace(/\b(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b/i, &quot;&quot;).replace(/\s+(at|on)\s*$/i, &quot;&quot;).replace(/\s+/g, &quot; &quot;).trim();
+    title = title ? title[0].toUpperCase() + title.slice(1) : &quot;Appointment&quot;;
+    draftCard(&quot;&lt;b&gt;New event:&lt;/b&gt; &quot; + title + &quot; — &quot; + dayWord + (time ? &quot; at &quot; + time : &quot;&quot;), () =&gt; {
+      S.events.push({off, time, kind: &quot;&quot;, title});
+      save(); renderCalendar();
+      botMsg(&quot;Booked — it&#x27;s on your calendar for &quot; + dayWord + &quot;.&quot;);
+    });
     return;
   }
   /* --- stuck --- */
@@ -1206,9 +885,151 @@ function quickAddTask(){
 renderKPIs(); renderFilters(); renderCases(); renderTasks(); renderRenewals(); renderLicenses(); renderCalendar();
 botMsg(&quot;Evening. Your board: &quot; + S.cases.length + &quot; cases in flight, &quot; + S.cases.filter(c=&gt;c.stuck).length + &quot; stuck. Ask me what\u2019s stuck, tell me a case to add, or check a license — I\u2019ll draft it before anything saves.&quot;);
 &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-"></iframe>
+&lt;script&gt;
+/* ============ v4.0 — CSV import, first run, license form ============ */
+const STATES = [&quot;Alabama&quot;,&quot;Alaska&quot;,&quot;Arizona&quot;,&quot;Arkansas&quot;,&quot;California&quot;,&quot;Colorado&quot;,&quot;Connecticut&quot;,&quot;Delaware&quot;,&quot;Florida&quot;,&quot;Georgia&quot;,&quot;Hawaii&quot;,&quot;Idaho&quot;,&quot;Illinois&quot;,&quot;Indiana&quot;,&quot;Iowa&quot;,&quot;Kansas&quot;,&quot;Kentucky&quot;,&quot;Louisiana&quot;,&quot;Maine&quot;,&quot;Maryland&quot;,&quot;Massachusetts&quot;,&quot;Michigan&quot;,&quot;Minnesota&quot;,&quot;Mississippi&quot;,&quot;Missouri&quot;,&quot;Montana&quot;,&quot;Nebraska&quot;,&quot;Nevada&quot;,&quot;New Hampshire&quot;,&quot;New Jersey&quot;,&quot;New Mexico&quot;,&quot;New York&quot;,&quot;North Carolina&quot;,&quot;North Dakota&quot;,&quot;Ohio&quot;,&quot;Oklahoma&quot;,&quot;Oregon&quot;,&quot;Pennsylvania&quot;,&quot;Rhode Island&quot;,&quot;South Carolina&quot;,&quot;South Dakota&quot;,&quot;Tennessee&quot;,&quot;Texas&quot;,&quot;Utah&quot;,&quot;Vermont&quot;,&quot;Virginia&quot;,&quot;Washington&quot;,&quot;West Virginia&quot;,&quot;Wisconsin&quot;,&quot;Wyoming&quot;];
+const MONTHS = [&quot;jan&quot;,&quot;feb&quot;,&quot;mar&quot;,&quot;apr&quot;,&quot;may&quot;,&quot;jun&quot;,&quot;jul&quot;,&quot;aug&quot;,&quot;sep&quot;,&quot;oct&quot;,&quot;nov&quot;,&quot;dec&quot;];
+
+const SAMPLE_CSV = &quot;Client Name,SSN,Carrier,Product,Stage,Commission,Age (days)\n&quot; +
+&quot;Daniel R Kim,000-12-3456,National Life,FIA,Funded - pending issue,4100,5\n&quot; +
+&quot;Maria L Torres,000-23-4567,Humana,Med Supp,Underwriting,290,11\n&quot; +
+&quot;James P O&#x27;Neil,000-34-5678,Foresters,Whole Life,Application taken,1350,2\n&quot; +
+&quot;Kavita S Nair,000-45-6789,Schwab,401(k) rollover,Transfer in progress,2100,19\n&quot; +
+&quot;Tom W Becker,000-56-7890,Delta Dental,PPO Premier,Issued,95,3\n&quot; +
+&quot;Angela D Ruiz,000-67-8901,Allianz,MYGA 3,Suitability review,3300,9&quot;;
+
+function parseCSV(text){
+  const rows = []; let row = [], cur = &quot;&quot;, q = false;
+  const s = String(text).replace(/\r\n/g, &quot;\n&quot;).replace(/\r/g, &quot;\n&quot;);
+  for (let i = 0; i &lt; s.length; i++){
+    const ch = s[i];
+    if (q){
+      if (ch === &#x27;&quot;&#x27;){ if (s[i+1] === &#x27;&quot;&#x27;){ cur += &#x27;&quot;&#x27;; i++; } else q = false; }
+      else cur += ch;
+    } else if (ch === &#x27;&quot;&#x27;) q = true;
+    else if (ch === &quot;,&quot;){ row.push(cur); cur = &quot;&quot;; }
+    else if (ch === &quot;\n&quot;){ row.push(cur); rows.push(row); row = []; cur = &quot;&quot;; }
+    else cur += ch;
+  }
+  if (cur.length || row.length){ row.push(cur); rows.push(row); }
+  return rows.filter(r =&gt; r.some(c =&gt; String(c).trim() !== &quot;&quot;));
+}
+const PII_COL = /(ssn|social|dob|birth|phone|email|address|policy\s*(no|num|#)|account|member\s*id)/i;
+function guessField(h){
+  const x = &quot; &quot; + h.toLowerCase().trim() + &quot; &quot;;
+  if (PII_COL.test(h)) return &quot;pii&quot;;
+  if (/label|case\s*ref|reference/.test(x)) return &quot;label&quot;;
+  if (/name|client/.test(x)) return &quot;name&quot;;
+  if (/carrier|company|insurer/.test(x)) return &quot;carrier&quot;;
+  if (/product|plan/.test(x)) return &quot;product&quot;;
+  if (/stage|status|step/.test(x)) return &quot;stage&quot;;
+  if (/line|type|kind/.test(x)) return &quot;line&quot;;
+  if (/commission|comm/.test(x)) return &quot;commission&quot;;
+  if (/age|days/.test(x)) return &quot;age&quot;;
+  return &quot;skip&quot;;
+}
+let impHeaders = [], impData = [], impFields = [];
+function openImport(){ document.getElementById(&quot;importBack&quot;).classList.add(&quot;open&quot;); document.getElementById(&quot;importStep1&quot;).style.display = &quot;block&quot;; document.getElementById(&quot;importStep2&quot;).style.display = &quot;none&quot;; }
+function closeImport(){ document.getElementById(&quot;importBack&quot;).classList.remove(&quot;open&quot;); }
+function backImport(){ document.getElementById(&quot;importStep1&quot;).style.display = &quot;block&quot;; document.getElementById(&quot;importStep2&quot;).style.display = &quot;none&quot;; }
+function sampleCSV(){ document.getElementById(&quot;csvText&quot;).value = SAMPLE_CSV; previewImport(); }
+function fileCSV(ev){ const f = ev.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () =&gt; { document.getElementById(&quot;csvText&quot;).value = r.result; previewImport(); }; r.readAsText(f); }
+function inferStage(raw){
+  const x = (raw || &quot;&quot;).toLowerCase().trim();
+  const keys = Object.keys(STATUS_OF);
+  for (const k of keys) if (k.toLowerCase() === x) return k;
+  if (/underwrit/.test(x)) return &quot;Underwriting&quot;;
+  if (/suitab/.test(x)) return &quot;Suitability review&quot;;
+  if (/fund|financ/.test(x)) return &quot;Funded — pending issue&quot;;
+  if (/transfer/.test(x)) return &quot;Transfer in progress&quot;;
+  if (/onboard/.test(x)) return &quot;Onboarding&quot;;
+  if (/issued|deliver/.test(x)) return &quot;Issued — delivery&quot;;
+  if (/enroll/.test(x)) return &quot;Enrollment submitted&quot;;
+  if (/illustrat/.test(x)) return &quot;Illustration approved&quot;;
+  return &quot;Application taken&quot;;
+}
+function inferLine(product, carrier, given){
+  if (given) { const g = [&quot;Life&quot;,&quot;Annuity&quot;,&quot;Advisory&quot;,&quot;Medicare&quot;,&quot;Medical&quot;,&quot;Dental&quot;].find(L =&gt; given.toLowerCase().includes(L.toLowerCase())); if (g) return g; }
+  const x = ((product || &quot;&quot;) + &quot; &quot; + (carrier || &quot;&quot;)).toLowerCase();
+  if (/dental/.test(x)) return &quot;Dental&quot;;
+  if (/medicare|advantage|med supp|supplement/.test(x)) return &quot;Medicare&quot;;
+  if (/annuit|myga|fia|fixed index/.test(x)) return &quot;Annuity&quot;;
+  if (/advisor|rollover|managed|401\(k\)|ira/.test(x)) return &quot;Advisory&quot;;
+  if (/aca|medical|health/.test(x)) return &quot;Medical&quot;;
+  return &quot;Life&quot;;
+}
+function deriveLabel(name, n){
+  const toks = String(name || &quot;&quot;).replace(/[^A-Za-z ]/g, &quot; &quot;).split(/\s+/).filter(Boolean);
+  let ini = toks.map(w =&gt; w[0].toUpperCase()).join(&quot;&quot;);
+  if (ini.length &gt; 3) ini = ini[0] + ini[1] + ini[ini.length - 1];
+  while (ini.length &lt; 3 &amp;&amp; toks.length) { const last = toks[toks.length - 1]; ini += last[Math.min(ini.length, last.length - 1)].toUpperCase(); }
+  if (!ini) ini = &quot;CSV&quot;;
+  return ini + &quot; &quot; + (100 + n);
+}
+function impCell(r, field){ const i = impFields.indexOf(field); return i &gt;= 0 ? String(r[i] || &quot;&quot;).trim() : &quot;&quot;; }
+function impLabelFor(r, ri){
+  const lab = impCell(r, &quot;label&quot;);
+  if (lab) return lab.toUpperCase();
+  return deriveLabel(impCell(r, &quot;name&quot;), ri + 1);
+}
+function previewImport(){
+  const rows = parseCSV(document.getElementById(&quot;csvText&quot;).value);
+  if (rows.length &lt; 2){ botMsg(&quot;That CSV needs a header row plus at least one case row.&quot;); return; }
+  impHeaders = rows[0]; impData = rows.slice(1); impFields = impHeaders.map(guessField);
+  const fieldName = {pii:&quot;Identifier — always stripped&quot;, name:&quot;Name → initials label&quot;, label:&quot;Case label&quot;, carrier:&quot;Carrier&quot;, product:&quot;Product&quot;, stage:&quot;Stage&quot;, line:&quot;Line&quot;, commission:&quot;Commission&quot;, age:&quot;Age (days)&quot;, skip:&quot;Not imported&quot;};
+  let html = &#x27;&lt;table class=&quot;mapt&quot;&gt;&lt;tr&gt;&lt;th&gt;Your column&lt;/th&gt;&lt;th&gt;BookView does this&lt;/th&gt;&lt;/tr&gt;&#x27; + impHeaders.map((h, i) =&gt;
+    &#x27;&lt;tr&#x27; + (impFields[i] === &quot;pii&quot; ? &#x27; class=&quot;piirow&quot;&#x27; : &quot;&quot;) + &#x27;&gt;&lt;td&gt;&#x27; + h + &#x27;&lt;/td&gt;&lt;td&gt;&#x27; + fieldName[impFields[i]] + &#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;).join(&quot;&quot;) + &#x27;&lt;/table&gt;&#x27;;
+  html += &#x27;&lt;p class=&quot;dim&quot; style=&quot;margin:12px 0 4px&quot;&gt;First rows as they will land — identifiers never shown, never saved:&lt;/p&gt;&#x27;;
+  html += impData.slice(0, 5).map((r, ri) =&gt; &#x27;&lt;div class=&quot;improw&quot;&gt;&#x27; + impLabelFor(r, ri) + &#x27; · &#x27; + impCell(r, &quot;carrier&quot;) + &#x27; · &#x27; + impCell(r, &quot;product&quot;) + &#x27; · &#x27; + inferStage(impCell(r, &quot;stage&quot;)) + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;);
+  document.getElementById(&quot;importPreview&quot;).innerHTML = html;
+  document.getElementById(&quot;importGo&quot;).textContent = &quot;Import &quot; + impData.length + &quot; case&quot; + (impData.length === 1 ? &quot;&quot; : &quot;s&quot;);
+  document.getElementById(&quot;importStep1&quot;).style.display = &quot;none&quot;;
+  document.getElementById(&quot;importStep2&quot;).style.display = &quot;block&quot;;
+}
+function doImport(){
+  let added = 0, skipped = 0;
+  impData.forEach((r, ri) =&gt; {
+    const carrier = impCell(r, &quot;carrier&quot;);
+    const who = impLabelFor(r, ri);
+    if (!carrier || !who || S.cases.find(c =&gt; c.who === who)){ skipped++; return; }
+    const product = impCell(r, &quot;product&quot;) || &quot;—&quot;;
+    S.cases.push({id: Date.now() + ri, who, line: inferLine(product, carrier, impCell(r, &quot;line&quot;)), carrier, product,
+      stage: inferStage(impCell(r, &quot;stage&quot;)), age: parseInt(impCell(r, &quot;age&quot;), 10) || 0,
+      commission: parseInt(String(impCell(r, &quot;commission&quot;)).replace(/[^0-9]/g, &quot;&quot;), 10) || 0, stuck: false, tasks: []});
+    added++;
+  });
+  save(); renderKPIs(); renderFilters(); renderCases(); renderTasks(); renderCalendar();
+  closeImport();
+  botMsg(&quot;Imported &quot; + added + &quot; case&quot; + (added === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; onto your board&quot; + (skipped ? &quot; — &quot; + skipped + &quot; row&quot; + (skipped === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; skipped (missing a carrier, or the label was already on the board)&quot; : &quot;&quot;) + &quot;. Anything that looked like a client identifier was stripped on your device and never saved.&quot;);
+}
+
+function addLicenseForm(){
+  const st = document.getElementById(&quot;lfState&quot;).value.trim();
+  const exp = document.getElementById(&quot;lfExp&quot;).value;
+  const ce = document.getElementById(&quot;lfCE&quot;).value;
+  if (!st || !exp) { botMsg(&quot;To add a license on the Licenses tab, I need the state and its renewal date.&quot;); return; }
+  if (S.licenses.find(l =&gt; l.state.toLowerCase() === st.toLowerCase())) { botMsg(&quot;You&#x27;re already tracking &quot; + st + &quot;.&quot;); return; }
+  S.licenses.push({state: st, expires: exp, ce: ce, appts: {}});
+  document.getElementById(&quot;lfState&quot;).value = &quot;&quot;; document.getElementById(&quot;lfExp&quot;).value = &quot;&quot;;
+  save(); renderLicenses(); renderCalendar();
+  botMsg(&quot;Added — &quot; + st + &quot; is on your Licenses tab, renewal &quot; + fmtDate(exp) + &quot;, and it&#x27;s on the calendar.&quot;);
+}
+
+function frChoose(mode){
+  S.onboarded = true;
+  if (mode === &quot;empty&quot;){
+    S = {cases: [], renewals: [], licenses: [], events: [], onboarded: true};
+    save(); renderKPIs(); renderFilters(); renderCases(); renderTasks(); renderRenewals(); renderLicenses(); renderCalendar();
+    botMsg(&quot;Clean board. Add your first case by telling me — “add a case, life, Foresters, BJK 201, 1800” — import a CSV from the dashboard, or add licenses on their tab.&quot;);
+  } else save();
+  document.getElementById(&quot;firstrunBack&quot;).classList.remove(&quot;open&quot;);
+  if (mode === &quot;import&quot;) openImport();
+}
+function maybeFirstRun(){ if (!S.onboarded) document.getElementById(&quot;firstrunBack&quot;).classList.add(&quot;open&quot;); }
+
+document.getElementById(&quot;chips&quot;).innerHTML += [&quot;Move JMS 214 to underwriting&quot;, &quot;Import my book&quot;, &quot;Schedule a call tomorrow at 10am&quot;, &quot;Add my Florida license, expires Jun 2028&quot;].map(c =&gt; &#x27;&lt;button onclick=&quot;chipSend(this)&quot;&gt;&#x27; + c + &#x27;&lt;/button&gt;&#x27;).join(&quot;&quot;);
+maybeFirstRun();
+&lt;/script&gt;"></iframe>
     </div>
     <p class="demo-cap">This is the actual screen, running on sample data. Filter by line, show only what's stuck, click any case for detail.</p>
     <p class="demo-cap" style="color:var(--acc2);font-weight:600">No client PII — ever. BookView tracks case status, not client identity. Your clients' information stays in your CRM and carrier portals, where it belongs.</p>
