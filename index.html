@@ -600,6 +600,12 @@
   tr.srow-h td{background:#eceff8}
   .btn{border-radius:10px}
   .chips-ai:empty{display:none}
+  .ai-input{background:#fff;border:1px solid #d0d4e4;border-radius:26px;padding:6px;box-shadow:0 2px 10px rgba(50,51,56,.06);align-items:center;gap:4px}
+  .ai-input input{background:transparent;border:0;padding:8px 4px 8px 10px}
+  .ai-input .mic-btn{width:38px;height:38px;flex:none;border:0;border-radius:50%;background:transparent;color:#676879;display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .ai-input .mic-btn:hover{background:#f6f7fb}
+  .ai-input .mic-btn.rec{background:#e2445c;color:#fff;animation:micpulse 1.2s ease-in-out infinite}
+  @keyframes micpulse{0%,100%{box-shadow:0 0 0 0 rgba(226,68,92,.45)}50%{box-shadow:0 0 0 7px rgba(226,68,92,0)}}
 &lt;/style&gt;
   &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
   &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
@@ -704,7 +710,8 @@
       &lt;div class=&quot;chat&quot; id=&quot;chat&quot;&gt;&lt;/div&gt;
       &lt;div class=&quot;chips-ai&quot; id=&quot;chips&quot;&gt;&lt;/div&gt;
       &lt;div class=&quot;ai-input&quot;&gt;
-        &lt;input id=&quot;aiText&quot; type=&quot;text&quot; placeholder=&quot;Try: what&#x27;s stuck?&quot; autocomplete=&quot;off&quot;&gt;
+        &lt;input id=&quot;aiText&quot; type=&quot;text&quot; placeholder=&quot;Message VA&quot; autocomplete=&quot;off&quot;&gt;
+        &lt;button class=&quot;mic-btn&quot; id=&quot;micBtn&quot; onclick=&quot;toggleMic()&quot; aria-label=&quot;Voice input&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;2.5&quot; width=&quot;6&quot; height=&quot;11&quot; rx=&quot;3&quot;/&gt;&lt;path d=&quot;M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
         &lt;button onclick=&quot;sendAI()&quot; aria-label=&quot;Send&quot;&gt;↑&lt;/button&gt;
       &lt;/div&gt;
     &lt;/aside&gt;
@@ -1367,6 +1374,22 @@ function handleAI(raw){
     return;
   }
   botMsg(&quot;I didn\u2019t catch that one — this prototype understands a defined set of commands (the full product won\u2019t have that limit). Try one of the suggestions below, or type \u201Chelp\u201D.&quot;);
+}
+let recog = null, micOn = false;
+function toggleMic(){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const btn = document.getElementById(&quot;micBtn&quot;);
+  if (!SR){ botMsg(&quot;Voice input needs a browser with built-in speech recognition \u2014 Chrome works best. Typing works everywhere.&quot;); return; }
+  if (micOn &amp;&amp; recog){ recog.stop(); return; }
+  recog = new SR();
+  recog.lang = &quot;en-US&quot;; recog.interimResults = true; recog.continuous = false;
+  const inp = document.getElementById(&quot;aiText&quot;);
+  const base = inp.value ? inp.value.replace(/\s+$/, &quot;&quot;) + &quot; &quot; : &quot;&quot;;
+  recog.onresult = e =&gt; { let txt = &quot;&quot;; for (const r of e.results) txt += r[0].transcript; inp.value = base + txt; };
+  recog.onend = () =&gt; { micOn = false; btn.classList.remove(&quot;rec&quot;); inp.focus(); };
+  recog.onerror = () =&gt; { micOn = false; btn.classList.remove(&quot;rec&quot;); };
+  micOn = true; btn.classList.add(&quot;rec&quot;);
+  try { recog.start(); } catch (e) { micOn = false; btn.classList.remove(&quot;rec&quot;); }
 }
 function sendAI(){
   const inp = document.getElementById(&quot;aiText&quot;);
