@@ -833,11 +833,11 @@ function renderKPIs(){
   const q = quarterOf({age: 0});
   const produced = S.cases.filter(c =&gt; DONE.includes(statusOf(c)) &amp;&amp; quarterOf(c) === q).reduce((a,c) =&gt; a + myFyc(c), 0);
   document.getElementById(&quot;kpis&quot;).innerHTML =
-    kpi(inflight.length, &quot;cases in flight&quot;) +
-    kpi(stuck.length, &quot;stuck over 7 days&quot;, &quot;bad&quot;) +
-    kpi(money(pending), &quot;my commissions pending&quot;) +
-    kpi(money(produced), &quot;produced this quarter&quot;);
-  function kpi(n, l, cls){ return &#x27;&lt;div class=&quot;kpi &#x27; + (cls||&quot;&quot;) + &#x27;&quot;&gt;&lt;div class=&quot;num&quot;&gt;&#x27; + n + &#x27;&lt;/div&gt;&lt;div class=&quot;lbl&quot;&gt;&#x27; + l + (cls===&quot;bad&quot; &amp;&amp; stuckMoney ? &quot; \u00B7 &quot; + money(stuckMoney) + &quot; of mine held up&quot; : &quot;&quot;) + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;; }
+    kpi(inflight.length, &quot;Cases&quot;) +
+    kpi(stuck.length, &quot;Stuck&quot;, &quot;bad&quot;) +
+    kpi(money(pending), &quot;Pending&quot;) +
+    kpi(money(produced), &quot;Produced&quot;);
+  function kpi(n, l, cls){ return &#x27;&lt;div class=&quot;kpi &#x27; + (cls||&quot;&quot;) + &#x27;&quot;&gt;&lt;div class=&quot;num&quot;&gt;&#x27; + n + &#x27;&lt;/div&gt;&lt;div class=&quot;lbl&quot;&gt;&#x27; + l + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;; }
   renderProduction();
 }
 const STATUSES = [&quot;Prospect&quot;, &quot;Submitted&quot;, &quot;App Pending&quot;, &quot;Underwriting&quot;, &quot;Funds Pending&quot;, &quot;Deposited&quot;, &quot;Delivery Pending&quot;, &quot;Delivered&quot;, &quot;Declined&quot;];
