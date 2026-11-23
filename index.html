@@ -760,10 +760,10 @@ const SEED = {
       {t:&quot;Confirm beneficiary designations&quot;, done:true}]},
     {id:8, who:&quot;BAH 127&quot;, type:&quot;Medicare&quot;, company:&quot;Humana&quot;, product:&quot;Med Supp&quot;, status:&quot;Underwriting&quot;, detail:&quot;Health questions&quot;, age:8, fyc:275, credits:275, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Upload ID card copy&quot;, done:true}, {t:&quot;Answer health-question follow-up&quot;, done:false, due:inDays(3)}]},
-    {id:9, who:&quot;PMG 195&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Term 30&quot;, status:&quot;App Pending&quot;, detail:&quot;Application taken&quot;, age:1, fyc:1720, credits:1720, size:30000, share:1, splits:[], exam:inDays(5), docs:false, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
+    {id:9, who:&quot;PMG 195&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Term 30&quot;, status:&quot;Pending&quot;, detail:&quot;Application taken&quot;, age:1, fyc:1720, credits:1720, size:30000, share:1, splits:[], exam:inDays(5), docs:false, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Complete Part 2 health questions&quot;, done:false, due:inDays(0)}]},
     {id:10, who:&quot;LJM 103&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;401(k) rollover&quot;, status:&quot;Funds Pending&quot;, detail:&quot;Transfer in progress&quot;, age:14, fyc:2300, credits:0, size:210000, share:0.5, splits:[{code:&quot;138338&quot;, pct:50}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, recurring:true, stuck:true, tasks:[]},
-    {id:11, who:&quot;TAW 471&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;GUL&quot;, status:&quot;App Pending&quot;, detail:&quot;Illustration approved&quot;, age:5, fyc:1940, credits:1940, size:136000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
+    {id:11, who:&quot;TAW 471&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;GUL&quot;, status:&quot;Pending&quot;, detail:&quot;Illustration approved&quot;, age:5, fyc:1940, credits:1940, size:136000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Send illustration for signature&quot;, done:false, due:inDays(2)}]},
     {id:12, who:&quot;NMD 856&quot;, type:&quot;Annuity&quot;, company:&quot;Athene&quot;, product:&quot;MYGA 3&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:30, fyc:2650, credits:2650, size:100000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
       {t:&quot;Schedule welcome call&quot;, done:false, due:inDays(4)}]},
@@ -846,10 +846,10 @@ function renderKPIs(){
   function kpi(n, l, cls){ return &#x27;&lt;div class=&quot;kpi &#x27; + (cls||&quot;&quot;) + &#x27;&quot;&gt;&lt;div class=&quot;num&quot;&gt;&#x27; + n + &#x27;&lt;/div&gt;&lt;div class=&quot;lbl&quot;&gt;&#x27; + l + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;; }
   renderProduction();
 }
-const STATUSES = [&quot;Prospect&quot;, &quot;Submitted&quot;, &quot;App Pending&quot;, &quot;Underwriting&quot;, &quot;Funds Pending&quot;, &quot;Deposited&quot;, &quot;Delivery Pending&quot;, &quot;Delivered&quot;, &quot;Declined&quot;];
-const INFLIGHT = [&quot;Prospect&quot;, &quot;Submitted&quot;, &quot;App Pending&quot;, &quot;Underwriting&quot;, &quot;Funds Pending&quot;, &quot;Delivery Pending&quot;];
+const STATUSES = [&quot;Prospect&quot;, &quot;Submitted&quot;, &quot;Pending&quot;, &quot;Underwriting&quot;, &quot;Funds Pending&quot;, &quot;Deposited&quot;, &quot;Delivery Pending&quot;, &quot;Delivered&quot;, &quot;Declined&quot;];
+const INFLIGHT = [&quot;Prospect&quot;, &quot;Submitted&quot;, &quot;Pending&quot;, &quot;Underwriting&quot;, &quot;Funds Pending&quot;, &quot;Delivery Pending&quot;];
 const DONE = [&quot;Deposited&quot;, &quot;Delivered&quot;];
-function statusOf(c){ return c.status || &quot;App Pending&quot;; }
+function statusOf(c){ return c.status || &quot;Pending&quot;; }
 const myFyc = c =&gt; Math.round((c.fyc || 0) * (c.share == null ? 1 : c.share));
 function appDateOf(c){ const d = new Date(); d.setDate(d.getDate() - (c.age || 0)); return d.getFullYear() + &quot;-&quot; + String(d.getMonth() + 1).padStart(2, &quot;0&quot;) + &quot;-&quot; + String(d.getDate()).padStart(2, &quot;0&quot;); }
 function quarterOf(c){ const d = new Date(); d.setDate(d.getDate() - (c.age || 0)); return &quot;Q&quot; + (Math.floor(d.getMonth() / 3) + 1) + &quot; &quot; + d.getFullYear(); }
@@ -1194,7 +1194,7 @@ function handleAI(raw){
   if (/\b(move|advance|update)\b/.test(t) &amp;&amp; mvLabel) {
     const who = mvLabel[1] + &quot; &quot; + mvLabel[2];
     const c = S.cases.find(x =&gt; x.who === who);
-    const stName = /prospect/.test(t) ? &quot;Prospect&quot; : /deposit/.test(t) ? &quot;Deposited&quot; : /delivered/.test(t) ? &quot;Delivered&quot; : /delivery/.test(t) ? &quot;Delivery Pending&quot; : /declin/.test(t) ? &quot;Declined&quot; : /underwrit/.test(t) ? &quot;Underwriting&quot; : /fund/.test(t) ? &quot;Funds Pending&quot; : /submitted/.test(t) ? &quot;Submitted&quot; : /app|application/.test(t) ? &quot;App Pending&quot; : null;
+    const stName = /prospect/.test(t) ? &quot;Prospect&quot; : /deposit/.test(t) ? &quot;Deposited&quot; : /delivered/.test(t) ? &quot;Delivered&quot; : /delivery/.test(t) ? &quot;Delivery Pending&quot; : /declin/.test(t) ? &quot;Declined&quot; : /underwrit/.test(t) ? &quot;Underwriting&quot; : /fund/.test(t) ? &quot;Funds Pending&quot; : /pending/.test(t) ? &quot;Pending&quot; : /submitted/.test(t) ? &quot;Submitted&quot; : /app|application/.test(t) ? &quot;Pending&quot; : null;
     if (c &amp;&amp; stName) {
       draftCard(&quot;&lt;b&gt;Move case:&lt;/b&gt; &quot; + who + &quot; \u2192 &quot; + stName, () =&gt; {
         c.status = stName; c.detail = &quot;&quot;; if (!INFLIGHT.includes(stName)) c.stuck = false;
@@ -1265,9 +1265,9 @@ function handleAI(raw){
     const commText = lm ? text.replace(lm[0], &quot; &quot;) : text;
     const comm = (commText.match(/\$?\s?([\d,]{3,})/) || [null,&quot;1,500&quot;])[1].replace(/,/g,&quot;&quot;);
     const bits = [type, company, name].filter(Boolean).join(&quot; \u00B7 &quot;);
-    draftCard(&quot;&lt;b&gt;New case:&lt;/b&gt; &quot; + who + &quot; \u00B7 &quot; + bits + &quot; \u00B7 status: App Pending \u00B7 FYC &quot; + money(parseInt(comm,10)),
+    draftCard(&quot;&lt;b&gt;New case:&lt;/b&gt; &quot; + who + &quot; \u00B7 &quot; + bits + &quot; \u00B7 status: Pending \u00B7 FYC &quot; + money(parseInt(comm,10)),
       () =&gt; {
-        S.cases.push({id: Date.now(), who, type, company, product: name, status: &quot;App Pending&quot;, detail: &quot;Application taken&quot;, age: 0, fyc: parseInt(comm,10), credits: 0, size: 0, share: 1, splits: [], docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []});
+        S.cases.push({id: Date.now(), who, type, company, product: name, status: &quot;Pending&quot;, detail: &quot;Application taken&quot;, age: 0, fyc: parseInt(comm,10), credits: 0, size: 0, share: 1, splits: [], docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []});
         save(); renderKPIs(); renderCases(); renderTasks();
         botMsg(&quot;Saved. &quot; + who + &quot; is on the board \u2014 I\u2019ll start aging it from today. Add its first task any time: \u201Cadd a task to &quot; + who + &quot;\u201D.&quot;);
       });
@@ -1392,7 +1392,7 @@ function findOrCreateCase(label){
   if (!norm) return null;
   let c = S.cases.find(x =&gt; x.who.toUpperCase() === norm);
   if (!c) {
-    c = {id: Date.now(), who: norm, type: &quot;&quot;, company: &quot;&quot;, product: &quot;&quot;, status: &quot;App Pending&quot;, detail: &quot;New case&quot;, age: 0, fyc: 0, credits: 0, size: 0, share: 1, splits: [], docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []};
+    c = {id: Date.now(), who: norm, type: &quot;&quot;, company: &quot;&quot;, product: &quot;&quot;, status: &quot;Pending&quot;, detail: &quot;New case&quot;, age: 0, fyc: 0, credits: 0, size: 0, share: 1, splits: [], docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []};
     S.cases.push(c);
   }
   return c;
@@ -1421,7 +1421,7 @@ const MONTHS = [&quot;jan&quot;,&quot;feb&quot;,&quot;mar&quot;,&quot;apr&quot;,
 const SAMPLE_CSV = &quot;Client Name,SSN,Status,Product,FYC,Premium/Investment Amount,Agent Share,Notes\n&quot; +
 &quot;Daniel R Kim,000-12-3456,Funds Pending,NYL: Annuity,4100,212000,0.4,Funds coming from account 778899 - rollover\n&quot; +
 &quot;Maria L Torres,000-23-4567,Underwriting,NYL: Life,2900,40000,0.5,APS pending at clinic\n&quot; +
-&quot;James P O&#x27;Neil,000-34-5678,App Pending,NYL: Life,1350,20000,1,New money\n&quot; +
+&quot;James P O&#x27;Neil,000-34-5678,Pending,NYL: Life,1350,20000,1,New money\n&quot; +
 &quot;Kavita S Nair,000-45-6789,Deposited,Eagle,2100,225000,1,Transfer in from Schwab\n&quot; +
 &quot;Tom W Becker,000-56-7890,Delivered,Delta: Dental,95,1200,1,\n&quot; +
 &quot;Angela D Ruiz,000-67-8901,Submitted,NYL: Annuity,3300,150000,0.95,IndexFlex VA - bank acct ending 4417&quot;;
@@ -1488,7 +1488,7 @@ function inferStatus(raw){
   if (/deliver/.test(x)) return &quot;Delivery Pending&quot;;
   if (/submit|enroll/.test(x)) return &quot;Submitted&quot;;
   if (/issued/.test(x)) return &quot;Delivered&quot;;
-  return &quot;App Pending&quot;;
+  return &quot;Pending&quot;;
 }
 function inferLine(product, carrier, given){
   if (given) { const g = [&quot;Life&quot;,&quot;Annuity&quot;,&quot;Advisory&quot;,&quot;Medicare&quot;,&quot;Medical&quot;,&quot;Dental&quot;].find(L =&gt; given.toLowerCase().includes(L.toLowerCase())); if (g) return g; }
