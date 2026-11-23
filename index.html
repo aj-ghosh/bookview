@@ -564,6 +564,7 @@
   .btn.import-blue:hover{background:#0060c9;border-color:#0060c9}
   .bic{width:15px;height:15px;vertical-align:-2px;margin-right:7px}
   td{vertical-align:top}
+  .pname{display:block;color:var(--sub);font-size:13px;margin-top:2px}
 &lt;/style&gt;
   &lt;/head&gt;
 &lt;body&gt;
@@ -593,7 +594,7 @@
           &lt;div class=&quot;filters&quot; id=&quot;filters&quot;&gt;&lt;/div&gt;
           &lt;div class=&quot;import-row&quot;&gt;&lt;button class=&quot;btn import-red&quot; onclick=&quot;openImport()&quot;&gt;&lt;svg class=&quot;bic&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 16V5&quot;/&gt;&lt;path d=&quot;M6 11l6-6 6 6&quot;/&gt;&lt;path d=&quot;M4 20h16&quot;/&gt;&lt;/svg&gt;Import a CSV&lt;/button&gt;&lt;button class=&quot;btn import-blue&quot; onclick=&quot;downloadTemplate()&quot;&gt;&lt;svg class=&quot;bic&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 5v11&quot;/&gt;&lt;path d=&quot;M6 10l6 6 6-6&quot;/&gt;&lt;path d=&quot;M4 20h16&quot;/&gt;&lt;/svg&gt;Download a Template&lt;/button&gt;&lt;span&gt;Load your existing book — identifiers are stripped on your device, never saved.&lt;/span&gt;&lt;/div&gt;
           &lt;table&gt;
-            &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Case&lt;/th&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Stage&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;My FYC&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+            &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Case&lt;/th&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Stage&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;FYC&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
             &lt;tbody id=&quot;caseRows&quot;&gt;&lt;/tbody&gt;
           &lt;/table&gt;
           &lt;div class=&quot;case-list&quot; id=&quot;caseList&quot;&gt;&lt;/div&gt;
@@ -907,11 +908,11 @@ function renderCases(){
   };
   const tableRow = c =&gt; {
     return &#x27;&lt;tr onclick=&quot;openCase(&#x27; + c.id + &#x27;)&quot;&gt;&#x27; +
-      &#x27;&lt;td&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + c.who + &#x27;&lt;/span&gt;&#x27; + (c.product ? &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.product + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
-      &#x27;&lt;td data-label=&quot;Product&quot;&gt;&#x27; + linePill(c.type) + (c.company ? &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.company + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
+      &#x27;&lt;td&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + c.who + &#x27;&lt;/span&gt;&#x27; + (c.product ? &#x27;&lt;span class=&quot;pname&quot;&gt;&#x27; + c.product + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
+      &#x27;&lt;td data-label=&quot;Product&quot;&gt;&#x27; + linePill(c.type) + (c.company ? &#x27;&lt;span class=&quot;pname&quot;&gt;&#x27; + c.company + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
       &#x27;&lt;td data-label=&quot;Stage&quot; class=&quot;stagec&quot;&gt;&#x27; + (c.detail || c.status) + &#x27;&lt;/td&gt;&#x27; +
       &#x27;&lt;td data-label=&quot;Age&quot; class=&quot;age &#x27; + (c.age&gt;7 &amp;&amp; INFLIGHT.includes(c.status) ? &quot;hot&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + c.age + &#x27;d&lt;/td&gt;&#x27; +
-      &#x27;&lt;td data-label=&quot;My FYC&quot; class=&quot;money&quot;&gt;&#x27; + money(myFyc(c)) + (c.share != null &amp;&amp; c.share &lt; 1 &amp;&amp; c.fyc ? &#x27; &lt;span class=&quot;dim&quot;&gt;of &#x27; + money(c.fyc) + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + (c.recurring ? &#x27;&lt;span class=&quot;dim&quot;&gt;/yr&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
+      &#x27;&lt;td data-label=&quot;FYC&quot; class=&quot;money&quot;&gt;&#x27; + money(myFyc(c)) + (c.share != null &amp;&amp; c.share &lt; 1 &amp;&amp; c.fyc ? &#x27; &lt;span class=&quot;dim&quot;&gt;of &#x27; + money(c.fyc) + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + (c.recurring ? &#x27;&lt;span class=&quot;dim&quot;&gt;/yr&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
       &#x27;&lt;td&gt;&#x27; + flagOf(c) + &#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;;
   };
   const listRow = c =&gt; {
@@ -942,7 +943,7 @@ function renderProduction(){
   const byQ = {};
   done.forEach(c =&gt; { const q = quarterOf(c); byQ[q] = byQ[q] || {n:0, mine:0, size:0, key:qKey(c), open:0}; byQ[q].n++; byQ[q].mine += myFyc(c); byQ[q].size += (c.size || 0); if (!c.postDocs) byQ[q].open++; });
   const qs = Object.keys(byQ).sort((a,b) =&gt; byQ[b].key - byQ[a].key);
-  el.innerHTML = qs.map(q =&gt; &#x27;&lt;div class=&quot;renew-row&quot;&gt;&lt;span&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + q + &#x27;&lt;/span&gt; &lt;span class=&quot;dim&quot;&gt;&#x27; + byQ[q].n + &#x27; case&#x27; + (byQ[q].n &gt; 1 ? &quot;s&quot; : &quot;&quot;) + &#x27; \u00B7 &#x27; + money(byQ[q].size) + &#x27; in case size&#x27; + (byQ[q].open ? &#x27; \u00B7 &#x27; + byQ[q].open + &#x27; awaiting post-delivery filing&#x27; : &#x27;&#x27;) + &#x27;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;dim&quot;&gt;&#x27; + money(byQ[q].mine) + &#x27; my FYC&lt;/span&gt;&lt;/div&gt;&#x27;).join(&quot;&quot;);
+  el.innerHTML = qs.map(q =&gt; &#x27;&lt;div class=&quot;renew-row&quot;&gt;&lt;span&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + q + &#x27;&lt;/span&gt; &lt;span class=&quot;dim&quot;&gt;&#x27; + byQ[q].n + &#x27; case&#x27; + (byQ[q].n &gt; 1 ? &quot;s&quot; : &quot;&quot;) + &#x27; \u00B7 &#x27; + money(byQ[q].size) + &#x27; in case size&#x27; + (byQ[q].open ? &#x27; \u00B7 &#x27; + byQ[q].open + &#x27; awaiting post-delivery filing&#x27; : &#x27;&#x27;) + &#x27;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;dim&quot;&gt;&#x27; + money(byQ[q].mine) + &#x27; FYC&lt;/span&gt;&lt;/div&gt;&#x27;).join(&quot;&quot;);
 }
 function renderRenewals(){
   document.getElementById(&quot;renewals&quot;).innerHTML = S.renewals.length ? S.renewals.map(r =&gt;
@@ -1555,7 +1556,7 @@ function previewImport(){
   let html = &#x27;&lt;table class=&quot;mapt&quot;&gt;&lt;tr&gt;&lt;th&gt;Your column&lt;/th&gt;&lt;th&gt;BookView does this&lt;/th&gt;&lt;/tr&gt;&#x27; + impHeaders.map((h, i) =&gt;
     &#x27;&lt;tr&#x27; + ((impFields[i] === &quot;pii&quot; || impFields[i] === &quot;notes&quot;) ? &#x27; class=&quot;piirow&quot;&#x27; : &quot;&quot;) + &#x27;&gt;&lt;td&gt;&#x27; + h + &#x27;&lt;/td&gt;&lt;td&gt;&#x27; + fieldName[impFields[i]] + &#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;).join(&quot;&quot;) + &#x27;&lt;/table&gt;&#x27;;
   html += &#x27;&lt;p class=&quot;dim&quot; style=&quot;margin:12px 0 4px&quot;&gt;First rows as they will land \u2014 identifiers and notes never shown, never saved:&lt;/p&gt;&#x27;;
-  html += impData.slice(0, 5).map((r, ri) =&gt; { const pp = impParts(r); return &#x27;&lt;div class=&quot;improw&quot;&gt;&#x27; + impLabelFor(r, ri) + &#x27; \u00B7 &#x27; + [pp.type, pp.company, pp.name].filter(Boolean).join(&quot; \u00B7 &quot;) + &#x27; \u00B7 &#x27; + inferStatus(impCell(r, &quot;status&quot;)) + &#x27; \u00B7 my FYC &#x27; + money(Math.round((parseInt(String(impCell(r, &quot;fyc&quot;)).replace(/[^0-9]/g, &quot;&quot;), 10) || 0) * shareOf(r))) + &#x27;&lt;/div&gt;&#x27;; }).join(&quot;&quot;);
+  html += impData.slice(0, 5).map((r, ri) =&gt; { const pp = impParts(r); return &#x27;&lt;div class=&quot;improw&quot;&gt;&#x27; + impLabelFor(r, ri) + &#x27; \u00B7 &#x27; + [pp.type, pp.company, pp.name].filter(Boolean).join(&quot; \u00B7 &quot;) + &#x27; \u00B7 &#x27; + inferStatus(impCell(r, &quot;status&quot;)) + &#x27; \u00B7 FYC &#x27; + money(Math.round((parseInt(String(impCell(r, &quot;fyc&quot;)).replace(/[^0-9]/g, &quot;&quot;), 10) || 0) * shareOf(r))) + &#x27;&lt;/div&gt;&#x27;; }).join(&quot;&quot;);
   document.getElementById(&quot;importPreview&quot;).innerHTML = html;
   document.getElementById(&quot;importGo&quot;).textContent = &quot;Import &quot; + impData.length + &quot; case&quot; + (impData.length === 1 ? &quot;&quot; : &quot;s&quot;);
   document.getElementById(&quot;importStep1&quot;).style.display = &quot;none&quot;;
