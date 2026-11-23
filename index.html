@@ -558,6 +558,8 @@
   .dgrid{display:grid;grid-template-columns:118px 1fr;gap:7px 14px;font-size:13.5px;margin:12px 0 6px}
   .dgrid .dk{color:#6e6e73}
   .pill.pln{background:#f3e8fd;color:#6d28d9}
+  .btn.import-red{background:#d92d20;border-color:#d92d20;color:#fff;font-weight:650}
+  .btn.import-red:hover{background:#b42318;border-color:#b42318}
 &lt;/style&gt;
   &lt;/head&gt;
 &lt;body&gt;
@@ -583,10 +585,9 @@
       &lt;section id=&quot;view-dash&quot;&gt;
         &lt;div class=&quot;kpis&quot; id=&quot;kpis&quot;&gt;&lt;/div&gt;
         &lt;div class=&quot;card casescard&quot;&gt;
-          &lt;h2&gt;Pending cases&lt;/h2&gt;
-          &lt;p class=&quot;card-sub&quot;&gt;Grouped by status, the way a real pipeline runs — product on every row, your share of FYC on the right. Click a case for its details and task stack.&lt;/p&gt;
+          &lt;h2&gt;Pipeline&lt;/h2&gt;
           &lt;div class=&quot;filters&quot; id=&quot;filters&quot;&gt;&lt;/div&gt;
-          &lt;div class=&quot;import-row&quot;&gt;&lt;button class=&quot;btn ghost&quot; onclick=&quot;openImport()&quot;&gt;Import a CSV&lt;/button&gt;&lt;span&gt;Load your existing book — identifiers are stripped on your device, never saved.&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;import-row&quot;&gt;&lt;button class=&quot;btn import-red&quot; onclick=&quot;openImport()&quot;&gt;Import a CSV&lt;/button&gt;&lt;span&gt;Load your existing book — identifiers are stripped on your device, never saved.&lt;/span&gt;&lt;/div&gt;
           &lt;table&gt;
             &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Case&lt;/th&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Stage&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;My FYC&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
             &lt;tbody id=&quot;caseRows&quot;&gt;&lt;/tbody&gt;
