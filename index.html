@@ -744,37 +744,37 @@ function inDays(n){ const d = new Date(Date.now() + n*DAY); return d.toISOString
 
 const SEED = {
   cases: [
-    {id:1, who:&quot;JMS 214&quot;, product:&quot;NYL: Life&quot;, desc:&quot;Term 20&quot;, status:&quot;Underwriting&quot;, detail:&quot;APS pending&quot;, age:23, fyc:2450, credits:2450, size:40000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
+    {id:1, who:&quot;JMS 214&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Term 20&quot;, status:&quot;Underwriting&quot;, detail:&quot;APS pending&quot;, age:23, fyc:2450, credits:2450, size:40000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
       {t:&quot;Schedule paramed exam&quot;, done:false, due:inDays(1)}, {t:&quot;Order APS from clinic&quot;, done:true}, {t:&quot;Confirm beneficiary split&quot;, done:true}]},
-    {id:2, who:&quot;RKP 387&quot;, product:&quot;Non-NYL: Annuity&quot;, desc:&quot;Allianz MYGA 5&quot;, status:&quot;Funds Pending&quot;, detail:&quot;Suitability review&quot;, age:16, fyc:3900, credits:0, size:250000, share:1, splits:[], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[]},
-    {id:3, who:&quot;MAK 442&quot;, product:&quot;NYL: Life&quot;, desc:&quot;Whole Life&quot;, status:&quot;Delivery Pending&quot;, detail:&quot;Issued \u2014 awaiting delivery&quot;, age:4, fyc:1150, credits:1150, size:15000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
+    {id:2, who:&quot;RKP 387&quot;, type:&quot;Annuity&quot;, company:&quot;Allianz&quot;, product:&quot;MYGA 5&quot;, status:&quot;Funds Pending&quot;, detail:&quot;Suitability review&quot;, age:16, fyc:3900, credits:0, size:250000, share:1, splits:[], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[]},
+    {id:3, who:&quot;MAK 442&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Whole Life&quot;, status:&quot;Delivery Pending&quot;, detail:&quot;Issued \u2014 awaiting delivery&quot;, age:4, fyc:1150, credits:1150, size:15000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Deliver policy &amp; collect receipt&quot;, done:false, due:inDays(0)}]},
-    {id:4, who:&quot;DLT 276&quot;, product:&quot;UHC: Medicare Advantage&quot;, desc:&quot;MA Plan&quot;, status:&quot;Submitted&quot;, detail:&quot;Enrollment submitted&quot;, age:6, fyc:310, credits:310, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
+    {id:4, who:&quot;DLT 276&quot;, type:&quot;Medicare&quot;, company:&quot;UHC&quot;, product:&quot;MA Plan&quot;, status:&quot;Submitted&quot;, detail:&quot;Enrollment submitted&quot;, age:6, fyc:310, credits:310, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Verify PCP in network&quot;, done:true}, {t:&quot;Send scope-of-appointment copy&quot;, done:false, due:inDays(2)}]},
-    {id:5, who:&quot;ASR 318&quot;, product:&quot;Eagle&quot;, desc:&quot;Managed portfolio&quot;, status:&quot;Funds Pending&quot;, detail:&quot;Onboarding&quot;, age:9, fyc:1800, credits:0, size:190000, share:1, splits:[], docs:false, funding:&quot;Transfer&quot;, waitingOn:&quot;Client&quot;, recurring:true, stuck:false, tasks:[
+    {id:5, who:&quot;ASR 318&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;Managed portfolio&quot;, status:&quot;Funds Pending&quot;, detail:&quot;Onboarding&quot;, age:9, fyc:1800, credits:0, size:190000, share:1, splits:[], docs:false, funding:&quot;Transfer&quot;, waitingOn:&quot;Client&quot;, recurring:true, stuck:false, tasks:[
       {t:&quot;Collect signed advisory agreement&quot;, done:false, due:inDays(1)}, {t:&quot;Link bank for contributions&quot;, done:false}]},
-    {id:6, who:&quot;SRN 548&quot;, product:&quot;NYL: Life&quot;, desc:&quot;IUL&quot;, status:&quot;Underwriting&quot;, detail:&quot;Medical records requested&quot;, age:12, fyc:2980, credits:2980, size:60000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(-2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
+    {id:6, who:&quot;SRN 548&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;IUL&quot;, status:&quot;Underwriting&quot;, detail:&quot;Medical records requested&quot;, age:12, fyc:2980, credits:2980, size:60000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(-2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
       {t:&quot;Request medical records release&quot;, done:false, due:inDays(-1)}, {t:&quot;Call underwriter re: rating class&quot;, done:false}]},
-    {id:7, who:&quot;KJL 731&quot;, product:&quot;NYL: Annuity&quot;, desc:&quot;FIA&quot;, status:&quot;Funds Pending&quot;, detail:&quot;Funded \u2014 pending issue&quot;, age:3, fyc:4250, credits:4250, size:212000, share:0.4, splits:[{code:&quot;138338&quot;, pct:60}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
+    {id:7, who:&quot;KJL 731&quot;, type:&quot;Annuity&quot;, company:&quot;NYL&quot;, product:&quot;FIA&quot;, status:&quot;Funds Pending&quot;, detail:&quot;Funded \u2014 pending issue&quot;, age:3, fyc:4250, credits:4250, size:212000, share:0.4, splits:[{code:&quot;138338&quot;, pct:60}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Confirm beneficiary designations&quot;, done:true}]},
-    {id:8, who:&quot;BAH 127&quot;, product:&quot;Humana: Med Supp&quot;, desc:&quot;Med Supp&quot;, status:&quot;Underwriting&quot;, detail:&quot;Health questions&quot;, age:8, fyc:275, credits:275, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
+    {id:8, who:&quot;BAH 127&quot;, type:&quot;Medicare&quot;, company:&quot;Humana&quot;, product:&quot;Med Supp&quot;, status:&quot;Underwriting&quot;, detail:&quot;Health questions&quot;, age:8, fyc:275, credits:275, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Upload ID card copy&quot;, done:true}, {t:&quot;Answer health-question follow-up&quot;, done:false, due:inDays(3)}]},
-    {id:9, who:&quot;PMG 195&quot;, product:&quot;NYL: Life&quot;, desc:&quot;Term 30&quot;, status:&quot;App Pending&quot;, detail:&quot;Application taken&quot;, age:1, fyc:1720, credits:1720, size:30000, share:1, splits:[], exam:inDays(5), docs:false, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
+    {id:9, who:&quot;PMG 195&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Term 30&quot;, status:&quot;App Pending&quot;, detail:&quot;Application taken&quot;, age:1, fyc:1720, credits:1720, size:30000, share:1, splits:[], exam:inDays(5), docs:false, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Complete Part 2 health questions&quot;, done:false, due:inDays(0)}]},
-    {id:10, who:&quot;LJM 103&quot;, product:&quot;Eagle&quot;, desc:&quot;401(k) rollover&quot;, status:&quot;Funds Pending&quot;, detail:&quot;Transfer in progress&quot;, age:14, fyc:2300, credits:0, size:210000, share:0.5, splits:[{code:&quot;138338&quot;, pct:50}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, recurring:true, stuck:true, tasks:[]},
-    {id:11, who:&quot;TAW 471&quot;, product:&quot;NYL: Life&quot;, desc:&quot;GUL&quot;, status:&quot;App Pending&quot;, detail:&quot;Illustration approved&quot;, age:5, fyc:1940, credits:1940, size:136000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
+    {id:10, who:&quot;LJM 103&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;401(k) rollover&quot;, status:&quot;Funds Pending&quot;, detail:&quot;Transfer in progress&quot;, age:14, fyc:2300, credits:0, size:210000, share:0.5, splits:[{code:&quot;138338&quot;, pct:50}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, recurring:true, stuck:true, tasks:[]},
+    {id:11, who:&quot;TAW 471&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;GUL&quot;, status:&quot;App Pending&quot;, detail:&quot;Illustration approved&quot;, age:5, fyc:1940, credits:1940, size:136000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Send illustration for signature&quot;, done:false, due:inDays(2)}]},
-    {id:12, who:&quot;NMD 856&quot;, product:&quot;Non-NYL: Annuity&quot;, desc:&quot;Athene MYGA 3&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:30, fyc:2650, credits:2650, size:100000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
+    {id:12, who:&quot;NMD 856&quot;, type:&quot;Annuity&quot;, company:&quot;Athene&quot;, product:&quot;MYGA 3&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:30, fyc:2650, credits:2650, size:100000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
       {t:&quot;Schedule welcome call&quot;, done:false, due:inDays(4)}]},
-    {id:15, who:&quot;KRD 509&quot;, product:&quot;Anthem: ACA Health&quot;, desc:&quot;Silver PPO&quot;, status:&quot;Submitted&quot;, detail:&quot;Enrollment submitted&quot;, age:6, fyc:340, credits:340, size:0, share:1, splits:[], docs:false, funding:&quot;&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
+    {id:15, who:&quot;KRD 509&quot;, type:&quot;Medical&quot;, company:&quot;Anthem&quot;, product:&quot;Silver PPO&quot;, status:&quot;Submitted&quot;, detail:&quot;Enrollment submitted&quot;, age:6, fyc:340, credits:340, size:0, share:1, splits:[], docs:false, funding:&quot;&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Upload income verification docs&quot;, done:false, due:inDays(2)}]},
-    {id:16, who:&quot;PSN 623&quot;, product:&quot;Delta: Dental&quot;, desc:&quot;PPO Premier&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:41, fyc:85, credits:85, size:1200, share:1, splits:[], docs:true, postDocs:false, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
+    {id:16, who:&quot;PSN 623&quot;, type:&quot;Dental&quot;, company:&quot;Delta&quot;, product:&quot;PPO Premier&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:41, fyc:85, credits:85, size:1200, share:1, splits:[], docs:true, postDocs:false, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
       {t:&quot;Send ID card and welcome packet&quot;, done:false, due:inDays(3)}]},
-    {id:17, who:&quot;PRS 340&quot;, product:&quot;Eagle&quot;, desc:&quot;Investment account&quot;, status:&quot;Prospect&quot;, detail:&quot;Discovery call done&quot;, age:2, fyc:0, credits:0, size:250000, share:0.5, splits:[{code:&quot;076284&quot;, pct:50}], docs:false, funding:&quot;&quot;, waitingOn:&quot;Me&quot;, stuck:false, tasks:[
+    {id:17, who:&quot;PRS 340&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;Investment account&quot;, status:&quot;Prospect&quot;, detail:&quot;Discovery call done&quot;, age:2, fyc:0, credits:0, size:250000, share:0.5, splits:[{code:&quot;076284&quot;, pct:50}], docs:false, funding:&quot;&quot;, waitingOn:&quot;Me&quot;, stuck:false, tasks:[
       {t:&quot;Send follow-up with account options&quot;, done:false, due:inDays(1)}]},
-    {id:18, who:&quot;DVM 918&quot;, product:&quot;Eagle&quot;, desc:&quot;Trust account&quot;, status:&quot;Deposited&quot;, detail:&quot;Funded&quot;, age:18, fyc:6000, credits:12000, size:600000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Transfer&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
-    {id:19, who:&quot;HTS 227&quot;, product:&quot;NYL: Life&quot;, desc:&quot;Whole Life&quot;, status:&quot;Declined&quot;, detail:&quot;Freelook \u2014 not taken&quot;, age:47, fyc:0, credits:0, size:150000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], docs:true, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
-    {id:20, who:&quot;KMN 512&quot;, product:&quot;NYL: Annuity&quot;, desc:&quot;IndexFlex VA&quot;, status:&quot;Submitted&quot;, detail:&quot;App submitted to carrier&quot;, age:9, fyc:3000, credits:3000, size:220000, share:0.95, splits:[{code:&quot;197328&quot;, pct:5}], docs:false, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
+    {id:18, who:&quot;DVM 918&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;Trust account&quot;, status:&quot;Deposited&quot;, detail:&quot;Funded&quot;, age:18, fyc:6000, credits:12000, size:600000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Transfer&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
+    {id:19, who:&quot;HTS 227&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Whole Life&quot;, status:&quot;Declined&quot;, detail:&quot;Freelook \u2014 not taken&quot;, age:47, fyc:0, credits:0, size:150000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], docs:true, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
+    {id:20, who:&quot;KMN 512&quot;, type:&quot;Annuity&quot;, company:&quot;NYL&quot;, product:&quot;IndexFlex VA&quot;, status:&quot;Submitted&quot;, detail:&quot;App submitted to carrier&quot;, age:9, fyc:3000, credits:3000, size:220000, share:0.95, splits:[{code:&quot;197328&quot;, pct:5}], docs:false, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Confirm funds release from prior carrier&quot;, done:false, due:inDays(3)}]}
   ],
   renewals: [
@@ -808,11 +808,11 @@ const SEED = {
 /* ============ STATE ============ */
 let S;
 try {
-  const saved = localStorage.getItem(&quot;bookviewV7&quot;);
+  const saved = localStorage.getItem(&quot;bookviewV8&quot;);
   S = saved ? JSON.parse(saved) : structuredClone(SEED);
 } catch(e){ S = structuredClone(SEED); }
-function save(){ try{ localStorage.setItem(&quot;bookviewV7&quot;, JSON.stringify(S)); }catch(e){} }
-function resetDemo(){ try{ localStorage.removeItem(&quot;bookviewV7&quot;); }catch(e){} location.reload(); }
+function save(){ try{ localStorage.setItem(&quot;bookviewV8&quot;, JSON.stringify(S)); }catch(e){} }
+function resetDemo(){ try{ localStorage.removeItem(&quot;bookviewV8&quot;); }catch(e){} location.reload(); }
 
 const money = n =&gt; &quot;$&quot; + n.toLocaleString();
 const openTasks = c =&gt; c.tasks.filter(t =&gt; !t.done);
@@ -906,17 +906,15 @@ function renderCases(){
     return &quot;&quot;;
   };
   const tableRow = c =&gt; {
-    const fam = familyOf(c.product);
     return &#x27;&lt;tr onclick=&quot;openCase(&#x27; + c.id + &#x27;)&quot;&gt;&#x27; +
-      &#x27;&lt;td&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + c.who + &#x27;&lt;/span&gt;&#x27; + (c.desc ? &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.desc + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
-      &#x27;&lt;td data-label=&quot;Product&quot;&gt;&#x27; + linePill(fam) + &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.product + &#x27;&lt;/span&gt;&lt;/td&gt;&#x27; +
+      &#x27;&lt;td&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + c.who + &#x27;&lt;/span&gt;&#x27; + (c.product ? &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.product + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
+      &#x27;&lt;td data-label=&quot;Product&quot;&gt;&#x27; + linePill(c.type) + (c.company ? &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.company + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
       &#x27;&lt;td data-label=&quot;Stage&quot; class=&quot;stagec&quot;&gt;&#x27; + (c.detail || c.status) + &#x27;&lt;/td&gt;&#x27; +
       &#x27;&lt;td data-label=&quot;Age&quot; class=&quot;age &#x27; + (c.age&gt;7 &amp;&amp; INFLIGHT.includes(c.status) ? &quot;hot&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + c.age + &#x27;d&lt;/td&gt;&#x27; +
       &#x27;&lt;td data-label=&quot;My FYC&quot; class=&quot;money&quot;&gt;&#x27; + money(myFyc(c)) + (c.share != null &amp;&amp; c.share &lt; 1 &amp;&amp; c.fyc ? &#x27; &lt;span class=&quot;dim&quot;&gt;of &#x27; + money(c.fyc) + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + (c.recurring ? &#x27;&lt;span class=&quot;dim&quot;&gt;/yr&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
       &#x27;&lt;td&gt;&#x27; + flagOf(c) + &#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;;
   };
   const listRow = c =&gt; {
-    const fam = familyOf(c.product);
     const ot = openTasks(c).length;
     let flag = &quot;&quot;;
     if (c.stuck &amp;&amp; ot === 0) flag = &#x27; \u00B7 &lt;span class=&quot;flag court&quot;&gt;\u25CF carrier\u2019s court&lt;/span&gt;&#x27;;
@@ -925,7 +923,7 @@ function renderCases(){
     return &#x27;&lt;div class=&quot;crow&quot; onclick=&quot;openCase(&#x27; + c.id + &#x27;)&quot;&gt;&#x27; +
       &#x27;&lt;div class=&quot;crow-top&quot;&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + c.who + &#x27;&lt;/span&gt;&#x27; +
       &#x27;&lt;span class=&quot;cmoney&quot;&gt;&#x27; + money(myFyc(c)) + (c.recurring ? &#x27;&lt;span class=&quot;dim&quot;&gt;/yr&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
-      &#x27;&lt;div class=&quot;crow-sub&quot;&gt;&#x27; + linePill(fam) + &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.product + (c.desc ? &#x27; \u00B7 &#x27; + c.desc : &#x27;&#x27;) + &#x27; \u00B7 &#x27; + (c.detail || c.status) + &#x27; \u00B7 &lt;/span&gt;&#x27; +
+      &#x27;&lt;div class=&quot;crow-sub&quot;&gt;&#x27; + linePill(c.type) + &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + (c.company ? c.company + &#x27; \u00B7 &#x27; : &#x27;&#x27;) + (c.product ? c.product + &#x27; \u00B7 &#x27; : &#x27;&#x27;) + (c.detail || c.status) + &#x27; \u00B7 &lt;/span&gt;&#x27; +
       &#x27;&lt;span class=&quot;age&#x27; + (c.age &gt; 7 &amp;&amp; INFLIGHT.includes(c.status) ? &quot; hot&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + c.age + &#x27;d&lt;/span&gt;&#x27; + flag + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
   };
   document.getElementById(&quot;caseRows&quot;).innerHTML = total ? groups.map(g =&gt;
@@ -977,7 +975,9 @@ function renderSheet(){
   const splits = (c.splits || []).map(s =&gt; s.code + &quot; \u00B7 &quot; + s.pct + &quot;%&quot;).join(&quot;, &quot;);
   const rows = [
     [&quot;Status&quot;, c.status + (c.detail ? &quot; \u2014 &quot; + c.detail : &quot;&quot;)],
-    [&quot;Product&quot;, c.product + (c.desc ? &quot; \u00B7 &quot; + c.desc : &quot;&quot;)],
+    [&quot;Type&quot;, c.type || &quot;\u2014&quot;],
+    c.company ? [&quot;Company&quot;, c.company] : null,
+    c.product ? [&quot;Product&quot;, c.product] : null,
     [&quot;App date&quot;, fmtDate(appDateOf(c)) + &quot; \u00B7 &quot; + c.age + &quot; days in flight&quot;],
     c.size ? [&quot;Case size&quot;, money(c.size)] : null,
     [&quot;FYC&quot;, money(c.fyc || 0) + &quot; gross \u00B7 my share &quot; + Math.round((c.share == null ? 1 : c.share) * 100) + &quot;% \u2192 &quot; + money(myFyc(c)) + &quot; mine&quot;],
@@ -990,7 +990,7 @@ function renderSheet(){
   ].filter(Boolean);
   document.getElementById(&quot;sheet&quot;).innerHTML =
     &#x27;&lt;button class=&quot;sheet-close&quot; onclick=&quot;closeSheet()&quot;&gt;\u2715&lt;/button&gt;&#x27; +
-    &#x27;&lt;h3&gt;&#x27; + c.who + (c.desc ? &#x27; \u2014 &#x27; + c.desc : &#x27;&#x27;) + &#x27;&lt;/h3&gt;&#x27; +
+    &#x27;&lt;h3&gt;&#x27; + c.who + (c.product ? &#x27; \u2014 &#x27; + c.product : &#x27;&#x27;) + &#x27;&lt;/h3&gt;&#x27; +
     &#x27;&lt;div class=&quot;dgrid&quot;&gt;&#x27; + rows.map(r =&gt; &#x27;&lt;div class=&quot;dk&quot;&gt;&#x27; + r[0] + &#x27;&lt;/div&gt;&lt;div&gt;&#x27; + r[1] + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;) + &#x27;&lt;/div&gt;&#x27; +
     (c.stuck &amp;&amp; open.length === 0
       ? &#x27;&lt;div class=&quot;court-banner&quot;&gt;\u23F3 This case is stalled with &lt;b&gt;no open tasks on your side&lt;/b&gt; \u2014 the ball is in the carrier\u2019s court. A status call is the only move.&lt;/div&gt;&#x27; : &#x27;&#x27;) +
@@ -1145,7 +1145,7 @@ function stuckText(){
   if (!st.length) return &quot;Nothing is stuck right now. Clean board.&quot;;
   return &quot;You have &quot; + st.length + &quot; stuck cases:\n&quot; + st.map(c =&gt; {
     const ot = openTasks(c).length;
-    return &quot;• &quot; + c.who + &quot; — &quot; + c.product + (c.desc ? &quot; &quot; + c.desc : &quot;&quot;) + &quot;, &quot; + c.age + &quot;d, &quot; + money(myFyc(c)) + &quot; mine&quot; +
+    return &quot;• &quot; + c.who + &quot; — &quot; + (c.company ? c.company + &quot; &quot; : &quot;&quot;) + (c.product || c.type || &quot;&quot;) + &quot;, &quot; + c.age + &quot;d, &quot; + money(myFyc(c)) + &quot; mine&quot; +
       (ot === 0 ? &quot; — no open tasks: ball is in the carrier\u2019s court&quot; : &quot; — &quot; + ot + &quot; open task&quot; + (ot&gt;1?&quot;s&quot;:&quot;&quot;) + &quot; on your side&quot;);
   }).join(&quot;\n&quot;);
 }
@@ -1158,7 +1158,7 @@ function statusText(st){
   const rows = S.cases.filter(c =&gt; statusOf(c) === st).slice().sort((a,b) =&gt; b.age - a.age);
   if (!rows.length) return &quot;Nothing is &quot; + st.toLowerCase() + &quot; right now.&quot;;
   return rows.length + &quot; case&quot; + (rows.length === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; &quot; + st.toLowerCase() + &quot;:\n&quot; + rows.map(c =&gt;
-    &quot;\u2022 &quot; + c.who + &quot; \u2014 &quot; + c.product + (c.desc ? &quot; &quot; + c.desc : &quot;&quot;) + &quot;, &quot; + (c.detail || c.status).toLowerCase() + &quot;, &quot; + c.age + &quot;d, &quot; + money(myFyc(c)) + (c.recurring ? &quot;/yr&quot; : &quot;&quot;) + (c.stuck ? &quot; \u2014 stuck&quot; : &quot;&quot;)).join(&quot;\n&quot;);
+    &quot;\u2022 &quot; + c.who + &quot; \u2014 &quot; + (c.company ? c.company + &quot; &quot; : &quot;&quot;) + (c.product || c.type || &quot;&quot;) + &quot;, &quot; + (c.detail || c.status).toLowerCase() + &quot;, &quot; + c.age + &quot;d, &quot; + money(myFyc(c)) + (c.recurring ? &quot;/yr&quot; : &quot;&quot;) + (c.stuck ? &quot; \u2014 stuck&quot; : &quot;&quot;)).join(&quot;\n&quot;);
 }
 function findDayEvents(name){
   const now = new Date();
@@ -1254,14 +1254,19 @@ function handleAI(raw){
   if (stHit || /\bstatus\b|\bpipeline\b/.test(t)) { botMsg(statusText(stHit)); return; }
   /* --- add a case --- */
   if (/add.*case|new case/.test(t)) {
-    const product = /eagle prosper/.test(t) ? &quot;Eagle Prosper&quot; : /eagle/.test(t) ? &quot;Eagle&quot; : /annuit|myga|fia/.test(t) ? (/allianz|athene|protective/.test(t) ? &quot;Non-NYL: Annuity&quot; : &quot;NYL: Annuity&quot;) : /medicare advantage/.test(t) ? &quot;Medicare Advantage&quot; : /med supp|supplement/.test(t) ? &quot;Medicare Supplement&quot; : /dental/.test(t) ? &quot;Dental&quot; : /financial plan/.test(t) ? &quot;Financial Plan&quot; : /securit/.test(t) ? &quot;NYL: Securities&quot; : /svul/.test(t) ? &quot;NYL: SVUL&quot; : /health|aca/.test(t) ? &quot;Health&quot; : /advisor|rollover|managed|401/.test(t) ? &quot;Eagle&quot; : &quot;NYL: Life&quot;;
+    const type = /annuit|myga|fia/.test(t) ? &quot;Annuity&quot; : /medicare/.test(t) ? &quot;Medicare&quot; : /dental/.test(t) ? &quot;Dental&quot; : /financial plan/.test(t) ? &quot;Plan&quot; : /securit/.test(t) ? &quot;Securities&quot; : /health|aca/.test(t) ? &quot;Medical&quot; : /eagle|advisor|rollover|managed|401/.test(t) ? &quot;Advisory&quot; : &quot;Life&quot;;
+    const companies = [[&quot;NYL&quot;, /nyl|new york life/], [&quot;Allianz&quot;, /allianz/], [&quot;Athene&quot;, /athene/], [&quot;Foresters&quot;, /foresters/], [&quot;Transamerica&quot;, /transamerica/], [&quot;Protective&quot;, /protective/], [&quot;Mutual of Omaha&quot;, /mutual of omaha/], [&quot;North American&quot;, /north american/], [&quot;National Life&quot;, /national life/], [&quot;Eagle&quot;, /eagle/], [&quot;UHC&quot;, /uhc|unitedhealthcare/], [&quot;Humana&quot;, /humana/], [&quot;Anthem&quot;, /anthem/], [&quot;Delta&quot;, /delta/], [&quot;Schwab&quot;, /schwab/], [&quot;Fidelity&quot;, /fidelity/]];
+    const hit = companies.find(([n, r]) =&gt; r.test(t));
+    const company = hit ? hit[0] : (type === &quot;Life&quot; || type === &quot;Annuity&quot; ? &quot;NYL&quot; : &quot;&quot;);
+    const name = /svul/.test(t) ? &quot;SVUL&quot; : /iul/.test(t) ? &quot;IUL&quot; : /myga/.test(t) ? &quot;MYGA&quot; : /\bfia\b/.test(t) ? &quot;FIA&quot; : /gul/.test(t) ? &quot;GUL&quot; : /whole life/.test(t) ? &quot;Whole Life&quot; : /term/.test(t) ? &quot;Term&quot; : &quot;&quot;;
     const lm = text.match(/\b([A-Z]{3})\s+(\d{3})\b/);
     const who = lm ? lm[1] + &quot; &quot; + lm[2] : &quot;JMS 214&quot;;
     const commText = lm ? text.replace(lm[0], &quot; &quot;) : text;
     const comm = (commText.match(/\$?\s?([\d,]{3,})/) || [null,&quot;1,500&quot;])[1].replace(/,/g,&quot;&quot;);
-    draftCard(&quot;&lt;b&gt;New case:&lt;/b&gt; &quot; + who + &quot; \u00B7 &quot; + product + &quot; \u00B7 status: App Pending \u00B7 FYC &quot; + money(parseInt(comm,10)),
+    const bits = [type, company, name].filter(Boolean).join(&quot; \u00B7 &quot;);
+    draftCard(&quot;&lt;b&gt;New case:&lt;/b&gt; &quot; + who + &quot; \u00B7 &quot; + bits + &quot; \u00B7 status: App Pending \u00B7 FYC &quot; + money(parseInt(comm,10)),
       () =&gt; {
-        S.cases.push({id: Date.now(), who, product, desc: &quot;&quot;, status: &quot;App Pending&quot;, detail: &quot;Application taken&quot;, age: 0, fyc: parseInt(comm,10), credits: 0, size: 0, share: 1, splits: [], docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []});
+        S.cases.push({id: Date.now(), who, type, company, product: name, status: &quot;App Pending&quot;, detail: &quot;Application taken&quot;, age: 0, fyc: parseInt(comm,10), credits: 0, size: 0, share: 1, splits: [], docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []});
         save(); renderKPIs(); renderCases(); renderTasks();
         botMsg(&quot;Saved. &quot; + who + &quot; is on the board \u2014 I\u2019ll start aging it from today. Add its first task any time: \u201Cadd a task to &quot; + who + &quot;\u201D.&quot;);
       });
@@ -1277,7 +1282,7 @@ function handleAI(raw){
     }));
     if (best) {
       const task = best.task, c = bestCase;
-      draftCard(&quot;&lt;b&gt;Close task:&lt;/b&gt; \u201C&quot; + task.t + &quot;\u201D on case &quot; + c.who + &quot; (&quot; + c.product + &quot;)&quot;,
+      draftCard(&quot;&lt;b&gt;Close task:&lt;/b&gt; \u201C&quot; + task.t + &quot;\u201D on case &quot; + c.who + &quot; (&quot; + c.company + &quot;)&quot;,
         () =&gt; { task.done = true; save(); renderCases(); renderKPIs(); renderTasks(); botMsg(&quot;Done — \u201C&quot; + task.t + &quot;\u201D is closed on &quot; + c.who + &quot;. &quot; + openTasks(c).length + &quot; open task(s) left on that case.&quot;); });
       return;
     }
@@ -1354,7 +1359,7 @@ function taskListRow(x){
     &#x27;&lt;button class=&quot;tcbox&#x27; + (x.t.done ? &quot; done&quot; : &quot;&quot;) + &#x27;&quot; onclick=&quot;toggleListTask(&#x27; + x.c.id + &#x27;,&#x27; + x.i + &#x27;)&quot; aria-label=&quot;Mark task done&quot;&gt;&#x27; + (x.t.done ? &quot;\u2713&quot; : &quot;&quot;) + &#x27;&lt;/button&gt;&#x27; +
     &#x27;&lt;div class=&quot;tmain&quot; onclick=&quot;openCase(&#x27; + x.c.id + &#x27;)&quot;&gt;&#x27; +
       &#x27;&lt;div class=&quot;ttitle&#x27; + (x.t.done ? &quot; done&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + x.t.t + &#x27;&lt;/div&gt;&#x27; +
-      &#x27;&lt;div class=&quot;tmeta&quot;&gt;&#x27; + x.c.who + &#x27; \u00B7 &#x27; + x.c.product + (x.c.desc ? &#x27; \u00B7 &#x27; + x.c.desc : &#x27;&#x27;) +
+      &#x27;&lt;div class=&quot;tmeta&quot;&gt;&#x27; + x.c.who + (x.c.company ? &#x27; \u00B7 &#x27; + x.c.company : &#x27;&#x27;) + (x.c.product ? &#x27; \u00B7 &#x27; + x.c.product : &#x27;&#x27;) +
       &#x27; &lt;span class=&quot;tdue &#x27; + x.m.cls + &#x27;&quot;&gt;&#x27; + x.m.label + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
     &#x27;&lt;/div&gt;&lt;span class=&quot;tchev&quot;&gt;\u203A&lt;/span&gt;&lt;/div&gt;&#x27;;
 }
@@ -1386,7 +1391,7 @@ function findOrCreateCase(label){
   if (!norm) return null;
   let c = S.cases.find(x =&gt; x.who.toUpperCase() === norm);
   if (!c) {
-    c = {id: Date.now(), who: norm, product: &quot;&quot;, desc: &quot;&quot;, status: &quot;App Pending&quot;, detail: &quot;New case&quot;, age: 0, fyc: 0, credits: 0, size: 0, share: 1, splits: [], docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []};
+    c = {id: Date.now(), who: norm, type: &quot;&quot;, company: &quot;&quot;, product: &quot;&quot;, status: &quot;App Pending&quot;, detail: &quot;New case&quot;, age: 0, fyc: 0, credits: 0, size: 0, share: 1, splits: [], docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []};
     S.cases.push(c);
   }
   return c;
@@ -1444,6 +1449,8 @@ function guessField(h){
   if (/label|case\s*ref|reference/.test(x)) return &quot;label&quot;;
   if (/name|client/.test(x)) return &quot;name&quot;;
   if (h.toLowerCase().trim() === &quot;app&quot; || /app.*date/.test(x)) return &quot;appdate&quot;;
+  if (/ type |product type/.test(x)) return &quot;type&quot;;
+  if (/company|carrier/.test(x)) return &quot;company&quot;;
   if (/product|plan/.test(x)) return &quot;product&quot;;
   if (/fyc/.test(x)) return &quot;fyc&quot;;
   if (/premium|investment|amount|case size/.test(x)) return &quot;size&quot;;
@@ -1451,7 +1458,7 @@ function guessField(h){
   if (/status|stage|step/.test(x)) return &quot;status&quot;;
   if (/commission|comm/.test(x)) return &quot;fyc&quot;;
   if (/age|days/.test(x)) return &quot;age&quot;;
-  if (/carrier|company|insurer/.test(x)) return &quot;product&quot;;
+  if (/insurer/.test(x)) return &quot;company&quot;;
   return &quot;skip&quot;;
 }
 let impHeaders = [], impData = [], impFields = [];
@@ -1459,8 +1466,8 @@ function openImport(){ document.getElementById(&quot;importBack&quot;).classList
 function closeImport(){ document.getElementById(&quot;importBack&quot;).classList.remove(&quot;open&quot;); }
 function backImport(){ document.getElementById(&quot;importStep1&quot;).style.display = &quot;block&quot;; document.getElementById(&quot;importStep2&quot;).style.display = &quot;none&quot;; }
 function downloadTemplate(){
-  const csv = &quot;Client Name,Status,Product,FYC,Premium/Investment Amount,Agent Share,App Date,Notes\n&quot; +
-    &quot;Example Client,Funds Pending,NYL: Annuity,2500,100000,1,2026-11-01,\n&quot;;
+  const csv = &quot;Client Name,Status,Type,Company,Product,FYC,Premium/Investment Amount,Agent Share,App Date,Notes\n&quot; +
+    &quot;Example Client,Funds Pending,Annuity,NYL,Index Annuity,2500,100000,1,2026-11-01,\n&quot;;
   const a = document.createElement(&quot;a&quot;);
   a.href = URL.createObjectURL(new Blob([csv], {type: &quot;text/csv&quot;}));
   a.download = &quot;bookview-template.csv&quot;;
@@ -1506,6 +1513,35 @@ function impLabelFor(r, ri){
   if (lab) return lab.toUpperCase();
   return deriveLabel(impCell(r, &quot;name&quot;), ri + 1);
 }
+function typeName(x){
+  if (/annuit/i.test(x)) return &quot;Annuity&quot;;
+  if (/life|svul/i.test(x)) return &quot;Life&quot;;
+  if (/securit/i.test(x)) return &quot;Securities&quot;;
+  if (/dental/i.test(x)) return &quot;Dental&quot;;
+  if (/medicare|med supp/i.test(x)) return &quot;Medicare&quot;;
+  if (/health|medical|aca/i.test(x)) return &quot;Medical&quot;;
+  if (/disab/i.test(x)) return &quot;Disability&quot;;
+  if (/plan/i.test(x)) return &quot;Plan&quot;;
+  if (/401|eagle|advisor/i.test(x)) return &quot;Advisory&quot;;
+  return x;
+}
+function splitFused(raw){
+  const s = (raw || &quot;&quot;).trim();
+  if (!s) return {type: &quot;&quot;, company: &quot;&quot;, name: &quot;&quot;};
+  const m = s.match(/^([^:]+):\s*(.+)$/);
+  if (m) {
+    const left = m[1].trim(), right = m[2].trim();
+    return {type: typeName(right), company: left === &quot;Non-NYL&quot; ? &quot;&quot; : left, name: &quot;&quot;};
+  }
+  if (/^eagle/i.test(s)) return {type: &quot;Advisory&quot;, company: &quot;Eagle&quot;, name: &quot;&quot;};
+  if (/financial plan/i.test(s)) return {type: &quot;Plan&quot;, company: &quot;&quot;, name: &quot;&quot;};
+  return {type: typeName(s), company: &quot;&quot;, name: &quot;&quot;};
+}
+function impParts(r){
+  let type = impCell(r, &quot;type&quot;), company = impCell(r, &quot;company&quot;), name = impCell(r, &quot;product&quot;);
+  if (!type &amp;&amp; !company) { const parts = splitFused(name); type = parts.type; company = parts.company; name = parts.name; }
+  return {type, company, name};
+}
 function shareOf(r){
   const v = parseFloat(String(impCell(r, &quot;share&quot;)).replace(/[^0-9.]/g, &quot;&quot;));
   if (isNaN(v)) return 1;
@@ -1515,11 +1551,11 @@ function previewImport(){
   const rows = parseCSV(document.getElementById(&quot;csvText&quot;).value);
   if (rows.length &lt; 2){ botMsg(&quot;That CSV needs a header row plus at least one case row.&quot;); return; }
   impHeaders = rows[0]; impData = rows.slice(1); impFields = impHeaders.map(guessField);
-  const fieldName = {pii:&quot;Identifier \u2014 always stripped&quot;, notes:&quot;Notes \u2014 stripped (can carry account details)&quot;, name:&quot;Name \u2192 initials label&quot;, label:&quot;Case label&quot;, product:&quot;Product&quot;, status:&quot;Status&quot;, fyc:&quot;FYC&quot;, size:&quot;Case size&quot;, share:&quot;My share&quot;, appdate:&quot;App date&quot;, age:&quot;Age (days)&quot;, skip:&quot;Not imported&quot;};
+  const fieldName = {pii:&quot;Identifier \u2014 always stripped&quot;, notes:&quot;Notes \u2014 stripped (can carry account details)&quot;, name:&quot;Name \u2192 initials label&quot;, label:&quot;Case label&quot;, type:&quot;Type&quot;, company:&quot;Company&quot;, product:&quot;Product \u2014 split into type, company, name&quot;, status:&quot;Status&quot;, fyc:&quot;FYC&quot;, size:&quot;Case size&quot;, share:&quot;My share&quot;, appdate:&quot;App date&quot;, age:&quot;Age (days)&quot;, skip:&quot;Not imported&quot;};
   let html = &#x27;&lt;table class=&quot;mapt&quot;&gt;&lt;tr&gt;&lt;th&gt;Your column&lt;/th&gt;&lt;th&gt;BookView does this&lt;/th&gt;&lt;/tr&gt;&#x27; + impHeaders.map((h, i) =&gt;
     &#x27;&lt;tr&#x27; + ((impFields[i] === &quot;pii&quot; || impFields[i] === &quot;notes&quot;) ? &#x27; class=&quot;piirow&quot;&#x27; : &quot;&quot;) + &#x27;&gt;&lt;td&gt;&#x27; + h + &#x27;&lt;/td&gt;&lt;td&gt;&#x27; + fieldName[impFields[i]] + &#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;).join(&quot;&quot;) + &#x27;&lt;/table&gt;&#x27;;
   html += &#x27;&lt;p class=&quot;dim&quot; style=&quot;margin:12px 0 4px&quot;&gt;First rows as they will land \u2014 identifiers and notes never shown, never saved:&lt;/p&gt;&#x27;;
-  html += impData.slice(0, 5).map((r, ri) =&gt; &#x27;&lt;div class=&quot;improw&quot;&gt;&#x27; + impLabelFor(r, ri) + &#x27; \u00B7 &#x27; + (impCell(r, &quot;product&quot;) || &quot;\u2014&quot;) + &#x27; \u00B7 &#x27; + inferStatus(impCell(r, &quot;status&quot;)) + &#x27; \u00B7 my FYC &#x27; + money(Math.round((parseInt(String(impCell(r, &quot;fyc&quot;)).replace(/[^0-9]/g, &quot;&quot;), 10) || 0) * shareOf(r))) + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;);
+  html += impData.slice(0, 5).map((r, ri) =&gt; { const pp = impParts(r); return &#x27;&lt;div class=&quot;improw&quot;&gt;&#x27; + impLabelFor(r, ri) + &#x27; \u00B7 &#x27; + [pp.type, pp.company, pp.name].filter(Boolean).join(&quot; \u00B7 &quot;) + &#x27; \u00B7 &#x27; + inferStatus(impCell(r, &quot;status&quot;)) + &#x27; \u00B7 my FYC &#x27; + money(Math.round((parseInt(String(impCell(r, &quot;fyc&quot;)).replace(/[^0-9]/g, &quot;&quot;), 10) || 0) * shareOf(r))) + &#x27;&lt;/div&gt;&#x27;; }).join(&quot;&quot;);
   document.getElementById(&quot;importPreview&quot;).innerHTML = html;
   document.getElementById(&quot;importGo&quot;).textContent = &quot;Import &quot; + impData.length + &quot; case&quot; + (impData.length === 1 ? &quot;&quot; : &quot;s&quot;);
   document.getElementById(&quot;importStep1&quot;).style.display = &quot;none&quot;;
@@ -1528,12 +1564,12 @@ function previewImport(){
 function doImport(){
   let added = 0, skipped = 0;
   impData.forEach((r, ri) =&gt; {
-    const product = impCell(r, &quot;product&quot;);
     const who = impLabelFor(r, ri);
-    if (!product || !who || S.cases.find(c =&gt; c.who === who)){ skipped++; return; }
+    const pp = impParts(r);
+    if ((!pp.type &amp;&amp; !pp.company &amp;&amp; !pp.name) || !who || S.cases.find(c =&gt; c.who === who)){ skipped++; return; }
     let age = parseInt(impCell(r, &quot;age&quot;), 10);
     if (isNaN(age)) { const ad = impCell(r, &quot;appdate&quot;); const d = ad ? new Date(ad) : null; age = d &amp;&amp; !isNaN(d) ? Math.max(0, Math.round((Date.now() - d.getTime()) / 86400000)) : 0; }
-    S.cases.push({id: Date.now() + ri, who, product, desc: &quot;&quot;, status: inferStatus(impCell(r, &quot;status&quot;)), detail: &quot;&quot;,
+    S.cases.push({id: Date.now() + ri, who, type: pp.type, company: pp.company, product: pp.name, status: inferStatus(impCell(r, &quot;status&quot;)), detail: &quot;&quot;,
       age: age || 0, fyc: parseInt(String(impCell(r, &quot;fyc&quot;)).replace(/[^0-9]/g, &quot;&quot;), 10) || 0, credits: 0,
       size: parseInt(String(impCell(r, &quot;size&quot;)).replace(/[^0-9]/g, &quot;&quot;), 10) || 0, share: shareOf(r), splits: [],
       docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []});
@@ -1541,7 +1577,7 @@ function doImport(){
   });
   save(); renderKPIs(); renderFilters(); renderCases(); renderTasks(); renderCalendar();
   closeImport();
-  botMsg(&quot;Imported &quot; + added + &quot; case&quot; + (added === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; onto your board&quot; + (skipped ? &quot; \u2014 &quot; + skipped + &quot; row&quot; + (skipped === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; skipped (missing a product, or the label was already on the board)&quot; : &quot;&quot;) + &quot;. Anything that looked like a client identifier \u2014 and every free-text note \u2014 was stripped on your device and never saved.&quot;);
+  botMsg(&quot;Imported &quot; + added + &quot; case&quot; + (added === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; onto your board&quot; + (skipped ? &quot; \u2014 &quot; + skipped + &quot; row&quot; + (skipped === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; skipped (no product info, or the label was already on the board)&quot; : &quot;&quot;) + &quot;. Anything that looked like a client identifier \u2014 and every free-text note \u2014 was stripped on your device and never saved.&quot;);
 }
 function addLicenseForm(){
   const st = document.getElementById(&quot;lfState&quot;).value.trim();
