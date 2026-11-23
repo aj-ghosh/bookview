@@ -1281,8 +1281,9 @@ botMsg(&quot;Evening. Your board: &quot; + S.cases.length + &quot; cases in flig
   <div class="signup" id="join">
     <h2>Get on the founding list</h2>
     <p>BookView opens to a small founding group first. Leave your email and you'll be in the first group invited — and the first asked what the screen is missing.</p>
-    <form id="joinForm">
-      <input type="email" id="joinEmail" placeholder="you@youragency.com" required>
+    <form id="joinForm" action="https://formspree.io/f/mqpqgykn" method="POST">
+      <input type="email" id="joinEmail" name="email" placeholder="you@youragency.com" required>
+      <input type="hidden" name="_subject" value="New BookView founding-list signup">
       <button class="btn" type="submit">Join the list</button>
     </form>
     <p class="thanks" id="joinThanks">You're on the list. Watch your inbox — founding invites go out first.</p>
@@ -1297,8 +1298,10 @@ botMsg(&quot;Evening. Your board: &quot; + S.cases.length + &quot; cases in flig
 <script>
   document.getElementById('joinForm').addEventListener('submit', function(e){
     e.preventDefault();
-    document.getElementById('joinThanks').style.display = 'block';
-    document.getElementById('joinEmail').value = '';
+    var form = e.target, email = document.getElementById('joinEmail').value;
+    fetch(form.action, {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify({email: email, _subject: 'New BookView founding-list signup'})})
+      .then(function(r){ if (r.ok) { document.getElementById('joinThanks').style.display = 'block'; document.getElementById('joinEmail').value = ''; } else { form.submit(); } })
+      .catch(function(){ form.submit(); });
   });
 </script>
 </body>
