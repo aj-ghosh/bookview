@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BookView LLC — Your whole book. One screen.</title>
+<meta name="description" content="BookView is a dashboard for individual insurance and advisory agents. Every case, every line, what's stuck, what's renewing, what you're owed — on one screen. Not a CRM.">
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#111823; --panel2:#0e141d; --line:#22304a;
+    --ink:#e8eef7; --mut:#93a4bd; --acc:#ffb454; --acc2:#57d9a3; --bad:#ff7a7a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  a{color:var(--acc)}
+  /* nav */
+  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+  .logo{font-size:26px;font-weight:800;letter-spacing:2.5px;color:var(--ink);text-decoration:none}
+  .logo span{color:var(--acc)}
+  .navtag{color:var(--mut);font-size:13px;letter-spacing:.4px}
+  .btn{display:inline-block;background:var(--acc);color:#14100a;font-weight:700;padding:11px 20px;border-radius:9px;text-decoration:none;font-size:15px;border:0;cursor:pointer}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn:hover{filter:brightness(1.07)}
+  /* hero */
+  .hero{padding:56px 0 30px;text-align:left}
+  .kicker{color:var(--acc);font-weight:700;letter-spacing:2.2px;font-size:12.5px;text-transform:uppercase;margin-bottom:16px}
+  h1{font-size:52px;line-height:1.08;font-weight:800;letter-spacing:-.5px;max-width:720px}
+  h1 em{font-style:normal;color:var(--acc)}
+  .sub{color:var(--mut);font-size:19px;max-width:640px;margin:20px 0 28px}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .micro{color:var(--mut);font-size:13.5px;margin-top:14px}
+  /* demo */
+  .demo{margin:38px 0 8px}
+  .demo-frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel);box-shadow:0 18px 50px rgba(0,0,0,.45)}
+  .demo-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--panel2);border-bottom:1px solid var(--line)}
+  .dot{width:11px;height:11px;border-radius:50%}
+  .demo-url{color:var(--mut);font-size:13px;margin-left:8px;letter-spacing:.3px}
+  iframe{display:block;width:100%;height:760px;border:0;background:#fff}
+  .demo-cap{color:var(--mut);font-size:14px;margin-top:12px;text-align:center}
+  /* sections */
+  section{padding:52px 0 6px}
+  h2{font-size:30px;font-weight:800;letter-spacing:-.3px;margin-bottom:10px}
+  .lead{color:var(--mut);max-width:640px;margin-bottom:28px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px}
+  .card h3{font-size:17px;margin-bottom:8px}
+  .card p{color:var(--mut);font-size:15px}
+  .card .ic{font-size:22px;margin-bottom:12px}
+  /* vs table */
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .vs .col{border:1px solid var(--line);border-radius:12px;padding:22px;background:var(--panel)}
+  .vs .col.good{border-color:#2c4a3a;background:#0e1a14}
+  .vs h3{font-size:16px;margin-bottom:12px;letter-spacing:.4px}
+  .vs ul{list-style:none}
+  .vs li{color:var(--mut);font-size:15px;padding:5px 0 5px 22px;position:relative}
+  .vs li::before{content:"—";position:absolute;left:0;color:var(--acc)}
+  .vs .good li::before{content:"✓";color:var(--acc2)}
+  /* pricing */
+  .price{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:30px;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}
+  .price .big{font-size:44px;font-weight:800}
+  .price .per{color:var(--mut);font-size:16px}
+  .price ul{list-style:none}
+  .price li{color:var(--mut);font-size:15px;padding:3px 0 3px 22px;position:relative}
+  .price li::before{content:"✓";position:absolute;left:0;color:var(--acc2)}
+  /* signup */
+  .signup{background:linear-gradient(180deg,#131c2a,#0e141d);border:1px solid var(--line);border-radius:14px;padding:34px;text-align:center;margin:52px 0}
+  .signup h2{margin-bottom:8px}
+  .signup p{color:var(--mut);max-width:520px;margin:0 auto 22px}
+  form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  input[type=email]{background:#0b0f14;border:1px solid var(--line);color:var(--ink);padding:12px 16px;border-radius:9px;font-size:15px;min-width:280px}
+  .thanks{display:none;color:var(--acc2);font-weight:600;margin-top:16px}
+  footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 40px;color:var(--mut);font-size:13.5px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  @media(max-width:820px){
+    h1{font-size:38px}
+    .grid,.vs{grid-template-columns:1fr}
+    iframe{height:640px}
+    .navtag{display:none}
+  }
+
+  .logo .llc{color:var(--muted);font-size:.5em;font-weight:600;letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <a class="logo" href="#">Book<span>View</span> <span class="llc">LLC</span></a>
+    <div class="navtag">A dashboard for individual agents — not a CRM</div>
+    <a class="btn" href="#join">Join the founding list</a>
+  </nav>
+
+  <div class="hero">
+    <div class="kicker">For independent insurance &amp; advisory agents</div>
+    <h1>Your whole book. <em>One screen.</em></h1>
+    <p class="sub">BookView shows you everything at once: every case in flight, what's stuck and for how long, what's renewing, and what you're owed — across life, annuity, advisory, Medicare, medical, and dental, and across every carrier and upline you work with. No portals. No spreadsheets. No new database to feed.</p>
+    <div class="cta-row">
+      <a class="btn" href="#demo">See the live demo</a>
+      <a class="btn ghost" href="#join">Join the founding list</a>
+    </div>
+    <p class="micro">Built by an agent who needed it. Founding members get first access when the doors open.</p>
+  </div>
+
+  <div class="demo" id="demo">
+    <div class="demo-frame">
+      <div class="demo-bar">
+        <div class="dot" style="background:#ff5f57"></div>
+        <div class="dot" style="background:#febc2e"></div>
+        <div class="dot" style="background:#28c840"></div>
+        <div class="demo-url">bookview.llc/demo — sample data</div>
+      </div>
+      <iframe title="BookView dashboard demo" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, viewport-fit=cover&quot;&gt;
+&lt;meta name=&quot;theme-color&quot; content=&quot;#f5f5f7&quot;&gt;
+&lt;meta name=&quot;mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
+&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
+&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;default&quot;&gt;
+&lt;title&gt;BookView LLC — Prototype v3.9&lt;/title&gt;
+&lt;style&gt;
+  :root{
+    --bg:#f5f5f7; --surface:#ffffff; --ink:#1d1d1f; --sub:#6e6e73; --faint:#86868b;
+    --hair:#e8e8ed; --blue:#0071e3; --green:#34c759; --amber:#ff9f0a; --red:#ff3b30;
+    --bubble:#e9e9eb; --radius:20px;
+    --shadow:0 4px 24px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,&quot;SF Pro Text&quot;,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;padding:0 20px 60px}
+  .wrap{max-width:1120px;margin:0 auto}
+  /* header */
+  header{padding:44px 0 8px;text-align:center}
+  .logo{font-size:30px;font-weight:700;letter-spacing:3px}
+  .logo span{color:var(--blue)}
+  .tagline{color:var(--sub);font-size:15px;margin-top:4px;font-weight:400}
+  .sample-note{color:var(--faint);font-size:12.5px;margin-top:8px;letter-spacing:.2px}
+  /* segmented tabs */
+  .seg{display:flex;justify-content:center;margin:26px 0 30px}
+  .seg-inner{display:inline-flex;background:#e8e8ed;border-radius:12px;padding:2px;gap:2px}
+  .seg button{border:0;background:transparent;font:500 14.5px -apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink);padding:7px 18px;border-radius:10px;cursor:pointer;transition:all .18s}
+  .seg button.active{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12);font-weight:600}
+  /* layout */
+  .layout{display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:start}
+  @media(max-width:900px){.layout{grid-template-columns:1fr}}
+  .card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+  .card + .card{margin-top:22px}
+  h2{font-size:19px;font-weight:600;letter-spacing:-.2px;margin-bottom:4px}
+  .card-sub{color:var(--sub);font-size:13.5px;margin-bottom:16px}
+  /* KPI */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+  @media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 18px}
+  .kpi .num{font-size:26px;font-weight:700;letter-spacing:-.5px}
+  .kpi .lbl{color:var(--sub);font-size:13px;margin-top:2px}
+  .kpi.warn .num{color:var(--amber)} .kpi.bad .num{color:var(--red)}
+  /* filters */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .filters button{border:0;background:#eef0f3;color:var(--ink);font:500 13.5px -apple-system,sans-serif;
+    padding:6px 14px;border-radius:999px;cursor:pointer;transition:all .15s}
+  .filters button.active{background:var(--ink);color:#fff}
+  /* cases table */
+  table{width:100%;border-collapse:collapse}
+  th{font-size:12px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;
+    text-align:left;padding:10px 8px;border-bottom:1px solid var(--hair)}
+  td{padding:8px;border-bottom:1px solid var(--hair);font-size:14px;vertical-align:middle}
+  tr:last-child td{border-bottom:0}
+  tbody tr{cursor:pointer;transition:background .12s}
+  tbody tr:hover{background:#fafafc}
+  .who{font-weight:600}
+  .dim{color:var(--sub);font-size:13.5px}
+  .pill{display:inline-block;font-size:12px;font-weight:600;padding:2.5px 9px;border-radius:999px;background:#eef4fd;color:var(--blue)}
+  .pill.ann{background:#f3eafd;color:#7d3ff2}.pill.adv{background:#e6f7ec;color:#1d8a4e}
+  .pill.med{background:#fdf0e4;color:#c77400}
+  .pill.mdc{background:#e0f5f2;color:#0b6e5d}.pill.den{background:#fdeef3;color:#a4133c}
+  .age{font-variant-numeric:tabular-nums}
+  .age.hot{color:var(--red);font-weight:600}
+  .flag{color:var(--red);font-size:12.5px;font-weight:600}
+  .flag.court{color:var(--amber)}
+  .money{font-variant-numeric:tabular-nums;font-weight:600}
+  /* renewals */
+  .renew-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--hair);font-size:14.5px}
+  .renew-row:last-child{border-bottom:0}
+  /* sheet (case detail) */
+  .sheet-back{position:fixed;inset:0;background:rgba(0,0,0,.28);backdrop-filter:blur(3px);
+    display:none;align-items:flex-end;justify-content:center;z-index:50}
+  .sheet-back.open{display:flex}
+  .sheet{background:#fff;width:min(620px,100%);max-height:86vh;overflow:auto;border-radius:24px 24px 0 0;
+    padding:28px 28px 34px;animation:up .25s ease}
+  @media(min-width:700px){.sheet-back{align-items:center}.sheet{border-radius:24px}}
+  @keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+  .sheet h3{font-size:22px;font-weight:700;letter-spacing:-.3px}
+  .sheet .meta{color:var(--sub);font-size:14px;margin:4px 0 16px}
+  .court-banner{background:#fff7ea;border:1px solid #ffe1ae;color:#8a5a00;border-radius:14px;
+    padding:12px 14px;font-size:14px;margin-bottom:16px}
+  .task{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--hair)}
+  .task:last-child{border-bottom:0}
+  .task input[type=checkbox]{width:19px;height:19px;margin-top:2px;accent-color:var(--blue);cursor:pointer;flex:none}
+  .task .t{font-size:15px}
+  .task.done .t{color:var(--faint);text-decoration:line-through}
+  .task .due{color:var(--faint);font-size:12.5px}
+  .task .due.over{color:var(--red);font-weight:600}
+  .stack-lbl{font-size:12px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;margin:18px 0 4px}
+  .add-task{display:flex;gap:8px;margin-top:16px}
+  .add-task input{flex:1;border:1px solid var(--hair);border-radius:999px;padding:9px 15px;font-size:14.5px;outline:none}
+  .add-task input:focus{border-color:var(--blue)}
+  .btn{border:0;background:var(--blue);color:#fff;font:600 14.5px -apple-system,sans-serif;
+    padding:9px 18px;border-radius:999px;cursor:pointer}
+  .btn.plain{background:#eef0f3;color:var(--ink)}
+  .sheet-close{float:right;border:0;background:#eef0f3;width:30px;height:30px;border-radius:50%;
+    font-size:15px;cursor:pointer;color:var(--sub)}
+  /* licenses */
+  .lic{border:1px solid var(--hair);border-radius:16px;padding:18px;margin-bottom:14px}
+  .lic-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
+  .lic-state{font-size:17px;font-weight:600}
+  .lic-exp{font-size:14px;color:var(--sub);font-variant-numeric:tabular-nums}
+  .lic-exp.soon{color:var(--amber);font-weight:600}.lic-exp.ok{color:var(--green);font-weight:600}
+  .lic-ce{font-size:13.5px;color:var(--sub);margin-top:2px}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+  .chip{font-size:13px;font-weight:500;padding:4.5px 11px;border-radius:999px;background:#e6f7ec;color:#1d8a4e}
+  .chip.no{background:#fdeceb;color:var(--red)}
+  .chip-lbl{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;font-weight:600;width:100%;margin-bottom:1px}
+  /* calendar */
+  .cal-tools{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  .cal-nav{display:flex;align-items:center;gap:8px}
+  .navbtn{border:1px solid var(--hair);background:#fff;width:30px;height:30px;border-radius:50%;
+    font-size:16px;cursor:pointer;color:var(--sub);line-height:1;padding:0}
+  .mini-seg{display:inline-flex;background:#e8e8ed;border-radius:10px;padding:2px;gap:2px}
+  .mini-seg button{border:0;background:transparent;font:500 13px -apple-system,BlinkMacSystemFont,sans-serif;
+    padding:5px 13px;border-radius:8px;cursor:pointer;color:var(--ink)}
+  .mini-seg button.active{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12);font-weight:600}
+  /* month view — Google Calendar style: continuous full-bleed grid, solid bars */
+  .mhead{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin-bottom:4px}
+  .mhead div{font-size:12.5px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.5px;text-align:center}
+  .mcal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+  .mday{background:#fff;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);
+    min-height:118px;padding:5px 3px 6px;min-width:0;overflow:hidden}
+  .mday.out{opacity:.42}
+  .mnum{font-size:15px;font-weight:600;width:27px;height:27px;line-height:27px;border-radius:50%;
+    margin:0 auto 4px;text-align:center}
+  .mday.today .mnum{background:var(--blue);color:#fff;font-weight:700}
+  .mchip{font-size:11.5px;font-weight:600;color:#fff;background:#0071e3;border-radius:4px;
+    padding:2.5px 6px;margin:0 1px 3px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mchip.task{background:#e37400}.mchip.ren{background:#188038}.mchip.lic{background:#9334e6}.mchip.due{background:#b06000}
+  .mmore{font-size:11px;color:var(--sub);font-weight:600;padding-left:5px}
+  @media(max-width:640px){.mday{min-height:66px}.mchip{font-size:9.8px;padding:2px 4px}.calcard{padding:14px 8px}}
+  /* month mode on phone: full-bleed, whole month on one screen */
+  @media(max-width:900px){
+    /* month view takes over the screen, like the Google Calendar app */
+    body.monthfull header{display:none}
+    .calcard.monthmode .card-sub{display:none}
+    .calcard.monthmode{margin:0 -20px;border-radius:0;box-shadow:none;background:transparent;padding:8px 0 12px}
+    .calcard.monthmode .cal-tools, .calcard.monthmode .card-sub{padding:0 16px}
+    .calcard.monthmode .mcal{grid-auto-rows:1fr;border-left:0;border-right:0}
+    .calcard.monthmode .mday{min-height:0;background:#fff}
+    .calcard.monthmode .mchip{font-size:11.5px}
+  }
+  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+  @media(max-width:900px){.cal{grid-template-columns:repeat(2,1fr)}}
+  .day{background:#fbfbfd;border:1px solid var(--hair);border-radius:16px;padding:12px;min-height:118px}
+  .day.today{border-color:var(--blue);background:#f4f9ff}
+  .day .dname{font-size:12px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.5px}
+  .day .dnum{font-size:19px;font-weight:700;margin-bottom:7px}
+  .ev{font-size:12.8px;line-height:1.4;padding:6px 8px;border-radius:9px;background:#eef4fd;margin-bottom:6px}
+  .ev.task{background:#fdf0e4}.ev.due{background:#f3eafd}.ev.lic{background:#fff3d6}.ev.ren{background:#e6f7ec}
+  .ev .tm{color:var(--sub);font-size:11.8px;font-weight:600}
+  /* AI panel */
+  .ai{position:sticky;top:20px;display:flex;flex-direction:column;height:min(720px,calc(100vh - 40px))}
+  @media(max-width:900px){.ai{position:static;height:560px}}
+  .ai h2{display:flex;align-items:center;gap:8px}
+  .ai .dotlive{width:9px;height:9px;border-radius:50%;background:var(--green)}
+  .chat{flex:1;overflow-y:auto;padding:6px 2px;display:flex;flex-direction:column;gap:9px}
+  .msg{max-width:88%;padding:10px 14px;border-radius:19px;font-size:14.8px;line-height:1.5;white-space:pre-wrap}
+  .msg.bot{background:var(--bubble);align-self:flex-start;border-bottom-left-radius:6px}
+  .msg.user{background:var(--blue);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
+  .draft{background:#fff;border:1px solid var(--hair);border-radius:14px;padding:12px 14px;margin-top:8px}
+  .draft .dt{font-size:14px;margin-bottom:9px}
+  .draft .row{display:flex;gap:8px}
+  .draft button{border:0;font:600 13.5px -apple-system,sans-serif;padding:7px 15px;border-radius:999px;cursor:pointer}
+  .draft .ok{background:var(--blue);color:#fff}.draft .no{background:#eef0f3;color:var(--ink)}
+  .chips-ai{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+  .chips-ai button{border:1px solid var(--hair);background:#fff;color:var(--blue);
+    font:500 13px -apple-system,sans-serif;padding:6px 12px;border-radius:999px;cursor:pointer}
+  .ai-input{display:flex;gap:8px;border-top:1px solid var(--hair);padding-top:13px}
+  .ai-input input{flex:1;border:1px solid var(--hair);border-radius:999px;padding:10px 16px;font-size:14.8px;outline:none}
+  .ai-input input:focus{border-color:var(--blue)}
+  .ai-input button{border:0;background:var(--blue);color:#fff;width:40px;height:40px;border-radius:50%;
+    font-size:17px;cursor:pointer;flex:none}
+  .reset{color:var(--faint);font-size:12.5px;text-align:center;margin-top:26px;cursor:pointer}
+  footer{color:var(--faint);font-size:12.5px;text-align:center;margin-top:14px}
+  /* ===== v2.1 — app format: phone portrait / landscape ===== */
+  .tabbar{display:none}
+  @media(max-width:900px){
+    .seg{display:none}
+    body{padding-bottom:112px}
+    .layout{grid-template-columns:1fr}
+    .ai{display:none;position:static;height:calc(100vh - 200px)}
+    body.mv-ai .ai{display:flex}
+    body.mv-ai main{display:none}
+    .tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;justify-content:space-around;
+      background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      border-top:1px solid var(--hair);padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
+    .tabbar button{border:0;background:none;font:500 10.5px -apple-system,BlinkMacSystemFont,sans-serif;
+      color:var(--faint);display:flex;flex-direction:column;align-items:center;gap:3px;padding:2px 10px;cursor:pointer}
+    .tabbar button.active{color:var(--blue)}
+    .tabbar svg{width:23px;height:23px}
+    header{padding-top:30px}
+  }
+  @media(max-width:640px){
+    /* phone keeps the desktop&#x27;s one-line table — compact, not cards */
+    .card{padding:19px}
+    .casescard{padding:16px 10px}
+    table{table-layout:fixed}
+    th{font-size:10.5px;padding:8px 4px}
+    th:nth-child(1){width:15%} th:nth-child(2){width:13%} th:nth-child(3){width:21%}
+    th:nth-child(4){width:22%} th:nth-child(5){width:8%} th:nth-child(6){width:14%} th:nth-child(7){width:7%}
+    td{font-size:12px;padding:7px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    td .dim{font-size:11px}
+    td.stagec{white-space:normal}
+    .pill{font-size:10.5px;padding:2px 7px}
+    .flag .ftxt{display:none}
+    .seg{flex-wrap:wrap}
+    .cal{grid-template-columns:1fr}
+    .day{min-height:0}
+    .kpis{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (orientation: landscape) and (max-height: 540px){
+    /* landscape phone: back to two columns, top tabs return */
+    .layout{grid-template-columns:1fr 320px}
+    .ai{display:flex;height:calc(100vh - 36px)}
+    body.mv-ai main{display:block}
+    .tabbar{display:none}
+    .seg{display:flex}
+    body{padding-bottom:56px}
+    header{padding-top:20px}
+  }
+
+  /* ================= v3.0 — Apple design layer =================
+     Grounded in Apple&#x27;s Human Interface Guidelines: Dynamic Type scale
+     (Large Title 34 / Title 3 20 / Headline 17 / Body 17 / Footnote 13),
+     semantic colors (label / secondaryLabel / separator), grouped
+     background #f2f2f7 with white cards, translucent materials reserved
+     for the navigation layer (segmented bar, tab bar), 8pt spacing grid,
+     44pt targets, group with space first, then separators. */
+  :root{
+    --bg:#f2f2f7; --surface:#ffffff; --ink:#1c1c1e; --sub:rgba(60,60,67,.62); --faint:rgba(60,60,67,.42);
+    --hair:rgba(60,60,67,.14); --blue:#007aff; --green:#34c759; --amber:#ff9500; --red:#ff3b30;
+    --bubble:#e9e9eb; --radius:22px;
+    --shadow:0 1px 2px rgba(0,0,0,.03), 0 10px 30px rgba(0,0,0,.05);
+    --track:rgba(120,120,128,.14); --fill:rgba(120,120,128,.09);
+  }
+  body{font-size:16.5px;line-height:1.5;padding:0 20px 72px}
+  /* header — large-title treatment */
+  header{padding:40px 0 4px}
+  .logo{font-size:32px;font-weight:800;letter-spacing:2.5px}
+  .tagline{font-size:15.5px;color:var(--sub)}
+  .sample-note{font-size:11.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--faint)}
+  /* segmented control — translucent material, navigation layer only */
+  .seg{position:sticky;top:12px;z-index:30;margin:22px 0 26px}
+  .seg-inner{background:var(--track);border-radius:12px;padding:3px;
+    backdrop-filter:blur(18px) saturate(1.7);-webkit-backdrop-filter:blur(18px) saturate(1.7)}
+  .seg button{font-size:14.5px;padding:7px 20px;border-radius:9px;color:#3a3a3c}
+  .seg button.active{box-shadow:0 3px 10px rgba(0,0,0,.14), 0 0 1px rgba(0,0,0,.08)}
+  /* cards and type scale */
+  .card{padding:24px}
+  h2{font-size:20px;font-weight:700;letter-spacing:-.35px}
+  .card-sub{font-size:14.5px;color:var(--sub);margin-bottom:18px;line-height:1.45}
+  /* KPI summary cards */
+  .kpi{padding:18px 20px}
+  .kpi .num{font-size:33px;font-weight:750;letter-spacing:-.8px}
+  .kpi .lbl{font-size:13.5px;color:var(--sub);margin-top:3px}
+  /* filter chips */
+  .filters button{background:var(--fill);font-size:14px;padding:7px 15px}
+  /* cases table — one line per case, larger and airier */
+  th{font-size:11.5px;color:var(--sub);padding:10px}
+  td{font-size:15px;padding:13px 10px}
+  .who{font-size:16px;font-weight:650}
+  .dim{font-size:14px;color:var(--sub)}
+  tbody tr:hover{background:rgba(120,120,128,.05)}
+  .pill{font-size:12px;font-weight:650;padding:3.5px 9px;border-radius:7px;background:rgba(0,122,255,.12);color:#0066d6}
+  .pill.ann{background:rgba(175,82,222,.13);color:#9333c7}
+  .pill.adv{background:rgba(52,199,89,.15);color:#1d8a3f}
+  .pill.med{background:rgba(255,149,0,.16);color:#ad6800}
+  .pill.mdc{background:rgba(90,200,250,.2);color:#0b7ea4}
+  .pill.den{background:rgba(255,45,85,.1);color:#d7003f}
+  .flag{font-size:13px}
+  /* renewals */
+  .renew-row{font-size:15px;padding:11px 0}
+  /* case sheet */
+  .sheet{border-radius:26px 26px 0 0;padding:30px 30px 38px}
+  @media(min-width:700px){.sheet{border-radius:26px}}
+  .sheet h3{font-size:23px}
+  .sheet .meta{font-size:14.5px}
+  .court-banner{background:rgba(255,149,0,.12);border:0;color:#8a5a00;font-size:14.5px;border-radius:13px}
+  .task .t{font-size:16px}
+  .task input[type=checkbox]{width:21px;height:21px}
+  .task .due{font-size:13px;color:var(--sub)}
+  .add-task input{border:0;background:var(--fill);border-radius:12px;padding:11px 15px;font-size:15px}
+  .btn{background:var(--blue);border-radius:12px;padding:10px 20px;font-size:15px}
+  .btn.plain{background:var(--fill);color:var(--ink)}
+  .sheet-close{background:var(--fill);width:32px;height:32px}
+  /* licenses — grouped sub-cards */
+  #licenses .lic{border:0;background:var(--fill);border-radius:18px;padding:20px}
+  .lic-state{font-size:17.5px;font-weight:650}
+  .chip{background:rgba(52,199,89,.14);color:#1d8a3f;font-size:13.5px;padding:5px 12px}
+  .chip.no{background:rgba(255,59,48,.09);color:#d70015}
+  /* calendar */
+  .navbtn{border:0;background:var(--fill);width:34px;height:34px;font-size:18px;color:var(--ink)}
+  .mini-seg{background:var(--track);border-radius:10px;padding:2.5px}
+  .mini-seg button{border-radius:8px;padding:5.5px 14px;font-size:13.5px}
+  .mini-seg button.active{box-shadow:0 3px 8px rgba(0,0,0,.13)}
+  .day{background:rgba(120,120,128,.055);border:0;border-radius:14px;padding:11px}
+  .day.today{border:0;background:rgba(0,122,255,.07);box-shadow:inset 0 0 0 1.5px rgba(0,122,255,.55)}
+  .day .dname{color:var(--sub)}
+  .day .dnum{font-size:20px}
+  .ev{font-size:13px;border-radius:7px;padding:5.5px 8px;background:rgba(0,122,255,.12);color:#0057b8}
+  .ev.task{background:rgba(255,149,0,.17);color:#8a5a00}
+  .ev.due{background:rgba(175,82,222,.13);color:#7d2fb3}
+  .ev.lic{background:rgba(255,204,0,.22);color:#7a5c00}
+  .ev.ren{background:rgba(52,199,89,.16);color:#14713a}
+  .ev .tm{color:inherit;opacity:.65}
+  .mhead div{color:var(--sub)}
+  .mchip{background:#007aff}
+  .mchip.task{background:#ff9500}.mchip.ren{background:#34c759}.mchip.lic{background:#af52de}.mchip.due{background:#e37400}
+  /* assistant — iMessage metrics */
+  .msg{font-size:15.5px;padding:11px 15px;border-radius:20px}
+  .msg.bot{background:#e9e9eb}
+  .draft{border:0;background:var(--fill);border-radius:16px;padding:14px 16px}
+  .draft button{padding:8px 17px}
+  .draft .no{background:rgba(120,120,128,.16);color:var(--ink)}
+  .chips-ai button{border:0;background:var(--fill);color:var(--blue);font-size:13.5px;padding:7px 13px}
+  .ai-input{border-top:0}
+  .ai-input input{border:0;background:var(--fill);padding:11px 17px;font-size:15.5px}
+  /* tab bar — translucent material */
+  @media(max-width:900px){
+    .tabbar{background:rgba(250,250,252,.85);border-top:1px solid rgba(60,60,67,.16);
+      backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8)}
+    .tabbar button{color:var(--sub);font-size:11px}
+  }
+  @media(max-width:640px){
+    td{font-size:12.5px;padding:10px 4px}
+    .who{font-size:13px}
+  }
+  /* ============ TASKS TAB (v3.0) — iOS Reminders pattern ============ */
+  .qa{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+  .qa input{flex:1;min-width:150px;border:0;background:var(--fill);border-radius:12px;
+    padding:11px 15px;font-size:15px;outline:none;font-family:inherit;color:var(--ink)}
+  .qa select{border:0;background:var(--fill);border-radius:12px;padding:11px 12px;
+    font-size:14.5px;font-family:inherit;color:var(--ink)}
+  .tgroup{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--sub);margin:22px 0 4px}
+  .tgroup.ov{color:var(--red)}
+  .tgroup.done{color:var(--faint)}
+  .trow{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:1px solid var(--hair)}
+  .trow:last-child{border-bottom:0}
+  .tcbox{flex:none;width:25px;height:25px;border-radius:50%;border:2px solid #c7c7cc;background:#fff;color:#fff;
+    font-size:14px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;margin-top:1px}
+  .tcbox.done{background:var(--blue);border-color:var(--blue)}
+  .tmain{flex:1;cursor:pointer;min-width:0}
+  .ttitle{font-size:16.5px;line-height:1.35}
+  .ttitle.done{color:var(--faint);text-decoration:line-through}
+  .tmeta{font-size:13.5px;color:var(--sub);margin-top:2px}
+  .tdue{font-weight:650}
+  .tdue.ov{color:var(--red)} .tdue.td{color:#e37400} .tdue.up{color:var(--sub)} .tdue.nod{color:var(--faint)}
+  .tchev{color:var(--faint);font-size:19px;line-height:1.4}
+  .tempty{padding:22px 0 8px;color:var(--sub);font-size:15px;text-align:center}
+  :focus-visible{outline:2px solid rgba(0,122,255,.55);outline-offset:2px}
+
+  /* ============ DAY VIEW (v3.1) ============ */
+  .day, .mday{cursor:pointer}
+  .dlist{display:flex;flex-direction:column}
+  .drow{display:flex;align-items:center;gap:13px;padding:13px 2px;border-bottom:1px solid var(--hair)}
+  .drow:last-child{border-bottom:0}
+  .ddot{flex:none;width:10px;height:10px;border-radius:50%;background:var(--blue)}
+  .drow.task .ddot, .drow.due .ddot{background:var(--amber)}
+  .drow.ren .ddot{background:var(--green)}
+  .drow.lic .ddot{background:#af52de}
+  .dmain{flex:1;min-width:0}
+  .dtitle{font-size:16.5px;line-height:1.35}
+  .dsub{font-size:13.5px;color:var(--sub);margin-top:1px}
+  .dwhen{flex:none;font-size:13.5px;font-weight:650;color:var(--sub);font-variant-numeric:tabular-nums}
+
+  /* ============ v3.2 — phone table: wrap, never truncate ============ */
+  @media(max-width:640px){
+    th{font-size:9.5px;letter-spacing:.3px;padding:8px 3px;white-space:normal}
+    th:nth-child(1){width:15%} th:nth-child(2){width:17%} th:nth-child(3){width:19%}
+    th:nth-child(4){width:17%} th:nth-child(5){width:8%} th:nth-child(6){width:16%} th:nth-child(7){width:8%}
+    td{font-size:12.5px;padding:10px 3px;white-space:normal;overflow:visible;text-overflow:clip;
+      line-height:1.35;overflow-wrap:anywhere;vertical-align:top}
+    td .who{font-size:13px;white-space:nowrap;overflow-wrap:normal}
+    td:first-child .dim{display:block;font-size:11px;margin-top:1px}
+    .pill{font-size:11px;padding:3px 8px;white-space:nowrap}
+    td.money{white-space:nowrap;overflow-wrap:normal;font-size:12px}
+    td.age{white-space:nowrap;overflow-wrap:normal}
+  }
+
+  /* ============ v3.3 — phone: two-line list rows, no table ============ */
+  .case-list{display:none}
+  @media(max-width:640px){
+    .casescard table{display:none}
+    .case-list{display:block}
+    .crow{padding:13px 4px;border-bottom:1px solid var(--hair);cursor:pointer}
+    .crow:last-child{border-bottom:0}
+    .crow-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+    .crow-top .who{font-size:15.5px;font-weight:700}
+    .cmoney{font-size:15.5px;font-weight:650;font-variant-numeric:tabular-nums;white-space:nowrap}
+    .crow-sub{margin-top:5px;font-size:13.5px;line-height:1.55;color:var(--sub)}
+    .crow-sub .pill{font-size:11px;padding:3px 8px;white-space:nowrap}
+    .crow-sub .age{font-weight:650;color:var(--ink)}
+    .crow-sub .age.hot{color:var(--red)}
+  }
+
+  /* ============ v3.4 — slim month bars, chip guard ============ */
+  .mchip{font-size:10.5px;padding:1.5px 5px;line-height:1.3;border-radius:3.5px;margin:0 1px 2px;border:0}
+  .calcard.monthmode .mchip{font-size:10.5px}
+
+  /* ============ v3.5 — Pending Cases organized by status ============ */
+  .sgroup{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink);margin:22px 0 4px}
+  .sgroup:first-child{margin-top:4px}
+  .sgroup .sgmeta{font-size:12.5px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--sub);white-space:nowrap}
+  .sgmeta .sstuck{color:var(--red)}
+  tr.srow-h td{padding:20px 8px 7px;font-size:13px}
+  tr.srow-h:first-child td{padding-top:8px}
+  tr.srow-h .sgname{font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+  tr.srow-h .sgmeta{float:right;font-size:12.5px;font-weight:600;color:var(--sub)}
+
+  /* ============ v3.7 — free case label on the Tasks tab ============ */
+  #qaCase{flex:0 1 210px;min-width:140px}
+
+  /* ============ v3.9 — BookView LLC wordmark ============ */
+  .logo{font-size:27px;letter-spacing:.5px}
+  .logo .llc{color:var(--muted);font-size:.42em;font-weight:600;letter-spacing:1.5px}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;wrap&quot;&gt;
+  &lt;header&gt;
+    &lt;div class=&quot;logo&quot;&gt;Book&lt;span&gt;View&lt;/span&gt; &lt;span class=&quot;llc&quot;&gt;LLC&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;tagline&quot;&gt;Your whole book. One screen.&lt;/div&gt;
+    &lt;div class=&quot;sample-note&quot;&gt;PROTOTYPE v3.9 · SAMPLE DATA — CASE LABELS ONLY · NO CLIENT PII, BY DESIGN&lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;div class=&quot;seg&quot;&gt;
+    &lt;div class=&quot;seg-inner&quot;&gt;
+      &lt;button id=&quot;tab-dash&quot; class=&quot;active&quot; onclick=&quot;showTab(&#x27;dash&#x27;)&quot;&gt;Dashboard&lt;/button&gt;
+      &lt;button id=&quot;tab-tasks&quot; onclick=&quot;showTab(&#x27;tasks&#x27;)&quot;&gt;Tasks&lt;/button&gt;
+      &lt;button id=&quot;tab-lic&quot; onclick=&quot;showTab(&#x27;lic&#x27;)&quot;&gt;Licenses&lt;/button&gt;
+      &lt;button id=&quot;tab-cal&quot; onclick=&quot;showTab(&#x27;cal&#x27;)&quot;&gt;Calendar&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;layout&quot;&gt;
+    &lt;main&gt;
+      &lt;!-- DASHBOARD --&gt;
+      &lt;section id=&quot;view-dash&quot;&gt;
+        &lt;div class=&quot;kpis&quot; id=&quot;kpis&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;card casescard&quot;&gt;
+          &lt;h2&gt;Pending cases&lt;/h2&gt;
+          &lt;p class=&quot;card-sub&quot;&gt;Grouped by where each case stands — the kind of case is on every row. Click a case for its task stack.&lt;/p&gt;
+          &lt;div class=&quot;filters&quot; id=&quot;filters&quot;&gt;&lt;/div&gt;
+          &lt;table&gt;
+            &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Case&lt;/th&gt;&lt;th&gt;Line&lt;/th&gt;&lt;th&gt;Carrier&lt;/th&gt;&lt;th&gt;Stage&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;Commission&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+            &lt;tbody id=&quot;caseRows&quot;&gt;&lt;/tbody&gt;
+          &lt;/table&gt;
+          &lt;div class=&quot;case-list&quot; id=&quot;caseList&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;card&quot;&gt;
+          &lt;h2&gt;Renewals — next 30 days&lt;/h2&gt;
+          &lt;p class=&quot;card-sub&quot;&gt;Policies coming due, before they lapse.&lt;/p&gt;
+          &lt;div id=&quot;renewals&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;!-- TASKS --&gt;
+      &lt;section id=&quot;view-tasks&quot; style=&quot;display:none&quot;&gt;
+        &lt;div class=&quot;card&quot;&gt;
+          &lt;h2&gt;Tasks&lt;/h2&gt;
+          &lt;p class=&quot;card-sub&quot;&gt;Every task across every case — the same stacks, in one list. Check one off here and it closes on the case, too. Adding a task for a case that isn’t on your board yet? Type its label (like BJK 201) — the case is created for you.&lt;/p&gt;
+          &lt;div class=&quot;qa&quot;&gt;
+            &lt;input id=&quot;qaText&quot; type=&quot;text&quot; placeholder=&quot;New task…&quot; onkeydown=&quot;if(event.key===&#x27;Enter&#x27;)quickAddTask()&quot;&gt;
+            &lt;input id=&quot;qaCase&quot; type=&quot;text&quot; list=&quot;qaCases&quot; placeholder=&quot;Case label — pick, or type a new one (e.g. BJK 201)&quot; aria-label=&quot;Case for the new task&quot; onkeydown=&quot;if(event.key===&#x27;Enter&#x27;)quickAddTask()&quot;&gt;
+            &lt;datalist id=&quot;qaCases&quot;&gt;&lt;/datalist&gt;
+            &lt;button class=&quot;btn&quot; onclick=&quot;quickAddTask()&quot;&gt;Add&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div id=&quot;taskList&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;!-- LICENSES --&gt;
+      &lt;section id=&quot;view-lic&quot; style=&quot;display:none&quot;&gt;
+        &lt;div class=&quot;card&quot;&gt;
+          &lt;h2&gt;Licenses &amp;amp; appointments&lt;/h2&gt;
+          &lt;p class=&quot;card-sub&quot;&gt;Know before you submit. Status and dates only — no license numbers stored.&lt;/p&gt;
+          &lt;div id=&quot;licenses&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;!-- CALENDAR --&gt;
+      &lt;section id=&quot;view-cal&quot; style=&quot;display:none&quot;&gt;
+        &lt;div class=&quot;card calcard&quot;&gt;
+          &lt;div class=&quot;cal-tools&quot;&gt;
+            &lt;h2 id=&quot;calTitle&quot;&gt;Calendar&lt;/h2&gt;
+            &lt;div class=&quot;cal-nav&quot;&gt;
+              &lt;button class=&quot;navbtn&quot; onclick=&quot;shiftCal(-1)&quot; aria-label=&quot;Previous&quot;&gt;‹&lt;/button&gt;
+              &lt;button class=&quot;navbtn&quot; onclick=&quot;shiftCal(1)&quot; aria-label=&quot;Next&quot;&gt;›&lt;/button&gt;
+              &lt;span class=&quot;mini-seg&quot;&gt;&lt;button id=&quot;cm-day&quot; onclick=&quot;goDay(isoOf(new Date()))&quot;&gt;Day&lt;/button&gt;&lt;button id=&quot;cm-week&quot; class=&quot;active&quot; onclick=&quot;setCalMode(&#x27;week&#x27;)&quot;&gt;Week&lt;/button&gt;&lt;button id=&quot;cm-month&quot; onclick=&quot;setCalMode(&#x27;month&#x27;)&quot;&gt;Month&lt;/button&gt;&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p class=&quot;card-sub&quot;&gt;Appointments, deadlines, renewals and expiries — the time view of your whole book. Tap any day in Week or Month to see it up close.&lt;/p&gt;
+          &lt;div id=&quot;calendar&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;!-- AI ASSISTANT --&gt;
+    &lt;aside class=&quot;card ai&quot;&gt;
+      &lt;h2&gt;&lt;span class=&quot;dotlive&quot;&gt;&lt;/span&gt;Assistant&lt;/h2&gt;
+      &lt;p class=&quot;card-sub&quot;&gt;Talk instead of typing into forms. Drafts are shown before anything is saved.&lt;/p&gt;
+      &lt;div class=&quot;chat&quot; id=&quot;chat&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;chips-ai&quot; id=&quot;chips&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;ai-input&quot;&gt;
+        &lt;input id=&quot;aiText&quot; type=&quot;text&quot; placeholder=&quot;Try: what&#x27;s stuck?&quot; autocomplete=&quot;off&quot;&gt;
+        &lt;button onclick=&quot;sendAI()&quot; aria-label=&quot;Send&quot;&gt;↑&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/aside&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;reset&quot; onclick=&quot;resetDemo()&quot;&gt;Reset demo data&lt;/div&gt;
+  &lt;footer&gt;BookView LLC prototype v3.9 — a dashboard, not a CRM. Built for validation conversations.&lt;/footer&gt;
+&lt;/div&gt;
+
+&lt;!-- MOBILE TAB BAR (app format) --&gt;
+&lt;nav class=&quot;tabbar&quot;&gt;
+  &lt;button data-mv=&quot;dash&quot; class=&quot;active&quot; onclick=&quot;showMobile(&#x27;dash&#x27;)&quot;&gt;
+    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;rect x=&quot;3.5&quot; y=&quot;3.5&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;2&quot;/&gt;&lt;rect x=&quot;13.5&quot; y=&quot;3.5&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;2&quot;/&gt;&lt;rect x=&quot;3.5&quot; y=&quot;13.5&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;2&quot;/&gt;&lt;rect x=&quot;13.5&quot; y=&quot;13.5&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;2&quot;/&gt;&lt;/svg&gt;
+    Dashboard&lt;/button&gt;
+  &lt;button data-mv=&quot;tasks&quot; onclick=&quot;showMobile(&#x27;tasks&#x27;)&quot;&gt;
+    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;path d=&quot;M3.5 6.2 5.2 7.9 8.6 4.6M3.5 12.2l1.7 1.7 3.4-3.3M3.5 18.2l1.7 1.7 3.4-3.3M12 6h9M12 12h9M12 18h9&quot;/&gt;&lt;/svg&gt;
+    Tasks&lt;/button&gt;
+  &lt;button data-mv=&quot;lic&quot; onclick=&quot;showMobile(&#x27;lic&#x27;)&quot;&gt;
+    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;5&quot; width=&quot;18&quot; height=&quot;14&quot; rx=&quot;3&quot;/&gt;&lt;circle cx=&quot;8.5&quot; cy=&quot;11&quot; r=&quot;2&quot;/&gt;&lt;path d=&quot;M6 16.5c.6-1.4 1.4-2 2.5-2s1.9.6 2.5 2M14.5 9.5h4M14.5 13h4&quot;/&gt;&lt;/svg&gt;
+    Licenses&lt;/button&gt;
+  &lt;button data-mv=&quot;cal&quot; onclick=&quot;showMobile(&#x27;cal&#x27;)&quot;&gt;
+    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;5&quot; width=&quot;18&quot; height=&quot;16&quot; rx=&quot;3&quot;/&gt;&lt;path d=&quot;M3 10h18M8 3v4M16 3v4&quot;/&gt;&lt;/svg&gt;
+    Calendar&lt;/button&gt;
+  &lt;button data-mv=&quot;ai&quot; onclick=&quot;showMobile(&#x27;ai&#x27;)&quot;&gt;
+    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;path d=&quot;M21 12a8 8 0 0 1-8 8H4l2.2-2.9A8 8 0 1 1 21 12Z&quot;/&gt;&lt;/svg&gt;
+    Assistant&lt;/button&gt;
+&lt;/nav&gt;
+
+&lt;!-- CASE SHEET --&gt;
+&lt;div class=&quot;sheet-back&quot; id=&quot;sheetBack&quot; onclick=&quot;if(event.target===this)closeSheet()&quot;&gt;
+  &lt;div class=&quot;sheet&quot; id=&quot;sheet&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+/* ============ SAMPLE DATA (case labels only — no client PII, by design) ============ */
+const DAY = 86400000;
+function inDays(n){ const d = new Date(Date.now() + n*DAY); return d.toISOString().slice(0,10); }
+
+const SEED = {
+  cases: [
+    {id:1, who:&quot;JMS 214&quot;, line:&quot;Life&quot;, carrier:&quot;North American&quot;, product:&quot;Term 20&quot;, stage:&quot;Underwriting&quot;, age:23, commission:2450, stuck:true, tasks:[
+      {t:&quot;Schedule paramed exam&quot;, done:false, due:inDays(1)}, {t:&quot;Order APS from clinic&quot;, done:true}, {t:&quot;Confirm beneficiary split&quot;, done:true}]},
+    {id:2, who:&quot;RKP 387&quot;, line:&quot;Annuity&quot;, carrier:&quot;Allianz&quot;, product:&quot;MYGA 5&quot;, stage:&quot;Suitability review&quot;, age:16, commission:3900, stuck:true, tasks:[]},
+    {id:3, who:&quot;MAK 442&quot;, line:&quot;Life&quot;, carrier:&quot;Foresters&quot;, product:&quot;Whole Life&quot;, stage:&quot;Issued — delivery&quot;, age:4, commission:1150, stuck:false, tasks:[
+      {t:&quot;Deliver policy &amp; collect receipt&quot;, done:false, due:inDays(0)}]},
+    {id:4, who:&quot;DLT 276&quot;, line:&quot;Medicare&quot;, carrier:&quot;UnitedHealthcare&quot;, product:&quot;MA Plan&quot;, stage:&quot;Enrollment submitted&quot;, age:6, commission:310, stuck:false, tasks:[
+      {t:&quot;Verify PCP in network&quot;, done:true}, {t:&quot;Send scope-of-appointment copy&quot;, done:false, due:inDays(2)}]},
+    {id:5, who:&quot;ASR 318&quot;, line:&quot;Advisory&quot;, carrier:&quot;Schwab&quot;, product:&quot;Managed portfolio&quot;, stage:&quot;Onboarding&quot;, age:9, commission:1800, recurring:true, stuck:false, tasks:[
+      {t:&quot;Collect signed advisory agreement&quot;, done:false, due:inDays(1)}, {t:&quot;Link bank for contributions&quot;, done:false}]},
+    {id:6, who:&quot;SRN 548&quot;, line:&quot;Life&quot;, carrier:&quot;Mutual of Omaha&quot;, product:&quot;IUL&quot;, stage:&quot;Underwriting&quot;, age:12, commission:2980, stuck:true, tasks:[
+      {t:&quot;Request medical records release&quot;, done:false, due:inDays(-1)}, {t:&quot;Call underwriter re: rating class&quot;, done:false}]},
+    {id:7, who:&quot;KJL 731&quot;, line:&quot;Annuity&quot;, carrier:&quot;National Life&quot;, product:&quot;FIA&quot;, stage:&quot;Funded — pending issue&quot;, age:3, commission:4250, stuck:false, tasks:[
+      {t:&quot;Confirm beneficiary designations&quot;, done:true}]},
+    {id:8, who:&quot;BAH 127&quot;, line:&quot;Medicare&quot;, carrier:&quot;Humana&quot;, product:&quot;Med Supp&quot;, stage:&quot;Underwriting&quot;, age:8, commission:275, stuck:false, tasks:[
+      {t:&quot;Upload ID card copy&quot;, done:true}, {t:&quot;Answer health-question follow-up&quot;, done:false, due:inDays(3)}]},
+    {id:9, who:&quot;PMG 195&quot;, line:&quot;Life&quot;, carrier:&quot;Transamerica&quot;, product:&quot;Term 30&quot;, stage:&quot;Application taken&quot;, age:1, commission:1720, stuck:false, tasks:[
+      {t:&quot;Complete Part 2 health questions&quot;, done:false, due:inDays(0)}]},
+    {id:10, who:&quot;LJM 103&quot;, line:&quot;Advisory&quot;, carrier:&quot;Fidelity&quot;, product:&quot;401(k) rollover&quot;, stage:&quot;Transfer in progress&quot;, age:14, commission:2300, recurring:true, stuck:true, tasks:[]},
+    {id:11, who:&quot;TAW 471&quot;, line:&quot;Life&quot;, carrier:&quot;Protective&quot;, product:&quot;GUL&quot;, stage:&quot;Illustration approved&quot;, age:5, commission:1940, stuck:false, tasks:[
+      {t:&quot;Send illustration for signature&quot;, done:false, due:inDays(2)}]},
+    {id:12, who:&quot;NMD 856&quot;, line:&quot;Annuity&quot;, carrier:&quot;Athene&quot;, product:&quot;MYGA 3&quot;, stage:&quot;Issued&quot;, age:2, commission:2650, stuck:false, tasks:[
+      {t:&quot;Schedule welcome call&quot;, done:false, due:inDays(4)}]},
+    {id:15, who:&quot;KRD 509&quot;, line:&quot;Medical&quot;, carrier:&quot;Anthem Blue Cross&quot;, product:&quot;ACA Silver PPO&quot;, stage:&quot;Enrollment submitted&quot;, age:6, commission:340, stuck:false, tasks:[
+      {t:&quot;Upload income verification docs&quot;, done:false, due:inDays(2)}]},
+    {id:16, who:&quot;PSN 623&quot;, line:&quot;Dental&quot;, carrier:&quot;Delta Dental&quot;, product:&quot;PPO Premier&quot;, stage:&quot;Issued&quot;, age:2, commission:85, stuck:false, tasks:[
+      {t:&quot;Send ID card and welcome packet&quot;, done:false, due:inDays(3)}]}
+  ],
+  renewals: [
+    {who:&quot;GAH 664&quot;, line:&quot;Life&quot;, carrier:&quot;Foresters&quot;, date:inDays(6), premium:1840},
+    {who:&quot;CDB 845&quot;, line:&quot;Medicare&quot;, carrier:&quot;Humana&quot;, date:inDays(13), premium:612},
+    {who:&quot;WEJ 260&quot;, line:&quot;Annuity&quot;, carrier:&quot;Athene&quot;, date:inDays(21), premium:5200},
+    {who:&quot;EMF 930&quot;, line:&quot;Life&quot;, carrier:&quot;Protective&quot;, date:inDays(27), premium:1295}
+  ],
+  licenses: [
+    {state:&quot;California&quot;, expires:&quot;2027-02-28&quot;, ce:&quot;CE complete&quot;, appts:{&quot;North American&quot;:1,&quot;Foresters&quot;:1,&quot;Mutual of Omaha&quot;:1,&quot;Allianz&quot;:1,&quot;Transamerica&quot;:1,&quot;Protective&quot;:1}},
+    {state:&quot;Arizona&quot;, expires:&quot;2026-12-31&quot;, ce:&quot;CE outstanding — 12 hrs remaining&quot;, appts:{&quot;North American&quot;:1,&quot;Allianz&quot;:1,&quot;Athene&quot;:1,&quot;Foresters&quot;:0}},
+    {state:&quot;Texas&quot;, expires:&quot;2027-03-31&quot;, ce:&quot;CE in progress&quot;, appts:{&quot;Allianz&quot;:1,&quot;Athene&quot;:1,&quot;Foresters&quot;:1,&quot;Humana&quot;:1}},
+    {state:&quot;Arkansas&quot;, expires:&quot;2027-01-31&quot;, ce:&quot;CE complete&quot;, appts:{&quot;UnitedHealthcare&quot;:1,&quot;Humana&quot;:1,&quot;Mutual of Omaha&quot;:1}},
+    {state:&quot;Nevada&quot;, expires:&quot;2027-06-30&quot;, ce:&quot;CE complete&quot;, appts:{&quot;Mutual of Omaha&quot;:1,&quot;National Life&quot;:1,&quot;North American&quot;:0}}
+  ],
+  events: [
+    {off:0, time:&quot;10:00&quot;, kind:&quot;&quot;, title:&quot;Follow-up call — underwriting (SRN 548)&quot;},
+    {off:0, time:&quot;2:00 PM&quot;, kind:&quot;&quot;, title:&quot;Policy delivery — MAK 442&quot;},
+    {off:1, time:&quot;9:30 AM&quot;, kind:&quot;task&quot;, title:&quot;Paramed exam — JMS 214&quot;},
+    {off:1, time:&quot;1:00 PM&quot;, kind:&quot;&quot;, title:&quot;Advisory agreement review — ASR 318&quot;},
+    {off:2, time:&quot;11:00 AM&quot;, kind:&quot;&quot;, title:&quot;Carrier rep meeting — Allianz&quot;},
+    {off:2, time:&quot;&quot;, kind:&quot;ren&quot;, title:&quot;Renewal due — GAH 664 (Foresters)&quot;},
+    {off:3, time:&quot;10:00 AM&quot;, kind:&quot;&quot;, title:&quot;Illustration review call — TAW 471&quot;},
+    {off:3, time:&quot;&quot;, kind:&quot;task&quot;, title:&quot;Due: scope-of-appointment copy — DLT 276&quot;},
+    {off:4, time:&quot;&quot;, kind:&quot;lic&quot;, title:&quot;Arizona license renews in ~5 weeks&quot;},
+    {off:4, time:&quot;3:00 PM&quot;, kind:&quot;&quot;, title:&quot;Welcome call — NMD 856&quot;},
+    {off:5, time:&quot;9:00 AM&quot;, kind:&quot;due&quot;, title:&quot;CE block — Texas, 2 hrs&quot;}
+  ]
+};
+
+/* ============ STATE ============ */
+let S;
+try {
+  const saved = localStorage.getItem(&quot;bookviewV5&quot;);
+  S = saved ? JSON.parse(saved) : structuredClone(SEED);
+} catch(e){ S = structuredClone(SEED); }
+function save(){ try{ localStorage.setItem(&quot;bookviewV5&quot;, JSON.stringify(S)); }catch(e){} }
+function resetDemo(){ try{ localStorage.removeItem(&quot;bookviewV5&quot;); }catch(e){} location.reload(); }
+
+const money = n =&gt; &quot;$&quot; + n.toLocaleString();
+const openTasks = c =&gt; c.tasks.filter(t =&gt; !t.done);
+function fmtDate(iso){ const d = new Date(iso + &quot;T12:00:00&quot;); return d.toLocaleDateString(&quot;en-US&quot;,{month:&quot;short&quot;, day:&quot;numeric&quot;, year:&quot;numeric&quot;}); }
+function daysUntil(iso){ const p = iso.split(&quot;-&quot;).map(Number); const a = new Date(p[0], p[1] - 1, p[2]); const n = new Date(); const b = new Date(n.getFullYear(), n.getMonth(), n.getDate()); return Math.round((a - b) / DAY); }
+
+/* ============ TABS ============ */
+function showTab(name){
+  [&quot;dash&quot;,&quot;tasks&quot;,&quot;lic&quot;,&quot;cal&quot;].forEach(t =&gt; {
+    document.getElementById(&quot;view-&quot; + t).style.display = t === name ? &quot;&quot; : &quot;none&quot;;
+    document.getElementById(&quot;tab-&quot; + t).classList.toggle(&quot;active&quot;, t === name);
+  });
+  setTimeout(() =&gt; { if (typeof fitMonth === &quot;function&quot;) fitMonth(); }, 0);
+}
+
+/* ============ DASHBOARD ============ */
+let filter = &quot;All&quot;;
+function renderKPIs(){
+  const inflight = S.cases.length;
+  const stuck = S.cases.filter(c =&gt; c.stuck);
+  const pending = S.cases.filter(c =&gt; !c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
+  const stuckMoney = stuck.filter(c =&gt; !c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
+  const rec = S.cases.filter(c =&gt; c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
+  document.getElementById(&quot;kpis&quot;).innerHTML =
+    kpi(inflight, &quot;cases in flight&quot;) +
+    kpi(stuck.length, &quot;stuck over 7 days&quot;, &quot;bad&quot;) +
+    kpi(money(pending), &quot;commissions pending&quot;) +
+    kpi(money(rec) + &quot;/yr&quot;, &quot;advisory recurring&quot;);
+  function kpi(n, l, cls){ return &#x27;&lt;div class=&quot;kpi &#x27; + (cls||&quot;&quot;) + &#x27;&quot;&gt;&lt;div class=&quot;num&quot;&gt;&#x27; + n + &#x27;&lt;/div&gt;&lt;div class=&quot;lbl&quot;&gt;&#x27; + l + (cls===&quot;bad&quot; &amp;&amp; stuckMoney ? &quot; · &quot; + money(stuckMoney) + &quot; held up&quot; : &quot;&quot;) + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;; }
+}
+const STATUSES = [&quot;App pending&quot;, &quot;Underwriting&quot;, &quot;Funds pending&quot;, &quot;Delivery pending&quot;];
+const STATUS_OF = {&quot;Application taken&quot;: &quot;App pending&quot;, &quot;Enrollment submitted&quot;: &quot;App pending&quot;, &quot;Illustration approved&quot;: &quot;App pending&quot;, &quot;Underwriting&quot;: &quot;Underwriting&quot;, &quot;Suitability review&quot;: &quot;Underwriting&quot;, &quot;Onboarding&quot;: &quot;Funds pending&quot;, &quot;Transfer in progress&quot;: &quot;Funds pending&quot;, &quot;Funded — pending issue&quot;: &quot;Funds pending&quot;, &quot;Issued — delivery&quot;: &quot;Delivery pending&quot;, &quot;Issued&quot;: &quot;Delivery pending&quot;};
+function statusOf(c){ return STATUS_OF[c.stage] || &quot;App pending&quot;; }
+function caseVisible(c){
+  if (filter === &quot;All&quot;) return true;
+  if (filter === &quot;Stuck only&quot;) return c.stuck;
+  return statusOf(c) === filter;
+}
+function statusSums(rows){
+  const one = rows.filter(c =&gt; !c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
+  const rec = rows.filter(c =&gt; c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
+  const st = rows.filter(c =&gt; c.stuck).length;
+  return (one ? money(one) : &quot;&quot;) + (rec ? (one ? &quot; + &quot; : &quot;&quot;) + money(rec) + &quot;/yr&quot; : &quot;&quot;) + (st ? &#x27; \u00B7 &lt;span class=&quot;sstuck&quot;&gt;&#x27; + st + &quot; stuck&lt;/span&gt;&quot; : &quot;&quot;);
+}
+function renderFilters(){
+  const lines = [&quot;All&quot;].concat(STATUSES, [&quot;Stuck only&quot;]);
+  document.getElementById(&quot;filters&quot;).innerHTML = lines.map(l =&gt;
+    &#x27;&lt;button class=&quot;&#x27; + (filter===l ? &quot;active&quot; : &quot;&quot;) + &#x27;&quot; onclick=&quot;setFilter(\&#x27;&#x27; + l + &#x27;\&#x27;)&quot;&gt;&#x27; + l + &#x27;&lt;/button&gt;&#x27;).join(&quot;&quot;);
+}
+function setFilter(l){ filter = l; renderFilters(); renderCases(); }
+function linePill(line){
+  const cls = line===&quot;Annuity&quot; ? &quot;ann&quot; : line===&quot;Advisory&quot; ? &quot;adv&quot; : line===&quot;Medicare&quot; ? &quot;med&quot; : line===&quot;Medical&quot; ? &quot;mdc&quot; : line===&quot;Dental&quot; ? &quot;den&quot; : &quot;&quot;;
+  return &#x27;&lt;span class=&quot;pill &#x27; + cls + &#x27;&quot;&gt;&#x27; + line + &#x27;&lt;/span&gt;&#x27;;
+}
+function renderCases(){
+  const groups = STATUSES
+    .map(s =&gt; ({s, rows: S.cases.filter(c =&gt; statusOf(c) === s &amp;&amp; caseVisible(c)).slice().sort((a,b) =&gt; b.age - a.age)}))
+    .filter(g =&gt; filter === &quot;All&quot; || g.rows.length);
+  const total = groups.reduce((a,g) =&gt; a + g.rows.length, 0);
+  const tableRow = c =&gt; {
+    const ot = openTasks(c).length;
+    let flag = &quot;&quot;;
+    if (c.stuck &amp;&amp; ot === 0) flag = &#x27;&lt;span class=&quot;flag court&quot;&gt;●&lt;span class=&quot;ftxt&quot;&gt; carrier\u2019s court&lt;/span&gt;&lt;/span&gt;&#x27;;
+    else if (c.stuck) flag = &#x27;&lt;span class=&quot;flag&quot;&gt;●&lt;span class=&quot;ftxt&quot;&gt; stuck&lt;/span&gt;&lt;/span&gt;&#x27;;
+    else if (ot) flag = &#x27;&lt;span class=&quot;dim&quot;&gt;&#x27; + ot + &quot; open task&quot; + (ot&gt;1?&quot;s&quot;:&quot;&quot;) + &#x27;&lt;/span&gt;&#x27;;
+    const car = c.carrier;
+    return &#x27;&lt;tr onclick=&quot;openCase(&#x27; + c.id + &#x27;)&quot;&gt;&#x27; +
+      &#x27;&lt;td&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + c.who + &#x27;&lt;/span&gt; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.product + &#x27;&lt;/span&gt;&lt;/td&gt;&#x27; +
+      &#x27;&lt;td data-label=&quot;Line&quot;&gt;&#x27; + linePill(c.line) + &#x27;&lt;/td&gt;&lt;td data-label=&quot;Carrier&quot;&gt;&#x27; + car + &#x27;&lt;/td&gt;&lt;td data-label=&quot;Stage&quot; class=&quot;stagec&quot;&gt;&#x27; + c.stage + &#x27;&lt;/td&gt;&#x27; +
+      &#x27;&lt;td data-label=&quot;Age&quot; class=&quot;age &#x27; + (c.age&gt;7 ? &quot;hot&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + c.age + &#x27;d&lt;/td&gt;&#x27; +
+      &#x27;&lt;td data-label=&quot;Commission&quot; class=&quot;money&quot;&gt;&#x27; + money(c.commission) + (c.recurring ? &#x27;&lt;span class=&quot;dim&quot;&gt;/yr&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
+      &#x27;&lt;td&gt;&#x27; + flag + &#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;;
+  };
+  const listRow = c =&gt; {
+    const ot = openTasks(c).length;
+    let flag = &quot;&quot;;
+    if (c.stuck &amp;&amp; ot === 0) flag = &#x27; \u00B7 &lt;span class=&quot;flag court&quot;&gt;\u25CF carrier\u2019s court&lt;/span&gt;&#x27;;
+    else if (c.stuck) flag = &#x27; \u00B7 &lt;span class=&quot;flag&quot;&gt;\u25CF stuck&lt;/span&gt;&#x27;;
+    else if (ot) flag = &#x27; \u00B7 &lt;span class=&quot;dim&quot;&gt;&#x27; + ot + &quot; open task&quot; + (ot &gt; 1 ? &quot;s&quot; : &quot;&quot;) + &#x27;&lt;/span&gt;&#x27;;
+    return &#x27;&lt;div class=&quot;crow&quot; onclick=&quot;openCase(&#x27; + c.id + &#x27;)&quot;&gt;&#x27; +
+      &#x27;&lt;div class=&quot;crow-top&quot;&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + c.who + &#x27;&lt;/span&gt;&#x27; +
+      &#x27;&lt;span class=&quot;cmoney&quot;&gt;&#x27; + money(c.commission) + (c.recurring ? &#x27;&lt;span class=&quot;dim&quot;&gt;/yr&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
+      &#x27;&lt;div class=&quot;crow-sub&quot;&gt;&#x27; + linePill(c.line) + &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + c.product + &#x27; \u00B7 &#x27; + c.carrier + &#x27; \u00B7 &#x27; + c.stage + &#x27; \u00B7 &lt;/span&gt;&#x27; +
+      &#x27;&lt;span class=&quot;age&#x27; + (c.age &gt; 7 ? &quot; hot&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + c.age + &#x27;d&lt;/span&gt;&#x27; + flag + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  };
+  document.getElementById(&quot;caseRows&quot;).innerHTML = total ? groups.map(g =&gt;
+    &#x27;&lt;tr class=&quot;srow-h&quot;&gt;&lt;td colspan=&quot;7&quot;&gt;&lt;span class=&quot;sgname&quot;&gt;&#x27; + g.s + &#x27; \u00B7 &#x27; + g.rows.length + &#x27;&lt;/span&gt;&lt;span class=&quot;sgmeta&quot;&gt;&#x27; + statusSums(g.rows) + &#x27;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&#x27; +
+    (g.rows.length ? g.rows.map(tableRow).join(&quot;&quot;) : &#x27;&lt;tr&gt;&lt;td colspan=&quot;7&quot; class=&quot;dim&quot; style=&quot;padding:10px 8px 16px&quot;&gt;No cases in this status.&lt;/td&gt;&lt;/tr&gt;&#x27;)
+  ).join(&quot;&quot;) : &#x27;&lt;tr&gt;&lt;td colspan=&quot;7&quot; class=&quot;dim&quot; style=&quot;padding:18px 8px&quot;&gt;Nothing here under this filter.&lt;/td&gt;&lt;/tr&gt;&#x27;;
+  document.getElementById(&quot;caseList&quot;).innerHTML = total ? groups.map(g =&gt;
+    &#x27;&lt;div class=&quot;sgroup&quot;&gt;&lt;span&gt;&#x27; + g.s + &#x27; \u00B7 &#x27; + g.rows.length + &#x27;&lt;/span&gt;&lt;span class=&quot;sgmeta&quot;&gt;&#x27; + statusSums(g.rows) + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
+    (g.rows.length ? g.rows.map(listRow).join(&quot;&quot;) : &#x27;&lt;div class=&quot;dim&quot; style=&quot;padding:8px 4px 14px&quot;&gt;No cases in this status.&lt;/div&gt;&#x27;)
+  ).join(&quot;&quot;) : &#x27;&lt;div class=&quot;dim&quot; style=&quot;padding:18px 4px&quot;&gt;Nothing here under this filter.&lt;/div&gt;&#x27;;
+}
+function renderRenewals(){
+  document.getElementById(&quot;renewals&quot;).innerHTML = S.renewals.map(r =&gt;
+    &#x27;&lt;div class=&quot;renew-row&quot;&gt;&lt;span&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + r.who + &#x27;&lt;/span&gt; &lt;span class=&quot;dim&quot;&gt;&#x27; + r.line + &#x27; · &#x27; + r.carrier + &#x27;&lt;/span&gt;&lt;/span&gt;&#x27; +
+    &#x27;&lt;span class=&quot;dim&quot;&gt;&#x27; + fmtDate(r.date) + &#x27; · &#x27; + money(r.premium) + &#x27;/yr&lt;/span&gt;&lt;/div&gt;&#x27;).join(&quot;&quot;);
+}
+
+/* ============ CASE SHEET + TASK STACK ============ */
+let sheetCase = null;
+function openCase(id){
+  sheetCase = S.cases.find(c =&gt; c.id === id);
+  renderSheet();
+  document.getElementById(&quot;sheetBack&quot;).classList.add(&quot;open&quot;);
+}
+function closeSheet(){ document.getElementById(&quot;sheetBack&quot;).classList.remove(&quot;open&quot;); sheetCase = null; }
+function dueLabel(t){
+  if (!t.due) return &quot;&quot;;
+  const d = daysUntil(t.due);
+  if (d &lt; 0) return &#x27;&lt;div class=&quot;due over&quot;&gt;Overdue by &#x27; + Math.abs(d) + &#x27;d&lt;/div&gt;&#x27;;
+  if (d === 0) return &#x27;&lt;div class=&quot;due&quot;&gt;Due today&lt;/div&gt;&#x27;;
+  return &#x27;&lt;div class=&quot;due&quot;&gt;Due in &#x27; + d + &#x27;d · &#x27; + fmtDate(t.due) + &#x27;&lt;/div&gt;&#x27;;
+}
+function renderSheet(){
+  const c = sheetCase; if (!c) return;
+  const open = c.tasks.map((t,i) =&gt; ({t,i})).filter(x =&gt; !x.t.done);
+  const done = c.tasks.map((t,i) =&gt; ({t,i})).filter(x =&gt; x.t.done);
+  const taskRow = x =&gt;
+    &#x27;&lt;label class=&quot;task &#x27; + (x.t.done ? &quot;done&quot; : &quot;&quot;) + &#x27;&quot;&gt;&lt;input type=&quot;checkbox&quot; &#x27; + (x.t.done ? &quot;checked&quot; : &quot;&quot;) +
+    &#x27; onchange=&quot;toggleTask(&#x27; + x.i + &#x27;)&quot;&gt;&lt;span&gt;&lt;span class=&quot;t&quot;&gt;&#x27; + x.t.t + &#x27;&lt;/span&gt;&#x27; + (x.t.done ? &quot;&quot; : dueLabel(x.t)) + &#x27;&lt;/span&gt;&lt;/label&gt;&#x27;;
+  document.getElementById(&quot;sheet&quot;).innerHTML =
+    &#x27;&lt;button class=&quot;sheet-close&quot; onclick=&quot;closeSheet()&quot;&gt;✕&lt;/button&gt;&#x27; +
+    &#x27;&lt;h3&gt;&#x27; + c.who + &#x27; — &#x27; + c.product + &#x27;&lt;/h3&gt;&#x27; +
+    &#x27;&lt;div class=&quot;meta&quot;&gt;&#x27; + c.line + &#x27; · &#x27; + c.carrier + &#x27; · &#x27; + (statusOf(c) === c.stage ? c.stage : statusOf(c) + &#x27; — &#x27; + c.stage) + &#x27; · &#x27; + c.age + &#x27; days in flight · &#x27; +
+      money(c.commission) + (c.recurring ? &#x27;/yr recurring&#x27; : &#x27; commission&#x27;) + &#x27;&lt;/div&gt;&#x27; +
+    (c.stuck &amp;&amp; open.length === 0
+      ? &#x27;&lt;div class=&quot;court-banner&quot;&gt;⏳ This case is stalled with &lt;b&gt;no open tasks on your side&lt;/b&gt; — the ball is in the carrier\u2019s court. A status call is the only move.&lt;/div&gt;&#x27; : &#x27;&#x27;) +
+    &#x27;&lt;div class=&quot;stack-lbl&quot;&gt;Task stack — open (&#x27; + open.length + &#x27;)&lt;/div&gt;&#x27; +
+    (open.length ? open.map(taskRow).join(&quot;&quot;) : &#x27;&lt;p class=&quot;dim&quot; style=&quot;padding:6px 0&quot;&gt;No open tasks.&lt;/p&gt;&#x27;) +
+    (done.length ? &#x27;&lt;div class=&quot;stack-lbl&quot;&gt;Closed (&#x27; + done.length + &#x27;)&lt;/div&gt;&#x27; + done.map(taskRow).join(&quot;&quot;) : &#x27;&#x27;) +
+    &#x27;&lt;div class=&quot;add-task&quot;&gt;&lt;input id=&quot;newTask&quot; type=&quot;text&quot; placeholder=&quot;Add a task to this case…&quot; onkeydown=&quot;if(event.key===\&#x27;Enter\&#x27;)addTask()&quot;&gt;&#x27; +
+    &#x27;&lt;button class=&quot;btn&quot; onclick=&quot;addTask()&quot;&gt;Add&lt;/button&gt;&lt;/div&gt;&#x27;;
+}
+function toggleTask(i){
+  const t = sheetCase.tasks[i]; t.done = !t.done;
+  if (openTasks(sheetCase).length || !sheetCase.stuck) { /* stuck flag stays until stage moves in the real product */ }
+  save(); renderSheet(); renderCases(); renderKPIs(); renderTasks();
+}
+function addTask(){
+  const inp = document.getElementById(&quot;newTask&quot;);
+  const v = inp.value.trim(); if (!v) return;
+  sheetCase.tasks.push({t: v, done: false});
+  save(); renderSheet(); renderCases(); renderTasks();
+}
+&lt;/script&gt;
+
+&lt;script&gt;
+/* ============ LICENSES ============ */
+function renderLicenses(){
+  document.getElementById(&quot;licenses&quot;).innerHTML = S.licenses.map(L =&gt; {
+    const d = daysUntil(L.expires);
+    const cls = d &lt;= 45 ? &quot;soon&quot; : &quot;ok&quot;;
+    const chips = Object.keys(L.appts).map(k =&gt;
+      &#x27;&lt;span class=&quot;chip &#x27; + (L.appts[k] ? &quot;&quot; : &quot;no&quot;) + &#x27;&quot;&gt;&#x27; + (L.appts[k] ? &quot;✓ &quot; : &quot;✕ &quot;) + k + &#x27;&lt;/span&gt;&#x27;).join(&quot;&quot;);
+    return &#x27;&lt;div class=&quot;lic&quot;&gt;&lt;div class=&quot;lic-head&quot;&gt;&lt;span class=&quot;lic-state&quot;&gt;&#x27; + L.state + &#x27;&lt;/span&gt;&#x27; +
+      &#x27;&lt;span class=&quot;lic-exp &#x27; + cls + &#x27;&quot;&gt;Renews &#x27; + fmtDate(L.expires) + &#x27; · &#x27; + d + &#x27; days left&lt;/span&gt;&lt;/div&gt;&#x27; +
+      &#x27;&lt;div class=&quot;lic-ce&quot;&gt;&#x27; + L.ce + &#x27;&lt;/div&gt;&#x27; +
+      &#x27;&lt;div class=&quot;chips&quot;&gt;&lt;span class=&quot;chip-lbl&quot;&gt;Carrier appointments&lt;/span&gt;&#x27; + chips + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  }).join(&quot;&quot;);
+}
+
+/* ============ CALENDAR (week + month, Google-Calendar style) ============ */
+let calMode = &quot;week&quot;;
+let calCursor = new Date();
+function isoOf(d){ return d.getFullYear() + &quot;-&quot; + String(d.getMonth() + 1).padStart(2, &quot;0&quot;) + &quot;-&quot; + String(d.getDate()).padStart(2, &quot;0&quot;); }
+function allDated(){
+  const items = [];
+  S.events.forEach(e =&gt; { const d = new Date(); d.setDate(d.getDate() + e.off); items.push({date: isoOf(d), time: e.time || &quot;&quot;, kind: e.kind || &quot;&quot;, title: e.title}); });
+  S.renewals.forEach(r =&gt; items.push({date: r.date, time: &quot;&quot;, kind: &quot;ren&quot;, title: &quot;Renewal — &quot; + r.who + &quot; (&quot; + r.carrier + &quot;)&quot;}));
+  S.licenses.forEach(L =&gt; items.push({date: L.expires, time: &quot;&quot;, kind: &quot;lic&quot;, title: L.state + &quot; license renewal&quot;}));
+  S.cases.forEach(c =&gt; c.tasks.forEach(t =&gt; { if (!t.done &amp;&amp; t.due) items.push({date: t.due, time: &quot;&quot;, kind: &quot;task&quot;, cid: c.id, title: &quot;Due: &quot; + t.t + &quot; — &quot; + c.who}); }));
+  return items;
+}
+function setCalMode(m){ calMode = m; renderCalendar(); }
+function goDay(iso){ calCursor = new Date(iso + &quot;T12:00:00&quot;); calMode = &quot;day&quot;; renderCalendar(); }
+function shiftCal(dir){
+  if (calMode === &quot;month&quot;) calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth() + dir, 1);
+  else { const d = new Date(calCursor); d.setDate(d.getDate() + dir * (calMode === &quot;day&quot; ? 1 : 7)); calCursor = d; }
+  renderCalendar();
+}
+function renderCalendar(){
+  const items = allDated();
+  document.getElementById(&quot;cm-day&quot;).classList.toggle(&quot;active&quot;, calMode === &quot;day&quot;);
+  document.getElementById(&quot;cm-week&quot;).classList.toggle(&quot;active&quot;, calMode === &quot;week&quot;);
+  document.getElementById(&quot;cm-month&quot;).classList.toggle(&quot;active&quot;, calMode === &quot;month&quot;);
+  document.querySelector(&quot;.calcard&quot;).classList.toggle(&quot;monthmode&quot;, calMode === &quot;month&quot;);
+  document.body.classList.toggle(&quot;monthfull&quot;, calMode === &quot;month&quot;);
+  const title = document.getElementById(&quot;calTitle&quot;);
+  const todayIso = isoOf(new Date());
+  if (calMode === &quot;day&quot;){
+    const iso = isoOf(calCursor);
+    title.textContent = calCursor.toLocaleDateString(&quot;en-US&quot;,{weekday:&quot;long&quot;, month:&quot;long&quot;, day:&quot;numeric&quot;, year:&quot;numeric&quot;});
+    const evs = items.filter(e =&gt; e.date === iso);
+    const order = {&quot;&quot;:0, appt:0, task:1, due:1, ren:2, lic:3};
+    evs.sort((a, b) =&gt; (order[a.kind] ?? 4) - (order[b.kind] ?? 4));
+    const sub = {appt:&quot;Appointment&quot;, task:&quot;Task deadline&quot;, due:&quot;Task deadline&quot;, ren:&quot;Policy renewal&quot;, lic:&quot;License renewal&quot;};
+    const when = e =&gt; e.time ? e.time : (e.kind === &quot;task&quot; || e.kind === &quot;due&quot;) ? &quot;Due&quot; : e.kind === &quot;ren&quot; ? &quot;Renews&quot; : e.kind === &quot;lic&quot; ? &quot;Expires&quot; : &quot;All day&quot;;
+    let html = &#x27;&lt;div class=&quot;dlist&quot;&gt;&#x27;;
+    if (!evs.length) html += &#x27;&lt;div class=&quot;tempty&quot;&gt;Nothing on this day \u2014 no appointments, deadlines, renewals, or expiries.&lt;/div&gt;&#x27;;
+    html += evs.map(e =&gt; &#x27;&lt;div class=&quot;drow &#x27; + e.kind + (e.cid ? &quot; clk&quot; : &quot;&quot;) + &#x27;&quot;&#x27; + (e.cid ? &#x27; onclick=&quot;openCase(&#x27; + e.cid + &#x27;)&quot;&#x27; : &#x27;&#x27;) + &#x27;&gt;&#x27; +
+      &#x27;&lt;span class=&quot;ddot&quot;&gt;&lt;/span&gt;&lt;div class=&quot;dmain&quot;&gt;&lt;div class=&quot;dtitle&quot;&gt;&#x27; + e.title + &#x27;&lt;/div&gt;&#x27; +
+      &#x27;&lt;div class=&quot;dsub&quot;&gt;&#x27; + (sub[e.kind] || &quot;Appointment&quot;) + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27; +
+      &#x27;&lt;span class=&quot;dwhen&quot;&gt;&#x27; + when(e) + &#x27;&lt;/span&gt;&#x27; + (e.cid ? &#x27;&lt;span class=&quot;tchev&quot;&gt;\u203A&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;);
+    document.getElementById(&quot;calendar&quot;).innerHTML = html + &#x27;&lt;/div&gt;&#x27;;
+  } else if (calMode === &quot;week&quot;){
+    const d0 = new Date(calCursor.getFullYear(), calCursor.getMonth(), calCursor.getDate());
+    const mon = new Date(d0); mon.setDate(d0.getDate() - ((d0.getDay() + 6) % 7));
+    const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+    title.textContent = mon.toLocaleDateString(&quot;en-US&quot;,{month:&quot;short&quot;, day:&quot;numeric&quot;}) + &quot; – &quot; +
+      sun.toLocaleDateString(&quot;en-US&quot;,{month:&quot;short&quot;, day:&quot;numeric&quot;, year:&quot;numeric&quot;});
+    let html = &#x27;&lt;div class=&quot;cal&quot;&gt;&#x27;;
+    for (let i = 0; i &lt; 7; i++){
+      const d = new Date(mon); d.setDate(mon.getDate() + i); const iso = isoOf(d);
+      const evs = items.filter(e =&gt; e.date === iso);
+      html += &#x27;&lt;div class=&quot;day &#x27; + (iso===todayIso ? &quot;today&quot; : &quot;&quot;) + &#x27;&quot; onclick=&quot;goDay(\&#x27;&#x27; + iso + &#x27;\&#x27;)&quot;&gt;&#x27; +
+        &#x27;&lt;div class=&quot;dname&quot;&gt;&#x27; + d.toLocaleDateString(&quot;en-US&quot;,{weekday:&quot;short&quot;}) + &#x27;&lt;/div&gt;&#x27; +
+        &#x27;&lt;div class=&quot;dnum&quot;&gt;&#x27; + d.getDate() + &#x27;&lt;/div&gt;&#x27; +
+        evs.map(e =&gt; &#x27;&lt;div class=&quot;ev &#x27; + e.kind + &#x27;&quot;&gt;&#x27; + (e.time ? &#x27;&lt;span class=&quot;tm&quot;&gt;&#x27; + e.time + &#x27;&lt;/span&gt; &#x27; : &#x27;&#x27;) + e.title + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;) + &#x27;&lt;/div&gt;&#x27;;
+    }
+    document.getElementById(&quot;calendar&quot;).innerHTML = html + &#x27;&lt;/div&gt;&#x27;;
+  } else {
+    const y = calCursor.getFullYear(), mo = calCursor.getMonth();
+    title.textContent = calCursor.toLocaleDateString(&quot;en-US&quot;,{month:&quot;long&quot;, year:&quot;numeric&quot;});
+    const first = new Date(y, mo, 1);
+    const lead = first.getDay(); /* Sunday-first, like Google Calendar */
+    const cells = 42; /* always six rows, stable while navigating */
+    const start = new Date(y, mo, 1 - lead);
+    let html = &#x27;&lt;div class=&quot;mhead&quot;&gt;&#x27; + [&quot;S&quot;,&quot;M&quot;,&quot;T&quot;,&quot;W&quot;,&quot;T&quot;,&quot;F&quot;,&quot;S&quot;].map(d =&gt; &#x27;&lt;div&gt;&#x27; + d + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;) + &#x27;&lt;/div&gt;&lt;div class=&quot;mcal&quot;&gt;&#x27;;
+    for (let i = 0; i &lt; cells; i++){
+      const d = new Date(start); d.setDate(start.getDate() + i); const iso = isoOf(d);
+      const evs = items.filter(e =&gt; e.date === iso);
+      const chips = evs.slice(0,3).map(e =&gt; &#x27;&lt;div class=&quot;mchip &#x27; + e.kind + &#x27;&quot;&gt;&#x27; + e.title + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;) +
+        (evs.length &gt; 3 ? &#x27;&lt;div class=&quot;mmore&quot;&gt;+&#x27; + (evs.length - 3) + &#x27; more&lt;/div&gt;&#x27; : &#x27;&#x27;);
+      html += &#x27;&lt;div class=&quot;mday &#x27; + (d.getMonth() !== mo ? &quot;out&quot; : &quot;&quot;) + (iso===todayIso ? &quot; today&quot; : &quot;&quot;) + &#x27;&quot; onclick=&quot;goDay(\&#x27;&#x27; + iso + &#x27;\&#x27;)&quot;&gt;&#x27; +
+        &#x27;&lt;div class=&quot;mnum&quot;&gt;&#x27; + d.getDate() + &#x27;&lt;/div&gt;&#x27; + chips + &#x27;&lt;/div&gt;&#x27;;
+    }
+    document.getElementById(&quot;calendar&quot;).innerHTML = html + &#x27;&lt;/div&gt;&#x27;;
+  }
+  fitMonth();
+}
+function fitMonth(){
+  const cal = document.querySelector(&quot;.mcal&quot;);
+  if (!cal) return;
+  if (calMode === &quot;month&quot; &amp;&amp; window.innerWidth &lt;= 900)
+    cal.style.height = Math.min(920, Math.max(420, window.innerHeight - 152)) + &quot;px&quot;;
+  else cal.style.height = &quot;&quot;;
+}
+window.addEventListener(&quot;resize&quot;, fitMonth);
+
+/* ============ AI ASSISTANT (simulated command layer) ============ */
+const chat = document.getElementById(&quot;chat&quot;);
+let pending = null; // {kind, payload, summary}
+function botMsg(html){
+  const d = document.createElement(&quot;div&quot;); d.className = &quot;msg bot&quot;; d.innerHTML = html;
+  chat.appendChild(d); chat.scrollTop = chat.scrollHeight; return d;
+}
+function userMsg(text){
+  const d = document.createElement(&quot;div&quot;); d.className = &quot;msg user&quot;; d.textContent = text;
+  chat.appendChild(d); chat.scrollTop = chat.scrollHeight;
+}
+function draftCard(summary, onOk){
+  pending = onOk;
+  const d = document.createElement(&quot;div&quot;); d.className = &quot;msg bot&quot;;
+  d.innerHTML = &#x27;Here\u2019s the draft — nothing is saved until you confirm:&lt;div class=&quot;draft&quot;&gt;&lt;div class=&quot;dt&quot;&gt;&#x27; + summary + &#x27;&lt;/div&gt;&#x27; +
+    &#x27;&lt;div class=&quot;row&quot;&gt;&lt;button class=&quot;ok&quot;&gt;Confirm&lt;/button&gt;&lt;button class=&quot;no&quot;&gt;Cancel&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+  d.querySelector(&quot;.ok&quot;).onclick = () =&gt; { const f = pending; pending = null; d.querySelector(&quot;.draft&quot;).remove(); if (f) f(); };
+  d.querySelector(&quot;.no&quot;).onclick = () =&gt; { pending = null; d.querySelector(&quot;.draft&quot;).remove(); botMsg(&quot;Cancelled — nothing was saved.&quot;); };
+  chat.appendChild(d); chat.scrollTop = chat.scrollHeight;
+}
+const CHIPS = [&quot;What\u2019s stuck?&quot;, &quot;Add a case&quot;, &quot;What\u2019s on my Thursday?&quot;, &quot;When does my Arizona license expire?&quot;, &quot;Am I appointed with Foresters in Arizona?&quot;, &quot;What\u2019s funds pending?&quot;];
+document.getElementById(&quot;chips&quot;).innerHTML = CHIPS.map(c =&gt; &#x27;&lt;button onclick=&quot;chipSend(this)&quot;&gt;&#x27; + c + &#x27;&lt;/button&gt;&#x27;).join(&quot;&quot;);
+function chipSend(b){ document.getElementById(&quot;aiText&quot;).value = b.textContent; sendAI(); }
+
+function stuckText(){
+  const st = S.cases.filter(c =&gt; c.stuck);
+  if (!st.length) return &quot;Nothing is stuck right now. Clean board.&quot;;
+  return &quot;You have &quot; + st.length + &quot; stuck cases:\n&quot; + st.map(c =&gt; {
+    const ot = openTasks(c).length;
+    return &quot;• &quot; + c.who + &quot; — &quot; + c.carrier + &quot; &quot; + c.product + &quot;, &quot; + c.age + &quot;d, &quot; + money(c.commission) +
+      (ot === 0 ? &quot; — no open tasks: ball is in the carrier\u2019s court&quot; : &quot; — &quot; + ot + &quot; open task&quot; + (ot&gt;1?&quot;s&quot;:&quot;&quot;) + &quot; on your side&quot;);
+  }).join(&quot;\n&quot;);
+}
+function statusText(st){
+  if (!st) return &quot;Here\u2019s where everything stands:\n&quot; + STATUSES.map(s =&gt; {
+    const rows = S.cases.filter(c =&gt; statusOf(c) === s);
+    const stk = rows.filter(c =&gt; c.stuck).length;
+    return &quot;\u2022 &quot; + s + &quot; \u2014 &quot; + rows.length + &quot; case&quot; + (rows.length === 1 ? &quot;&quot; : &quot;s&quot;) + (stk ? &quot; (&quot; + stk + &quot; stuck)&quot; : &quot;&quot;);
+  }).join(&quot;\n&quot;);
+  const rows = S.cases.filter(c =&gt; statusOf(c) === st).slice().sort((a,b) =&gt; b.age - a.age);
+  if (!rows.length) return &quot;Nothing is &quot; + st.toLowerCase() + &quot; right now.&quot;;
+  return rows.length + &quot; case&quot; + (rows.length === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; &quot; + st.toLowerCase() + &quot;:\n&quot; + rows.map(c =&gt;
+    &quot;\u2022 &quot; + c.who + &quot; \u2014 &quot; + c.line + &quot; \u00B7 &quot; + c.carrier + &quot; &quot; + c.product + &quot;, &quot; + c.stage.toLowerCase() + &quot;, &quot; + c.age + &quot;d, &quot; + money(c.commission) + (c.recurring ? &quot;/yr&quot; : &quot;&quot;) + (c.stuck ? &quot; \u2014 stuck&quot; : &quot;&quot;)).join(&quot;\n&quot;);
+}
+function findDayEvents(name){
+  const now = new Date();
+  const target = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  if (name === &quot;today&quot;) { /* today */ }
+  else if (name === &quot;tomorrow&quot;) target.setDate(target.getDate() + 1);
+  else {
+    const days = [&quot;sunday&quot;,&quot;monday&quot;,&quot;tuesday&quot;,&quot;wednesday&quot;,&quot;thursday&quot;,&quot;friday&quot;,&quot;saturday&quot;];
+    let diff = (days.indexOf(name) - target.getDay() + 7) % 7;
+    target.setDate(target.getDate() + diff);
+  }
+  const iso = target.toISOString().slice(0,10);
+  const evs = S.events.filter(e =&gt; new Date(Date.now() + e.off*DAY).toISOString().slice(0,10) === iso);
+  const label = target.toLocaleDateString(&quot;en-US&quot;,{weekday:&quot;long&quot;, month:&quot;short&quot;, day:&quot;numeric&quot;});
+  if (!evs.length) return label + &quot; is clear — nothing scheduled, nothing due.&quot;;
+  return label + &quot;:\n&quot; + evs.map(e =&gt; &quot;• &quot; + (e.time ? e.time + &quot; — &quot; : &quot;&quot;) + e.title).join(&quot;\n&quot;);
+}
+function handleAI(raw){
+  const text = raw.trim();
+  const t = text.toLowerCase();
+  /* --- Rule 1 guardrail: no client PII --- */
+  if (/\d{3}-\d{2}-\d{4}/.test(text) || /\b(ssn|social security|date of birth|dob|policy number|account number)\b/.test(t)) {
+    botMsg(&quot;⛔ I can\u2019t take that — BookView never stores client identifiers (no SSNs, birth dates, or policy/account numbers). Refer to the case by initials instead, like \u201CJMS 214\u201D, and I\u2019ll log it right away.&quot;);
+    return;
+  }
+  /* --- stuck --- */
+  if (/\bstuck\b|\boverdue\b/.test(t)) { botMsg(stuckText()); return; }
+  /* --- status: where cases stand --- */
+  const stHit = STATUSES.find(s =&gt; t.includes(s.toLowerCase()));
+  if (stHit || /\bstatus\b|\bpipeline\b/.test(t)) { botMsg(statusText(stHit)); return; }
+  /* --- add a case --- */
+  if (/add.*case|new case|submitted/.test(t)) {
+    const line = /annuit/.test(t) ? &quot;Annuity&quot; : /medicare|advantage|supp/.test(t) ? &quot;Medicare&quot; : /medical|health plan/.test(t) ? &quot;Medical&quot; : /dental/.test(t) ? &quot;Dental&quot; : /advisor|rollover|managed/.test(t) ? &quot;Advisory&quot; : &quot;Life&quot;;
+    const carriers = [&quot;North American&quot;,&quot;Foresters&quot;,&quot;Mutual of Omaha&quot;,&quot;Allianz&quot;,&quot;Transamerica&quot;,&quot;Protective&quot;,&quot;National Life&quot;,&quot;Athene&quot;,&quot;UnitedHealthcare&quot;,&quot;Humana&quot;,&quot;Schwab&quot;,&quot;Fidelity&quot;];
+    const carrier = carriers.find(c =&gt; t.includes(c.toLowerCase())) || &quot;North American&quot;;
+    const lm = text.match(/\b([A-Z]{3})\s+(\d{3})\b/);
+    const who = lm ? lm[1] + &quot; &quot; + lm[2] : &quot;JMS 214&quot;;
+    const commText = lm ? text.replace(lm[0], &quot; &quot;) : text;
+    const comm = (commText.match(/\$?\s?([\d,]{3,})/) || [null,&quot;1,500&quot;])[1].replace(/,/g,&quot;&quot;);
+    draftCard(&quot;&lt;b&gt;New case:&lt;/b&gt; &quot; + who + &quot; · &quot; + line + &quot; · &quot; + carrier + &quot; · stage: Application taken · commission &quot; + money(parseInt(comm,10)),
+      () =&gt; {
+        S.cases.push({id: Date.now(), who, line, carrier, product:&quot;—&quot;, stage:&quot;Application taken&quot;, age:0, commission:parseInt(comm,10), stuck:false, tasks:[]});
+        save(); renderKPIs(); renderCases(); renderTasks();
+        botMsg(&quot;Saved. &quot; + who + &quot; is on the board — I\u2019ll start aging it from today. Add its first task any time: \u201Cadd a task to &quot; + who + &quot;\u201D.&quot;);
+      });
+    return;
+  }
+  /* --- complete a task --- */
+  if (/\b(done|complete|finished|scheduled|sent|delivered)\b/.test(t)) {
+    let best = null, bestCase = null;
+    S.cases.forEach(c =&gt; openTasks(c).forEach(task =&gt; {
+      const words = task.t.toLowerCase().split(/\W+/).filter(w =&gt; w.length &gt; 3);
+      const hits = words.filter(w =&gt; t.includes(w)).length;
+      if (hits &gt;= 2 &amp;&amp; (!best || hits &gt; best.hits)) { best = {task, hits}; bestCase = c; }
+    }));
+    if (best) {
+      const task = best.task, c = bestCase;
+      draftCard(&quot;&lt;b&gt;Close task:&lt;/b&gt; \u201C&quot; + task.t + &quot;\u201D on case &quot; + c.who + &quot; (&quot; + c.carrier + &quot;)&quot;,
+        () =&gt; { task.done = true; save(); renderCases(); renderKPIs(); renderTasks(); botMsg(&quot;Done — \u201C&quot; + task.t + &quot;\u201D is closed on &quot; + c.who + &quot;. &quot; + openTasks(c).length + &quot; open task(s) left on that case.&quot;); });
+      return;
+    }
+    botMsg(&quot;I couldn\u2019t match that to an open task. Try naming the task, like \u201Cthe paramed exam is scheduled\u201D or \u201Cscope copy sent\u201D.&quot;);
+    return;
+  }
+  /* --- add a task --- */
+  if (/add a task|remind me/.test(t)) {
+    botMsg(&quot;Open the case from the dashboard and use the task box at the bottom of its stack — or tell me the case label and the task, and I\u2019ll draft it. (In the full product, I\u2019d just take it from this chat.)&quot;);
+    return;
+  }
+  /* --- calendar queries --- */
+  const dayMatch = t.match(/\b(today|tomorrow|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/);
+  if (/what/.test(t) &amp;&amp; dayMatch) { botMsg(findDayEvents(dayMatch[1])); return; }
+  /* --- license queries --- */
+  if (/appoint/.test(t)) {
+    const L = S.licenses.find(l =&gt; t.includes(l.state.toLowerCase()));
+    const carriers = [&quot;North American&quot;,&quot;Foresters&quot;,&quot;Mutual of Omaha&quot;,&quot;Allianz&quot;,&quot;Transamerica&quot;,&quot;Protective&quot;,&quot;National Life&quot;,&quot;Athene&quot;,&quot;UnitedHealthcare&quot;,&quot;Humana&quot;];
+    const car = carriers.find(c =&gt; t.includes(c.toLowerCase()));
+    if (L &amp;&amp; car) {
+      botMsg(L.appts[car] ? &quot;Yes — you\u2019re appointed with &quot; + car + &quot; in &quot; + L.state + &quot;, and your &quot; + L.state + &quot; license is current until &quot; + fmtDate(L.expires) + &quot;.&quot;
+                          : &quot;No — you\u2019re not appointed with &quot; + car + &quot; in &quot; + L.state + &quot; yet. Don\u2019t submit there until the appointment is in. Your license itself is current until &quot; + fmtDate(L.expires) + &quot;.&quot;);
+      return;
+    }
+  }
+  if (/license|licence|renew/.test(t)) {
+    const L = S.licenses.find(l =&gt; t.includes(l.state.toLowerCase()));
+    if (L) { botMsg(&quot;Your &quot; + L.state + &quot; license renews &quot; + fmtDate(L.expires) + &quot; — &quot; + daysUntil(L.expires) + &quot; days left. &quot; + L.ce + &quot;.&quot;); return; }
+    const soon = S.licenses.slice().sort((a,b) =&gt; daysUntil(a.expires) - daysUntil(b.expires))[0];
+    botMsg(&quot;Soonest renewal: &quot; + soon.state + &quot;, &quot; + fmtDate(soon.expires) + &quot; (&quot; + daysUntil(soon.expires) + &quot; days). &quot; + soon.ce);
+    return;
+  }
+  /* --- commissions --- */
+  if (/commission|owed|pending money/.test(t)) {
+    const pending = S.cases.filter(c =&gt; !c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
+    const stuckM = S.cases.filter(c =&gt; c.stuck &amp;&amp; !c.recurring).reduce((a,c) =&gt; a + c.commission, 0);
+    botMsg(&quot;Commissions pending: &quot; + money(pending) + &quot; across &quot; + S.cases.filter(c=&gt;!c.recurring).length + &quot; cases — &quot; + money(stuckM) + &quot; of it is stuck.&quot;);
+    return;
+  }
+  if (/help|what can you/.test(t)) {
+    botMsg(&quot;I can:\n• Report what\u2019s stuck\n• Add a case (try \u201Cadd a case, life, Foresters, TJB 902, 1800\u201D)\n• Close a task (\u201Cthe paramed exam is scheduled\u201D)\n• Answer license &amp; appointment questions\n• Tell you what\u2019s on any day this week\nI draft first — nothing saves without your confirm.&quot;);
+    return;
+  }
+  botMsg(&quot;I didn\u2019t catch that one — this prototype understands a defined set of commands (the full product won\u2019t have that limit). Try one of the suggestions below, or type \u201Chelp\u201D.&quot;);
+}
+function sendAI(){
+  const inp = document.getElementById(&quot;aiText&quot;);
+  const v = inp.value.trim(); if (!v) return;
+  inp.value = &quot;&quot;; userMsg(v); handleAI(v);
+}
+document.getElementById(&quot;aiText&quot;).addEventListener(&quot;keydown&quot;, e =&gt; { if (e.key === &quot;Enter&quot;) sendAI(); });
+
+/* ============ MOBILE APP SHELL (v2.1) ============ */
+function showMobile(v){
+  document.querySelectorAll(&quot;.tabbar button&quot;).forEach(b =&gt; b.classList.toggle(&quot;active&quot;, b.dataset.mv === v));
+  document.body.classList.toggle(&quot;mv-ai&quot;, v === &quot;ai&quot;);
+  if (v !== &quot;ai&quot;) showTab(v);
+  window.scrollTo({top: 0});
+  setTimeout(() =&gt; { if (typeof fitMonth === &quot;function&quot;) fitMonth(); }, 30);
+}
+
+/* ============ TASKS TAB (v3.0) ============ */
+function dueMeta(iso){
+  if (!iso) return {g:3, label:&quot;No date&quot;, cls:&quot;nod&quot;};
+  const d = daysUntil(iso);
+  if (d &lt; 0) return {g:0, label:&quot;Overdue &quot; + (-d) + &quot;d&quot;, cls:&quot;ov&quot;};
+  if (d === 0) return {g:1, label:&quot;Due today&quot;, cls:&quot;td&quot;};
+  if (d === 1) return {g:2, label:&quot;Tomorrow&quot;, cls:&quot;up&quot;};
+  return {g:2, label:fmtDate(iso), cls:&quot;up&quot;};
+}
+function taskListRow(x){
+  return &#x27;&lt;div class=&quot;trow&quot;&gt;&#x27; +
+    &#x27;&lt;button class=&quot;tcbox&#x27; + (x.t.done ? &quot; done&quot; : &quot;&quot;) + &#x27;&quot; onclick=&quot;toggleListTask(&#x27; + x.c.id + &#x27;,&#x27; + x.i + &#x27;)&quot; aria-label=&quot;Mark task done&quot;&gt;&#x27; + (x.t.done ? &quot;\u2713&quot; : &quot;&quot;) + &#x27;&lt;/button&gt;&#x27; +
+    &#x27;&lt;div class=&quot;tmain&quot; onclick=&quot;openCase(&#x27; + x.c.id + &#x27;)&quot;&gt;&#x27; +
+      &#x27;&lt;div class=&quot;ttitle&#x27; + (x.t.done ? &quot; done&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + x.t.t + &#x27;&lt;/div&gt;&#x27; +
+      &#x27;&lt;div class=&quot;tmeta&quot;&gt;&#x27; + x.c.who + &#x27; \u00B7 &#x27; + x.c.product + &#x27; \u00B7 &#x27; + x.c.carrier +
+      &#x27; &lt;span class=&quot;tdue &#x27; + x.m.cls + &#x27;&quot;&gt;&#x27; + x.m.label + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
+    &#x27;&lt;/div&gt;&lt;span class=&quot;tchev&quot;&gt;\u203A&lt;/span&gt;&lt;/div&gt;&#x27;;
+}
+function renderTasks(){
+  const el = document.getElementById(&quot;taskList&quot;); if (!el) return;
+  const dl = document.getElementById(&quot;qaCases&quot;);
+  if (dl) dl.innerHTML = S.cases.map(c =&gt; &#x27;&lt;option value=&quot;&#x27; + c.who + &#x27;&quot;&gt;&lt;/option&gt;&#x27;).join(&quot;&quot;);
+  const items = [];
+  S.cases.forEach(c =&gt; (c.tasks || []).forEach((t, i) =&gt; items.push({c, t, i, m: dueMeta(t.due)})));
+  const open = items.filter(x =&gt; !x.t.done).sort((a, b) =&gt; (a.m.g - b.m.g) || String(a.t.due || &quot;9999&quot;).localeCompare(String(b.t.due || &quot;9999&quot;)));
+  const done = items.filter(x =&gt; x.t.done);
+  const names = [&quot;Overdue&quot;, &quot;Today&quot;, &quot;Upcoming&quot;, &quot;No date&quot;], clss = [&quot;ov&quot;, &quot;td&quot;, &quot;up&quot;, &quot;nod&quot;];
+  let html = &quot;&quot;;
+  names.forEach((name, gi) =&gt; {
+    const rows = open.filter(x =&gt; x.m.g === gi);
+    if (rows.length) html += &#x27;&lt;div class=&quot;tgroup &#x27; + clss[gi] + &#x27;&quot;&gt;&#x27; + name + &#x27; \u00B7 &#x27; + rows.length + &#x27;&lt;/div&gt;&#x27; + rows.map(taskListRow).join(&quot;&quot;);
+  });
+  if (!open.length) html += &#x27;&lt;div class=&quot;tempty&quot;&gt;All clear \u2014 no open tasks. When a case needs something, its task lands here.&lt;/div&gt;&#x27;;
+  if (done.length) html += &#x27;&lt;div class=&quot;tgroup done&quot;&gt;Completed \u00B7 &#x27; + done.length + &#x27;&lt;/div&gt;&#x27; + done.map(taskListRow).join(&quot;&quot;);
+  el.innerHTML = html;
+}
+function toggleListTask(caseId, idx){
+  const c = S.cases.find(x =&gt; x.id === caseId); if (!c || !c.tasks[idx]) return;
+  c.tasks[idx].done = !c.tasks[idx].done;
+  save(); renderTasks(); renderCases(); renderKPIs();
+}
+function findOrCreateCase(label){
+  const norm = (label || &quot;&quot;).trim().replace(/\s+/g, &quot; &quot;).toUpperCase();
+  if (!norm) return null;
+  let c = S.cases.find(x =&gt; x.who.toUpperCase() === norm);
+  if (!c) {
+    c = {id: Date.now(), who: norm, line: &quot;Other&quot;, carrier: &quot;\u2014&quot;, product: &quot;\u2014&quot;, stage: &quot;New case&quot;, age: 0, commission: 0, stuck: false, tasks: []};
+    S.cases.push(c);
+  }
+  return c;
+}
+function quickAddTask(){
+  const inp = document.getElementById(&quot;qaText&quot;), lab = document.getElementById(&quot;qaCase&quot;);
+  const v = inp.value.trim(); if (!v) return;
+  const c = findOrCreateCase(lab.value); if (!c) return;
+  const d = new Date();
+  const iso = d.getFullYear() + &quot;-&quot; + String(d.getMonth() + 1).padStart(2, &quot;0&quot;) + &quot;-&quot; + String(d.getDate()).padStart(2, &quot;0&quot;);
+  c.tasks = c.tasks || [];
+  c.tasks.push({t: v, done: false, due: iso});
+  inp.value = &quot;&quot;;
+  save(); renderTasks(); renderCases(); renderKPIs();
+}
+
+/* ============ INIT ============ */
+renderKPIs(); renderFilters(); renderCases(); renderTasks(); renderRenewals(); renderLicenses(); renderCalendar();
+botMsg(&quot;Evening. Your board: &quot; + S.cases.length + &quot; cases in flight, &quot; + S.cases.filter(c=&gt;c.stuck).length + &quot; stuck. Ask me what\u2019s stuck, tell me a case to add, or check a license — I\u2019ll draft it before anything saves.&quot;);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+    </div>
+    <p class="demo-cap">This is the actual screen, running on sample data. Filter by line, show only what's stuck, click any case for detail.</p>
+    <p class="demo-cap" style="color:var(--acc2);font-weight:600">No client PII — ever. BookView tracks case status, not client identity. Your clients' information stays in your CRM and carrier portals, where it belongs.</p>
+  </div>
+
+  <section>
+    <h2>Why agents lose money quietly</h2>
+    <p class="lead">A stuck case isn't an admin problem — it's a paycheck sitting in someone else's queue. Most agents find out a case stalled when the client calls, weeks later. BookView exists so you see it the day it happens.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ic">⏱️</div>
+        <h3>What's stuck, aged</h3>
+        <p>Every pending case carries its age. Anything sitting more than 7 days flags itself — oldest first, with the commission attached to it, so you chase the money in the right order.</p>
+      </div>
+      <div class="card">
+        <div class="ic">🧭</div>
+        <h3>Every line, every channel</h3>
+        <p>Channel dashboards only show the business you placed through them. BookView is channel-neutral: your whole book — every upline, every direct appointment, plus the advisory side — in one view.</p>
+      </div>
+      <div class="card">
+        <div class="ic">💵</div>
+        <h3>What you're owed</h3>
+        <p>Commissions pending, split clean vs. stuck. Renewals coming in the next 30 days before they lapse. Chargeback risk where you can still save it. The money view, not the data-entry view.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>A dashboard is not a CRM</h2>
+    <p class="lead">CRMs are databases — systems of record where work gets typed in. You already have those. BookView is the window facing the whole house: it reads your book and renders one honest screen.</p>
+    <div class="vs">
+      <div class="col">
+        <h3>A CRM</h3>
+        <ul>
+          <li>Stores your data, demands upkeep</li>
+          <li>Shows you records, one at a time</li>
+          <li>Built for firms and managers</li>
+          <li>One more system to log into and feed</li>
+        </ul>
+      </div>
+      <div class="col good">
+        <h3>BookView</h3>
+        <ul>
+          <li>One screen: where everything stands, right now</li>
+          <li>Flags what's stuck before your client notices</li>
+          <li>Built for the individual producer</li>
+          <li>Sold to you — not to your upline</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it starts</h2>
+    <p class="lead">The founding version is deliberately simple: bring your book in by CSV import or quick entry — minutes, not a migration — and the screen lights up. Live carrier connections come next, and founding members get them first.</p>
+    <div class="price">
+      <div>
+        <div class="big">$39<span class="per">/month</span></div>
+        <p class="micro" style="margin-top:6px">Founding list members lock launch access first.<br>Cancel anytime. Your book stays yours — export it whenever.</p>
+      </div>
+      <ul>
+        <li>The full one-screen dashboard</li>
+        <li>Stuck-case flags and aging</li>
+        <li>Renewals and commissions views</li>
+        <li>Every line: life, annuity, advisory, Medicare, medical, dental</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="signup" id="join">
+    <h2>Get on the founding list</h2>
+    <p>BookView opens to a small founding group first. Leave your email and you'll be in the first group invited — and the first asked what the screen is missing.</p>
+    <form id="joinForm">
+      <input type="email" id="joinEmail" placeholder="you@youragency.com" required>
+      <button class="btn" type="submit">Join the list</button>
+    </form>
+    <p class="thanks" id="joinThanks">You're on the list. Watch your inbox — founding invites go out first.</p>
+  </div>
+
+  <footer>
+    <div>BookView LLC — your whole book, one screen.</div>
+    <div>Not a CRM. Built by an agent, for agents.</div>
+  </footer>
+
+</div>
+<script>
+  document.getElementById('joinForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('joinThanks').style.display = 'block';
+    document.getElementById('joinEmail').value = '';
+  });
+</script>
+</body>
+</html>
