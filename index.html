@@ -599,6 +599,7 @@
   tbody tr:hover td{background:#f6f7fb}
   tr.srow-h td{background:#eceff8}
   .btn{border-radius:10px}
+  .chips-ai:empty{display:none}
 &lt;/style&gt;
   &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
   &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
@@ -1175,7 +1176,7 @@ function draftCard(summary, onOk){
   chat.appendChild(d); chat.scrollTop = chat.scrollHeight;
 }
 const CHIPS = [&quot;What\u2019s stuck?&quot;, &quot;Add a case&quot;, &quot;What\u2019s on my Thursday?&quot;, &quot;When does my Arizona license expire?&quot;, &quot;Am I appointed with Foresters in Arizona?&quot;, &quot;What\u2019s awaiting funds?&quot;];
-document.getElementById(&quot;chips&quot;).innerHTML = CHIPS.map(c =&gt; &#x27;&lt;button onclick=&quot;chipSend(this)&quot;&gt;&#x27; + c + &#x27;&lt;/button&gt;&#x27;).join(&quot;&quot;);
+document.getElementById(&quot;chips&quot;).innerHTML = &quot;&quot;;
 function chipSend(b){ document.getElementById(&quot;aiText&quot;).value = b.textContent; sendAI(); }
 
 function stuckText(){
@@ -1460,7 +1461,6 @@ function quickAddTask(){
 
 /* ============ INIT ============ */
 renderKPIs(); renderFilters(); renderCases(); renderTasks(); renderRenewals(); renderLicenses(); renderCalendar();
-botMsg(&quot;Evening. Your board: &quot; + S.cases.filter(c=&gt;INFLIGHT.includes(statusOf(c))).length + &quot; cases in flight, &quot; + S.cases.filter(c=&gt;c.stuck).length + &quot; stuck. Ask me what\u2019s stuck, tell me a case to add, or check a license — I\u2019ll draft it before anything saves.&quot;);
 &lt;/script&gt;
 &lt;script&gt;
 /* ============ v4.0 — CSV import, first run, license form ============ */
@@ -1646,14 +1646,12 @@ function frChoose(mode){
   if (mode === &quot;empty&quot;){
     S = {cases: [], renewals: [], licenses: [], events: [], onboarded: true};
     save(); renderKPIs(); renderFilters(); renderCases(); renderTasks(); renderRenewals(); renderLicenses(); renderCalendar();
-    botMsg(&quot;Clean board. Add your first case by telling me — “add a case, life, Foresters, BJK 201, 1800” — import a CSV from the dashboard, or add licenses on their tab.&quot;);
   } else save();
   document.getElementById(&quot;firstrunBack&quot;).classList.remove(&quot;open&quot;);
   if (mode === &quot;import&quot;) openImport();
 }
 function maybeFirstRun(){ if (!S.onboarded) document.getElementById(&quot;firstrunBack&quot;).classList.add(&quot;open&quot;); }
 
-document.getElementById(&quot;chips&quot;).innerHTML += [&quot;Move JMS 214 to underwriting&quot;, &quot;Import my book&quot;, &quot;Schedule a call tomorrow at 10am&quot;, &quot;Add my Florida license, expires Jun 2028&quot;, &quot;What&#x27;s my production this quarter?&quot;].map(c =&gt; &#x27;&lt;button onclick=&quot;chipSend(this)&quot;&gt;&#x27; + c + &#x27;&lt;/button&gt;&#x27;).join(&quot;&quot;);
 maybeFirstRun();
 &lt;/script&gt;
 &lt;/body&gt;
