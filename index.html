@@ -3,101 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BookView LLC — Your whole book. One screen.</title>
-<meta name="description" content="BookView is a dashboard for individual insurance and advisory agents. Every case, every line, what's stuck, what's renewing, what you're owed — on one screen. Not a CRM.">
+<title>BookView — Your whole book. One screen.</title>
+<meta name="description" content="BookView is the one-screen dashboard for individual insurance and advisory agents. Every case, what's stuck, what's renewing, what you're owed — plus VA, your virtual assistant. Not a CRM.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0b0f14; --panel:#111823; --panel2:#0e141d; --line:#22304a;
-    --ink:#e8eef7; --mut:#93a4bd; --acc:#ffb454; --acc2:#57d9a3; --bad:#ff7a7a;
-  }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
-  a{color:var(--acc)}
-  /* nav */
-  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
-  .logo{font-size:26px;font-weight:800;letter-spacing:2.5px;color:var(--ink);text-decoration:none}
-  .logo span{color:var(--acc)}
-  .navtag{color:var(--mut);font-size:13px;letter-spacing:.4px}
-  .btn{display:inline-block;background:var(--acc);color:#14100a;font-weight:700;padding:11px 20px;border-radius:9px;text-decoration:none;font-size:15px;border:0;cursor:pointer}
-  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-  .btn:hover{filter:brightness(1.07)}
-  /* hero */
-  .hero{padding:56px 0 30px;text-align:left}
-  .kicker{color:var(--acc);font-weight:700;letter-spacing:2.2px;font-size:12.5px;text-transform:uppercase;margin-bottom:16px}
-  h1{font-size:52px;line-height:1.08;font-weight:800;letter-spacing:-.5px;max-width:720px}
-  h1 em{font-style:normal;color:var(--acc)}
-  .sub{color:var(--mut);font-size:19px;max-width:640px;margin:20px 0 28px}
-  .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-  .micro{color:var(--mut);font-size:13.5px;margin-top:14px}
-  /* demo */
-  .demo{margin:38px 0 8px}
-  .demo-frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel);box-shadow:0 18px 50px rgba(0,0,0,.45)}
-  .demo-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--panel2);border-bottom:1px solid var(--line)}
-  .dot{width:11px;height:11px;border-radius:50%}
-  .demo-url{color:var(--mut);font-size:13px;margin-left:8px;letter-spacing:.3px}
-  iframe{display:block;width:100%;height:760px;border:0;background:#fff}
-  .demo-cap{color:var(--mut);font-size:14px;margin-top:12px;text-align:center}
-  /* sections */
-  section{padding:52px 0 6px}
-  h2{font-size:30px;font-weight:800;letter-spacing:-.3px;margin-bottom:10px}
-  .lead{color:var(--mut);max-width:640px;margin-bottom:28px}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px}
-  .card h3{font-size:17px;margin-bottom:8px}
-  .card p{color:var(--mut);font-size:15px}
-  .card .ic{font-size:22px;margin-bottom:12px}
-  /* vs table */
-  .vs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .vs .col{border:1px solid var(--line);border-radius:12px;padding:22px;background:var(--panel)}
-  .vs .col.good{border-color:#2c4a3a;background:#0e1a14}
-  .vs h3{font-size:16px;margin-bottom:12px;letter-spacing:.4px}
-  .vs ul{list-style:none}
-  .vs li{color:var(--mut);font-size:15px;padding:5px 0 5px 22px;position:relative}
-  .vs li::before{content:"—";position:absolute;left:0;color:var(--acc)}
-  .vs .good li::before{content:"✓";color:var(--acc2)}
-  /* pricing */
-  .price{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:30px;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}
-  .price .big{font-size:44px;font-weight:800}
-  .price .per{color:var(--mut);font-size:16px}
-  .price ul{list-style:none}
-  .price li{color:var(--mut);font-size:15px;padding:3px 0 3px 22px;position:relative}
-  .price li::before{content:"✓";position:absolute;left:0;color:var(--acc2)}
-  /* signup */
-  .signup{background:linear-gradient(180deg,#131c2a,#0e141d);border:1px solid var(--line);border-radius:14px;padding:34px;text-align:center;margin:52px 0}
-  .signup h2{margin-bottom:8px}
-  .signup p{color:var(--mut);max-width:520px;margin:0 auto 22px}
-  form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  input[type=email]{background:#0b0f14;border:1px solid var(--line);color:var(--ink);padding:12px 16px;border-radius:9px;font-size:15px;min-width:280px}
-  .thanks{display:none;color:var(--acc2);font-weight:600;margin-top:16px}
-  footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 40px;color:var(--mut);font-size:13.5px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-  @media(max-width:820px){
-    h1{font-size:38px}
-    .grid,.vs{grid-template-columns:1fr}
-    iframe{height:640px}
-    .navtag{display:none}
+  :root{
+    --ink:#323338; --mut:#676879; --line:#d0d4e4; --bg:#ffffff; --soft:#f6f7fb;
+    --blue:#0073ea; --blue-d:#0060c2; --green:#00c875; --purple:#a25ddc; --orange:#ff642e; --pink:#ff158a;
   }
-
-  .logo .llc{color:var(--muted);font-size:.5em;font-weight:600;letter-spacing:1px}
+  body{font-family:'Figtree',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  /* nav */
+  nav{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);z-index:50;border-bottom:1px solid #e6e9f2}
+  .nav-in{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:28px}
+  .logo{font-size:24px;font-weight:800;color:var(--ink);text-decoration:none;letter-spacing:-.5px}
+  .logo span{color:var(--blue)}
+  .navlinks{display:flex;gap:22px;margin-left:8px}
+  .navlinks a{color:var(--mut);text-decoration:none;font-size:15px;font-weight:500}
+  .navlinks a:hover{color:var(--ink)}
+  .nav-cta{margin-left:auto}
+  .btn{display:inline-block;background:var(--blue);color:#fff;font-weight:600;font-size:15.5px;padding:11px 24px;border-radius:40px;text-decoration:none;border:none;cursor:pointer;transition:background .15s}
+  .btn:hover{background:var(--blue-d)}
+  .btn.ghost{background:#fff;color:var(--blue);border:1px solid var(--blue)}
+  .btn.ghost:hover{background:#e9f3fd}
+  .btn.big{font-size:17px;padding:14px 32px}
+  /* hero */
+  .hero{text-align:center;padding:72px 0 40px}
+  .kicker{display:inline-block;background:#e9f3fd;color:var(--blue);font-weight:600;font-size:13.5px;padding:6px 14px;border-radius:40px;margin-bottom:22px}
+  h1{font-size:58px;line-height:1.08;font-weight:800;letter-spacing:-1.5px;max-width:760px;margin:0 auto 20px}
+  h1 em{font-style:normal;background:linear-gradient(90deg,var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--mut);font-size:19px;max-width:680px;margin:0 auto 30px}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .micro{color:var(--mut);font-size:14px;margin-top:18px}
+  /* demo */
+  .demo{padding:26px 0 8px}
+  .demo-frame{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 24px 60px rgba(0,60,130,.14)}
+  .demo-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid #e6e9f2;background:#fbfcfe}
+  .dot{width:11px;height:11px;border-radius:50%}
+  .demo-url{margin-left:10px;background:var(--soft);border:1px solid #e6e9f2;color:var(--mut);font-size:13px;padding:3px 14px;border-radius:20px}
+  iframe{width:100%;height:880px;border:0;display:block;background:#fff}
+  .demo-cap{text-align:center;color:var(--mut);font-size:15px;margin-top:16px}
+  .demo-cap.strong{color:var(--green);font-weight:600}
+  /* stats */
+  .stats{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;padding:38px 0 6px}
+  .stat{background:var(--soft);border:1px solid #e6e9f2;border-radius:40px;padding:8px 20px;font-size:15px;font-weight:600}
+  .stat b{color:var(--blue)}
+  /* sections */
+  section{padding:64px 0 8px}
+  h2{font-size:36px;font-weight:800;letter-spacing:-.8px;text-align:center;margin-bottom:12px}
+  .lead{color:var(--mut);font-size:17.5px;text-align:center;max-width:720px;margin:0 auto 36px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:#fff;border:1px solid #e6e9f2;border-radius:16px;padding:28px;box-shadow:0 4px 18px rgba(50,51,56,.05)}
+  .chip{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:21px;font-weight:800;margin-bottom:16px}
+  .card h3{font-size:19px;font-weight:700;margin-bottom:8px}
+  .card p{color:var(--mut);font-size:15.5px}
+  /* VA band */
+  .va-band{background:linear-gradient(120deg,#f0f6fe,#f6f0fd);border:1px solid #e0e7f7;border-radius:20px;padding:44px;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+  .va-band h2{text-align:left;margin-bottom:10px}
+  .va-band .lead{text-align:left;margin:0;max-width:none}
+  .va-points{list-style:none;margin-top:18px}
+  .va-points li{padding:5px 0 5px 26px;position:relative;font-size:16px}
+  .va-points li::before{content:"\2713";position:absolute;left:0;color:var(--green);font-weight:800}
+  .va-meter{background:#fff;border:1px solid #e6e9f2;border-radius:16px;padding:24px;box-shadow:0 8px 24px rgba(50,51,56,.07)}
+  .va-meter .big{font-size:40px;font-weight:800;letter-spacing:-1px}
+  .va-meter .big span{font-size:17px;color:var(--mut);font-weight:600}
+  .va-meter p{color:var(--mut);font-size:15px;margin-top:6px}
+  /* vs */
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px;margin:0 auto}
+  .col{border:1px solid #e6e9f2;border-radius:16px;padding:28px;background:#fff}
+  .col.good{border-color:var(--blue);box-shadow:0 10px 30px rgba(0,115,234,.10)}
+  .col h3{font-size:18px;margin-bottom:14px}
+  .col ul{list-style:none}
+  .col li{color:var(--mut);font-size:15.5px;padding:6px 0 6px 24px;position:relative}
+  .col li::before{content:"\2013";position:absolute;left:2px;color:#c3c6d4}
+  .col.good li{color:var(--ink)}
+  .col.good li::before{content:"\2713";color:var(--green);font-weight:800}
+  /* price */
+  .price{max-width:860px;margin:0 auto;background:var(--soft);border:1px solid #e6e9f2;border-radius:20px;padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+  .price .big{font-size:52px;font-weight:800;letter-spacing:-1.5px}
+  .price .per{font-size:19px;color:var(--mut);font-weight:600}
+  .price ul{list-style:none}
+  .price li{font-size:15.5px;padding:4px 0 4px 26px;position:relative}
+  .price li::before{content:"\2713";position:absolute;left:0;color:var(--green);font-weight:800}
+  /* signup */
+  .signup{background:linear-gradient(120deg,#0073ea,#5b5bd6);border-radius:20px;padding:52px 34px;text-align:center;margin:64px 0 8px;color:#fff}
+  .signup h2{color:#fff}
+  .signup p{color:#dceaff;max-width:540px;margin:0 auto 24px;font-size:16.5px}
+  form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  input[type=email]{background:#fff;border:none;color:var(--ink);padding:13px 18px;border-radius:40px;font-size:15.5px;min-width:300px;outline:none}
+  .signup .btn{background:#fff;color:var(--blue)}
+  .signup .btn:hover{background:#e9f3fd}
+  .thanks{display:none;color:#b8ffd9;font-weight:600;margin-top:16px}
+  footer{border-top:1px solid #e6e9f2;margin-top:56px;padding:26px 0 44px;color:var(--mut);font-size:14px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  @media(max-width:820px){
+    h1{font-size:38px;letter-spacing:-1px}
+    h2{font-size:28px}
+    .grid,.vs,.price,.va-band{grid-template-columns:1fr}
+    iframe{height:640px}
+    .navlinks{display:none}
+    .va-band{padding:30px}
+    input[type=email]{min-width:0;width:100%}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <nav>
+<nav>
+  <div class="nav-in">
     <a class="logo" href="#">Book<span>View</span></a>
-    <div class="navtag">A dashboard for individual agents — not a CRM</div>
-    <a class="btn" href="#join">Join the founding list</a>
-  </nav>
+    <div class="navlinks">
+      <a href="#demo">Demo</a><a href="#features">Features</a><a href="#va">VA</a><a href="#pricing">Pricing</a>
+    </div>
+    <div class="nav-cta"><a class="btn" href="#join">Join the founding list</a></div>
+  </div>
+</nav>
+
+<div class="wrap">
 
   <div class="hero">
     <div class="kicker">For independent insurance &amp; advisory agents</div>
     <h1>Your whole book. <em>One screen.</em></h1>
     <p class="sub">BookView shows you everything at once: every case in flight, what's stuck and for how long, what's renewing, and what you're owed — across life, annuity, advisory, Medicare, medical, and dental, and across every carrier and upline you work with. No portals. No spreadsheets. No new database to feed.</p>
     <div class="cta-row">
-      <a class="btn" href="#demo">See the live demo</a>
-      <a class="btn ghost" href="#join">Join the founding list</a>
+      <a class="btn big" href="#demo">See the live demo</a>
+      <a class="btn big ghost" href="#join">Join the founding list</a>
     </div>
     <p class="micro">Built by an agent who needed it. Founding members get first access when the doors open.</p>
   </div>
@@ -1756,28 +1788,54 @@ maybeFirstRun();
 &lt;/html&gt;
 "></iframe>
     </div>
-    <p class="demo-cap">This is the actual screen, running on sample data. Filter by line, show only what's stuck, click any case for detail.</p>
-    <p class="demo-cap" style="color:var(--acc2);font-weight:600">No client PII — ever. BookView tracks case status, not client identity. Your clients' information stays in your CRM and carrier portals, where it belongs.</p>
+    <p class="demo-cap">This is the actual screen, running on sample data. Filter by status, show only what's stuck, click any case for detail — and try VA, the assistant in the middle tab.</p>
+    <p class="demo-cap strong">No client PII — ever. BookView tracks case status, not client identity. Your clients' information stays in your CRM and carrier portals, where it belongs.</p>
   </div>
 
-  <section>
+  <div class="stats">
+    <div class="stat"><b>9</b> pipeline statuses</div>
+    <div class="stat"><b>Every</b> line &amp; carrier</div>
+    <div class="stat"><b>0</b> client data stored</div>
+    <div class="stat"><b>$39</b>/mo flat</div>
+  </div>
+
+  <section id="features">
     <h2>Why agents lose money quietly</h2>
     <p class="lead">A stuck case isn't an admin problem — it's a paycheck sitting in someone else's queue. Most agents find out a case stalled when the client calls, weeks later. BookView exists so you see it the day it happens.</p>
     <div class="grid">
       <div class="card">
-        <div class="ic">⏱️</div>
+        <div class="chip" style="background:var(--orange)">!</div>
         <h3>What's stuck, aged</h3>
         <p>Every pending case carries its age. Anything sitting more than 7 days flags itself — oldest first, with the commission attached to it, so you chase the money in the right order.</p>
       </div>
       <div class="card">
-        <div class="ic">🧭</div>
+        <div class="chip" style="background:var(--blue)">&#8801;</div>
         <h3>Every line, every channel</h3>
         <p>Channel dashboards only show the business you placed through them. BookView is channel-neutral: your whole book — every upline, every direct appointment, plus the advisory side — in one view.</p>
       </div>
       <div class="card">
-        <div class="ic">💵</div>
+        <div class="chip" style="background:var(--green)">$</div>
         <h3>What you're owed</h3>
         <p>Commissions pending, split clean vs. stuck. Renewals coming in the next 30 days before they lapse. Chargeback risk where you can still save it. The money view, not the data-entry view.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="va">
+    <div class="va-band">
+      <div>
+        <h2>Meet VA — your Virtual Assistant</h2>
+        <p class="lead">Talk instead of typing into forms. Ask what's stuck, add a case out loud, dictate a follow-up — VA drafts it, you confirm it, then it writes to your board. Nothing saves without your say-so.</p>
+        <ul class="va-points">
+          <li>Ask in plain words: "What's stuck?" "What am I owed?"</li>
+          <li>Voice or text — dictate the note, VA files it</li>
+          <li>Drafts first, always. VA never sends anything to a client</li>
+          <li>Never sees a client name — labels and initials only</li>
+        </ul>
+      </div>
+      <div class="va-meter">
+        <div class="big">300 <span>credits / month</span></div>
+        <p>VA runs on credits — 300 included every month, about 10 requests a day. Most agents never see the meter. Power users top up: 250 credits for $10.</p>
       </div>
     </div>
   </section>
@@ -1807,7 +1865,7 @@ maybeFirstRun();
     </div>
   </section>
 
-  <section>
+  <section id="pricing">
     <h2>How it starts</h2>
     <p class="lead">The founding version is deliberately simple: bring your book in by CSV import or quick entry — minutes, not a migration — and the screen lights up. Live carrier connections come next, and founding members get them first.</p>
     <div class="price">
@@ -1817,8 +1875,10 @@ maybeFirstRun();
       </div>
       <ul>
         <li>The full one-screen dashboard</li>
+        <li>VA — 300 credits a month included</li>
         <li>Stuck-case flags and aging</li>
         <li>Renewals and commissions views</li>
+        <li>Licenses &amp; appointments tracking</li>
         <li>Every line: life, annuity, advisory, Medicare, medical, dental</li>
       </ul>
     </div>
