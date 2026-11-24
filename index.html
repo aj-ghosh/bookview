@@ -642,8 +642,8 @@
   .ai-input .mic-btn:hover{background:#f6f7fb}
   .ai-input .mic-btn.rec{background:#e2445c;color:#fff;animation:micpulse 1.2s ease-in-out infinite}
   @keyframes micpulse{0%,100%{box-shadow:0 0 0 0 rgba(226,68,92,.45)}50%{box-shadow:0 0 0 7px rgba(226,68,92,0)}}
-  .orb-tile{position:relative;display:inline-flex;align-items:center;justify-content:center;background:transparent;flex:none;border-radius:50%;box-shadow:0 0 10px rgba(122,92,255,.35),0 0 3px rgba(77,195,255,.4)}
-  .orb-tile::before{content:&quot;&quot;;position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,#4dc3ff,#7a5cff,#b26bff,#ff5e8a,#ffb35c,#4dffc3,#4dc3ff);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3.5px),#000 calc(100% - 3px));mask:radial-gradient(farthest-side,transparent calc(100% - 3.5px),#000 calc(100% - 3px));animation:orbSpin 7s linear infinite}
+  .orb-tile{position:relative;display:inline-flex;align-items:center;justify-content:center;background:transparent;flex:none;border-radius:50%;box-shadow:0 0 8px rgba(96,120,255,.22),0 0 3px rgba(120,200,255,.25)}
+  .orb-tile::before{content:&quot;&quot;;position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,#59c2ff,#6a7cff,#9a6bff,#59c2ff);opacity:.75;-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2.5px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2.5px));animation:orbSpin 26s linear infinite}
   .orb-tile canvas{position:relative;z-index:1;width:100%;height:100%;display:block;border-radius:50%}
   @keyframes orbSpin{to{transform:rotate(360deg)}}
   .orb-tile.tab{width:24px;height:24px}
@@ -1765,23 +1765,42 @@ function maybeFirstRun(){ if (!S.onboarded) document.getElementById(&quot;firstr
 
 function drawOrb(ctx, S, t){
   ctx.clearRect(0, 0, S, S);
-  const cx = S / 2, cy = S / 2, R = S * 0.37, rings = 7;
-  for (let j = 0; j < rings; j++){
-    const fr = j / (rings - 1);
-    const n = Math.max(5, Math.round(8 + fr * 30));
-    for (let i = 0; i < n; i++){
-      const a = (i / n) * Math.PI * 2 + t * 0.12 * (j % 2 ? -1 : 1) + fr * 0.9;
-      const w = 1 + 0.16 * Math.sin(3 * a + t * 1.15 + fr * 2.2) + 0.11 * Math.sin(5 * a - t * 0.9 + fr * 4.1) + 0.07 * Math.sin(2 * a + t * 0.6);
-      const r = Math.max(0.6, R * fr * w);
-      const x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r * 0.94;
-      let g = (y / S) * 1.25 + 0.16 * Math.sin(a * 2 + t * 0.8) - 0.08;
-      g = Math.min(1, Math.max(0, g));
-      const cr = Math.round(77 + (177 - 77) * g), cg = Math.round(178 + (109 - 178) * g), cb = 255;
-      ctx.fillStyle = &quot;rgb(&quot; + cr + &quot;,&quot; + cg + &quot;,&quot; + cb + &quot;)&quot;;
-      ctx.beginPath();
-      ctx.arc(x, y, Math.max(0.5, (0.55 + fr * 1.35) * (0.78 + 0.3 * Math.sin(3 * a + t * 1.15)) * (S / 76)), 0, 7);
-      ctx.fill();
-    }
+  const cx = S / 2, cy = S / 2, R = S * 0.38, u = S / 76;
+  const fract = x => x - Math.floor(x);
+  // soft core glow, deeper at the core so the sphere reads on light backgrounds
+  const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 1.18);
+  glow.addColorStop(0, &quot;rgba(88,110,255,0.34)&quot;);
+  glow.addColorStop(0.5, &quot;rgba(86,110,240,0.16)&quot;);
+  glow.addColorStop(0.85, &quot;rgba(86,110,240,0.05)&quot;);
+  glow.addColorStop(1, &quot;rgba(86,110,240,0)&quot;);
+  ctx.fillStyle = glow;
+  ctx.beginPath(); ctx.arc(cx, cy, R * 1.18, 0, 7); ctx.fill();
+  // micro dust: a deterministic starfield in slow orbit
+  const N = 250, GA = 2.39996;
+  const rot = t * 0.045;
+  for (let i = 0; i < N; i++){
+    const h1 = fract(Math.sin(i * 12.9898) * 43758.5453);
+    const h2 = fract(Math.sin(i * 78.233) * 12543.123);
+    const h3 = fract(Math.sin(i * 37.719) * 9876.543);
+    const fr = Math.sqrt((i + 0.5) / N) * (0.30 + 0.70 * h1);
+    const a = i * GA + rot * (0.55 + 0.45 * h2) + Math.sin(t * 0.10 + h3 * 6.283) * 0.05;
+    const breathe = 1 + 0.03 * Math.sin(t * 0.32 + h2 * 6.283);
+    const r = R * fr * breathe;
+    const x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r * 0.94;
+    const tw = 0.55 + 0.45 * Math.sin(t * (0.22 + h3 * 0.35) + h1 * 6.283);
+    const depth = 1 - fr * 0.5;
+    const rad = Math.max(0.35, (0.45 + h2 * 0.85) * u * depth);
+    ctx.fillStyle = &quot;rgba(&quot; + Math.round(92 + 88 * h3) + &quot;,&quot; + Math.round(128 + 72 * h2) + &quot;,255,&quot; + (0.35 + 0.6 * tw * depth).toFixed(3) + &quot;)&quot;;
+    ctx.beginPath(); ctx.arc(x, y, rad, 0, 7); ctx.fill();
+  }
+  // a few brighter anchor stars, very slow pulse
+  for (let k = 0; k < 7; k++){
+    const h1 = fract(Math.sin(k * 51.31) * 24634.63), h2 = fract(Math.sin(k * 17.17) * 31231.7);
+    const a = k * 2.39996 + rot * 0.8, r = R * (0.25 + 0.6 * h1);
+    const x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r * 0.94;
+    const pulse = 0.6 + 0.4 * Math.sin(t * 0.4 + h2 * 6.283);
+    ctx.fillStyle = &quot;rgba(215,230,255,&quot; + (0.9 * pulse).toFixed(3) + &quot;)&quot;;
+    ctx.beginPath(); ctx.arc(x, y, Math.max(0.8, 1.25 * u), 0, 7); ctx.fill();
   }
 }
 (function initOrbs(){
