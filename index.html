@@ -642,10 +642,12 @@
   .ai-input .mic-btn:hover{background:#f6f7fb}
   .ai-input .mic-btn.rec{background:#e2445c;color:#fff;animation:micpulse 1.2s ease-in-out infinite}
   @keyframes micpulse{0%,100%{box-shadow:0 0 0 0 rgba(226,68,92,.45)}50%{box-shadow:0 0 0 7px rgba(226,68,92,0)}}
-  .orb-tile{display:inline-flex;align-items:center;justify-content:center;background:transparent;overflow:hidden;flex:none}
-  .orb-tile canvas{width:100%;height:100%;display:block}
-  .orb-tile.tab{width:22px;height:22px;border-radius:6px}
-  .orb-tile.lg{width:38px;height:38px;border-radius:11px}
+  .orb-tile{position:relative;display:inline-flex;align-items:center;justify-content:center;background:transparent;flex:none;border-radius:50%;box-shadow:0 0 10px rgba(122,92,255,.35),0 0 3px rgba(77,195,255,.4)}
+  .orb-tile::before{content:&quot;&quot;;position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,#4dc3ff,#7a5cff,#b26bff,#ff5e8a,#ffb35c,#4dffc3,#4dc3ff);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3.5px),#000 calc(100% - 3px));mask:radial-gradient(farthest-side,transparent calc(100% - 3.5px),#000 calc(100% - 3px));animation:orbSpin 7s linear infinite}
+  .orb-tile canvas{position:relative;z-index:1;width:100%;height:100%;display:block;border-radius:50%}
+  @keyframes orbSpin{to{transform:rotate(360deg)}}
+  .orb-tile.tab{width:24px;height:24px}
+  .orb-tile.lg{width:40px;height:40px}
   .seg button.va-tab{display:inline-flex;align-items:center;gap:7px}
   .ai h2 .orb-tile{margin-right:2px}
   tr.srow-h td{background:#eceff8;background:color-mix(in srgb, var(--gc, #579bfc) 13%, #ffffff)}
