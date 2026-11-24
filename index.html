@@ -146,17 +146,17 @@
         <div class="dot" style="background:#28c840"></div>
         <div class="demo-url">bookview.llc/demo — sample data</div>
       </div>
-      <iframe title="BookView dashboard demo" srcdoc="&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;UTF-8&quot;&gt;
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, viewport-fit=cover&quot;&gt;
-&lt;meta name=&quot;theme-color&quot; content=&quot;#f5f5f7&quot;&gt;
-&lt;meta name=&quot;mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
-&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
-&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;default&quot;&gt;
-&lt;title&gt;BookView LLC — Prototype v4.1&lt;/title&gt;
-&lt;style&gt;
+      <iframe title="BookView dashboard demo" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, viewport-fit=cover&quot;>
+<meta name=&quot;theme-color&quot; content=&quot;#f5f5f7&quot;>
+<meta name=&quot;mobile-web-app-capable&quot; content=&quot;yes&quot;>
+<meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;>
+<meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;default&quot;>
+<title>BookView LLC — Prototype v4.1</title>
+<style>
   :root{
     --bg:#f5f5f7; --surface:#ffffff; --ink:#1d1d1f; --sub:#6e6e73; --faint:#86868b;
     --hair:#e8e8ed; --blue:#0071e3; --green:#34c759; --amber:#ff9f0a; --red:#ff3b30;
@@ -347,7 +347,7 @@
     header{padding-top:30px}
   }
   @media(max-width:640px){
-    /* phone keeps the desktop&#x27;s one-line table — compact, not cards */
+    /* phone keeps the desktop's one-line table — compact, not cards */
     .card{padding:19px}
     .casescard{padding:16px 10px}
     table{table-layout:fixed}
@@ -376,7 +376,7 @@
   }
 
   /* ================= v3.0 — Apple design layer =================
-     Grounded in Apple&#x27;s Human Interface Guidelines: Dynamic Type scale
+     Grounded in Apple's Human Interface Guidelines: Dynamic Type scale
      (Large Title 34 / Title 3 20 / Headline 17 / Body 17 / Footnote 13),
      semantic colors (label / secondaryLabel / separator), grouped
      background #f2f2f7 with white cards, translucent materials reserved
@@ -610,7 +610,7 @@
     .va-x{display:block}
   }
   /* ============ Monday-inspired skin ============ */
-  body{font-family:&#x27;Figtree&#x27;,-apple-system,&#x27;Segoe UI&#x27;,Roboto,sans-serif;background:#f6f7fb;color:#323338}
+  body{font-family:'Figtree',-apple-system,'Segoe UI',Roboto,sans-serif;background:#f6f7fb;color:#323338}
   .card{border:1px solid #d0d4e4;box-shadow:0 4px 14px rgba(50,51,56,.07);border-radius:16px}
   .logo span{color:#0073ea}
   .seg{background:#eceff8}
@@ -666,229 +666,229 @@
   .va-credits.out span{color:#e2445c;font-weight:600}
   .va-credits button{border:1px solid #0073ea;background:#fff;color:#0073ea;font-size:12px;font-weight:600;padding:4px 10px;border-radius:8px;cursor:pointer}
   .va-credits button:hover{background:#e9f3fd}
-&lt;/style&gt;
-  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
-  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div class=&quot;wrap&quot;&gt;
-  &lt;header&gt;
-    &lt;div class=&quot;logo&quot;&gt;Book&lt;span&gt;View&lt;/span&gt;&lt;/div&gt;
-    &lt;div class=&quot;tagline&quot;&gt;Your whole book. One screen.&lt;/div&gt;
-    &lt;div class=&quot;sample-note&quot;&gt;PROTOTYPE v4.1&lt;/div&gt;
-  &lt;/header&gt;
+</style>
+  <link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+  <link href=&quot;https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+</head>
+<body>
+<div class=&quot;wrap&quot;>
+  <header>
+    <div class=&quot;logo&quot;>Book<span>View</span></div>
+    <div class=&quot;tagline&quot;>Your whole book. One screen.</div>
+    <div class=&quot;sample-note&quot;>PROTOTYPE v4.1</div>
+  </header>
 
-  &lt;div class=&quot;seg&quot;&gt;
-    &lt;div class=&quot;seg-inner&quot;&gt;
-      &lt;button id=&quot;tab-dash&quot; class=&quot;active&quot; onclick=&quot;showTab(&#x27;dash&#x27;)&quot;&gt;Dashboard&lt;/button&gt;
-      &lt;button id=&quot;tab-tasks&quot; onclick=&quot;showTab(&#x27;tasks&#x27;)&quot;&gt;Tasks&lt;/button&gt;
-      &lt;button id=&quot;tab-va&quot; class=&quot;va-tab&quot; onclick=&quot;openVA()&quot;&gt;&lt;span class=&quot;orb-tile tab&quot;&gt;&lt;canvas class=&quot;va-orb&quot; width=&quot;44&quot; height=&quot;44&quot;&gt;&lt;/canvas&gt;&lt;/span&gt;VA&lt;/button&gt;
-      &lt;button id=&quot;tab-lic&quot; onclick=&quot;showTab(&#x27;lic&#x27;)&quot;&gt;Licenses&lt;/button&gt;
-      &lt;button id=&quot;tab-cal&quot; onclick=&quot;showTab(&#x27;cal&#x27;)&quot;&gt;Calendar&lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+  <div class=&quot;seg&quot;>
+    <div class=&quot;seg-inner&quot;>
+      <button id=&quot;tab-dash&quot; class=&quot;active&quot; onclick=&quot;showTab('dash')&quot;>Dashboard</button>
+      <button id=&quot;tab-tasks&quot; onclick=&quot;showTab('tasks')&quot;>Tasks</button>
+      <button id=&quot;tab-va&quot; class=&quot;va-tab&quot; onclick=&quot;openVA()&quot;><span class=&quot;orb-tile tab&quot;><canvas class=&quot;va-orb&quot; width=&quot;44&quot; height=&quot;44&quot;></canvas></span>VA</button>
+      <button id=&quot;tab-lic&quot; onclick=&quot;showTab('lic')&quot;>Licenses</button>
+      <button id=&quot;tab-cal&quot; onclick=&quot;showTab('cal')&quot;>Calendar</button>
+    </div>
+  </div>
 
-  &lt;div class=&quot;layout&quot;&gt;
-    &lt;main&gt;
-      &lt;!-- DASHBOARD --&gt;
-      &lt;section id=&quot;view-dash&quot;&gt;
-        &lt;div class=&quot;kpis&quot; id=&quot;kpis&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;card casescard&quot;&gt;
-          &lt;h2&gt;Pipeline&lt;/h2&gt;
-          &lt;div class=&quot;filters&quot; id=&quot;filters&quot;&gt;&lt;/div&gt;
-          &lt;div class=&quot;import-row&quot;&gt;&lt;button class=&quot;btn import-red&quot; onclick=&quot;openImport()&quot;&gt;&lt;svg class=&quot;bic&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 16V5&quot;/&gt;&lt;path d=&quot;M6 11l6-6 6 6&quot;/&gt;&lt;path d=&quot;M4 20h16&quot;/&gt;&lt;/svg&gt;Import a CSV&lt;/button&gt;&lt;button class=&quot;btn import-blue&quot; onclick=&quot;downloadTemplate()&quot;&gt;&lt;svg class=&quot;bic&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 5v11&quot;/&gt;&lt;path d=&quot;M6 10l6 6 6-6&quot;/&gt;&lt;path d=&quot;M4 20h16&quot;/&gt;&lt;/svg&gt;Download a Template&lt;/button&gt;&lt;span&gt;Load your existing book — identifiers are stripped on your device, never saved.&lt;/span&gt;&lt;/div&gt;
-          &lt;table&gt;
-            &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Case&lt;/th&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Stage&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;FYC&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-            &lt;tbody id=&quot;caseRows&quot;&gt;&lt;/tbody&gt;
-          &lt;/table&gt;
-          &lt;div class=&quot;case-list&quot; id=&quot;caseList&quot;&gt;&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;card&quot;&gt;
-          &lt;h2&gt;Production&lt;/h2&gt;
-          &lt;p class=&quot;card-sub&quot;&gt;Deposited + delivered business, by quarter — your share of FYC.&lt;/p&gt;
-          &lt;div id=&quot;production&quot;&gt;&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;card&quot;&gt;
-          &lt;h2&gt;Renewals — next 30 days&lt;/h2&gt;
-          &lt;p class=&quot;card-sub&quot;&gt;Policies coming due, before they lapse.&lt;/p&gt;
-          &lt;div id=&quot;renewals&quot;&gt;&lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/section&gt;
+  <div class=&quot;layout&quot;>
+    <main>
+      <!-- DASHBOARD -->
+      <section id=&quot;view-dash&quot;>
+        <div class=&quot;kpis&quot; id=&quot;kpis&quot;></div>
+        <div class=&quot;card casescard&quot;>
+          <h2>Pipeline</h2>
+          <div class=&quot;filters&quot; id=&quot;filters&quot;></div>
+          <div class=&quot;import-row&quot;><button class=&quot;btn import-red&quot; onclick=&quot;openImport()&quot;><svg class=&quot;bic&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;><path d=&quot;M12 16V5&quot;/><path d=&quot;M6 11l6-6 6 6&quot;/><path d=&quot;M4 20h16&quot;/></svg>Import a CSV</button><button class=&quot;btn import-blue&quot; onclick=&quot;downloadTemplate()&quot;><svg class=&quot;bic&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;><path d=&quot;M12 5v11&quot;/><path d=&quot;M6 10l6 6 6-6&quot;/><path d=&quot;M4 20h16&quot;/></svg>Download a Template</button><span>Load your existing book — identifiers are stripped on your device, never saved.</span></div>
+          <table>
+            <thead><tr><th>Case</th><th>Product</th><th>Stage</th><th>Age</th><th>FYC</th><th></th></tr></thead>
+            <tbody id=&quot;caseRows&quot;></tbody>
+          </table>
+          <div class=&quot;case-list&quot; id=&quot;caseList&quot;></div>
+        </div>
+        <div class=&quot;card&quot;>
+          <h2>Production</h2>
+          <p class=&quot;card-sub&quot;>Deposited + delivered business, by quarter — your share of FYC.</p>
+          <div id=&quot;production&quot;></div>
+        </div>
+        <div class=&quot;card&quot;>
+          <h2>Renewals — next 30 days</h2>
+          <p class=&quot;card-sub&quot;>Policies coming due, before they lapse.</p>
+          <div id=&quot;renewals&quot;></div>
+        </div>
+      </section>
 
-      &lt;!-- TASKS --&gt;
-      &lt;section id=&quot;view-tasks&quot; style=&quot;display:none&quot;&gt;
-        &lt;div class=&quot;card&quot;&gt;
-          &lt;h2&gt;Tasks&lt;/h2&gt;
-          &lt;p class=&quot;card-sub&quot;&gt;Every task across every case — the same stacks, in one list. Check one off here and it closes on the case, too. Adding a task for a case that isn’t on your board yet? Type its label (like BJK 201) — the case is created for you.&lt;/p&gt;
-          &lt;div class=&quot;qa&quot;&gt;
-            &lt;input id=&quot;qaText&quot; type=&quot;text&quot; placeholder=&quot;New task…&quot; onkeydown=&quot;if(event.key===&#x27;Enter&#x27;)quickAddTask()&quot;&gt;
-            &lt;input id=&quot;qaCase&quot; type=&quot;text&quot; list=&quot;qaCases&quot; placeholder=&quot;Case label — pick, or type a new one (e.g. BJK 201)&quot; aria-label=&quot;Case for the new task&quot; onkeydown=&quot;if(event.key===&#x27;Enter&#x27;)quickAddTask()&quot;&gt;
-            &lt;datalist id=&quot;qaCases&quot;&gt;&lt;/datalist&gt;
-            &lt;button class=&quot;btn&quot; onclick=&quot;quickAddTask()&quot;&gt;Add&lt;/button&gt;
-          &lt;/div&gt;
-          &lt;div id=&quot;taskList&quot;&gt;&lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/section&gt;
+      <!-- TASKS -->
+      <section id=&quot;view-tasks&quot; style=&quot;display:none&quot;>
+        <div class=&quot;card&quot;>
+          <h2>Tasks</h2>
+          <p class=&quot;card-sub&quot;>Every task across every case — the same stacks, in one list. Check one off here and it closes on the case, too. Adding a task for a case that isn’t on your board yet? Type its label (like Brian J. K. 23) — the case is created for you.</p>
+          <div class=&quot;qa&quot;>
+            <input id=&quot;qaText&quot; type=&quot;text&quot; placeholder=&quot;New task…&quot; onkeydown=&quot;if(event.key==='Enter')quickAddTask()&quot;>
+            <input id=&quot;qaCase&quot; type=&quot;text&quot; list=&quot;qaCases&quot; placeholder=&quot;Case label — pick, or type a new one (e.g. Brian J. K. 23)&quot; aria-label=&quot;Case for the new task&quot; onkeydown=&quot;if(event.key==='Enter')quickAddTask()&quot;>
+            <datalist id=&quot;qaCases&quot;></datalist>
+            <button class=&quot;btn&quot; onclick=&quot;quickAddTask()&quot;>Add</button>
+          </div>
+          <div id=&quot;taskList&quot;></div>
+        </div>
+      </section>
 
-      &lt;!-- LICENSES --&gt;
-      &lt;section id=&quot;view-lic&quot; style=&quot;display:none&quot;&gt;
-        &lt;div class=&quot;card&quot;&gt;
-          &lt;h2&gt;Licenses &amp;amp; appointments&lt;/h2&gt;
-          &lt;p class=&quot;card-sub&quot;&gt;Know before you submit. Status and dates only — no license numbers stored.&lt;/p&gt;
-          &lt;div id=&quot;licenses&quot;&gt;&lt;/div&gt;
-          &lt;div class=&quot;lic-form&quot;&gt;
-            &lt;input id=&quot;lfState&quot; type=&quot;text&quot; placeholder=&quot;Add a license — state (e.g. Florida)&quot;&gt;
-            &lt;input id=&quot;lfExp&quot; type=&quot;date&quot; aria-label=&quot;Renewal date&quot;&gt;
-            &lt;select id=&quot;lfCE&quot; aria-label=&quot;CE status&quot;&gt;&lt;option&gt;CE complete&lt;/option&gt;&lt;option&gt;CE in progress&lt;/option&gt;&lt;option&gt;CE outstanding&lt;/option&gt;&lt;/select&gt;
-            &lt;button class=&quot;btn&quot; onclick=&quot;addLicenseForm()&quot;&gt;Add&lt;/button&gt;
-          &lt;/div&gt;
-          &lt;p class=&quot;dim&quot; style=&quot;margin-top:8px&quot;&gt;Or just tell VA: “Add my Florida license, expires Jun 2028.”&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/section&gt;
+      <!-- LICENSES -->
+      <section id=&quot;view-lic&quot; style=&quot;display:none&quot;>
+        <div class=&quot;card&quot;>
+          <h2>Licenses &amp;amp; appointments</h2>
+          <p class=&quot;card-sub&quot;>Know before you submit. Status and dates only — no license numbers stored.</p>
+          <div id=&quot;licenses&quot;></div>
+          <div class=&quot;lic-form&quot;>
+            <input id=&quot;lfState&quot; type=&quot;text&quot; placeholder=&quot;Add a license — state (e.g. Florida)&quot;>
+            <input id=&quot;lfExp&quot; type=&quot;date&quot; aria-label=&quot;Renewal date&quot;>
+            <select id=&quot;lfCE&quot; aria-label=&quot;CE status&quot;><option>CE complete</option><option>CE in progress</option><option>CE outstanding</option></select>
+            <button class=&quot;btn&quot; onclick=&quot;addLicenseForm()&quot;>Add</button>
+          </div>
+          <p class=&quot;dim&quot; style=&quot;margin-top:8px&quot;>Or just tell VA: “Add my Florida license, expires Jun 2028.”</p>
+        </div>
+      </section>
 
-      &lt;!-- CALENDAR --&gt;
-      &lt;section id=&quot;view-cal&quot; style=&quot;display:none&quot;&gt;
-        &lt;div class=&quot;card calcard&quot;&gt;
-          &lt;div class=&quot;cal-tools&quot;&gt;
-            &lt;h2 id=&quot;calTitle&quot;&gt;Calendar&lt;/h2&gt;
-            &lt;div class=&quot;cal-nav&quot;&gt;
-              &lt;button class=&quot;navbtn&quot; onclick=&quot;shiftCal(-1)&quot; aria-label=&quot;Previous&quot;&gt;‹&lt;/button&gt;
-              &lt;button class=&quot;navbtn&quot; onclick=&quot;shiftCal(1)&quot; aria-label=&quot;Next&quot;&gt;›&lt;/button&gt;
-              &lt;span class=&quot;mini-seg&quot;&gt;&lt;button id=&quot;cm-day&quot; onclick=&quot;goDay(isoOf(new Date()))&quot;&gt;Day&lt;/button&gt;&lt;button id=&quot;cm-week&quot; class=&quot;active&quot; onclick=&quot;setCalMode(&#x27;week&#x27;)&quot;&gt;Week&lt;/button&gt;&lt;button id=&quot;cm-month&quot; onclick=&quot;setCalMode(&#x27;month&#x27;)&quot;&gt;Month&lt;/button&gt;&lt;/span&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-          &lt;p class=&quot;card-sub&quot;&gt;Appointments, deadlines, renewals and expiries — the time view of your whole book. Tap any day in Week or Month to see it up close.&lt;/p&gt;
-          &lt;div id=&quot;calendar&quot;&gt;&lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/section&gt;
-    &lt;/main&gt;
+      <!-- CALENDAR -->
+      <section id=&quot;view-cal&quot; style=&quot;display:none&quot;>
+        <div class=&quot;card calcard&quot;>
+          <div class=&quot;cal-tools&quot;>
+            <h2 id=&quot;calTitle&quot;>Calendar</h2>
+            <div class=&quot;cal-nav&quot;>
+              <button class=&quot;navbtn&quot; onclick=&quot;shiftCal(-1)&quot; aria-label=&quot;Previous&quot;>‹</button>
+              <button class=&quot;navbtn&quot; onclick=&quot;shiftCal(1)&quot; aria-label=&quot;Next&quot;>›</button>
+              <span class=&quot;mini-seg&quot;><button id=&quot;cm-day&quot; onclick=&quot;goDay(isoOf(new Date()))&quot;>Day</button><button id=&quot;cm-week&quot; class=&quot;active&quot; onclick=&quot;setCalMode('week')&quot;>Week</button><button id=&quot;cm-month&quot; onclick=&quot;setCalMode('month')&quot;>Month</button></span>
+            </div>
+          </div>
+          <p class=&quot;card-sub&quot;>Appointments, deadlines, renewals and expiries — the time view of your whole book. Tap any day in Week or Month to see it up close.</p>
+          <div id=&quot;calendar&quot;></div>
+        </div>
+      </section>
+    </main>
 
-    &lt;!-- AI ASSISTANT --&gt;
-    &lt;aside class=&quot;card ai&quot; id=&quot;vaPanel&quot;&gt;
-      &lt;h2&gt;&lt;span class=&quot;orb-tile lg&quot;&gt;&lt;canvas class=&quot;va-orb&quot; width=&quot;76&quot; height=&quot;76&quot;&gt;&lt;/canvas&gt;&lt;/span&gt;VA&lt;button class=&quot;va-x&quot; onclick=&quot;closeVA()&quot; aria-label=&quot;Close VA&quot;&gt;×&lt;/button&gt;&lt;/h2&gt;
-      &lt;p class=&quot;card-sub&quot;&gt;Your Virtual Assistant. Talk instead of typing into forms — drafts are shown before anything is saved.&lt;/p&gt;
-      &lt;div class=&quot;va-credits&quot; id=&quot;vaCredits&quot;&gt;&lt;/div&gt;
-      &lt;div class=&quot;chat&quot; id=&quot;chat&quot;&gt;&lt;/div&gt;
-      &lt;div class=&quot;chips-ai&quot; id=&quot;chips&quot;&gt;&lt;/div&gt;
-      &lt;div class=&quot;ai-input&quot;&gt;
-        &lt;input id=&quot;aiText&quot; type=&quot;text&quot; placeholder=&quot;Message VA&quot; autocomplete=&quot;off&quot;&gt;
-        &lt;button class=&quot;mic-btn&quot; id=&quot;micBtn&quot; onclick=&quot;toggleMic()&quot; aria-label=&quot;Voice input&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;2.5&quot; width=&quot;6&quot; height=&quot;11&quot; rx=&quot;3&quot;/&gt;&lt;path d=&quot;M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
-        &lt;button onclick=&quot;sendAI()&quot; aria-label=&quot;Send&quot;&gt;↑&lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/aside&gt;
-  &lt;/div&gt;
+    <!-- AI ASSISTANT -->
+    <aside class=&quot;card ai&quot; id=&quot;vaPanel&quot;>
+      <h2><span class=&quot;orb-tile lg&quot;><canvas class=&quot;va-orb&quot; width=&quot;76&quot; height=&quot;76&quot;></canvas></span>VA<button class=&quot;va-x&quot; onclick=&quot;closeVA()&quot; aria-label=&quot;Close VA&quot;>×</button></h2>
+      <p class=&quot;card-sub&quot;>Your Virtual Assistant. Talk instead of typing into forms — drafts are shown before anything is saved.</p>
+      <div class=&quot;va-credits&quot; id=&quot;vaCredits&quot;></div>
+      <div class=&quot;chat&quot; id=&quot;chat&quot;></div>
+      <div class=&quot;chips-ai&quot; id=&quot;chips&quot;></div>
+      <div class=&quot;ai-input&quot;>
+        <input id=&quot;aiText&quot; type=&quot;text&quot; placeholder=&quot;Message VA&quot; autocomplete=&quot;off&quot;>
+        <button class=&quot;mic-btn&quot; id=&quot;micBtn&quot; onclick=&quot;toggleMic()&quot; aria-label=&quot;Voice input&quot;><svg viewBox=&quot;0 0 24 24&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;><rect x=&quot;9&quot; y=&quot;2.5&quot; width=&quot;6&quot; height=&quot;11&quot; rx=&quot;3&quot;/><path d=&quot;M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7&quot;/></svg></button>
+        <button onclick=&quot;sendAI()&quot; aria-label=&quot;Send&quot;>↑</button>
+      </div>
+    </aside>
+  </div>
 
-  &lt;div class=&quot;reset&quot; onclick=&quot;resetDemo()&quot;&gt;Reset demo data&lt;/div&gt;
-  &lt;footer&gt;BookView LLC prototype v4.1 — a dashboard, not a CRM. Built for validation conversations.&lt;/footer&gt;
-&lt;/div&gt;
+  <div class=&quot;reset&quot; onclick=&quot;resetDemo()&quot;>Reset demo data</div>
+  <footer>BookView LLC prototype v4.1 — a dashboard, not a CRM. Built for validation conversations.</footer>
+</div>
 
-&lt;!-- MOBILE TAB BAR (app format) --&gt;
-&lt;nav class=&quot;tabbar&quot;&gt;
-  &lt;button data-mv=&quot;dash&quot; class=&quot;active&quot; onclick=&quot;showMobile(&#x27;dash&#x27;)&quot;&gt;
-    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;rect x=&quot;3.5&quot; y=&quot;3.5&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;2&quot;/&gt;&lt;rect x=&quot;13.5&quot; y=&quot;3.5&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;2&quot;/&gt;&lt;rect x=&quot;3.5&quot; y=&quot;13.5&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;2&quot;/&gt;&lt;rect x=&quot;13.5&quot; y=&quot;13.5&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;2&quot;/&gt;&lt;/svg&gt;
-    Dashboard&lt;/button&gt;
-  &lt;button data-mv=&quot;tasks&quot; onclick=&quot;showMobile(&#x27;tasks&#x27;)&quot;&gt;
-    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;path d=&quot;M3.5 6.2 5.2 7.9 8.6 4.6M3.5 12.2l1.7 1.7 3.4-3.3M3.5 18.2l1.7 1.7 3.4-3.3M12 6h9M12 12h9M12 18h9&quot;/&gt;&lt;/svg&gt;
-    Tasks&lt;/button&gt;
-  &lt;button data-mv=&quot;ai&quot; onclick=&quot;showMobile(&#x27;ai&#x27;)&quot;&gt;
-    &lt;span class=&quot;orb-tile tab&quot;&gt;&lt;canvas class=&quot;va-orb&quot; width=&quot;44&quot; height=&quot;44&quot;&gt;&lt;/canvas&gt;&lt;/span&gt;
-    VA&lt;/button&gt;
-  &lt;button data-mv=&quot;lic&quot; onclick=&quot;showMobile(&#x27;lic&#x27;)&quot;&gt;
-    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;5&quot; width=&quot;18&quot; height=&quot;14&quot; rx=&quot;3&quot;/&gt;&lt;circle cx=&quot;8.5&quot; cy=&quot;11&quot; r=&quot;2&quot;/&gt;&lt;path d=&quot;M6 16.5c.6-1.4 1.4-2 2.5-2s1.9.6 2.5 2M14.5 9.5h4M14.5 13h4&quot;/&gt;&lt;/svg&gt;
-    Licenses&lt;/button&gt;
-  &lt;button data-mv=&quot;cal&quot; onclick=&quot;showMobile(&#x27;cal&#x27;)&quot;&gt;
-    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;5&quot; width=&quot;18&quot; height=&quot;16&quot; rx=&quot;3&quot;/&gt;&lt;path d=&quot;M3 10h18M8 3v4M16 3v4&quot;/&gt;&lt;/svg&gt;
-    Calendar&lt;/button&gt;
-&lt;/nav&gt;
+<!-- MOBILE TAB BAR (app format) -->
+<nav class=&quot;tabbar&quot;>
+  <button data-mv=&quot;dash&quot; class=&quot;active&quot; onclick=&quot;showMobile('dash')&quot;>
+    <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;><rect x=&quot;3.5&quot; y=&quot;3.5&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;2&quot;/><rect x=&quot;13.5&quot; y=&quot;3.5&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;2&quot;/><rect x=&quot;3.5&quot; y=&quot;13.5&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;2&quot;/><rect x=&quot;13.5&quot; y=&quot;13.5&quot; width=&quot;7&quot; height=&quot;7&quot; rx=&quot;2&quot;/></svg>
+    Dashboard</button>
+  <button data-mv=&quot;tasks&quot; onclick=&quot;showMobile('tasks')&quot;>
+    <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M3.5 6.2 5.2 7.9 8.6 4.6M3.5 12.2l1.7 1.7 3.4-3.3M3.5 18.2l1.7 1.7 3.4-3.3M12 6h9M12 12h9M12 18h9&quot;/></svg>
+    Tasks</button>
+  <button data-mv=&quot;ai&quot; onclick=&quot;showMobile('ai')&quot;>
+    <span class=&quot;orb-tile tab&quot;><canvas class=&quot;va-orb&quot; width=&quot;44&quot; height=&quot;44&quot;></canvas></span>
+    VA</button>
+  <button data-mv=&quot;lic&quot; onclick=&quot;showMobile('lic')&quot;>
+    <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;><rect x=&quot;3&quot; y=&quot;5&quot; width=&quot;18&quot; height=&quot;14&quot; rx=&quot;3&quot;/><circle cx=&quot;8.5&quot; cy=&quot;11&quot; r=&quot;2&quot;/><path d=&quot;M6 16.5c.6-1.4 1.4-2 2.5-2s1.9.6 2.5 2M14.5 9.5h4M14.5 13h4&quot;/></svg>
+    Licenses</button>
+  <button data-mv=&quot;cal&quot; onclick=&quot;showMobile('cal')&quot;>
+    <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;><rect x=&quot;3&quot; y=&quot;5&quot; width=&quot;18&quot; height=&quot;16&quot; rx=&quot;3&quot;/><path d=&quot;M3 10h18M8 3v4M16 3v4&quot;/></svg>
+    Calendar</button>
+</nav>
 
-&lt;!-- IMPORT SHEET (v4.0) --&gt;
-&lt;div class=&quot;sheet-back&quot; id=&quot;importBack&quot; onclick=&quot;if(event.target===this)closeImport()&quot;&gt;
-  &lt;div class=&quot;sheet import-sheet&quot;&gt;
-    &lt;h3&gt;Import your book&lt;/h3&gt;
-    &lt;p class=&quot;dim&quot;&gt;Export a case list from any carrier or your CRM and paste it here. BookView maps the status columns it recognizes. Columns that look like client identifiers — names, SSNs, policy numbers, free-text notes — are converted or stripped &lt;b&gt;on your device&lt;/b&gt; and never saved. Names become initials-only labels.&lt;/p&gt;
-    &lt;div id=&quot;importStep1&quot;&gt;
-      &lt;textarea id=&quot;csvText&quot; rows=&quot;8&quot; placeholder=&quot;Paste CSV here — header row first (Carrier, Product, Stage, Commission…)&quot;&gt;&lt;/textarea&gt;
-      &lt;div class=&quot;imp-btns&quot;&gt;
-        &lt;button class=&quot;btn&quot; onclick=&quot;previewImport()&quot;&gt;Preview import&lt;/button&gt;
-        &lt;button class=&quot;btn ghost&quot; onclick=&quot;document.getElementById(&#x27;csvFile&#x27;).click()&quot;&gt;Choose a file…&lt;/button&gt;
-        &lt;button class=&quot;btn ghost&quot; onclick=&quot;sampleCSV()&quot;&gt;Try a sample CSV&lt;/button&gt;
-        &lt;input type=&quot;file&quot; id=&quot;csvFile&quot; accept=&quot;.csv,text/csv,text/plain&quot; style=&quot;display:none&quot; onchange=&quot;fileCSV(event)&quot;&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div id=&quot;importStep2&quot; style=&quot;display:none&quot;&gt;
-      &lt;div id=&quot;importPreview&quot;&gt;&lt;/div&gt;
-      &lt;div class=&quot;imp-btns&quot;&gt;
-        &lt;button class=&quot;btn&quot; id=&quot;importGo&quot; onclick=&quot;doImport()&quot;&gt;Import&lt;/button&gt;
-        &lt;button class=&quot;btn ghost&quot; onclick=&quot;backImport()&quot;&gt;Back&lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+<!-- IMPORT SHEET (v4.0) -->
+<div class=&quot;sheet-back&quot; id=&quot;importBack&quot; onclick=&quot;if(event.target===this)closeImport()&quot;>
+  <div class=&quot;sheet import-sheet&quot;>
+    <h3>Import your book</h3>
+    <p class=&quot;dim&quot;>Export a case list from any carrier or your CRM and paste it here. BookView maps the status columns it recognizes. Columns that look like client identifiers — names, SSNs, policy numbers, free-text notes — are converted or stripped <b>on your device</b> and never saved. Names become first-name-and-initials labels.</p>
+    <div id=&quot;importStep1&quot;>
+      <textarea id=&quot;csvText&quot; rows=&quot;8&quot; placeholder=&quot;Paste CSV here — header row first (Carrier, Product, Stage, Commission…)&quot;></textarea>
+      <div class=&quot;imp-btns&quot;>
+        <button class=&quot;btn&quot; onclick=&quot;previewImport()&quot;>Preview import</button>
+        <button class=&quot;btn ghost&quot; onclick=&quot;document.getElementById('csvFile').click()&quot;>Choose a file…</button>
+        <button class=&quot;btn ghost&quot; onclick=&quot;sampleCSV()&quot;>Try a sample CSV</button>
+        <input type=&quot;file&quot; id=&quot;csvFile&quot; accept=&quot;.csv,text/csv,text/plain&quot; style=&quot;display:none&quot; onchange=&quot;fileCSV(event)&quot;>
+      </div>
+    </div>
+    <div id=&quot;importStep2&quot; style=&quot;display:none&quot;>
+      <div id=&quot;importPreview&quot;></div>
+      <div class=&quot;imp-btns&quot;>
+        <button class=&quot;btn&quot; id=&quot;importGo&quot; onclick=&quot;doImport()&quot;>Import</button>
+        <button class=&quot;btn ghost&quot; onclick=&quot;backImport()&quot;>Back</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-&lt;!-- FIRST RUN (v4.0) --&gt;
-&lt;div class=&quot;sheet-back&quot; id=&quot;firstrunBack&quot;&gt;
-  &lt;div class=&quot;sheet fr-sheet&quot;&gt;
-    &lt;div class=&quot;fr-logo&quot;&gt;Book&lt;span&gt;View&lt;/span&gt;&lt;/div&gt;
-    &lt;h3&gt;Your whole book. One screen.&lt;/h3&gt;
-    &lt;p class=&quot;dim&quot;&gt;BookView is a dashboard, not a CRM — one view across every carrier and line, and it never stores client identifiers. Cases are labels only: initials plus a number. How do you want to start?&lt;/p&gt;
-    &lt;div class=&quot;fr-choices&quot;&gt;
-      &lt;button class=&quot;fr-choice&quot; onclick=&quot;frChoose(&#x27;explore&#x27;)&quot;&gt;&lt;b&gt;Explore the demo book&lt;/b&gt;&lt;span&gt;Look around a sample book of 14 cases first.&lt;/span&gt;&lt;/button&gt;
-      &lt;button class=&quot;fr-choice&quot; onclick=&quot;frChoose(&#x27;import&#x27;)&quot;&gt;&lt;b&gt;Import my book&lt;/b&gt;&lt;span&gt;Bring a carrier CSV — identifiers are stripped on your device.&lt;/span&gt;&lt;/button&gt;
-      &lt;button class=&quot;fr-choice&quot; onclick=&quot;frChoose(&#x27;empty&#x27;)&quot;&gt;&lt;b&gt;Start empty&lt;/b&gt;&lt;span&gt;A clean board — add cases by talking to VA.&lt;/span&gt;&lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+<!-- FIRST RUN (v4.0) -->
+<div class=&quot;sheet-back&quot; id=&quot;firstrunBack&quot;>
+  <div class=&quot;sheet fr-sheet&quot;>
+    <div class=&quot;fr-logo&quot;>Book<span>View</span></div>
+    <h3>Your whole book. One screen.</h3>
+    <p class=&quot;dim&quot;>BookView is a dashboard, not a CRM — one view across every carrier and line, and it never stores client identifiers. Cases are labels only: a first name, initials, and a number. How do you want to start?</p>
+    <div class=&quot;fr-choices&quot;>
+      <button class=&quot;fr-choice&quot; onclick=&quot;frChoose('explore')&quot;><b>Explore the demo book</b><span>Look around a sample book of 14 cases first.</span></button>
+      <button class=&quot;fr-choice&quot; onclick=&quot;frChoose('import')&quot;><b>Import my book</b><span>Bring a carrier CSV — identifiers are stripped on your device.</span></button>
+      <button class=&quot;fr-choice&quot; onclick=&quot;frChoose('empty')&quot;><b>Start empty</b><span>A clean board — add cases by talking to VA.</span></button>
+    </div>
+  </div>
+</div>
 
-&lt;!-- CASE SHEET --&gt;
-&lt;div class=&quot;sheet-back&quot; id=&quot;sheetBack&quot; onclick=&quot;if(event.target===this)closeSheet()&quot;&gt;
-  &lt;div class=&quot;sheet&quot; id=&quot;sheet&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
+<!-- CASE SHEET -->
+<div class=&quot;sheet-back&quot; id=&quot;sheetBack&quot; onclick=&quot;if(event.target===this)closeSheet()&quot;>
+  <div class=&quot;sheet&quot; id=&quot;sheet&quot;></div>
+</div>
 
-&lt;script&gt;
+<script>
 /* ============ SAMPLE DATA (case labels only — no client PII, by design) ============ */
 const DAY = 86400000;
 function inDays(n){ const d = new Date(Date.now() + n*DAY); return d.toISOString().slice(0,10); }
 
 const SEED = {
   cases: [
-    {id:1, who:&quot;JMS 214&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Term 20&quot;, status:&quot;Underwriting&quot;, detail:&quot;APS pending&quot;, age:23, fyc:2450, credits:2450, size:40000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
+    {id:1, who:&quot;John M. S. 4&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Term 20&quot;, status:&quot;Underwriting&quot;, detail:&quot;APS pending&quot;, age:23, fyc:2450, credits:2450, size:40000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
       {t:&quot;Schedule paramed exam&quot;, done:false, due:inDays(1)}, {t:&quot;Order APS from clinic&quot;, done:true}, {t:&quot;Confirm beneficiary split&quot;, done:true}]},
-    {id:2, who:&quot;RKP 387&quot;, type:&quot;Annuity&quot;, company:&quot;Allianz&quot;, product:&quot;MYGA 5&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Suitability review&quot;, age:16, fyc:3900, credits:0, size:250000, share:1, splits:[], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[]},
-    {id:3, who:&quot;MAK 442&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Whole Life&quot;, status:&quot;Delivery Pending&quot;, detail:&quot;Issued \u2014 awaiting delivery&quot;, age:4, fyc:1150, credits:1150, size:15000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
+    {id:2, who:&quot;Raj K. P. 6&quot;, type:&quot;Annuity&quot;, company:&quot;Allianz&quot;, product:&quot;MYGA 5&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Suitability review&quot;, age:16, fyc:3900, credits:0, size:250000, share:1, splits:[], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[]},
+    {id:3, who:&quot;Maria A. K. 15&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Whole Life&quot;, status:&quot;Delivery Pending&quot;, detail:&quot;Issued \u2014 awaiting delivery&quot;, age:4, fyc:1150, credits:1150, size:15000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Deliver policy &amp; collect receipt&quot;, done:false, due:inDays(0)}]},
-    {id:4, who:&quot;DLT 276&quot;, type:&quot;Medicare&quot;, company:&quot;UHC&quot;, product:&quot;MA Plan&quot;, status:&quot;Submitted&quot;, detail:&quot;Enrollment submitted&quot;, age:6, fyc:310, credits:310, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
+    {id:4, who:&quot;David L. T. 12&quot;, type:&quot;Medicare&quot;, company:&quot;UHC&quot;, product:&quot;MA Plan&quot;, status:&quot;Submitted&quot;, detail:&quot;Enrollment submitted&quot;, age:6, fyc:310, credits:310, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Verify PCP in network&quot;, done:true}, {t:&quot;Send scope-of-appointment copy&quot;, done:false, due:inDays(2)}]},
-    {id:5, who:&quot;ASR 318&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;Managed portfolio&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Onboarding&quot;, age:9, fyc:1800, credits:0, size:190000, share:1, splits:[], docs:false, funding:&quot;Transfer&quot;, waitingOn:&quot;Client&quot;, recurring:true, stuck:false, tasks:[
+    {id:5, who:&quot;Alicia S. R. 9&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;Managed portfolio&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Onboarding&quot;, age:9, fyc:1800, credits:0, size:190000, share:1, splits:[], docs:false, funding:&quot;Transfer&quot;, waitingOn:&quot;Client&quot;, recurring:true, stuck:false, tasks:[
       {t:&quot;Collect signed advisory agreement&quot;, done:false, due:inDays(1)}, {t:&quot;Link bank for contributions&quot;, done:false}]},
-    {id:6, who:&quot;SRN 548&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;IUL&quot;, status:&quot;Underwriting&quot;, detail:&quot;Medical records requested&quot;, age:12, fyc:2980, credits:2980, size:60000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(-2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
+    {id:6, who:&quot;Sarah R. N. 8&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;IUL&quot;, status:&quot;Underwriting&quot;, detail:&quot;Medical records requested&quot;, age:12, fyc:2980, credits:2980, size:60000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(-2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
       {t:&quot;Request medical records release&quot;, done:false, due:inDays(-1)}, {t:&quot;Call underwriter re: rating class&quot;, done:false}]},
-    {id:7, who:&quot;KJL 731&quot;, type:&quot;Annuity&quot;, company:&quot;NYL&quot;, product:&quot;FIA&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Funded \u2014 pending issue&quot;, age:3, fyc:4250, credits:4250, size:212000, share:0.4, splits:[{code:&quot;138338&quot;, pct:60}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
+    {id:7, who:&quot;Karen J. L. 16&quot;, type:&quot;Annuity&quot;, company:&quot;NYL&quot;, product:&quot;FIA&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Funded \u2014 pending issue&quot;, age:3, fyc:4250, credits:4250, size:212000, share:0.4, splits:[{code:&quot;138338&quot;, pct:60}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Confirm beneficiary designations&quot;, done:true}]},
-    {id:8, who:&quot;BAH 127&quot;, type:&quot;Medicare&quot;, company:&quot;Humana&quot;, product:&quot;Med Supp&quot;, status:&quot;Underwriting&quot;, detail:&quot;Health questions&quot;, age:8, fyc:275, credits:275, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
+    {id:8, who:&quot;Brenda A. H. 11&quot;, type:&quot;Medicare&quot;, company:&quot;Humana&quot;, product:&quot;Med Supp&quot;, status:&quot;Underwriting&quot;, detail:&quot;Health questions&quot;, age:8, fyc:275, credits:275, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Upload ID card copy&quot;, done:true}, {t:&quot;Answer health-question follow-up&quot;, done:false, due:inDays(3)}]},
-    {id:9, who:&quot;PMG 195&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Term 30&quot;, status:&quot;Pending&quot;, detail:&quot;Application taken&quot;, age:1, fyc:1720, credits:1720, size:30000, share:1, splits:[], exam:inDays(5), docs:false, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
+    {id:9, who:&quot;Peter M. G. 18&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Term 30&quot;, status:&quot;Pending&quot;, detail:&quot;Application taken&quot;, age:1, fyc:1720, credits:1720, size:30000, share:1, splits:[], exam:inDays(5), docs:false, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Complete Part 2 health questions&quot;, done:false, due:inDays(0)}]},
-    {id:10, who:&quot;LJM 103&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;401(k) rollover&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Transfer in progress&quot;, age:14, fyc:2300, credits:0, size:210000, share:0.5, splits:[{code:&quot;138338&quot;, pct:50}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, recurring:true, stuck:true, tasks:[]},
-    {id:11, who:&quot;TAW 471&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;GUL&quot;, status:&quot;Pending&quot;, detail:&quot;Illustration approved&quot;, age:5, fyc:1940, credits:1940, size:136000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
+    {id:10, who:&quot;Laura J. M. 7&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;401(k) rollover&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Transfer in progress&quot;, age:14, fyc:2300, credits:0, size:210000, share:0.5, splits:[{code:&quot;138338&quot;, pct:50}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, recurring:true, stuck:true, tasks:[]},
+    {id:11, who:&quot;Thomas A. W. 14&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;GUL&quot;, status:&quot;Pending&quot;, detail:&quot;Illustration approved&quot;, age:5, fyc:1940, credits:1940, size:136000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Send illustration for signature&quot;, done:false, due:inDays(2)}]},
-    {id:12, who:&quot;NMD 856&quot;, type:&quot;Annuity&quot;, company:&quot;Athene&quot;, product:&quot;MYGA 3&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:30, fyc:2650, credits:2650, size:100000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
+    {id:12, who:&quot;Naveen M. D. 3&quot;, type:&quot;Annuity&quot;, company:&quot;Athene&quot;, product:&quot;MYGA 3&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:30, fyc:2650, credits:2650, size:100000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
       {t:&quot;Schedule welcome call&quot;, done:false, due:inDays(4)}]},
-    {id:15, who:&quot;KRD 509&quot;, type:&quot;Medical&quot;, company:&quot;Anthem&quot;, product:&quot;Silver PPO&quot;, status:&quot;Submitted&quot;, detail:&quot;Enrollment submitted&quot;, age:6, fyc:340, credits:340, size:0, share:1, splits:[], docs:false, funding:&quot;&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
+    {id:15, who:&quot;Kavita R. D. 13&quot;, type:&quot;Medical&quot;, company:&quot;Anthem&quot;, product:&quot;Silver PPO&quot;, status:&quot;Submitted&quot;, detail:&quot;Enrollment submitted&quot;, age:6, fyc:340, credits:340, size:0, share:1, splits:[], docs:false, funding:&quot;&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Upload income verification docs&quot;, done:false, due:inDays(2)}]},
-    {id:16, who:&quot;PSN 623&quot;, type:&quot;Dental&quot;, company:&quot;Delta&quot;, product:&quot;PPO Premier&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:41, fyc:85, credits:85, size:1200, share:1, splits:[], docs:true, postDocs:false, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
+    {id:16, who:&quot;Priya S. N. 2&quot;, type:&quot;Dental&quot;, company:&quot;Delta&quot;, product:&quot;PPO Premier&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:41, fyc:85, credits:85, size:1200, share:1, splits:[], docs:true, postDocs:false, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
       {t:&quot;Send ID card and welcome packet&quot;, done:false, due:inDays(3)}]},
-    {id:17, who:&quot;PRS 340&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;Investment account&quot;, status:&quot;Prospect&quot;, detail:&quot;Discovery call done&quot;, age:2, fyc:0, credits:0, size:250000, share:0.5, splits:[{code:&quot;076284&quot;, pct:50}], docs:false, funding:&quot;&quot;, waitingOn:&quot;Me&quot;, stuck:false, tasks:[
+    {id:17, who:&quot;Paul R. S. 17&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;Investment account&quot;, status:&quot;Prospect&quot;, detail:&quot;Discovery call done&quot;, age:2, fyc:0, credits:0, size:250000, share:0.5, splits:[{code:&quot;076284&quot;, pct:50}], docs:false, funding:&quot;&quot;, waitingOn:&quot;Me&quot;, stuck:false, tasks:[
       {t:&quot;Send follow-up with account options&quot;, done:false, due:inDays(1)}]},
-    {id:18, who:&quot;DVM 918&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;Trust account&quot;, status:&quot;Deposited&quot;, detail:&quot;Funded&quot;, age:18, fyc:6000, credits:12000, size:600000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Transfer&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
-    {id:19, who:&quot;HTS 227&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Whole Life&quot;, status:&quot;Declined&quot;, detail:&quot;Freelook \u2014 not taken&quot;, age:47, fyc:0, credits:0, size:150000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], docs:true, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
-    {id:20, who:&quot;KMN 512&quot;, type:&quot;Annuity&quot;, company:&quot;NYL&quot;, product:&quot;IndexFlex VA&quot;, status:&quot;Submitted&quot;, detail:&quot;App submitted to carrier&quot;, age:9, fyc:3000, credits:3000, size:220000, share:0.95, splits:[{code:&quot;197328&quot;, pct:5}], docs:false, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
+    {id:18, who:&quot;Daniel V. M. 5&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;Trust account&quot;, status:&quot;Deposited&quot;, detail:&quot;Funded&quot;, age:18, fyc:6000, credits:12000, size:600000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Transfer&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
+    {id:19, who:&quot;Henry T. S. 1&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Whole Life&quot;, status:&quot;Declined&quot;, detail:&quot;Freelook \u2014 not taken&quot;, age:47, fyc:0, credits:0, size:150000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], docs:true, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
+    {id:20, who:&quot;Kevin M. N. 10&quot;, type:&quot;Annuity&quot;, company:&quot;NYL&quot;, product:&quot;IndexFlex VA&quot;, status:&quot;Submitted&quot;, detail:&quot;App submitted to carrier&quot;, age:9, fyc:3000, credits:3000, size:220000, share:0.95, splits:[{code:&quot;197328&quot;, pct:5}], docs:false, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Confirm funds release from prior carrier&quot;, done:false, due:inDays(3)}]}
   ],
   renewals: [
-    {who:&quot;GAH 664&quot;, line:&quot;Life&quot;, carrier:&quot;Foresters&quot;, date:inDays(6), premium:1840},
-    {who:&quot;CDB 845&quot;, line:&quot;Medicare&quot;, carrier:&quot;Humana&quot;, date:inDays(13), premium:612},
-    {who:&quot;WEJ 260&quot;, line:&quot;Annuity&quot;, carrier:&quot;Athene&quot;, date:inDays(21), premium:5200},
-    {who:&quot;EMF 930&quot;, line:&quot;Life&quot;, carrier:&quot;Protective&quot;, date:inDays(27), premium:1295}
+    {who:&quot;George A. H. 19&quot;, line:&quot;Life&quot;, carrier:&quot;Foresters&quot;, date:inDays(6), premium:1840},
+    {who:&quot;Carlos D. B. 20&quot;, line:&quot;Medicare&quot;, carrier:&quot;Humana&quot;, date:inDays(13), premium:612},
+    {who:&quot;William E. J. 21&quot;, line:&quot;Annuity&quot;, carrier:&quot;Athene&quot;, date:inDays(21), premium:5200},
+    {who:&quot;Elena M. F. 22&quot;, line:&quot;Life&quot;, carrier:&quot;Protective&quot;, date:inDays(27), premium:1295}
   ],
   licenses: [
     {state:&quot;California&quot;, expires:&quot;2027-02-28&quot;, ce:&quot;CE complete&quot;, appts:{&quot;North American&quot;:1,&quot;Foresters&quot;:1,&quot;Mutual of Omaha&quot;:1,&quot;Allianz&quot;:1,&quot;Transamerica&quot;:1,&quot;Protective&quot;:1}},
@@ -898,16 +898,16 @@ const SEED = {
     {state:&quot;Nevada&quot;, expires:&quot;2027-06-30&quot;, ce:&quot;CE complete&quot;, appts:{&quot;Mutual of Omaha&quot;:1,&quot;National Life&quot;:1,&quot;North American&quot;:0}}
   ],
   events: [
-    {off:0, time:&quot;10:00&quot;, kind:&quot;&quot;, title:&quot;Follow-up call — underwriting (SRN 548)&quot;},
-    {off:0, time:&quot;2:00 PM&quot;, kind:&quot;&quot;, title:&quot;Policy delivery — MAK 442&quot;},
-    {off:1, time:&quot;9:30 AM&quot;, kind:&quot;task&quot;, title:&quot;Paramed exam — JMS 214&quot;},
-    {off:1, time:&quot;1:00 PM&quot;, kind:&quot;&quot;, title:&quot;Advisory agreement review — ASR 318&quot;},
+    {off:0, time:&quot;10:00&quot;, kind:&quot;&quot;, title:&quot;Follow-up call — underwriting (Sarah R. N. 8)&quot;},
+    {off:0, time:&quot;2:00 PM&quot;, kind:&quot;&quot;, title:&quot;Policy delivery — Maria A. K. 15&quot;},
+    {off:1, time:&quot;9:30 AM&quot;, kind:&quot;task&quot;, title:&quot;Paramed exam — John M. S. 4&quot;},
+    {off:1, time:&quot;1:00 PM&quot;, kind:&quot;&quot;, title:&quot;Advisory agreement review — Alicia S. R. 9&quot;},
     {off:2, time:&quot;11:00 AM&quot;, kind:&quot;&quot;, title:&quot;Carrier rep meeting — Allianz&quot;},
-    {off:2, time:&quot;&quot;, kind:&quot;ren&quot;, title:&quot;Renewal due — GAH 664 (Foresters)&quot;},
-    {off:3, time:&quot;10:00 AM&quot;, kind:&quot;&quot;, title:&quot;Illustration review call — TAW 471&quot;},
-    {off:3, time:&quot;&quot;, kind:&quot;task&quot;, title:&quot;Due: scope-of-appointment copy — DLT 276&quot;},
+    {off:2, time:&quot;&quot;, kind:&quot;ren&quot;, title:&quot;Renewal due — George A. H. 19 (Foresters)&quot;},
+    {off:3, time:&quot;10:00 AM&quot;, kind:&quot;&quot;, title:&quot;Illustration review call — Thomas A. W. 14&quot;},
+    {off:3, time:&quot;&quot;, kind:&quot;task&quot;, title:&quot;Due: scope-of-appointment copy — David L. T. 12&quot;},
     {off:4, time:&quot;&quot;, kind:&quot;lic&quot;, title:&quot;Arizona license renews in ~5 weeks&quot;},
-    {off:4, time:&quot;3:00 PM&quot;, kind:&quot;&quot;, title:&quot;Welcome call — NMD 856&quot;},
+    {off:4, time:&quot;3:00 PM&quot;, kind:&quot;&quot;, title:&quot;Welcome call — Naveen M. D. 3&quot;},
     {off:5, time:&quot;9:00 AM&quot;, kind:&quot;due&quot;, title:&quot;CE block — Texas, 2 hrs&quot;}
   ]
 };
@@ -921,35 +921,35 @@ try {
 function save(){ try{ localStorage.setItem(&quot;bookviewV8&quot;, JSON.stringify(S)); }catch(e){} }
 function resetDemo(){ try{ localStorage.removeItem(&quot;bookviewV8&quot;); }catch(e){} location.reload(); }
 
-const money = n =&gt; &quot;$&quot; + n.toLocaleString();
-const openTasks = c =&gt; c.tasks.filter(t =&gt; !t.done);
+const money = n => &quot;$&quot; + n.toLocaleString();
+const openTasks = c => c.tasks.filter(t => !t.done);
 function fmtDate(iso){ const d = new Date(iso + &quot;T12:00:00&quot;); return d.toLocaleDateString(&quot;en-US&quot;,{month:&quot;short&quot;, day:&quot;numeric&quot;, year:&quot;numeric&quot;}); }
 function daysUntil(iso){ const p = iso.split(&quot;-&quot;).map(Number); const a = new Date(p[0], p[1] - 1, p[2]); const n = new Date(); const b = new Date(n.getFullYear(), n.getMonth(), n.getDate()); return Math.round((a - b) / DAY); }
 
 /* ============ TABS ============ */
 function showTab(name){
-  [&quot;dash&quot;,&quot;tasks&quot;,&quot;lic&quot;,&quot;cal&quot;].forEach(t =&gt; {
+  [&quot;dash&quot;,&quot;tasks&quot;,&quot;lic&quot;,&quot;cal&quot;].forEach(t => {
     document.getElementById(&quot;view-&quot; + t).style.display = t === name ? &quot;&quot; : &quot;none&quot;;
     document.getElementById(&quot;tab-&quot; + t).classList.toggle(&quot;active&quot;, t === name);
   });
-  setTimeout(() =&gt; { if (typeof fitMonth === &quot;function&quot;) fitMonth(); }, 0);
+  setTimeout(() => { if (typeof fitMonth === &quot;function&quot;) fitMonth(); }, 0);
 }
 
 /* ============ DASHBOARD ============ */
 let filter = &quot;All&quot;;
 function renderKPIs(){
-  const inflight = S.cases.filter(c =&gt; INFLIGHT.includes(statusOf(c)));
-  const stuck = S.cases.filter(c =&gt; c.stuck &amp;&amp; INFLIGHT.includes(statusOf(c)));
-  const pending = inflight.reduce((a,c) =&gt; a + myFyc(c), 0);
-  const stuckMoney = stuck.reduce((a,c) =&gt; a + myFyc(c), 0);
+  const inflight = S.cases.filter(c => INFLIGHT.includes(statusOf(c)));
+  const stuck = S.cases.filter(c => c.stuck &amp;&amp; INFLIGHT.includes(statusOf(c)));
+  const pending = inflight.reduce((a,c) => a + myFyc(c), 0);
+  const stuckMoney = stuck.reduce((a,c) => a + myFyc(c), 0);
   const q = quarterOf({age: 0});
-  const produced = S.cases.filter(c =&gt; DONE.includes(statusOf(c)) &amp;&amp; quarterOf(c) === q).reduce((a,c) =&gt; a + myFyc(c), 0);
+  const produced = S.cases.filter(c => DONE.includes(statusOf(c)) &amp;&amp; quarterOf(c) === q).reduce((a,c) => a + myFyc(c), 0);
   document.getElementById(&quot;kpis&quot;).innerHTML =
     kpi(inflight.length, &quot;Cases&quot;) +
     kpi(stuck.length, &quot;Stuck&quot;, &quot;bad&quot;) +
     kpi(money(pending), &quot;Pending&quot;) +
     kpi(money(produced), &quot;Produced&quot;);
-  function kpi(n, l, cls){ return &#x27;&lt;div class=&quot;kpi &#x27; + (cls||&quot;&quot;) + &#x27;&quot;&gt;&lt;div class=&quot;num&quot;&gt;&#x27; + n + &#x27;&lt;/div&gt;&lt;div class=&quot;lbl&quot;&gt;&#x27; + l + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;; }
+  function kpi(n, l, cls){ return '<div class=&quot;kpi ' + (cls||&quot;&quot;) + '&quot;><div class=&quot;num&quot;>' + n + '</div><div class=&quot;lbl&quot;>' + l + '</div></div>'; }
   renderProduction();
 }
 const STATUSES = [&quot;Prospect&quot;, &quot;Submitted&quot;, &quot;Pending&quot;, &quot;Underwriting&quot;, &quot;Awaiting Funds&quot;, &quot;Deposited&quot;, &quot;Delivery Pending&quot;, &quot;Delivered&quot;, &quot;Declined&quot;];
@@ -957,7 +957,7 @@ const STATUS_COLORS = {&quot;Prospect&quot;: &quot;#579bfc&quot;, &quot;Submitte
 const INFLIGHT = [&quot;Prospect&quot;, &quot;Submitted&quot;, &quot;Pending&quot;, &quot;Underwriting&quot;, &quot;Awaiting Funds&quot;, &quot;Delivery Pending&quot;];
 const DONE = [&quot;Deposited&quot;, &quot;Delivered&quot;];
 function statusOf(c){ return c.status || &quot;Pending&quot;; }
-const myFyc = c =&gt; Math.round((c.fyc || 0) * (c.share == null ? 1 : c.share));
+const myFyc = c => Math.round((c.fyc || 0) * (c.share == null ? 1 : c.share));
 function appDateOf(c){ const d = new Date(); d.setDate(d.getDate() - (c.age || 0)); return d.getFullYear() + &quot;-&quot; + String(d.getMonth() + 1).padStart(2, &quot;0&quot;) + &quot;-&quot; + String(d.getDate()).padStart(2, &quot;0&quot;); }
 function quarterOf(c){ const d = new Date(); d.setDate(d.getDate() - (c.age || 0)); return &quot;Q&quot; + (Math.floor(d.getMonth() / 3) + 1) + &quot; &quot; + d.getFullYear(); }
 function qKey(c){ const d = new Date(); d.setDate(d.getDate() - (c.age || 0)); return d.getFullYear() * 10 + Math.floor(d.getMonth() / 3) + 1; }
@@ -981,87 +981,87 @@ function caseVisible(c){
   return statusOf(c) === filter;
 }
 function statusSums(rows){
-  const one = rows.filter(c =&gt; !c.recurring).reduce((a,c) =&gt; a + myFyc(c), 0);
-  const rec = rows.filter(c =&gt; c.recurring).reduce((a,c) =&gt; a + myFyc(c), 0);
-  const st = rows.filter(c =&gt; c.stuck).length;
-  return (one ? money(one) + &quot; FYC&quot; : &quot;&quot;) + (rec ? (one ? &quot; + &quot; : &quot;&quot;) + money(rec) + &quot;/yr&quot; : &quot;&quot;) + (st ? &#x27; \u00B7 &lt;span class=&quot;sstuck&quot;&gt;&#x27; + st + &quot; stuck&lt;/span&gt;&quot; : &quot;&quot;);
+  const one = rows.filter(c => !c.recurring).reduce((a,c) => a + myFyc(c), 0);
+  const rec = rows.filter(c => c.recurring).reduce((a,c) => a + myFyc(c), 0);
+  const st = rows.filter(c => c.stuck).length;
+  return (one ? money(one) + &quot; FYC&quot; : &quot;&quot;) + (rec ? (one ? &quot; + &quot; : &quot;&quot;) + money(rec) + &quot;/yr&quot; : &quot;&quot;) + (st ? ' \u00B7 <span class=&quot;sstuck&quot;>' + st + &quot; stuck</span>&quot; : &quot;&quot;);
 }
 function renderFilters(){
   const lines = [&quot;All&quot;].concat(INFLIGHT, [&quot;Completed&quot;, &quot;Declined&quot;, &quot;Stuck only&quot;]);
-  document.getElementById(&quot;filters&quot;).innerHTML = lines.map(l =&gt;
-    &#x27;&lt;button class=&quot;&#x27; + (filter===l ? &quot;active&quot; : &quot;&quot;) + &#x27;&quot; onclick=&quot;setFilter(\&#x27;&#x27; + l + &#x27;\&#x27;)&quot;&gt;&#x27; + l + &#x27;&lt;/button&gt;&#x27;).join(&quot;&quot;);
+  document.getElementById(&quot;filters&quot;).innerHTML = lines.map(l =>
+    '<button class=&quot;' + (filter===l ? &quot;active&quot; : &quot;&quot;) + '&quot; onclick=&quot;setFilter(\'' + l + '\')&quot;>' + l + '</button>').join(&quot;&quot;);
 }
 function setFilter(l){ filter = l; renderFilters(); renderCases(); }
 function linePill(line){
   const cls = line===&quot;Annuity&quot; ? &quot;ann&quot; : line===&quot;Advisory&quot; ? &quot;adv&quot; : line===&quot;Securities&quot; ? &quot;adv&quot; : line===&quot;Medicare&quot; ? &quot;med&quot; : line===&quot;Medical&quot; ? &quot;mdc&quot; : line===&quot;Dental&quot; ? &quot;den&quot; : line===&quot;Plan&quot; ? &quot;pln&quot; : line===&quot;Disability&quot; ? &quot;mdc&quot; : &quot;&quot;;
-  return &#x27;&lt;span class=&quot;pill &#x27; + cls + &#x27;&quot;&gt;&#x27; + line + &#x27;&lt;/span&gt;&#x27;;
+  return '<span class=&quot;pill ' + cls + '&quot;>' + line + '</span>';
 }
 function renderCases(){
   if (!S.cases.length) {
-    document.getElementById(&quot;caseRows&quot;).innerHTML = &#x27;&lt;tr&gt;&lt;td colspan=&quot;6&quot; class=&quot;empty-cell&quot;&gt;No cases yet. Import your book from a CSV, or tell VA to add a case \u2014 the board fills in from there.&lt;/td&gt;&lt;/tr&gt;&#x27;;
-    document.getElementById(&quot;caseList&quot;).innerHTML = &#x27;&lt;div class=&quot;empty-cell&quot;&gt;No cases yet. Import your book from a CSV, or tell VA to add a case.&lt;/div&gt;&#x27;;
+    document.getElementById(&quot;caseRows&quot;).innerHTML = '<tr><td colspan=&quot;6&quot; class=&quot;empty-cell&quot;>No cases yet. Import your book from a CSV, or tell VA to add a case \u2014 the board fills in from there.</td></tr>';
+    document.getElementById(&quot;caseList&quot;).innerHTML = '<div class=&quot;empty-cell&quot;>No cases yet. Import your book from a CSV, or tell VA to add a case.</div>';
     return;
   }
   const groups = STATUSES
-    .map(s =&gt; ({s, rows: S.cases.filter(c =&gt; statusOf(c) === s &amp;&amp; caseVisible(c)).slice().sort((a,b) =&gt; b.age - a.age)}))
-    .filter(g =&gt; g.rows.length || filter === g.s);
-  const total = groups.reduce((a,g) =&gt; a + g.rows.length, 0);
-  const flagOf = c =&gt; {
+    .map(s => ({s, rows: S.cases.filter(c => statusOf(c) === s &amp;&amp; caseVisible(c)).slice().sort((a,b) => b.age - a.age)}))
+    .filter(g => g.rows.length || filter === g.s);
+  const total = groups.reduce((a,g) => a + g.rows.length, 0);
+  const flagOf = c => {
     const ot = openTasks(c).length;
-    if (c.stuck &amp;&amp; ot === 0) return &#x27;&lt;span class=&quot;flag court&quot;&gt;\u25CF&lt;span class=&quot;ftxt&quot;&gt; carrier\u2019s court&lt;/span&gt;&lt;/span&gt;&#x27;;
-    if (c.stuck) return &#x27;&lt;span class=&quot;flag&quot;&gt;\u25CF&lt;span class=&quot;ftxt&quot;&gt; stuck&lt;/span&gt;&lt;/span&gt;&#x27;;
-    if (ot) return &#x27;&lt;span class=&quot;dim&quot;&gt;&#x27; + ot + &quot; open task&quot; + (ot&gt;1?&quot;s&quot;:&quot;&quot;) + &#x27;&lt;/span&gt;&#x27;;
+    if (c.stuck &amp;&amp; ot === 0) return '<span class=&quot;flag court&quot;>\u25CF<span class=&quot;ftxt&quot;> carrier\u2019s court</span></span>';
+    if (c.stuck) return '<span class=&quot;flag&quot;>\u25CF<span class=&quot;ftxt&quot;> stuck</span></span>';
+    if (ot) return '<span class=&quot;dim&quot;>' + ot + &quot; open task&quot; + (ot>1?&quot;s&quot;:&quot;&quot;) + '</span>';
     return &quot;&quot;;
   };
-  const tableRow = c =&gt; {
-    return &#x27;&lt;tr style=&quot;--gc:&#x27; + (STATUS_COLORS[statusOf(c)] || &#x27;#579bfc&#x27;) + &#x27;&quot; onclick=&quot;openCase(&#x27; + c.id + &#x27;)&quot;&gt;&#x27; +
-      &#x27;&lt;td&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + c.who + &#x27;&lt;/span&gt;&#x27; + (c.product ? &#x27;&lt;span class=&quot;pname&quot;&gt;&#x27; + c.product + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
-      &#x27;&lt;td data-label=&quot;Product&quot;&gt;&#x27; + linePill(c.type) + (c.company ? &#x27;&lt;span class=&quot;pname&quot;&gt;&#x27; + c.company + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
-      &#x27;&lt;td data-label=&quot;Stage&quot; class=&quot;stagec&quot;&gt;&#x27; + (c.detail || c.status) + &#x27;&lt;/td&gt;&#x27; +
-      &#x27;&lt;td data-label=&quot;Age&quot; class=&quot;age &#x27; + (c.age&gt;7 &amp;&amp; INFLIGHT.includes(c.status) ? &quot;hot&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + c.age + &#x27;d&lt;/td&gt;&#x27; +
-      &#x27;&lt;td data-label=&quot;FYC&quot; class=&quot;money&quot;&gt;&#x27; + money(myFyc(c)) + (c.share != null &amp;&amp; c.share &lt; 1 &amp;&amp; c.fyc ? &#x27; &lt;span class=&quot;dim&quot;&gt;of &#x27; + money(c.fyc) + &#x27;&lt;/span&gt;&#x27; : &#x27;&#x27;) + (c.recurring ? &#x27;&lt;span class=&quot;dim&quot;&gt;/yr&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/td&gt;&#x27; +
-      &#x27;&lt;td&gt;&#x27; + flagOf(c) + &#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;;
+  const tableRow = c => {
+    return '<tr style=&quot;--gc:' + (STATUS_COLORS[statusOf(c)] || '#579bfc') + '&quot; onclick=&quot;openCase(' + c.id + ')&quot;>' +
+      '<td><span class=&quot;who&quot;>' + c.who + '</span>' + (c.product ? '<span class=&quot;pname&quot;>' + c.product + '</span>' : '') + '</td>' +
+      '<td data-label=&quot;Product&quot;>' + linePill(c.type) + (c.company ? '<span class=&quot;pname&quot;>' + c.company + '</span>' : '') + '</td>' +
+      '<td data-label=&quot;Stage&quot; class=&quot;stagec&quot;>' + (c.detail || c.status) + '</td>' +
+      '<td data-label=&quot;Age&quot; class=&quot;age ' + (c.age>7 &amp;&amp; INFLIGHT.includes(c.status) ? &quot;hot&quot; : &quot;&quot;) + '&quot;>' + c.age + 'd</td>' +
+      '<td data-label=&quot;FYC&quot; class=&quot;money&quot;>' + money(myFyc(c)) + (c.share != null &amp;&amp; c.share < 1 &amp;&amp; c.fyc ? ' <span class=&quot;dim&quot;>of ' + money(c.fyc) + '</span>' : '') + (c.recurring ? '<span class=&quot;dim&quot;>/yr</span>' : '') + '</td>' +
+      '<td>' + flagOf(c) + '</td></tr>';
   };
-  const listRow = c =&gt; {
+  const listRow = c => {
     const ot = openTasks(c).length;
     let flag = &quot;&quot;;
-    if (c.stuck &amp;&amp; ot === 0) flag = &#x27; \u00B7 &lt;span class=&quot;flag court&quot;&gt;\u25CF carrier\u2019s court&lt;/span&gt;&#x27;;
-    else if (c.stuck) flag = &#x27; \u00B7 &lt;span class=&quot;flag&quot;&gt;\u25CF stuck&lt;/span&gt;&#x27;;
-    else if (ot) flag = &#x27; \u00B7 &lt;span class=&quot;dim&quot;&gt;&#x27; + ot + &quot; open task&quot; + (ot &gt; 1 ? &quot;s&quot; : &quot;&quot;) + &#x27;&lt;/span&gt;&#x27;;
-    return &#x27;&lt;div class=&quot;crow&quot; onclick=&quot;openCase(&#x27; + c.id + &#x27;)&quot;&gt;&#x27; +
-      &#x27;&lt;div class=&quot;crow-top&quot;&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + c.who + &#x27;&lt;/span&gt;&#x27; +
-      &#x27;&lt;span class=&quot;cmoney&quot;&gt;&#x27; + money(myFyc(c)) + (c.recurring ? &#x27;&lt;span class=&quot;dim&quot;&gt;/yr&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
-      &#x27;&lt;div class=&quot;crow-sub&quot;&gt;&#x27; + linePill(c.type) + &#x27; &lt;span class=&quot;dim&quot;&gt;&#x27; + (c.company ? c.company + &#x27; \u00B7 &#x27; : &#x27;&#x27;) + (c.product ? c.product + &#x27; \u00B7 &#x27; : &#x27;&#x27;) + (c.detail || c.status) + &#x27; \u00B7 &lt;/span&gt;&#x27; +
-      &#x27;&lt;span class=&quot;age&#x27; + (c.age &gt; 7 &amp;&amp; INFLIGHT.includes(c.status) ? &quot; hot&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + c.age + &#x27;d&lt;/span&gt;&#x27; + flag + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
+    if (c.stuck &amp;&amp; ot === 0) flag = ' \u00B7 <span class=&quot;flag court&quot;>\u25CF carrier\u2019s court</span>';
+    else if (c.stuck) flag = ' \u00B7 <span class=&quot;flag&quot;>\u25CF stuck</span>';
+    else if (ot) flag = ' \u00B7 <span class=&quot;dim&quot;>' + ot + &quot; open task&quot; + (ot > 1 ? &quot;s&quot; : &quot;&quot;) + '</span>';
+    return '<div class=&quot;crow&quot; onclick=&quot;openCase(' + c.id + ')&quot;>' +
+      '<div class=&quot;crow-top&quot;><span class=&quot;who&quot;>' + c.who + '</span>' +
+      '<span class=&quot;cmoney&quot;>' + money(myFyc(c)) + (c.recurring ? '<span class=&quot;dim&quot;>/yr</span>' : '') + '</span></div>' +
+      '<div class=&quot;crow-sub&quot;>' + linePill(c.type) + ' <span class=&quot;dim&quot;>' + (c.company ? c.company + ' \u00B7 ' : '') + (c.product ? c.product + ' \u00B7 ' : '') + (c.detail || c.status) + ' \u00B7 </span>' +
+      '<span class=&quot;age' + (c.age > 7 &amp;&amp; INFLIGHT.includes(c.status) ? &quot; hot&quot; : &quot;&quot;) + '&quot;>' + c.age + 'd</span>' + flag + '</div></div>';
   };
-  document.getElementById(&quot;caseRows&quot;).innerHTML = total ? groups.map(g =&gt;
-    &#x27;&lt;tr class=&quot;srow-h&quot; style=&quot;--gc:&#x27; + (STATUS_COLORS[g.s] || &#x27;#579bfc&#x27;) + &#x27;&quot;&gt;&lt;td colspan=&quot;6&quot;&gt;&lt;span class=&quot;sgname&quot;&gt;&#x27; + g.s + &#x27; \u00B7 &#x27; + g.rows.length + &#x27;&lt;/span&gt;&lt;span class=&quot;sgmeta&quot;&gt;&#x27; + statusSums(g.rows) + &#x27;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&#x27; +
-    (g.rows.length ? g.rows.map(tableRow).join(&quot;&quot;) + &#x27;&lt;tr class=&quot;addrow&quot;&gt;&lt;td colspan=&quot;6&quot; onclick=&quot;openVA()&quot;&gt;+ Add case&lt;/td&gt;&lt;/tr&gt;&#x27; : &#x27;&lt;tr&gt;&lt;td colspan=&quot;6&quot; class=&quot;dim&quot; style=&quot;padding:10px 8px 16px&quot;&gt;No cases in this status.&lt;/td&gt;&lt;/tr&gt;&#x27;)
-  ).join(&quot;&quot;) : &#x27;&lt;tr&gt;&lt;td colspan=&quot;6&quot; class=&quot;dim&quot; style=&quot;padding:18px 8px&quot;&gt;Nothing here under this filter.&lt;/td&gt;&lt;/tr&gt;&#x27;;
-  document.getElementById(&quot;caseList&quot;).innerHTML = total ? groups.map(g =&gt;
-    &#x27;&lt;div class=&quot;sgroup&quot; style=&quot;--gc:&#x27; + (STATUS_COLORS[g.s] || &#x27;#579bfc&#x27;) + &#x27;&quot;&gt;&lt;span&gt;&#x27; + g.s + &#x27; \u00B7 &#x27; + g.rows.length + &#x27;&lt;/span&gt;&lt;span class=&quot;sgmeta&quot;&gt;&#x27; + statusSums(g.rows) + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
-    (g.rows.length ? g.rows.map(listRow).join(&quot;&quot;) : &#x27;&lt;div class=&quot;dim&quot; style=&quot;padding:8px 4px 14px&quot;&gt;No cases in this status.&lt;/div&gt;&#x27;)
-  ).join(&quot;&quot;) : &#x27;&lt;div class=&quot;dim&quot; style=&quot;padding:18px 4px&quot;&gt;Nothing here under this filter.&lt;/div&gt;&#x27;;
+  document.getElementById(&quot;caseRows&quot;).innerHTML = total ? groups.map(g =>
+    '<tr class=&quot;srow-h&quot; style=&quot;--gc:' + (STATUS_COLORS[g.s] || '#579bfc') + '&quot;><td colspan=&quot;6&quot;><span class=&quot;sgname&quot;>' + g.s + ' \u00B7 ' + g.rows.length + '</span><span class=&quot;sgmeta&quot;>' + statusSums(g.rows) + '</span></td></tr>' +
+    (g.rows.length ? g.rows.map(tableRow).join(&quot;&quot;) + '<tr class=&quot;addrow&quot;><td colspan=&quot;6&quot; onclick=&quot;openVA()&quot;>+ Add case</td></tr>' : '<tr><td colspan=&quot;6&quot; class=&quot;dim&quot; style=&quot;padding:10px 8px 16px&quot;>No cases in this status.</td></tr>')
+  ).join(&quot;&quot;) : '<tr><td colspan=&quot;6&quot; class=&quot;dim&quot; style=&quot;padding:18px 8px&quot;>Nothing here under this filter.</td></tr>';
+  document.getElementById(&quot;caseList&quot;).innerHTML = total ? groups.map(g =>
+    '<div class=&quot;sgroup&quot; style=&quot;--gc:' + (STATUS_COLORS[g.s] || '#579bfc') + '&quot;><span>' + g.s + ' \u00B7 ' + g.rows.length + '</span><span class=&quot;sgmeta&quot;>' + statusSums(g.rows) + '</span></div>' +
+    (g.rows.length ? g.rows.map(listRow).join(&quot;&quot;) : '<div class=&quot;dim&quot; style=&quot;padding:8px 4px 14px&quot;>No cases in this status.</div>')
+  ).join(&quot;&quot;) : '<div class=&quot;dim&quot; style=&quot;padding:18px 4px&quot;>Nothing here under this filter.</div>';
 }
 function renderProduction(){
   const el = document.getElementById(&quot;production&quot;); if (!el) return;
-  const done = S.cases.filter(c =&gt; DONE.includes(statusOf(c)));
-  if (!done.length) { el.innerHTML = &#x27;&lt;div class=&quot;dim&quot; style=&quot;padding:6px 2px&quot;&gt;Nothing deposited or delivered yet.&lt;/div&gt;&#x27;; return; }
+  const done = S.cases.filter(c => DONE.includes(statusOf(c)));
+  if (!done.length) { el.innerHTML = '<div class=&quot;dim&quot; style=&quot;padding:6px 2px&quot;>Nothing deposited or delivered yet.</div>'; return; }
   const byQ = {};
-  done.forEach(c =&gt; { const q = quarterOf(c); byQ[q] = byQ[q] || {n:0, mine:0, size:0, key:qKey(c), open:0}; byQ[q].n++; byQ[q].mine += myFyc(c); byQ[q].size += (c.size || 0); if (!c.postDocs) byQ[q].open++; });
-  const qs = Object.keys(byQ).sort((a,b) =&gt; byQ[b].key - byQ[a].key);
-  el.innerHTML = qs.map(q =&gt; &#x27;&lt;div class=&quot;renew-row&quot;&gt;&lt;span&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + q + &#x27;&lt;/span&gt; &lt;span class=&quot;dim&quot;&gt;&#x27; + byQ[q].n + &#x27; case&#x27; + (byQ[q].n &gt; 1 ? &quot;s&quot; : &quot;&quot;) + &#x27; \u00B7 &#x27; + money(byQ[q].size) + &#x27; in case size&#x27; + (byQ[q].open ? &#x27; \u00B7 &#x27; + byQ[q].open + &#x27; awaiting post-delivery filing&#x27; : &#x27;&#x27;) + &#x27;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;dim&quot;&gt;&#x27; + money(byQ[q].mine) + &#x27; FYC&lt;/span&gt;&lt;/div&gt;&#x27;).join(&quot;&quot;);
+  done.forEach(c => { const q = quarterOf(c); byQ[q] = byQ[q] || {n:0, mine:0, size:0, key:qKey(c), open:0}; byQ[q].n++; byQ[q].mine += myFyc(c); byQ[q].size += (c.size || 0); if (!c.postDocs) byQ[q].open++; });
+  const qs = Object.keys(byQ).sort((a,b) => byQ[b].key - byQ[a].key);
+  el.innerHTML = qs.map(q => '<div class=&quot;renew-row&quot;><span><span class=&quot;who&quot;>' + q + '</span> <span class=&quot;dim&quot;>' + byQ[q].n + ' case' + (byQ[q].n > 1 ? &quot;s&quot; : &quot;&quot;) + ' \u00B7 ' + money(byQ[q].size) + ' in case size' + (byQ[q].open ? ' \u00B7 ' + byQ[q].open + ' awaiting post-delivery filing' : '') + '</span></span><span class=&quot;dim&quot;>' + money(byQ[q].mine) + ' FYC</span></div>').join(&quot;&quot;);
 }
 function renderRenewals(){
-  document.getElementById(&quot;renewals&quot;).innerHTML = S.renewals.length ? S.renewals.map(r =&gt;
-    &#x27;&lt;div class=&quot;renew-row&quot;&gt;&lt;span&gt;&lt;span class=&quot;who&quot;&gt;&#x27; + r.who + &#x27;&lt;/span&gt; &lt;span class=&quot;dim&quot;&gt;&#x27; + r.line + &#x27; · &#x27; + r.carrier + &#x27;&lt;/span&gt;&lt;/span&gt;&#x27; +
-    &#x27;&lt;span class=&quot;dim&quot;&gt;&#x27; + fmtDate(r.date) + &#x27; · &#x27; + money(r.premium) + &#x27;/yr&lt;/span&gt;&lt;/div&gt;&#x27;).join(&quot;&quot;) : &#x27;&lt;div class=&quot;dim&quot; style=&quot;padding:6px 2px&quot;&gt;No renewals in the next 30 days.&lt;/div&gt;&#x27;;
+  document.getElementById(&quot;renewals&quot;).innerHTML = S.renewals.length ? S.renewals.map(r =>
+    '<div class=&quot;renew-row&quot;><span><span class=&quot;who&quot;>' + r.who + '</span> <span class=&quot;dim&quot;>' + r.line + ' · ' + r.carrier + '</span></span>' +
+    '<span class=&quot;dim&quot;>' + fmtDate(r.date) + ' · ' + money(r.premium) + '/yr</span></div>').join(&quot;&quot;) : '<div class=&quot;dim&quot; style=&quot;padding:6px 2px&quot;>No renewals in the next 30 days.</div>';
 }
 
 /* ============ CASE SHEET + TASK STACK ============ */
 let sheetCase = null;
 function openCase(id){
-  sheetCase = S.cases.find(c =&gt; c.id === id);
+  sheetCase = S.cases.find(c => c.id === id);
   renderSheet();
   document.getElementById(&quot;sheetBack&quot;).classList.add(&quot;open&quot;);
 }
@@ -1069,18 +1069,18 @@ function closeSheet(){ document.getElementById(&quot;sheetBack&quot;).classList.
 function dueLabel(t){
   if (!t.due) return &quot;&quot;;
   const d = daysUntil(t.due);
-  if (d &lt; 0) return &#x27;&lt;div class=&quot;due over&quot;&gt;Overdue by &#x27; + Math.abs(d) + &#x27;d&lt;/div&gt;&#x27;;
-  if (d === 0) return &#x27;&lt;div class=&quot;due&quot;&gt;Due today&lt;/div&gt;&#x27;;
-  return &#x27;&lt;div class=&quot;due&quot;&gt;Due in &#x27; + d + &#x27;d · &#x27; + fmtDate(t.due) + &#x27;&lt;/div&gt;&#x27;;
+  if (d < 0) return '<div class=&quot;due over&quot;>Overdue by ' + Math.abs(d) + 'd</div>';
+  if (d === 0) return '<div class=&quot;due&quot;>Due today</div>';
+  return '<div class=&quot;due&quot;>Due in ' + d + 'd · ' + fmtDate(t.due) + '</div>';
 }
 function renderSheet(){
   const c = sheetCase; if (!c) return;
-  const open = c.tasks.map((t,i) =&gt; ({t,i})).filter(x =&gt; !x.t.done);
-  const done = c.tasks.map((t,i) =&gt; ({t,i})).filter(x =&gt; x.t.done);
-  const taskRow = x =&gt;
-    &#x27;&lt;label class=&quot;task &#x27; + (x.t.done ? &quot;done&quot; : &quot;&quot;) + &#x27;&quot;&gt;&lt;input type=&quot;checkbox&quot; &#x27; + (x.t.done ? &quot;checked&quot; : &quot;&quot;) +
-    &#x27; onchange=&quot;toggleTask(&#x27; + x.i + &#x27;)&quot;&gt;&lt;span&gt;&lt;span class=&quot;t&quot;&gt;&#x27; + x.t.t + &#x27;&lt;/span&gt;&#x27; + (x.t.done ? &quot;&quot; : dueLabel(x.t)) + &#x27;&lt;/span&gt;&lt;/label&gt;&#x27;;
-  const splits = (c.splits || []).map(s =&gt; s.code + &quot; \u00B7 &quot; + s.pct + &quot;%&quot;).join(&quot;, &quot;);
+  const open = c.tasks.map((t,i) => ({t,i})).filter(x => !x.t.done);
+  const done = c.tasks.map((t,i) => ({t,i})).filter(x => x.t.done);
+  const taskRow = x =>
+    '<label class=&quot;task ' + (x.t.done ? &quot;done&quot; : &quot;&quot;) + '&quot;><input type=&quot;checkbox&quot; ' + (x.t.done ? &quot;checked&quot; : &quot;&quot;) +
+    ' onchange=&quot;toggleTask(' + x.i + ')&quot;><span><span class=&quot;t&quot;>' + x.t.t + '</span>' + (x.t.done ? &quot;&quot; : dueLabel(x.t)) + '</span></label>';
+  const splits = (c.splits || []).map(s => s.code + &quot; \u00B7 &quot; + s.pct + &quot;%&quot;).join(&quot;, &quot;);
   const rows = [
     [&quot;Status&quot;, c.status + (c.detail ? &quot; \u2014 &quot; + c.detail : &quot;&quot;)],
     [&quot;Type&quot;, c.type || &quot;\u2014&quot;],
@@ -1097,16 +1097,16 @@ function renderSheet(){
     c.waitingOn ? [&quot;Waiting on&quot;, c.waitingOn] : null
   ].filter(Boolean);
   document.getElementById(&quot;sheet&quot;).innerHTML =
-    &#x27;&lt;button class=&quot;sheet-close&quot; onclick=&quot;closeSheet()&quot;&gt;\u2715&lt;/button&gt;&#x27; +
-    &#x27;&lt;h3&gt;&#x27; + c.who + (c.product ? &#x27; \u2014 &#x27; + c.product : &#x27;&#x27;) + &#x27;&lt;/h3&gt;&#x27; +
-    &#x27;&lt;div class=&quot;dgrid&quot;&gt;&#x27; + rows.map(r =&gt; &#x27;&lt;div class=&quot;dk&quot;&gt;&#x27; + r[0] + &#x27;&lt;/div&gt;&lt;div&gt;&#x27; + r[1] + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;) + &#x27;&lt;/div&gt;&#x27; +
+    '<button class=&quot;sheet-close&quot; onclick=&quot;closeSheet()&quot;>\u2715</button>' +
+    '<h3>' + c.who + (c.product ? ' \u2014 ' + c.product : '') + '</h3>' +
+    '<div class=&quot;dgrid&quot;>' + rows.map(r => '<div class=&quot;dk&quot;>' + r[0] + '</div><div>' + r[1] + '</div>').join(&quot;&quot;) + '</div>' +
     (c.stuck &amp;&amp; open.length === 0
-      ? &#x27;&lt;div class=&quot;court-banner&quot;&gt;\u23F3 This case is stalled with &lt;b&gt;no open tasks on your side&lt;/b&gt; \u2014 the ball is in the carrier\u2019s court. A status call is the only move.&lt;/div&gt;&#x27; : &#x27;&#x27;) +
-    &#x27;&lt;div class=&quot;stack-lbl&quot;&gt;Task stack \u2014 open (&#x27; + open.length + &#x27;)&lt;/div&gt;&#x27; +
-    (open.length ? open.map(taskRow).join(&quot;&quot;) : &#x27;&lt;p class=&quot;dim&quot; style=&quot;padding:6px 0&quot;&gt;No open tasks.&lt;/p&gt;&#x27;) +
-    (done.length ? &#x27;&lt;div class=&quot;stack-lbl&quot;&gt;Closed (&#x27; + done.length + &#x27;)&lt;/div&gt;&#x27; + done.map(taskRow).join(&quot;&quot;) : &#x27;&#x27;) +
-    &#x27;&lt;div class=&quot;add-task&quot;&gt;&lt;input id=&quot;newTask&quot; type=&quot;text&quot; placeholder=&quot;Add a task to this case\u2026&quot; onkeydown=&quot;if(event.key===\&#x27;Enter\&#x27;)addTask()&quot;&gt;&#x27; +
-    &#x27;&lt;button class=&quot;btn&quot; onclick=&quot;addTask()&quot;&gt;Add&lt;/button&gt;&lt;/div&gt;&#x27;;
+      ? '<div class=&quot;court-banner&quot;>\u23F3 This case is stalled with <b>no open tasks on your side</b> \u2014 the ball is in the carrier\u2019s court. A status call is the only move.</div>' : '') +
+    '<div class=&quot;stack-lbl&quot;>Task stack \u2014 open (' + open.length + ')</div>' +
+    (open.length ? open.map(taskRow).join(&quot;&quot;) : '<p class=&quot;dim&quot; style=&quot;padding:6px 0&quot;>No open tasks.</p>') +
+    (done.length ? '<div class=&quot;stack-lbl&quot;>Closed (' + done.length + ')</div>' + done.map(taskRow).join(&quot;&quot;) : '') +
+    '<div class=&quot;add-task&quot;><input id=&quot;newTask&quot; type=&quot;text&quot; placeholder=&quot;Add a task to this case\u2026&quot; onkeydown=&quot;if(event.key===\'Enter\')addTask()&quot;>' +
+    '<button class=&quot;btn&quot; onclick=&quot;addTask()&quot;>Add</button></div>';
 }
 function toggleTask(i){
   const t = sheetCase.tasks[i]; t.done = !t.done;
@@ -1119,21 +1119,21 @@ function addTask(){
   sheetCase.tasks.push({t: v, done: false});
   save(); renderSheet(); renderCases(); renderTasks();
 }
-&lt;/script&gt;
+</script>
 
-&lt;script&gt;
+<script>
 /* ============ LICENSES ============ */
 function renderLicenses(){
-  document.getElementById(&quot;licenses&quot;).innerHTML = S.licenses.length ? S.licenses.map(L =&gt; {
+  document.getElementById(&quot;licenses&quot;).innerHTML = S.licenses.length ? S.licenses.map(L => {
     const d = daysUntil(L.expires);
-    const cls = d &lt;= 45 ? &quot;soon&quot; : &quot;ok&quot;;
-    const chips = Object.keys(L.appts).map(k =&gt;
-      &#x27;&lt;span class=&quot;chip &#x27; + (L.appts[k] ? &quot;&quot; : &quot;no&quot;) + &#x27;&quot;&gt;&#x27; + (L.appts[k] ? &quot;✓ &quot; : &quot;✕ &quot;) + k + &#x27;&lt;/span&gt;&#x27;).join(&quot;&quot;);
-    return &#x27;&lt;div class=&quot;lic&quot;&gt;&lt;div class=&quot;lic-head&quot;&gt;&lt;span class=&quot;lic-state&quot;&gt;&#x27; + L.state + &#x27;&lt;/span&gt;&#x27; +
-      &#x27;&lt;span class=&quot;lic-exp &#x27; + cls + &#x27;&quot;&gt;Renews &#x27; + fmtDate(L.expires) + &#x27; · &#x27; + d + &#x27; days left&lt;/span&gt;&lt;/div&gt;&#x27; +
-      &#x27;&lt;div class=&quot;lic-ce&quot;&gt;&#x27; + L.ce + &#x27;&lt;/div&gt;&#x27; +
-      &#x27;&lt;div class=&quot;chips&quot;&gt;&lt;span class=&quot;chip-lbl&quot;&gt;Carrier appointments&lt;/span&gt;&#x27; + chips + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;
-  }).join(&quot;&quot;) : &#x27;&lt;div class=&quot;dim&quot; style=&quot;padding:6px 2px&quot;&gt;No licenses tracked yet — add your first one below, or ask VA.&lt;/div&gt;&#x27;;
+    const cls = d <= 45 ? &quot;soon&quot; : &quot;ok&quot;;
+    const chips = Object.keys(L.appts).map(k =>
+      '<span class=&quot;chip ' + (L.appts[k] ? &quot;&quot; : &quot;no&quot;) + '&quot;>' + (L.appts[k] ? &quot;✓ &quot; : &quot;✕ &quot;) + k + '</span>').join(&quot;&quot;);
+    return '<div class=&quot;lic&quot;><div class=&quot;lic-head&quot;><span class=&quot;lic-state&quot;>' + L.state + '</span>' +
+      '<span class=&quot;lic-exp ' + cls + '&quot;>Renews ' + fmtDate(L.expires) + ' · ' + d + ' days left</span></div>' +
+      '<div class=&quot;lic-ce&quot;>' + L.ce + '</div>' +
+      '<div class=&quot;chips&quot;><span class=&quot;chip-lbl&quot;>Carrier appointments</span>' + chips + '</div></div>';
+  }).join(&quot;&quot;) : '<div class=&quot;dim&quot; style=&quot;padding:6px 2px&quot;>No licenses tracked yet — add your first one below, or ask VA.</div>';
 }
 
 /* ============ CALENDAR (week + month, Google-Calendar style) ============ */
@@ -1142,10 +1142,10 @@ let calCursor = new Date();
 function isoOf(d){ return d.getFullYear() + &quot;-&quot; + String(d.getMonth() + 1).padStart(2, &quot;0&quot;) + &quot;-&quot; + String(d.getDate()).padStart(2, &quot;0&quot;); }
 function allDated(){
   const items = [];
-  S.events.forEach(e =&gt; { const d = new Date(); d.setDate(d.getDate() + e.off); items.push({date: isoOf(d), time: e.time || &quot;&quot;, kind: e.kind || &quot;&quot;, title: e.title}); });
-  S.renewals.forEach(r =&gt; items.push({date: r.date, time: &quot;&quot;, kind: &quot;ren&quot;, title: &quot;Renewal — &quot; + r.who + &quot; (&quot; + r.carrier + &quot;)&quot;}));
-  S.licenses.forEach(L =&gt; items.push({date: L.expires, time: &quot;&quot;, kind: &quot;lic&quot;, title: L.state + &quot; license renewal&quot;}));
-  S.cases.forEach(c =&gt; c.tasks.forEach(t =&gt; { if (!t.done &amp;&amp; t.due) items.push({date: t.due, time: &quot;&quot;, kind: &quot;task&quot;, cid: c.id, title: &quot;Due: &quot; + t.t + &quot; — &quot; + c.who}); }));
+  S.events.forEach(e => { const d = new Date(); d.setDate(d.getDate() + e.off); items.push({date: isoOf(d), time: e.time || &quot;&quot;, kind: e.kind || &quot;&quot;, title: e.title}); });
+  S.renewals.forEach(r => items.push({date: r.date, time: &quot;&quot;, kind: &quot;ren&quot;, title: &quot;Renewal — &quot; + r.who + &quot; (&quot; + r.carrier + &quot;)&quot;}));
+  S.licenses.forEach(L => items.push({date: L.expires, time: &quot;&quot;, kind: &quot;lic&quot;, title: L.state + &quot; license renewal&quot;}));
+  S.cases.forEach(c => c.tasks.forEach(t => { if (!t.done &amp;&amp; t.due) items.push({date: t.due, time: &quot;&quot;, kind: &quot;task&quot;, cid: c.id, title: &quot;Due: &quot; + t.t + &quot; — &quot; + c.who}); }));
   return items;
 }
 function setCalMode(m){ calMode = m; renderCalendar(); }
@@ -1167,34 +1167,34 @@ function renderCalendar(){
   if (calMode === &quot;day&quot;){
     const iso = isoOf(calCursor);
     title.textContent = calCursor.toLocaleDateString(&quot;en-US&quot;,{weekday:&quot;long&quot;, month:&quot;long&quot;, day:&quot;numeric&quot;, year:&quot;numeric&quot;});
-    const evs = items.filter(e =&gt; e.date === iso);
+    const evs = items.filter(e => e.date === iso);
     const order = {&quot;&quot;:0, appt:0, task:1, due:1, ren:2, lic:3};
-    evs.sort((a, b) =&gt; (order[a.kind] ?? 4) - (order[b.kind] ?? 4));
+    evs.sort((a, b) => (order[a.kind] ?? 4) - (order[b.kind] ?? 4));
     const sub = {appt:&quot;Appointment&quot;, task:&quot;Task deadline&quot;, due:&quot;Task deadline&quot;, ren:&quot;Policy renewal&quot;, lic:&quot;License renewal&quot;};
-    const when = e =&gt; e.time ? e.time : (e.kind === &quot;task&quot; || e.kind === &quot;due&quot;) ? &quot;Due&quot; : e.kind === &quot;ren&quot; ? &quot;Renews&quot; : e.kind === &quot;lic&quot; ? &quot;Expires&quot; : &quot;All day&quot;;
-    let html = &#x27;&lt;div class=&quot;dlist&quot;&gt;&#x27;;
-    if (!evs.length) html += &#x27;&lt;div class=&quot;tempty&quot;&gt;Nothing on this day \u2014 no appointments, deadlines, renewals, or expiries.&lt;/div&gt;&#x27;;
-    html += evs.map(e =&gt; &#x27;&lt;div class=&quot;drow &#x27; + e.kind + (e.cid ? &quot; clk&quot; : &quot;&quot;) + &#x27;&quot;&#x27; + (e.cid ? &#x27; onclick=&quot;openCase(&#x27; + e.cid + &#x27;)&quot;&#x27; : &#x27;&#x27;) + &#x27;&gt;&#x27; +
-      &#x27;&lt;span class=&quot;ddot&quot;&gt;&lt;/span&gt;&lt;div class=&quot;dmain&quot;&gt;&lt;div class=&quot;dtitle&quot;&gt;&#x27; + e.title + &#x27;&lt;/div&gt;&#x27; +
-      &#x27;&lt;div class=&quot;dsub&quot;&gt;&#x27; + (sub[e.kind] || &quot;Appointment&quot;) + &#x27;&lt;/div&gt;&lt;/div&gt;&#x27; +
-      &#x27;&lt;span class=&quot;dwhen&quot;&gt;&#x27; + when(e) + &#x27;&lt;/span&gt;&#x27; + (e.cid ? &#x27;&lt;span class=&quot;tchev&quot;&gt;\u203A&lt;/span&gt;&#x27; : &#x27;&#x27;) + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;);
-    document.getElementById(&quot;calendar&quot;).innerHTML = html + &#x27;&lt;/div&gt;&#x27;;
+    const when = e => e.time ? e.time : (e.kind === &quot;task&quot; || e.kind === &quot;due&quot;) ? &quot;Due&quot; : e.kind === &quot;ren&quot; ? &quot;Renews&quot; : e.kind === &quot;lic&quot; ? &quot;Expires&quot; : &quot;All day&quot;;
+    let html = '<div class=&quot;dlist&quot;>';
+    if (!evs.length) html += '<div class=&quot;tempty&quot;>Nothing on this day \u2014 no appointments, deadlines, renewals, or expiries.</div>';
+    html += evs.map(e => '<div class=&quot;drow ' + e.kind + (e.cid ? &quot; clk&quot; : &quot;&quot;) + '&quot;' + (e.cid ? ' onclick=&quot;openCase(' + e.cid + ')&quot;' : '') + '>' +
+      '<span class=&quot;ddot&quot;></span><div class=&quot;dmain&quot;><div class=&quot;dtitle&quot;>' + e.title + '</div>' +
+      '<div class=&quot;dsub&quot;>' + (sub[e.kind] || &quot;Appointment&quot;) + '</div></div>' +
+      '<span class=&quot;dwhen&quot;>' + when(e) + '</span>' + (e.cid ? '<span class=&quot;tchev&quot;>\u203A</span>' : '') + '</div>').join(&quot;&quot;);
+    document.getElementById(&quot;calendar&quot;).innerHTML = html + '</div>';
   } else if (calMode === &quot;week&quot;){
     const d0 = new Date(calCursor.getFullYear(), calCursor.getMonth(), calCursor.getDate());
     const mon = new Date(d0); mon.setDate(d0.getDate() - ((d0.getDay() + 6) % 7));
     const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
     title.textContent = mon.toLocaleDateString(&quot;en-US&quot;,{month:&quot;short&quot;, day:&quot;numeric&quot;}) + &quot; – &quot; +
       sun.toLocaleDateString(&quot;en-US&quot;,{month:&quot;short&quot;, day:&quot;numeric&quot;, year:&quot;numeric&quot;});
-    let html = &#x27;&lt;div class=&quot;cal&quot;&gt;&#x27;;
-    for (let i = 0; i &lt; 7; i++){
+    let html = '<div class=&quot;cal&quot;>';
+    for (let i = 0; i < 7; i++){
       const d = new Date(mon); d.setDate(mon.getDate() + i); const iso = isoOf(d);
-      const evs = items.filter(e =&gt; e.date === iso);
-      html += &#x27;&lt;div class=&quot;day &#x27; + (iso===todayIso ? &quot;today&quot; : &quot;&quot;) + &#x27;&quot; onclick=&quot;goDay(\&#x27;&#x27; + iso + &#x27;\&#x27;)&quot;&gt;&#x27; +
-        &#x27;&lt;div class=&quot;dname&quot;&gt;&#x27; + d.toLocaleDateString(&quot;en-US&quot;,{weekday:&quot;short&quot;}) + &#x27;&lt;/div&gt;&#x27; +
-        &#x27;&lt;div class=&quot;dnum&quot;&gt;&#x27; + d.getDate() + &#x27;&lt;/div&gt;&#x27; +
-        evs.map(e =&gt; &#x27;&lt;div class=&quot;ev &#x27; + e.kind + &#x27;&quot;&gt;&#x27; + (e.time ? &#x27;&lt;span class=&quot;tm&quot;&gt;&#x27; + e.time + &#x27;&lt;/span&gt; &#x27; : &#x27;&#x27;) + e.title + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;) + &#x27;&lt;/div&gt;&#x27;;
+      const evs = items.filter(e => e.date === iso);
+      html += '<div class=&quot;day ' + (iso===todayIso ? &quot;today&quot; : &quot;&quot;) + '&quot; onclick=&quot;goDay(\'' + iso + '\')&quot;>' +
+        '<div class=&quot;dname&quot;>' + d.toLocaleDateString(&quot;en-US&quot;,{weekday:&quot;short&quot;}) + '</div>' +
+        '<div class=&quot;dnum&quot;>' + d.getDate() + '</div>' +
+        evs.map(e => '<div class=&quot;ev ' + e.kind + '&quot;>' + (e.time ? '<span class=&quot;tm&quot;>' + e.time + '</span> ' : '') + e.title + '</div>').join(&quot;&quot;) + '</div>';
     }
-    document.getElementById(&quot;calendar&quot;).innerHTML = html + &#x27;&lt;/div&gt;&#x27;;
+    document.getElementById(&quot;calendar&quot;).innerHTML = html + '</div>';
   } else {
     const y = calCursor.getFullYear(), mo = calCursor.getMonth();
     title.textContent = calCursor.toLocaleDateString(&quot;en-US&quot;,{month:&quot;long&quot;, year:&quot;numeric&quot;});
@@ -1202,23 +1202,23 @@ function renderCalendar(){
     const lead = first.getDay(); /* Sunday-first, like Google Calendar */
     const cells = 42; /* always six rows, stable while navigating */
     const start = new Date(y, mo, 1 - lead);
-    let html = &#x27;&lt;div class=&quot;mhead&quot;&gt;&#x27; + [&quot;S&quot;,&quot;M&quot;,&quot;T&quot;,&quot;W&quot;,&quot;T&quot;,&quot;F&quot;,&quot;S&quot;].map(d =&gt; &#x27;&lt;div&gt;&#x27; + d + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;) + &#x27;&lt;/div&gt;&lt;div class=&quot;mcal&quot;&gt;&#x27;;
-    for (let i = 0; i &lt; cells; i++){
+    let html = '<div class=&quot;mhead&quot;>' + [&quot;S&quot;,&quot;M&quot;,&quot;T&quot;,&quot;W&quot;,&quot;T&quot;,&quot;F&quot;,&quot;S&quot;].map(d => '<div>' + d + '</div>').join(&quot;&quot;) + '</div><div class=&quot;mcal&quot;>';
+    for (let i = 0; i < cells; i++){
       const d = new Date(start); d.setDate(start.getDate() + i); const iso = isoOf(d);
-      const evs = items.filter(e =&gt; e.date === iso);
-      const chips = evs.slice(0,3).map(e =&gt; &#x27;&lt;div class=&quot;mchip &#x27; + e.kind + &#x27;&quot;&gt;&#x27; + e.title + &#x27;&lt;/div&gt;&#x27;).join(&quot;&quot;) +
-        (evs.length &gt; 3 ? &#x27;&lt;div class=&quot;mmore&quot;&gt;+&#x27; + (evs.length - 3) + &#x27; more&lt;/div&gt;&#x27; : &#x27;&#x27;);
-      html += &#x27;&lt;div class=&quot;mday &#x27; + (d.getMonth() !== mo ? &quot;out&quot; : &quot;&quot;) + (iso===todayIso ? &quot; today&quot; : &quot;&quot;) + &#x27;&quot; onclick=&quot;goDay(\&#x27;&#x27; + iso + &#x27;\&#x27;)&quot;&gt;&#x27; +
-        &#x27;&lt;div class=&quot;mnum&quot;&gt;&#x27; + d.getDate() + &#x27;&lt;/div&gt;&#x27; + chips + &#x27;&lt;/div&gt;&#x27;;
+      const evs = items.filter(e => e.date === iso);
+      const chips = evs.slice(0,3).map(e => '<div class=&quot;mchip ' + e.kind + '&quot;>' + e.title + '</div>').join(&quot;&quot;) +
+        (evs.length > 3 ? '<div class=&quot;mmore&quot;>+' + (evs.length - 3) + ' more</div>' : '');
+      html += '<div class=&quot;mday ' + (d.getMonth() !== mo ? &quot;out&quot; : &quot;&quot;) + (iso===todayIso ? &quot; today&quot; : &quot;&quot;) + '&quot; onclick=&quot;goDay(\'' + iso + '\')&quot;>' +
+        '<div class=&quot;mnum&quot;>' + d.getDate() + '</div>' + chips + '</div>';
     }
-    document.getElementById(&quot;calendar&quot;).innerHTML = html + &#x27;&lt;/div&gt;&#x27;;
+    document.getElementById(&quot;calendar&quot;).innerHTML = html + '</div>';
   }
   fitMonth();
 }
 function fitMonth(){
   const cal = document.querySelector(&quot;.mcal&quot;);
   if (!cal) return;
-  if (calMode === &quot;month&quot; &amp;&amp; window.innerWidth &lt;= 900)
+  if (calMode === &quot;month&quot; &amp;&amp; window.innerWidth <= 900)
     cal.style.height = Math.min(920, Math.max(420, window.innerHeight - 152)) + &quot;px&quot;;
   else cal.style.height = &quot;&quot;;
 }
@@ -1238,10 +1238,10 @@ function userMsg(text){
 function draftCard(summary, onOk){
   pending = onOk;
   const d = document.createElement(&quot;div&quot;); d.className = &quot;msg bot&quot;;
-  d.innerHTML = &#x27;Here\u2019s the draft — nothing is saved until you confirm:&lt;div class=&quot;draft&quot;&gt;&lt;div class=&quot;dt&quot;&gt;&#x27; + summary + &#x27;&lt;/div&gt;&#x27; +
-    &#x27;&lt;div class=&quot;row&quot;&gt;&lt;button class=&quot;ok&quot;&gt;Confirm&lt;/button&gt;&lt;button class=&quot;no&quot;&gt;Cancel&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
-  d.querySelector(&quot;.ok&quot;).onclick = () =&gt; { const f = pending; pending = null; d.querySelector(&quot;.draft&quot;).remove(); if (f) f(); };
-  d.querySelector(&quot;.no&quot;).onclick = () =&gt; { pending = null; d.querySelector(&quot;.draft&quot;).remove(); botMsg(&quot;Cancelled — nothing was saved.&quot;); };
+  d.innerHTML = 'Here\u2019s the draft — nothing is saved until you confirm:<div class=&quot;draft&quot;><div class=&quot;dt&quot;>' + summary + '</div>' +
+    '<div class=&quot;row&quot;><button class=&quot;ok&quot;>Confirm</button><button class=&quot;no&quot;>Cancel</button></div></div>';
+  d.querySelector(&quot;.ok&quot;).onclick = () => { const f = pending; pending = null; d.querySelector(&quot;.draft&quot;).remove(); if (f) f(); };
+  d.querySelector(&quot;.no&quot;).onclick = () => { pending = null; d.querySelector(&quot;.draft&quot;).remove(); botMsg(&quot;Cancelled — nothing was saved.&quot;); };
   chat.appendChild(d); chat.scrollTop = chat.scrollHeight;
 }
 const CHIPS = [&quot;What\u2019s stuck?&quot;, &quot;Add a case&quot;, &quot;What\u2019s on my Thursday?&quot;, &quot;When does my Arizona license expire?&quot;, &quot;Am I appointed with Foresters in Arizona?&quot;, &quot;What\u2019s awaiting funds?&quot;];
@@ -1249,23 +1249,23 @@ document.getElementById(&quot;chips&quot;).innerHTML = &quot;&quot;;
 function chipSend(b){ document.getElementById(&quot;aiText&quot;).value = b.textContent; sendAI(); }
 
 function stuckText(){
-  const st = S.cases.filter(c =&gt; c.stuck);
+  const st = S.cases.filter(c => c.stuck);
   if (!st.length) return &quot;Nothing is stuck right now. Clean board.&quot;;
-  return &quot;You have &quot; + st.length + &quot; stuck cases:\n&quot; + st.map(c =&gt; {
+  return &quot;You have &quot; + st.length + &quot; stuck cases:\n&quot; + st.map(c => {
     const ot = openTasks(c).length;
     return &quot;• &quot; + c.who + &quot; — &quot; + (c.company ? c.company + &quot; &quot; : &quot;&quot;) + (c.product || c.type || &quot;&quot;) + &quot;, &quot; + c.age + &quot;d, &quot; + money(myFyc(c)) + &quot; mine&quot; +
-      (ot === 0 ? &quot; — no open tasks: ball is in the carrier\u2019s court&quot; : &quot; — &quot; + ot + &quot; open task&quot; + (ot&gt;1?&quot;s&quot;:&quot;&quot;) + &quot; on your side&quot;);
+      (ot === 0 ? &quot; — no open tasks: ball is in the carrier\u2019s court&quot; : &quot; — &quot; + ot + &quot; open task&quot; + (ot>1?&quot;s&quot;:&quot;&quot;) + &quot; on your side&quot;);
   }).join(&quot;\n&quot;);
 }
 function statusText(st){
-  if (!st) return &quot;Here\u2019s where everything stands:\n&quot; + STATUSES.map(s =&gt; {
-    const rows = S.cases.filter(c =&gt; statusOf(c) === s);
-    const stk = rows.filter(c =&gt; c.stuck).length;
+  if (!st) return &quot;Here\u2019s where everything stands:\n&quot; + STATUSES.map(s => {
+    const rows = S.cases.filter(c => statusOf(c) === s);
+    const stk = rows.filter(c => c.stuck).length;
     return &quot;\u2022 &quot; + s + &quot; \u2014 &quot; + rows.length + &quot; case&quot; + (rows.length === 1 ? &quot;&quot; : &quot;s&quot;) + (stk ? &quot; (&quot; + stk + &quot; stuck)&quot; : &quot;&quot;);
   }).join(&quot;\n&quot;);
-  const rows = S.cases.filter(c =&gt; statusOf(c) === st).slice().sort((a,b) =&gt; b.age - a.age);
+  const rows = S.cases.filter(c => statusOf(c) === st).slice().sort((a,b) => b.age - a.age);
   if (!rows.length) return &quot;Nothing is &quot; + st.toLowerCase() + &quot; right now.&quot;;
-  return rows.length + &quot; case&quot; + (rows.length === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; &quot; + st.toLowerCase() + &quot;:\n&quot; + rows.map(c =&gt;
+  return rows.length + &quot; case&quot; + (rows.length === 1 ? &quot;&quot; : &quot;s&quot;) + &quot; &quot; + st.toLowerCase() + &quot;:\n&quot; + rows.map(c =>
     &quot;\u2022 &quot; + c.who + &quot; \u2014 &quot; + (c.company ? c.company + &quot; &quot; : &quot;&quot;) + (c.product || c.type || &quot;&quot;) + &quot;, &quot; + (c.detail || c.status).toLowerCase() + &quot;, &quot; + c.age + &quot;d, &quot; + money(myFyc(c)) + (c.recurring ? &quot;/yr&quot; : &quot;&quot;) + (c.stuck ? &quot; \u2014 stuck&quot; : &quot;&quot;)).join(&quot;\n&quot;);
 }
 function findDayEvents(name){
@@ -1279,55 +1279,55 @@ function findDayEvents(name){
     target.setDate(target.getDate() + diff);
   }
   const iso = target.toISOString().slice(0,10);
-  const evs = S.events.filter(e =&gt; new Date(Date.now() + e.off*DAY).toISOString().slice(0,10) === iso);
+  const evs = S.events.filter(e => new Date(Date.now() + e.off*DAY).toISOString().slice(0,10) === iso);
   const label = target.toLocaleDateString(&quot;en-US&quot;,{weekday:&quot;long&quot;, month:&quot;short&quot;, day:&quot;numeric&quot;});
   if (!evs.length) return label + &quot; is clear — nothing scheduled, nothing due.&quot;;
-  return label + &quot;:\n&quot; + evs.map(e =&gt; &quot;• &quot; + (e.time ? e.time + &quot; — &quot; : &quot;&quot;) + e.title).join(&quot;\n&quot;);
+  return label + &quot;:\n&quot; + evs.map(e => &quot;• &quot; + (e.time ? e.time + &quot; — &quot; : &quot;&quot;) + e.title).join(&quot;\n&quot;);
 }
 function handleAI(raw){
   const text = raw.trim();
   const t = text.toLowerCase();
   /* --- Rule 1 guardrail: no client PII --- */
   if (/\d{3}-\d{2}-\d{4}/.test(text) || /\b(ssn|social security|date of birth|dob|policy number|account number)\b/.test(t)) {
-    botMsg(&quot;⛔ I can\u2019t take that — BookView never stores client identifiers (no SSNs, birth dates, or policy/account numbers). Refer to the case by initials instead, like \u201CJMS 214\u201D, and I\u2019ll log it right away.&quot;);
+    botMsg(&quot;⛔ I can\u2019t take that — BookView never stores client identifiers (no SSNs, birth dates, or policy/account numbers). Refer to the case by its label instead, like \u201CJohn M. S. 12\u201D, and I\u2019ll log it right away.&quot;);
     return;
   }
   /* --- v4.0: import / move case / add license / schedule --- */
   if (/\b(import|csv|spreadsheet|upload)\b/.test(t)) {
-    botMsg(&#x27;You can load your existing book from a CSV — carrier exports work. BookView maps the status columns, and anything that looks like a client identifier (names, SSNs, policy numbers, free-text notes) is stripped on your device and never saved: names become initials-only labels.&lt;br&gt;&lt;button class=&quot;okbtn&quot; onclick=&quot;openImport()&quot;&gt;Open the importer&lt;/button&gt;&#x27;);
+    botMsg('You can load your existing book from a CSV — carrier exports work. BookView maps the status columns, and anything that looks like a client identifier (names, SSNs, policy numbers, free-text notes) is stripped on your device and never saved: names become first-name-and-initials labels.<br><button class=&quot;okbtn&quot; onclick=&quot;openImport()&quot;>Open the importer</button>');
     return;
   }
   const mvLabel = text.match(/\b([A-Z]{3})\s+(\d{3})\b/);
   if (/\b(move|advance|update)\b/.test(t) &amp;&amp; mvLabel) {
     const who = mvLabel[1] + &quot; &quot; + mvLabel[2];
-    const c = S.cases.find(x =&gt; x.who === who);
+    const c = S.cases.find(x => x.who === who);
     const stName = /prospect/.test(t) ? &quot;Prospect&quot; : /deposit/.test(t) ? &quot;Deposited&quot; : /delivered/.test(t) ? &quot;Delivered&quot; : /delivery/.test(t) ? &quot;Delivery Pending&quot; : /declin/.test(t) ? &quot;Declined&quot; : /underwrit/.test(t) ? &quot;Underwriting&quot; : /fund/.test(t) ? &quot;Awaiting Funds&quot; : /pending/.test(t) ? &quot;Pending&quot; : /submitted/.test(t) ? &quot;Submitted&quot; : /app|application/.test(t) ? &quot;Pending&quot; : null;
     if (c &amp;&amp; stName) {
-      draftCard(&quot;&lt;b&gt;Move case:&lt;/b&gt; &quot; + who + &quot; \u2192 &quot; + stName, () =&gt; {
+      draftCard(&quot;<b>Move case:</b> &quot; + who + &quot; \u2192 &quot; + stName, () => {
         c.status = stName; c.detail = &quot;&quot;; if (!INFLIGHT.includes(stName)) c.stuck = false;
         save(); renderCases(); renderKPIs();
         botMsg(&quot;Moved \u2014 &quot; + who + &quot; is now &quot; + stName.toLowerCase() + &quot;.&quot;);
       });
       return;
     }
-    if (!c) { botMsg(&quot;I don&#x27;t see &quot; + who + &quot; on your board.&quot;); return; }
+    if (!c) { botMsg(&quot;I don't see &quot; + who + &quot; on your board.&quot;); return; }
   }
   if (/\blicense\b/.test(t) &amp;&amp; /\b(add|track|new)\b/.test(t)) {
-    const st = STATES.find(s =&gt; t.includes(s.toLowerCase()));
+    const st = STATES.find(s => t.includes(s.toLowerCase()));
     if (st) {
       const isoM = text.match(/\b(20\d{2})-(\d{2})-(\d{2})\b/);
       let exp = null;
       if (isoM) exp = isoM[0];
       else { const mn = t.match(/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s+(20\d{2})\b/); if (mn) { const mi = MONTHS.indexOf(mn[1]); exp = isoOf(new Date(+mn[2], mi + 1, 0)); } }
-      if (exp &amp;&amp; !S.licenses.find(l =&gt; l.state === st)) {
-        draftCard(&quot;&lt;b&gt;New license:&lt;/b&gt; &quot; + st + &quot; · renews &quot; + fmtDate(exp) + &quot; · CE in progress · no appointments yet&quot;, () =&gt; {
+      if (exp &amp;&amp; !S.licenses.find(l => l.state === st)) {
+        draftCard(&quot;<b>New license:</b> &quot; + st + &quot; · renews &quot; + fmtDate(exp) + &quot; · CE in progress · no appointments yet&quot;, () => {
           S.licenses.push({state: st, expires: exp, ce: &quot;CE in progress&quot;, appts: {}});
           save(); renderLicenses(); renderCalendar();
           botMsg(&quot;Added — &quot; + st + &quot; is on your Licenses tab, and its renewal is on the calendar.&quot;);
         });
         return;
       }
-      if (exp) { botMsg(&quot;You&#x27;re already tracking &quot; + st + &quot; — it renews &quot; + fmtDate(S.licenses.find(l =&gt; l.state === st).expires) + &quot;.&quot;); return; }
+      if (exp) { botMsg(&quot;You're already tracking &quot; + st + &quot; — it renews &quot; + fmtDate(S.licenses.find(l => l.state === st).expires) + &quot;.&quot;); return; }
       botMsg(&quot;I can add it — tell me the renewal month too, like “add my Texas license, expires Mar 2028”.&quot;); return;
     }
   }
@@ -1339,41 +1339,42 @@ function handleAI(raw){
     const time = timeM ? (timeM[1] + (timeM[2] ? &quot;:&quot; + timeM[2] : &quot;:00&quot;) + &quot; &quot; + timeM[3].toUpperCase()) : &quot;&quot;;
     let title = text.replace(/^(schedule|book)\s+/i, &quot;&quot;).replace(/\b(today|tomorrow|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/i, &quot;&quot;).replace(/\b(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b/i, &quot;&quot;).replace(/\s+(at|on)\s*$/i, &quot;&quot;).replace(/\s+/g, &quot; &quot;).trim();
     title = title ? title[0].toUpperCase() + title.slice(1) : &quot;Appointment&quot;;
-    draftCard(&quot;&lt;b&gt;New event:&lt;/b&gt; &quot; + title + &quot; — &quot; + dayWord + (time ? &quot; at &quot; + time : &quot;&quot;), () =&gt; {
+    draftCard(&quot;<b>New event:</b> &quot; + title + &quot; — &quot; + dayWord + (time ? &quot; at &quot; + time : &quot;&quot;), () => {
       S.events.push({off, time, kind: &quot;&quot;, title});
       save(); renderCalendar();
-      botMsg(&quot;Booked — it&#x27;s on your calendar for &quot; + dayWord + &quot;.&quot;);
+      botMsg(&quot;Booked — it's on your calendar for &quot; + dayWord + &quot;.&quot;);
     });
     return;
   }
   /* --- production --- */
   if (/production|produced/.test(t)) {
     const q = quarterOf({age: 0});
-    const done = S.cases.filter(c =&gt; DONE.includes(statusOf(c)) &amp;&amp; quarterOf(c) === q);
-    const mine = done.reduce((a,c) =&gt; a + myFyc(c), 0);
-    botMsg(done.length ? &quot;Production &quot; + q + &quot;: &quot; + money(mine) + &quot; \u2014 your share of FYC across &quot; + done.length + &quot; deposited/delivered case&quot; + (done.length &gt; 1 ? &quot;s&quot; : &quot;&quot;) + &quot;.&quot;
+    const done = S.cases.filter(c => DONE.includes(statusOf(c)) &amp;&amp; quarterOf(c) === q);
+    const mine = done.reduce((a,c) => a + myFyc(c), 0);
+    botMsg(done.length ? &quot;Production &quot; + q + &quot;: &quot; + money(mine) + &quot; \u2014 your share of FYC across &quot; + done.length + &quot; deposited/delivered case&quot; + (done.length > 1 ? &quot;s&quot; : &quot;&quot;) + &quot;.&quot;
       : &quot;No deposited or delivered business yet this quarter (&quot; + q + &quot;).&quot;);
     return;
   }
   /* --- stuck --- */
   if (/\bstuck\b|\boverdue\b/.test(t)) { botMsg(stuckText()); return; }
   /* --- status: where cases stand --- */
-  const stHit = STATUSES.find(s =&gt; t.includes(s.toLowerCase()));
+  const stHit = STATUSES.find(s => t.includes(s.toLowerCase()));
   if (stHit || /\bstatus\b|\bpipeline\b/.test(t)) { botMsg(statusText(stHit)); return; }
   /* --- add a case --- */
   if (/add.*case|new case/.test(t)) {
     const type = /annuit|myga|fia/.test(t) ? &quot;Annuity&quot; : /medicare/.test(t) ? &quot;Medicare&quot; : /dental/.test(t) ? &quot;Dental&quot; : /financial plan/.test(t) ? &quot;Plan&quot; : /securit/.test(t) ? &quot;Securities&quot; : /health|aca/.test(t) ? &quot;Medical&quot; : /eagle|advisor|rollover|managed|401/.test(t) ? &quot;Advisory&quot; : &quot;Life&quot;;
     const companies = [[&quot;NYL&quot;, /nyl|new york life/], [&quot;Allianz&quot;, /allianz/], [&quot;Athene&quot;, /athene/], [&quot;Foresters&quot;, /foresters/], [&quot;Transamerica&quot;, /transamerica/], [&quot;Protective&quot;, /protective/], [&quot;Mutual of Omaha&quot;, /mutual of omaha/], [&quot;North American&quot;, /north american/], [&quot;National Life&quot;, /national life/], [&quot;Eagle&quot;, /eagle/], [&quot;UHC&quot;, /uhc|unitedhealthcare/], [&quot;Humana&quot;, /humana/], [&quot;Anthem&quot;, /anthem/], [&quot;Delta&quot;, /delta/], [&quot;Schwab&quot;, /schwab/], [&quot;Fidelity&quot;, /fidelity/]];
-    const hit = companies.find(([n, r]) =&gt; r.test(t));
+    const hit = companies.find(([n, r]) => r.test(t));
     const company = hit ? hit[0] : (type === &quot;Life&quot; || type === &quot;Annuity&quot; ? &quot;NYL&quot; : &quot;&quot;);
     const name = /svul/.test(t) ? &quot;SVUL&quot; : /iul/.test(t) ? &quot;IUL&quot; : /myga/.test(t) ? &quot;MYGA&quot; : /\bfia\b/.test(t) ? &quot;FIA&quot; : /gul/.test(t) ? &quot;GUL&quot; : /whole life/.test(t) ? &quot;Whole Life&quot; : /term/.test(t) ? &quot;Term&quot; : &quot;&quot;;
-    const lm = text.match(/\b([A-Z]{3})\s+(\d{3})\b/);
-    const who = lm ? lm[1] + &quot; &quot; + lm[2] : &quot;JMS 214&quot;;
+    const lm = text.match(/([A-Za-z]+)\s+([A-Za-z])\.\s+([A-Za-z])\.\s+(\d{1,5})/);
+    const nextNum = S.cases.reduce((m, c) => { const mm = String(c.who).match(/(\d+)\s*$/); return mm ? Math.max(m, parseInt(mm[1], 10)) : m; }, 0) + 1;
+    const who = lm ? lm[1].charAt(0).toUpperCase() + lm[1].slice(1).toLowerCase() + &quot; &quot; + lm[2].toUpperCase() + &quot;. &quot; + lm[3].toUpperCase() + &quot;. &quot; + lm[4] : &quot;John M. S. &quot; + nextNum;
     const commText = lm ? text.replace(lm[0], &quot; &quot;) : text;
     const comm = (commText.match(/\$?\s?([\d,]{3,})/) || [null,&quot;1,500&quot;])[1].replace(/,/g,&quot;&quot;);
     const bits = [type, company, name].filter(Boolean).join(&quot; \u00B7 &quot;);
-    draftCard(&quot;&lt;b&gt;New case:&lt;/b&gt; &quot; + who + &quot; \u00B7 &quot; + bits + &quot; \u00B7 status: Pending \u00B7 FYC &quot; + money(parseInt(comm,10)),
-      () =&gt; {
+    draftCard(&quot;<b>New case:</b> &quot; + who + &quot; \u00B7 &quot; + bits + &quot; \u00B7 status: Pending \u00B7 FYC &quot; + money(parseInt(comm,10)),
+      () => {
         S.cases.push({id: Date.now(), who, type, company, product: name, status: &quot;Pending&quot;, detail: &quot;Application taken&quot;, age: 0, fyc: parseInt(comm,10), credits: 0, size: 0, share: 1, splits: [], docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []});
         save(); renderKPIs(); renderCases(); renderTasks();
         botMsg(&quot;Saved. &quot; + who + &quot; is on the board \u2014 I\u2019ll start aging it from today. Add its first task any time: \u201Cadd a task to &quot; + who + &quot;\u201D.&quot;);
@@ -1383,15 +1384,15 @@ function handleAI(raw){
   /* --- complete a task --- */
   if (/\b(done|complete|finished|scheduled|sent|delivered)\b/.test(t)) {
     let best = null, bestCase = null;
-    S.cases.forEach(c =&gt; openTasks(c).forEach(task =&gt; {
-      const words = task.t.toLowerCase().split(/\W+/).filter(w =&gt; w.length &gt; 3);
-      const hits = words.filter(w =&gt; t.includes(w)).length;
-      if (hits &gt;= 2 &amp;&amp; (!best || hits &gt; best.hits)) { best = {task, hits}; bestCase = c; }
+    S.cases.forEach(c => openTasks(c).forEach(task => {
+      const words = task.t.toLowerCase().split(/\W+/).filter(w => w.length > 3);
+      const hits = words.filter(w => t.includes(w)).length;
+      if (hits >= 2 &amp;&amp; (!best || hits > best.hits)) { best = {task, hits}; bestCase = c; }
     }));
     if (best) {
       const task = best.task, c = bestCase;
-      draftCard(&quot;&lt;b&gt;Close task:&lt;/b&gt; \u201C&quot; + task.t + &quot;\u201D on case &quot; + c.who + &quot; (&quot; + c.company + &quot;)&quot;,
-        () =&gt; { task.done = true; save(); renderCases(); renderKPIs(); renderTasks(); botMsg(&quot;Done — \u201C&quot; + task.t + &quot;\u201D is closed on &quot; + c.who + &quot;. &quot; + openTasks(c).length + &quot; open task(s) left on that case.&quot;); });
+      draftCard(&quot;<b>Close task:</b> \u201C&quot; + task.t + &quot;\u201D on case &quot; + c.who + &quot; (&quot; + c.company + &quot;)&quot;,
+        () => { task.done = true; save(); renderCases(); renderKPIs(); renderTasks(); botMsg(&quot;Done — \u201C&quot; + task.t + &quot;\u201D is closed on &quot; + c.who + &quot;. &quot; + openTasks(c).length + &quot; open task(s) left on that case.&quot;); });
       return;
     }
     botMsg(&quot;I couldn\u2019t match that to an open task. Try naming the task, like \u201Cthe paramed exam is scheduled\u201D or \u201Cscope copy sent\u201D.&quot;);
@@ -1407,9 +1408,9 @@ function handleAI(raw){
   if (/what/.test(t) &amp;&amp; dayMatch) { botMsg(findDayEvents(dayMatch[1])); return; }
   /* --- license queries --- */
   if (/appoint/.test(t)) {
-    const L = S.licenses.find(l =&gt; t.includes(l.state.toLowerCase()));
+    const L = S.licenses.find(l => t.includes(l.state.toLowerCase()));
     const carriers = [&quot;North American&quot;,&quot;Foresters&quot;,&quot;Mutual of Omaha&quot;,&quot;Allianz&quot;,&quot;Transamerica&quot;,&quot;Protective&quot;,&quot;National Life&quot;,&quot;Athene&quot;,&quot;UnitedHealthcare&quot;,&quot;Humana&quot;];
-    const car = carriers.find(c =&gt; t.includes(c.toLowerCase()));
+    const car = carriers.find(c => t.includes(c.toLowerCase()));
     if (L &amp;&amp; car) {
       botMsg(L.appts[car] ? &quot;Yes — you\u2019re appointed with &quot; + car + &quot; in &quot; + L.state + &quot;, and your &quot; + L.state + &quot; license is current until &quot; + fmtDate(L.expires) + &quot;.&quot;
                           : &quot;No — you\u2019re not appointed with &quot; + car + &quot; in &quot; + L.state + &quot; yet. Don\u2019t submit there until the appointment is in. Your license itself is current until &quot; + fmtDate(L.expires) + &quot;.&quot;);
@@ -1417,22 +1418,22 @@ function handleAI(raw){
     }
   }
   if (/license|licence|renew/.test(t)) {
-    const L = S.licenses.find(l =&gt; t.includes(l.state.toLowerCase()));
+    const L = S.licenses.find(l => t.includes(l.state.toLowerCase()));
     if (L) { botMsg(&quot;Your &quot; + L.state + &quot; license renews &quot; + fmtDate(L.expires) + &quot; — &quot; + daysUntil(L.expires) + &quot; days left. &quot; + L.ce + &quot;.&quot;); return; }
-    const soon = S.licenses.slice().sort((a,b) =&gt; daysUntil(a.expires) - daysUntil(b.expires))[0];
+    const soon = S.licenses.slice().sort((a,b) => daysUntil(a.expires) - daysUntil(b.expires))[0];
     botMsg(&quot;Soonest renewal: &quot; + soon.state + &quot;, &quot; + fmtDate(soon.expires) + &quot; (&quot; + daysUntil(soon.expires) + &quot; days). &quot; + soon.ce);
     return;
   }
   /* --- commissions --- */
   if (/commission|owed|pending money/.test(t)) {
-    const pend = S.cases.filter(c =&gt; INFLIGHT.includes(statusOf(c)));
-    const pending = pend.reduce((a,c) =&gt; a + myFyc(c), 0);
-    const stuckM = pend.filter(c =&gt; c.stuck).reduce((a,c) =&gt; a + myFyc(c), 0);
+    const pend = S.cases.filter(c => INFLIGHT.includes(statusOf(c)));
+    const pending = pend.reduce((a,c) => a + myFyc(c), 0);
+    const stuckM = pend.filter(c => c.stuck).reduce((a,c) => a + myFyc(c), 0);
     botMsg(&quot;Your commissions pending: &quot; + money(pending) + &quot; (your share) across &quot; + pend.length + &quot; in-flight cases — &quot; + money(stuckM) + &quot; of it is stuck.&quot;);
     return;
   }
   if (/help|what can you/.test(t)) {
-    botMsg(&quot;I can:\n• Report what\u2019s stuck\n• Add a case (try \u201Cadd a case, NYL life, TJB 902, 1800\u201D)\n• Close a task (\u201Cthe paramed exam is scheduled\u201D)\n• Answer license &amp; appointment questions\n• Tell you what\u2019s on any day this week\nI draft first — nothing saves without your confirm.&quot;);
+    botMsg(&quot;I can:\n• Report what\u2019s stuck\n• Add a case (try \u201Cadd a case, NYL life, Thomas J. B. 24, 1800\u201D)\n• Close a task (\u201Cthe paramed exam is scheduled\u201D)\n• Answer license &amp; appointment questions\n• Tell you what\u2019s on any day this week\nI draft first — nothing saves without your confirm.&quot;);
     return;
   }
   botMsg(&quot;I didn\u2019t catch that one — this prototype understands a defined set of commands (the full product won\u2019t have that limit). Try one of the suggestions below, or type \u201Chelp\u201D.&quot;);
@@ -1447,9 +1448,9 @@ function toggleMic(){
   recog.lang = &quot;en-US&quot;; recog.interimResults = true; recog.continuous = false;
   const inp = document.getElementById(&quot;aiText&quot;);
   const base = inp.value ? inp.value.replace(/\s+$/, &quot;&quot;) + &quot; &quot; : &quot;&quot;;
-  recog.onresult = e =&gt; { let txt = &quot;&quot;; for (const r of e.results) txt += r[0].transcript; inp.value = base + txt; };
-  recog.onend = () =&gt; { micOn = false; btn.classList.remove(&quot;rec&quot;); inp.focus(); };
-  recog.onerror = () =&gt; { micOn = false; btn.classList.remove(&quot;rec&quot;); };
+  recog.onresult = e => { let txt = &quot;&quot;; for (const r of e.results) txt += r[0].transcript; inp.value = base + txt; };
+  recog.onend = () => { micOn = false; btn.classList.remove(&quot;rec&quot;); inp.focus(); };
+  recog.onerror = () => { micOn = false; btn.classList.remove(&quot;rec&quot;); };
   micOn = true; btn.classList.add(&quot;rec&quot;);
   try { recog.start(); } catch (e) { micOn = false; btn.classList.remove(&quot;rec&quot;); }
 }
@@ -1457,8 +1458,8 @@ function creditsLeft(){ return S.vaCredits == null ? 300 : S.vaCredits; }
 function renderCredits(){
   const el = document.getElementById(&quot;vaCredits&quot;); if (!el) return;
   const n = creditsLeft();
-  el.className = &quot;va-credits&quot; + (n &lt;= 0 ? &quot; out&quot; : n &lt; 60 ? &quot; low&quot; : &quot;&quot;);
-  el.innerHTML = &quot;&lt;span&gt;&quot; + n + &quot; credits left this month&lt;/span&gt;&quot; + (n &lt; 60 ? &#x27;&lt;button onclick=&quot;demoTopUp()&quot;&gt;Top up 250 \u00B7 $10&lt;/button&gt;&#x27; : &quot;&quot;);
+  el.className = &quot;va-credits&quot; + (n <= 0 ? &quot; out&quot; : n < 60 ? &quot; low&quot; : &quot;&quot;);
+  el.innerHTML = &quot;<span>&quot; + n + &quot; credits left this month</span>&quot; + (n < 60 ? '<button onclick=&quot;demoTopUp()&quot;>Top up 250 \u00B7 $10</button>' : &quot;&quot;);
 }
 function demoTopUp(){
   S.vaCredits = creditsLeft() + 250; save(); renderCredits();
@@ -1467,7 +1468,7 @@ function demoTopUp(){
 function sendAI(){
   const inp = document.getElementById(&quot;aiText&quot;);
   const v = inp.value.trim(); if (!v) return;
-  if (creditsLeft() &lt;= 0){
+  if (creditsLeft() <= 0){
     inp.value = &quot;&quot;;
     botMsg(&quot;You\u2019re out of VA credits for this month. Your board works as normal \u2014 credits only cover VA. Top up to keep going, or wait for next month\u2019s 300.&quot;);
     renderCredits();
@@ -1477,74 +1478,74 @@ function sendAI(){
   inp.value = &quot;&quot;; userMsg(v); handleAI(v);
   renderCredits();
 }
-document.getElementById(&quot;aiText&quot;).addEventListener(&quot;keydown&quot;, e =&gt; { if (e.key === &quot;Enter&quot;) sendAI(); });
+document.getElementById(&quot;aiText&quot;).addEventListener(&quot;keydown&quot;, e => { if (e.key === &quot;Enter&quot;) sendAI(); });
 
 /* ============ VA POP-UP ============ */
 function openVA(){
   document.getElementById(&quot;vaPanel&quot;).classList.add(&quot;open&quot;);
   document.getElementById(&quot;tab-va&quot;).classList.add(&quot;active&quot;);
-  const inp = document.getElementById(&quot;aiText&quot;); if (inp &amp;&amp; window.innerWidth &gt; 900) setTimeout(() =&gt; inp.focus(), 120);
+  const inp = document.getElementById(&quot;aiText&quot;); if (inp &amp;&amp; window.innerWidth > 900) setTimeout(() => inp.focus(), 120);
 }
 function closeVA(){
   document.getElementById(&quot;vaPanel&quot;).classList.remove(&quot;open&quot;);
   document.getElementById(&quot;tab-va&quot;).classList.remove(&quot;active&quot;);
 }
-document.addEventListener(&quot;keydown&quot;, e =&gt; { if (e.key === &quot;Escape&quot;) closeVA(); });
+document.addEventListener(&quot;keydown&quot;, e => { if (e.key === &quot;Escape&quot;) closeVA(); });
 
 /* ============ MOBILE APP SHELL (v2.1) ============ */
 function showMobile(v){
-  document.querySelectorAll(&quot;.tabbar button&quot;).forEach(b =&gt; b.classList.toggle(&quot;active&quot;, b.dataset.mv === v));
+  document.querySelectorAll(&quot;.tabbar button&quot;).forEach(b => b.classList.toggle(&quot;active&quot;, b.dataset.mv === v));
   document.body.classList.toggle(&quot;mv-ai&quot;, v === &quot;ai&quot;);
   if (v !== &quot;ai&quot;) showTab(v);
   window.scrollTo({top: 0});
-  setTimeout(() =&gt; { if (typeof fitMonth === &quot;function&quot;) fitMonth(); }, 30);
+  setTimeout(() => { if (typeof fitMonth === &quot;function&quot;) fitMonth(); }, 30);
 }
 
 /* ============ TASKS TAB (v3.0) ============ */
 function dueMeta(iso){
   if (!iso) return {g:3, label:&quot;No date&quot;, cls:&quot;nod&quot;};
   const d = daysUntil(iso);
-  if (d &lt; 0) return {g:0, label:&quot;Overdue &quot; + (-d) + &quot;d&quot;, cls:&quot;ov&quot;};
+  if (d < 0) return {g:0, label:&quot;Overdue &quot; + (-d) + &quot;d&quot;, cls:&quot;ov&quot;};
   if (d === 0) return {g:1, label:&quot;Due today&quot;, cls:&quot;td&quot;};
   if (d === 1) return {g:2, label:&quot;Tomorrow&quot;, cls:&quot;up&quot;};
   return {g:2, label:fmtDate(iso), cls:&quot;up&quot;};
 }
 function taskListRow(x){
-  return &#x27;&lt;div class=&quot;trow&quot;&gt;&#x27; +
-    &#x27;&lt;button class=&quot;tcbox&#x27; + (x.t.done ? &quot; done&quot; : &quot;&quot;) + &#x27;&quot; onclick=&quot;toggleListTask(&#x27; + x.c.id + &#x27;,&#x27; + x.i + &#x27;)&quot; aria-label=&quot;Mark task done&quot;&gt;&#x27; + (x.t.done ? &quot;\u2713&quot; : &quot;&quot;) + &#x27;&lt;/button&gt;&#x27; +
-    &#x27;&lt;div class=&quot;tmain&quot; onclick=&quot;openCase(&#x27; + x.c.id + &#x27;)&quot;&gt;&#x27; +
-      &#x27;&lt;div class=&quot;ttitle&#x27; + (x.t.done ? &quot; done&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + x.t.t + &#x27;&lt;/div&gt;&#x27; +
-      &#x27;&lt;div class=&quot;tmeta&quot;&gt;&#x27; + x.c.who + (x.c.company ? &#x27; \u00B7 &#x27; + x.c.company : &#x27;&#x27;) + (x.c.product ? &#x27; \u00B7 &#x27; + x.c.product : &#x27;&#x27;) +
-      &#x27; &lt;span class=&quot;tdue &#x27; + x.m.cls + &#x27;&quot;&gt;&#x27; + x.m.label + &#x27;&lt;/span&gt;&lt;/div&gt;&#x27; +
-    &#x27;&lt;/div&gt;&lt;span class=&quot;tchev&quot;&gt;\u203A&lt;/span&gt;&lt;/div&gt;&#x27;;
+  return '<div class=&quot;trow&quot;>' +
+    '<button class=&quot;tcbox' + (x.t.done ? &quot; done&quot; : &quot;&quot;) + '&quot; onclick=&quot;toggleListTask(' + x.c.id + ',' + x.i + ')&quot; aria-label=&quot;Mark task done&quot;>' + (x.t.done ? &quot;\u2713&quot; : &quot;&quot;) + '</button>' +
+    '<div class=&quot;tmain&quot; onclick=&quot;openCase(' + x.c.id + ')&quot;>' +
+      '<div class=&quot;ttitle' + (x.t.done ? &quot; done&quot; : &quot;&quot;) + '&quot;>' + x.t.t + '</div>' +
+      '<div class=&quot;tmeta&quot;>' + x.c.who + (x.c.company ? ' \u00B7 ' + x.c.company : '') + (x.c.product ? ' \u00B7 ' + x.c.product : '') +
+      ' <span class=&quot;tdue ' + x.m.cls + '&quot;>' + x.m.label + '</span></div>' +
+    '</div><span class=&quot;tchev&quot;>\u203A</span></div>';
 }
 function renderTasks(){
   const el = document.getElementById(&quot;taskList&quot;); if (!el) return;
   const dl = document.getElementById(&quot;qaCases&quot;);
-  if (dl) dl.innerHTML = S.cases.map(c =&gt; &#x27;&lt;option value=&quot;&#x27; + c.who + &#x27;&quot;&gt;&lt;/option&gt;&#x27;).join(&quot;&quot;);
+  if (dl) dl.innerHTML = S.cases.map(c => '<option value=&quot;' + c.who + '&quot;></option>').join(&quot;&quot;);
   const items = [];
-  S.cases.forEach(c =&gt; (c.tasks || []).forEach((t, i) =&gt; items.push({c, t, i, m: dueMeta(t.due)})));
-  const open = items.filter(x =&gt; !x.t.done).sort((a, b) =&gt; (a.m.g - b.m.g) || String(a.t.due || &quot;9999&quot;).localeCompare(String(b.t.due || &quot;9999&quot;)));
-  const done = items.filter(x =&gt; x.t.done);
+  S.cases.forEach(c => (c.tasks || []).forEach((t, i) => items.push({c, t, i, m: dueMeta(t.due)})));
+  const open = items.filter(x => !x.t.done).sort((a, b) => (a.m.g - b.m.g) || String(a.t.due || &quot;9999&quot;).localeCompare(String(b.t.due || &quot;9999&quot;)));
+  const done = items.filter(x => x.t.done);
   const names = [&quot;Overdue&quot;, &quot;Today&quot;, &quot;Upcoming&quot;, &quot;No date&quot;], clss = [&quot;ov&quot;, &quot;td&quot;, &quot;up&quot;, &quot;nod&quot;];
   let html = &quot;&quot;;
-  names.forEach((name, gi) =&gt; {
-    const rows = open.filter(x =&gt; x.m.g === gi);
-    if (rows.length) html += &#x27;&lt;div class=&quot;tgroup &#x27; + clss[gi] + &#x27;&quot;&gt;&#x27; + name + &#x27; \u00B7 &#x27; + rows.length + &#x27;&lt;/div&gt;&#x27; + rows.map(taskListRow).join(&quot;&quot;);
+  names.forEach((name, gi) => {
+    const rows = open.filter(x => x.m.g === gi);
+    if (rows.length) html += '<div class=&quot;tgroup ' + clss[gi] + '&quot;>' + name + ' \u00B7 ' + rows.length + '</div>' + rows.map(taskListRow).join(&quot;&quot;);
   });
-  if (!open.length) html += &#x27;&lt;div class=&quot;tempty&quot;&gt;All clear \u2014 no open tasks. When a case needs something, its task lands here.&lt;/div&gt;&#x27;;
-  if (done.length) html += &#x27;&lt;div class=&quot;tgroup done&quot;&gt;Completed \u00B7 &#x27; + done.length + &#x27;&lt;/div&gt;&#x27; + done.map(taskListRow).join(&quot;&quot;);
+  if (!open.length) html += '<div class=&quot;tempty&quot;>All clear \u2014 no open tasks. When a case needs something, its task lands here.</div>';
+  if (done.length) html += '<div class=&quot;tgroup done&quot;>Completed \u00B7 ' + done.length + '</div>' + done.map(taskListRow).join(&quot;&quot;);
   el.innerHTML = html;
 }
 function toggleListTask(caseId, idx){
-  const c = S.cases.find(x =&gt; x.id === caseId); if (!c || !c.tasks[idx]) return;
+  const c = S.cases.find(x => x.id === caseId); if (!c || !c.tasks[idx]) return;
   c.tasks[idx].done = !c.tasks[idx].done;
   save(); renderTasks(); renderCases(); renderKPIs();
 }
 function findOrCreateCase(label){
   const norm = (label || &quot;&quot;).trim().replace(/\s+/g, &quot; &quot;).toUpperCase();
   if (!norm) return null;
-  let c = S.cases.find(x =&gt; x.who.toUpperCase() === norm);
+  let c = S.cases.find(x => x.who.toUpperCase() === norm);
   if (!c) {
     c = {id: Date.now(), who: norm, type: &quot;&quot;, company: &quot;&quot;, product: &quot;&quot;, status: &quot;Pending&quot;, detail: &quot;New case&quot;, age: 0, fyc: 0, credits: 0, size: 0, share: 1, splits: [], docs: false, funding: &quot;&quot;, waitingOn: &quot;&quot;, stuck: false, tasks: []};
     S.cases.push(c);
@@ -1565,8 +1566,8 @@ function quickAddTask(){
 
 /* ============ INIT ============ */
 renderKPIs(); renderFilters(); renderCases(); renderTasks(); renderRenewals(); renderLicenses(); renderCalendar(); renderCredits();
-&lt;/script&gt;
-&lt;script&gt;
+</script>
+<script>
 /* ============ v4.0 — CSV import, first run, license form ============ */
 const STATES = [&quot;Alabama&quot;,&quot;Alaska&quot;,&quot;Arizona&quot;,&quot;Arkansas&quot;,&quot;California&quot;,&quot;Colorado&quot;,&quot;Connecticut&quot;,&quot;Delaware&quot;,&quot;Florida&quot;,&quot;Georgia&quot;,&quot;Hawaii&quot;,&quot;Idaho&quot;,&quot;Illinois&quot;,&quot;Indiana&quot;,&quot;Iowa&quot;,&quot;Kansas&quot;,&quot;Kentucky&quot;,&quot;Louisiana&quot;,&quot;Maine&quot;,&quot;Maryland&quot;,&quot;Massachusetts&quot;,&quot;Michigan&quot;,&quot;Minnesota&quot;,&quot;Mississippi&quot;,&quot;Missouri&quot;,&quot;Montana&quot;,&quot;Nebraska&quot;,&quot;Nevada&quot;,&quot;New Hampshire&quot;,&quot;New Jersey&quot;,&quot;New Mexico&quot;,&quot;New York&quot;,&quot;North Carolina&quot;,&quot;North Dakota&quot;,&quot;Ohio&quot;,&quot;Oklahoma&quot;,&quot;Oregon&quot;,&quot;Pennsylvania&quot;,&quot;Rhode Island&quot;,&quot;South Carolina&quot;,&quot;South Dakota&quot;,&quot;Tennessee&quot;,&quot;Texas&quot;,&quot;Utah&quot;,&quot;Vermont&quot;,&quot;Virginia&quot;,&quot;Washington&quot;,&quot;West Virginia&quot;,&quot;Wisconsin&quot;,&quot;Wyoming&quot;];
 const MONTHS = [&quot;jan&quot;,&quot;feb&quot;,&quot;mar&quot;,&quot;apr&quot;,&quot;may&quot;,&quot;jun&quot;,&quot;jul&quot;,&quot;aug&quot;,&quot;sep&quot;,&quot;oct&quot;,&quot;nov&quot;,&quot;dec&quot;];
@@ -1574,7 +1575,7 @@ const MONTHS = [&quot;jan&quot;,&quot;feb&quot;,&quot;mar&quot;,&quot;apr&quot;,
 const SAMPLE_CSV = &quot;Client Name,SSN,Status,Product,FYC,Premium/Investment Amount,Agent Share,Notes\n&quot; +
 &quot;Daniel R Kim,000-12-3456,Awaiting Funds,NYL: Annuity,4100,212000,0.4,Funds coming from account 778899 - rollover\n&quot; +
 &quot;Maria L Torres,000-23-4567,Underwriting,NYL: Life,2900,40000,0.5,APS pending at clinic\n&quot; +
-&quot;James P O&#x27;Neil,000-34-5678,Pending,NYL: Life,1350,20000,1,New money\n&quot; +
+&quot;James P O'Neil,000-34-5678,Pending,NYL: Life,1350,20000,1,New money\n&quot; +
 &quot;Kavita S Nair,000-45-6789,Deposited,Eagle,2100,225000,1,Transfer in from Schwab\n&quot; +
 &quot;Tom W Becker,000-56-7890,Delivered,Delta: Dental,95,1200,1,\n&quot; +
 &quot;Angela D Ruiz,000-67-8901,Submitted,NYL: Annuity,3300,150000,0.95,IndexFlex VA - bank acct ending 4417&quot;;
@@ -1582,18 +1583,18 @@ const SAMPLE_CSV = &quot;Client Name,SSN,Status,Product,FYC,Premium/Investment A
 function parseCSV(text){
   const rows = []; let row = [], cur = &quot;&quot;, q = false;
   const s = String(text).replace(/\r\n/g, &quot;\n&quot;).replace(/\r/g, &quot;\n&quot;);
-  for (let i = 0; i &lt; s.length; i++){
+  for (let i = 0; i < s.length; i++){
     const ch = s[i];
     if (q){
-      if (ch === &#x27;&quot;&#x27;){ if (s[i+1] === &#x27;&quot;&#x27;){ cur += &#x27;&quot;&#x27;; i++; } else q = false; }
+      if (ch === '&quot;'){ if (s[i+1] === '&quot;'){ cur += '&quot;'; i++; } else q = false; }
       else cur += ch;
-    } else if (ch === &#x27;&quot;&#x27;) q = true;
+    } else if (ch === '&quot;') q = true;
     else if (ch === &quot;,&quot;){ row.push(cur); cur = &quot;&quot;; }
     else if (ch === &quot;\n&quot;){ row.push(cur); rows.push(row); row = []; cur = &quot;&quot;; }
     else cur += ch;
   }
   if (cur.length || row.length){ row.push(cur); rows.push(row); }
-  return rows.filter(r =&gt; r.some(c =&gt; String(c).trim() !== &quot;&quot;));
+  return rows.filter(r => r.some(c => String(c).trim() !== &quot;&quot;));
 }
 const PII_COL = /(ssn|social|dob|birth|phone|email|address|policy\s*(no|num|#)|account|member\s*id)/i;
 function guessField(h){
@@ -1626,10 +1627,10 @@ function downloadTemplate(){
   a.href = URL.createObjectURL(new Blob([csv], {type: &quot;text/csv&quot;}));
   a.download = &quot;bookview-template.csv&quot;;
   document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() =&gt; URL.revokeObjectURL(a.href), 2000);
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 }
 function sampleCSV(){ document.getElementById(&quot;csvText&quot;).value = SAMPLE_CSV; previewImport(); }
-function fileCSV(ev){ const f = ev.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () =&gt; { document.getElementById(&quot;csvText&quot;).value = r.result; previewImport(); }; r.readAsText(f); }
+function fileCSV(ev){ const f = ev.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { document.getElementById(&quot;csvText&quot;).value = r.result; previewImport(); }; r.readAsText(f); }
 function inferStatus(raw){
   const x = (raw || &quot;&quot;).toLowerCase().trim();
   if (/prospect/.test(x)) return &quot;Prospect&quot;;
@@ -1644,7 +1645,7 @@ function inferStatus(raw){
   return &quot;Pending&quot;;
 }
 function inferLine(product, carrier, given){
-  if (given) { const g = [&quot;Life&quot;,&quot;Annuity&quot;,&quot;Advisory&quot;,&quot;Medicare&quot;,&quot;Medical&quot;,&quot;Dental&quot;].find(L =&gt; given.toLowerCase().includes(L.toLowerCase())); if (g) return g; }
+  if (given) { const g = [&quot;Life&quot;,&quot;Annuity&quot;,&quot;Advisory&quot;,&quot;Medicare&quot;,&quot;Medical&quot;,&quot;Dental&quot;].find(L => given.toLowerCase().includes(L.toLowerCase())); if (g) return g; }
   const x = ((product || &quot;&quot;) + &quot; &quot; + (carrier || &quot;&quot;)).toLowerCase();
   if (/dental/.test(x)) return &quot;Dental&quot;;
   if (/medicare|advantage|med supp|supplement/.test(x)) return &quot;Medicare&quot;;
@@ -1655,13 +1656,13 @@ function inferLine(product, carrier, given){
 }
 function deriveLabel(name, n){
   const toks = String(name || &quot;&quot;).replace(/[^A-Za-z ]/g, &quot; &quot;).split(/\s+/).filter(Boolean);
-  let ini = toks.map(w =&gt; w[0].toUpperCase()).join(&quot;&quot;);
-  if (ini.length &gt; 3) ini = ini[0] + ini[1] + ini[ini.length - 1];
-  while (ini.length &lt; 3 &amp;&amp; toks.length) { const last = toks[toks.length - 1]; ini += last[Math.min(ini.length, last.length - 1)].toUpperCase(); }
+  let ini = toks.map(w => w[0].toUpperCase()).join(&quot;&quot;);
+  if (ini.length > 3) ini = ini[0] + ini[1] + ini[ini.length - 1];
+  while (ini.length < 3 &amp;&amp; toks.length) { const last = toks[toks.length - 1]; ini += last[Math.min(ini.length, last.length - 1)].toUpperCase(); }
   if (!ini) ini = &quot;CSV&quot;;
   return ini + &quot; &quot; + (100 + n);
 }
-function impCell(r, field){ const i = impFields.indexOf(field); return i &gt;= 0 ? String(r[i] || &quot;&quot;).trim() : &quot;&quot;; }
+function impCell(r, field){ const i = impFields.indexOf(field); return i >= 0 ? String(r[i] || &quot;&quot;).trim() : &quot;&quot;; }
 function impLabelFor(r, ri){
   const lab = impCell(r, &quot;label&quot;);
   if (lab) return lab.toUpperCase();
@@ -1699,17 +1700,17 @@ function impParts(r){
 function shareOf(r){
   const v = parseFloat(String(impCell(r, &quot;share&quot;)).replace(/[^0-9.]/g, &quot;&quot;));
   if (isNaN(v)) return 1;
-  return v &gt; 1 ? v / 100 : v;
+  return v > 1 ? v / 100 : v;
 }
 function previewImport(){
   const rows = parseCSV(document.getElementById(&quot;csvText&quot;).value);
-  if (rows.length &lt; 2){ botMsg(&quot;That CSV needs a header row plus at least one case row.&quot;); return; }
+  if (rows.length < 2){ botMsg(&quot;That CSV needs a header row plus at least one case row.&quot;); return; }
   impHeaders = rows[0]; impData = rows.slice(1); impFields = impHeaders.map(guessField);
   const fieldName = {pii:&quot;Identifier \u2014 always stripped&quot;, notes:&quot;Notes \u2014 stripped (can carry account details)&quot;, name:&quot;Name \u2192 initials label&quot;, label:&quot;Case label&quot;, type:&quot;Type&quot;, company:&quot;Company&quot;, product:&quot;Product \u2014 split into type, company, name&quot;, status:&quot;Status&quot;, fyc:&quot;FYC&quot;, size:&quot;Case size&quot;, share:&quot;My share&quot;, appdate:&quot;App date&quot;, age:&quot;Age (days)&quot;, skip:&quot;Not imported&quot;};
-  let html = &#x27;&lt;table class=&quot;mapt&quot;&gt;&lt;tr&gt;&lt;th&gt;Your column&lt;/th&gt;&lt;th&gt;BookView does this&lt;/th&gt;&lt;/tr&gt;&#x27; + impHeaders.map((h, i) =&gt;
-    &#x27;&lt;tr&#x27; + ((impFields[i] === &quot;pii&quot; || impFields[i] === &quot;notes&quot;) ? &#x27; class=&quot;piirow&quot;&#x27; : &quot;&quot;) + &#x27;&gt;&lt;td&gt;&#x27; + h + &#x27;&lt;/td&gt;&lt;td&gt;&#x27; + fieldName[impFields[i]] + &#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;).join(&quot;&quot;) + &#x27;&lt;/table&gt;&#x27;;
-  html += &#x27;&lt;p class=&quot;dim&quot; style=&quot;margin:12px 0 4px&quot;&gt;First rows as they will land \u2014 identifiers and notes never shown, never saved:&lt;/p&gt;&#x27;;
-  html += impData.slice(0, 5).map((r, ri) =&gt; { const pp = impParts(r); return &#x27;&lt;div class=&quot;improw&quot;&gt;&#x27; + impLabelFor(r, ri) + &#x27; \u00B7 &#x27; + [pp.type, pp.company, pp.name].filter(Boolean).join(&quot; \u00B7 &quot;) + &#x27; \u00B7 &#x27; + inferStatus(impCell(r, &quot;status&quot;)) + &#x27; \u00B7 FYC &#x27; + money(Math.round((parseInt(String(impCell(r, &quot;fyc&quot;)).replace(/[^0-9]/g, &quot;&quot;), 10) || 0) * shareOf(r))) + &#x27;&lt;/div&gt;&#x27;; }).join(&quot;&quot;);
+  let html = '<table class=&quot;mapt&quot;><tr><th>Your column</th><th>BookView does this</th></tr>' + impHeaders.map((h, i) =>
+    '<tr' + ((impFields[i] === &quot;pii&quot; || impFields[i] === &quot;notes&quot;) ? ' class=&quot;piirow&quot;' : &quot;&quot;) + '><td>' + h + '</td><td>' + fieldName[impFields[i]] + '</td></tr>').join(&quot;&quot;) + '</table>';
+  html += '<p class=&quot;dim&quot; style=&quot;margin:12px 0 4px&quot;>First rows as they will land \u2014 identifiers and notes never shown, never saved:</p>';
+  html += impData.slice(0, 5).map((r, ri) => { const pp = impParts(r); return '<div class=&quot;improw&quot;>' + impLabelFor(r, ri) + ' \u00B7 ' + [pp.type, pp.company, pp.name].filter(Boolean).join(&quot; \u00B7 &quot;) + ' \u00B7 ' + inferStatus(impCell(r, &quot;status&quot;)) + ' \u00B7 FYC ' + money(Math.round((parseInt(String(impCell(r, &quot;fyc&quot;)).replace(/[^0-9]/g, &quot;&quot;), 10) || 0) * shareOf(r))) + '</div>'; }).join(&quot;&quot;);
   document.getElementById(&quot;importPreview&quot;).innerHTML = html;
   document.getElementById(&quot;importGo&quot;).textContent = &quot;Import &quot; + impData.length + &quot; case&quot; + (impData.length === 1 ? &quot;&quot; : &quot;s&quot;);
   document.getElementById(&quot;importStep1&quot;).style.display = &quot;none&quot;;
@@ -1717,10 +1718,10 @@ function previewImport(){
 }
 function doImport(){
   let added = 0, skipped = 0;
-  impData.forEach((r, ri) =&gt; {
+  impData.forEach((r, ri) => {
     const who = impLabelFor(r, ri);
     const pp = impParts(r);
-    if ((!pp.type &amp;&amp; !pp.company &amp;&amp; !pp.name) || !who || S.cases.find(c =&gt; c.who === who)){ skipped++; return; }
+    if ((!pp.type &amp;&amp; !pp.company &amp;&amp; !pp.name) || !who || S.cases.find(c => c.who === who)){ skipped++; return; }
     let age = parseInt(impCell(r, &quot;age&quot;), 10);
     if (isNaN(age)) { const ad = impCell(r, &quot;appdate&quot;); const d = ad ? new Date(ad) : null; age = d &amp;&amp; !isNaN(d) ? Math.max(0, Math.round((Date.now() - d.getTime()) / 86400000)) : 0; }
     S.cases.push({id: Date.now() + ri, who, type: pp.type, company: pp.company, product: pp.name, status: inferStatus(impCell(r, &quot;status&quot;)), detail: &quot;&quot;,
@@ -1738,11 +1739,11 @@ function addLicenseForm(){
   const exp = document.getElementById(&quot;lfExp&quot;).value;
   const ce = document.getElementById(&quot;lfCE&quot;).value;
   if (!st || !exp) { botMsg(&quot;To add a license on the Licenses tab, I need the state and its renewal date.&quot;); return; }
-  if (S.licenses.find(l =&gt; l.state.toLowerCase() === st.toLowerCase())) { botMsg(&quot;You&#x27;re already tracking &quot; + st + &quot;.&quot;); return; }
+  if (S.licenses.find(l => l.state.toLowerCase() === st.toLowerCase())) { botMsg(&quot;You're already tracking &quot; + st + &quot;.&quot;); return; }
   S.licenses.push({state: st, expires: exp, ce: ce, appts: {}});
   document.getElementById(&quot;lfState&quot;).value = &quot;&quot;; document.getElementById(&quot;lfExp&quot;).value = &quot;&quot;;
   save(); renderLicenses(); renderCalendar();
-  botMsg(&quot;Added — &quot; + st + &quot; is on your Licenses tab, renewal &quot; + fmtDate(exp) + &quot;, and it&#x27;s on the calendar.&quot;);
+  botMsg(&quot;Added — &quot; + st + &quot; is on your Licenses tab, renewal &quot; + fmtDate(exp) + &quot;, and it's on the calendar.&quot;);
 }
 
 function frChoose(mode){
@@ -1759,10 +1760,10 @@ function maybeFirstRun(){ if (!S.onboarded) document.getElementById(&quot;firstr
 function drawOrb(ctx, S, t){
   ctx.clearRect(0, 0, S, S);
   const cx = S / 2, cy = S / 2, R = S * 0.37, rings = 7;
-  for (let j = 0; j &lt; rings; j++){
+  for (let j = 0; j < rings; j++){
     const fr = j / (rings - 1);
     const n = Math.max(5, Math.round(8 + fr * 30));
-    for (let i = 0; i &lt; n; i++){
+    for (let i = 0; i < n; i++){
       const a = (i / n) * Math.PI * 2 + t * 0.12 * (j % 2 ? -1 : 1) + fr * 0.9;
       const w = 1 + 0.16 * Math.sin(3 * a + t * 1.15 + fr * 2.2) + 0.11 * Math.sin(5 * a - t * 0.9 + fr * 4.1) + 0.07 * Math.sin(2 * a + t * 0.6);
       const r = Math.max(0.6, R * fr * w);
@@ -1779,17 +1780,17 @@ function drawOrb(ctx, S, t){
 }
 (function initOrbs(){
   const list = [];
-  document.querySelectorAll(&quot;canvas.va-orb&quot;).forEach(cv =&gt; list.push({ctx: cv.getContext(&quot;2d&quot;), S: cv.width}));
+  document.querySelectorAll(&quot;canvas.va-orb&quot;).forEach(cv => list.push({ctx: cv.getContext(&quot;2d&quot;), S: cv.width}));
   if (!list.length) return;
-  if (window.matchMedia &amp;&amp; matchMedia(&quot;(prefers-reduced-motion: reduce)&quot;).matches){ list.forEach(o =&gt; drawOrb(o.ctx, o.S, 0.8)); return; }
-  const loop = ts =&gt; { const t = ts / 1000; list.forEach(o =&gt; drawOrb(o.ctx, o.S, t)); requestAnimationFrame(loop); };
+  if (window.matchMedia &amp;&amp; matchMedia(&quot;(prefers-reduced-motion: reduce)&quot;).matches){ list.forEach(o => drawOrb(o.ctx, o.S, 0.8)); return; }
+  const loop = ts => { const t = ts / 1000; list.forEach(o => drawOrb(o.ctx, o.S, t)); requestAnimationFrame(loop); };
   requestAnimationFrame(loop);
 })();
 
 maybeFirstRun();
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+</script>
+</body>
+</html>
 "></iframe>
     </div>
     <p class="demo-cap">This is the actual screen, running on sample data. Filter by status, show only what's stuck, click any case for detail — and try VA, the assistant in the middle tab.</p>
