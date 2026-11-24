@@ -1422,11 +1422,11 @@ function renderCredits(){
   const el = document.getElementById(&quot;vaCredits&quot;); if (!el) return;
   const n = creditsLeft();
   el.className = &quot;va-credits&quot; + (n &lt;= 0 ? &quot; out&quot; : n &lt; 60 ? &quot; low&quot; : &quot;&quot;);
-  el.innerHTML = &quot;&lt;span&gt;&quot; + n + &quot; credits left this month&lt;/span&gt;&quot; + (n &lt; 60 ? &#x27;&lt;button onclick=&quot;demoTopUp()&quot;&gt;Top up 200 \u00B7 $6&lt;/button&gt;&#x27; : &quot;&quot;);
+  el.innerHTML = &quot;&lt;span&gt;&quot; + n + &quot; credits left this month&lt;/span&gt;&quot; + (n &lt; 60 ? &#x27;&lt;button onclick=&quot;demoTopUp()&quot;&gt;Top up 250 \u00B7 $10&lt;/button&gt;&#x27; : &quot;&quot;);
 }
 function demoTopUp(){
-  S.vaCredits = creditsLeft() + 200; save(); renderCredits();
-  botMsg(&quot;200 credits added. Your balance is &quot; + creditsLeft() + &quot;.&quot;);
+  S.vaCredits = creditsLeft() + 250; save(); renderCredits();
+  botMsg(&quot;250 credits added. Your balance is &quot; + creditsLeft() + &quot;.&quot;);
 }
 function sendAI(){
   const inp = document.getElementById(&quot;aiText&quot;);
