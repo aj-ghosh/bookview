@@ -920,6 +920,8 @@ try {
   const saved = localStorage.getItem(&quot;bookviewV8&quot;);
   S = saved ? JSON.parse(saved) : structuredClone(SEED);
 } catch(e){ S = structuredClone(SEED); }
+/* Nov 24, 2026: included VA tasks rose from 300 to 1,000 — lift any balance still sitting at the old seed value. */
+if (S.vaCredits === 300){ S.vaCredits = 1000; save(); }
 function save(){ try{ localStorage.setItem(&quot;bookviewV8&quot;, JSON.stringify(S)); }catch(e){} }
 function resetDemo(){ try{ localStorage.removeItem(&quot;bookviewV8&quot;); }catch(e){} location.reload(); }
 
