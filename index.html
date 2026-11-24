@@ -853,37 +853,37 @@ function inDays(n){ const d = new Date(Date.now() + n*DAY); return d.toISOString
 
 const SEED = {
   cases: [
-    {id:1, who:&quot;John M. S. 4&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Term 20&quot;, status:&quot;Underwriting&quot;, detail:&quot;APS pending&quot;, age:23, fyc:2450, credits:2450, size:40000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
+    {id:1, who:&quot;John M. S. 4&quot;, type:&quot;Life&quot;, company:&quot;New York Life&quot;, product:&quot;Term 20&quot;, status:&quot;Underwriting&quot;, detail:&quot;APS pending&quot;, age:23, fyc:2450, credits:2450, size:40000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
       {t:&quot;Schedule paramed exam&quot;, done:false, due:inDays(1)}, {t:&quot;Order APS from clinic&quot;, done:true}, {t:&quot;Confirm beneficiary split&quot;, done:true}]},
     {id:2, who:&quot;Raj K. P. 6&quot;, type:&quot;Annuity&quot;, company:&quot;Allianz&quot;, product:&quot;MYGA 5&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Suitability review&quot;, age:16, fyc:3900, credits:0, size:250000, share:1, splits:[], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[]},
-    {id:3, who:&quot;Maria A. K. 15&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Whole Life&quot;, status:&quot;Delivery Pending&quot;, detail:&quot;Issued \u2014 awaiting delivery&quot;, age:4, fyc:1150, credits:1150, size:15000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
+    {id:3, who:&quot;Maria A. K. 15&quot;, type:&quot;Life&quot;, company:&quot;MassMutual&quot;, product:&quot;Whole Life&quot;, status:&quot;Delivery Pending&quot;, detail:&quot;Issued \u2014 awaiting delivery&quot;, age:4, fyc:1150, credits:1150, size:15000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Deliver policy &amp; collect receipt&quot;, done:false, due:inDays(0)}]},
-    {id:4, who:&quot;David L. T. 12&quot;, type:&quot;Medicare&quot;, company:&quot;UHC&quot;, product:&quot;MA Plan&quot;, status:&quot;Submitted&quot;, detail:&quot;Enrollment submitted&quot;, age:6, fyc:310, credits:310, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
+    {id:4, who:&quot;David L. T. 12&quot;, type:&quot;Medicare&quot;, company:&quot;UnitedHealthcare&quot;, product:&quot;MA Plan&quot;, status:&quot;Submitted&quot;, detail:&quot;Enrollment submitted&quot;, age:6, fyc:310, credits:310, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Verify PCP in network&quot;, done:true}, {t:&quot;Send scope-of-appointment copy&quot;, done:false, due:inDays(2)}]},
-    {id:5, who:&quot;Alicia S. R. 9&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;Managed portfolio&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Onboarding&quot;, age:9, fyc:1800, credits:0, size:190000, share:1, splits:[], docs:false, funding:&quot;Transfer&quot;, waitingOn:&quot;Client&quot;, recurring:true, stuck:false, tasks:[
+    {id:5, who:&quot;Alicia S. R. 9&quot;, type:&quot;Advisory&quot;, company:&quot;BlackRock&quot;, product:&quot;Managed portfolio&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Onboarding&quot;, age:9, fyc:1800, credits:0, size:190000, share:1, splits:[], docs:false, funding:&quot;Transfer&quot;, waitingOn:&quot;Client&quot;, recurring:true, stuck:false, tasks:[
       {t:&quot;Collect signed advisory agreement&quot;, done:false, due:inDays(1)}, {t:&quot;Link bank for contributions&quot;, done:false}]},
-    {id:6, who:&quot;Sarah R. N. 8&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;IUL&quot;, status:&quot;Underwriting&quot;, detail:&quot;Medical records requested&quot;, age:12, fyc:2980, credits:2980, size:60000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(-2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
+    {id:6, who:&quot;Sarah R. N. 8&quot;, type:&quot;Life&quot;, company:&quot;Allianz&quot;, product:&quot;IUL&quot;, status:&quot;Underwriting&quot;, detail:&quot;Medical records requested&quot;, age:12, fyc:2980, credits:2980, size:60000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], exam:inDays(-2), docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Carrier&quot;, stuck:true, tasks:[
       {t:&quot;Request medical records release&quot;, done:false, due:inDays(-1)}, {t:&quot;Call underwriter re: rating class&quot;, done:false}]},
-    {id:7, who:&quot;Karen J. L. 16&quot;, type:&quot;Annuity&quot;, company:&quot;NYL&quot;, product:&quot;FIA&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Funded \u2014 pending issue&quot;, age:3, fyc:4250, credits:4250, size:212000, share:0.4, splits:[{code:&quot;138338&quot;, pct:60}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
+    {id:7, who:&quot;Karen J. L. 16&quot;, type:&quot;Annuity&quot;, company:&quot;North American&quot;, product:&quot;FIA&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Funded \u2014 pending issue&quot;, age:3, fyc:4250, credits:4250, size:212000, share:0.4, splits:[{code:&quot;138338&quot;, pct:60}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Confirm beneficiary designations&quot;, done:true}]},
     {id:8, who:&quot;Brenda A. H. 11&quot;, type:&quot;Medicare&quot;, company:&quot;Humana&quot;, product:&quot;Med Supp&quot;, status:&quot;Underwriting&quot;, detail:&quot;Health questions&quot;, age:8, fyc:275, credits:275, size:0, share:1, splits:[], docs:true, funding:&quot;&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Upload ID card copy&quot;, done:true}, {t:&quot;Answer health-question follow-up&quot;, done:false, due:inDays(3)}]},
-    {id:9, who:&quot;Peter M. G. 18&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Term 30&quot;, status:&quot;Pending&quot;, detail:&quot;Application taken&quot;, age:1, fyc:1720, credits:1720, size:30000, share:1, splits:[], exam:inDays(5), docs:false, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
+    {id:9, who:&quot;Peter M. G. 18&quot;, type:&quot;Life&quot;, company:&quot;Transamerica&quot;, product:&quot;Term 30&quot;, status:&quot;Pending&quot;, detail:&quot;Application taken&quot;, age:1, fyc:1720, credits:1720, size:30000, share:1, splits:[], exam:inDays(5), docs:false, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Complete Part 2 health questions&quot;, done:false, due:inDays(0)}]},
-    {id:10, who:&quot;Laura J. M. 7&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;401(k) rollover&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Transfer in progress&quot;, age:14, fyc:2300, credits:0, size:210000, share:0.5, splits:[{code:&quot;138338&quot;, pct:50}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, recurring:true, stuck:true, tasks:[]},
-    {id:11, who:&quot;Thomas A. W. 14&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;GUL&quot;, status:&quot;Pending&quot;, detail:&quot;Illustration approved&quot;, age:5, fyc:1940, credits:1940, size:136000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
+    {id:10, who:&quot;Laura J. M. 7&quot;, type:&quot;Advisory&quot;, company:&quot;Fidelity&quot;, product:&quot;401(k) rollover&quot;, status:&quot;Awaiting Funds&quot;, detail:&quot;Transfer in progress&quot;, age:14, fyc:2300, credits:0, size:210000, share:0.5, splits:[{code:&quot;138338&quot;, pct:50}], docs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, recurring:true, stuck:true, tasks:[]},
+    {id:11, who:&quot;Thomas A. W. 14&quot;, type:&quot;Life&quot;, company:&quot;Protective&quot;, product:&quot;GUL&quot;, status:&quot;Pending&quot;, detail:&quot;Illustration approved&quot;, age:5, fyc:1940, credits:1940, size:136000, share:1, splits:[], docs:true, funding:&quot;New money&quot;, waitingOn:&quot;Client&quot;, stuck:false, tasks:[
       {t:&quot;Send illustration for signature&quot;, done:false, due:inDays(2)}]},
     {id:12, who:&quot;Naveen M. D. 3&quot;, type:&quot;Annuity&quot;, company:&quot;Athene&quot;, product:&quot;MYGA 3&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:30, fyc:2650, credits:2650, size:100000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Rollover&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
       {t:&quot;Schedule welcome call&quot;, done:false, due:inDays(4)}]},
     {id:15, who:&quot;Kavita R. D. 13&quot;, type:&quot;Medical&quot;, company:&quot;Anthem&quot;, product:&quot;Silver PPO&quot;, status:&quot;Submitted&quot;, detail:&quot;Enrollment submitted&quot;, age:6, fyc:340, credits:340, size:0, share:1, splits:[], docs:false, funding:&quot;&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Upload income verification docs&quot;, done:false, due:inDays(2)}]},
-    {id:16, who:&quot;Priya S. N. 2&quot;, type:&quot;Dental&quot;, company:&quot;Delta&quot;, product:&quot;PPO Premier&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:41, fyc:85, credits:85, size:1200, share:1, splits:[], docs:true, postDocs:false, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
+    {id:16, who:&quot;Priya S. N. 2&quot;, type:&quot;Dental&quot;, company:&quot;Delta Dental&quot;, product:&quot;PPO Premier&quot;, status:&quot;Delivered&quot;, detail:&quot;Issued &amp; delivered&quot;, age:41, fyc:85, credits:85, size:1200, share:1, splits:[], docs:true, postDocs:false, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[
       {t:&quot;Send ID card and welcome packet&quot;, done:false, due:inDays(3)}]},
-    {id:17, who:&quot;Paul R. S. 17&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;Investment account&quot;, status:&quot;Prospect&quot;, detail:&quot;Discovery call done&quot;, age:2, fyc:0, credits:0, size:250000, share:0.5, splits:[{code:&quot;076284&quot;, pct:50}], docs:false, funding:&quot;&quot;, waitingOn:&quot;Me&quot;, stuck:false, tasks:[
+    {id:17, who:&quot;Paul R. S. 17&quot;, type:&quot;Advisory&quot;, company:&quot;Schwab&quot;, product:&quot;Investment account&quot;, status:&quot;Prospect&quot;, detail:&quot;Discovery call done&quot;, age:2, fyc:0, credits:0, size:250000, share:0.5, splits:[{code:&quot;076284&quot;, pct:50}], docs:false, funding:&quot;&quot;, waitingOn:&quot;Me&quot;, stuck:false, tasks:[
       {t:&quot;Send follow-up with account options&quot;, done:false, due:inDays(1)}]},
-    {id:18, who:&quot;Daniel V. M. 5&quot;, type:&quot;Advisory&quot;, company:&quot;Eagle&quot;, product:&quot;Trust account&quot;, status:&quot;Deposited&quot;, detail:&quot;Funded&quot;, age:18, fyc:6000, credits:12000, size:600000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Transfer&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
-    {id:19, who:&quot;Henry T. S. 1&quot;, type:&quot;Life&quot;, company:&quot;NYL&quot;, product:&quot;Whole Life&quot;, status:&quot;Declined&quot;, detail:&quot;Freelook \u2014 not taken&quot;, age:47, fyc:0, credits:0, size:150000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], docs:true, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
-    {id:20, who:&quot;Kevin M. N. 10&quot;, type:&quot;Annuity&quot;, company:&quot;NYL&quot;, product:&quot;IndexFlex VA&quot;, status:&quot;Submitted&quot;, detail:&quot;App submitted to carrier&quot;, age:9, fyc:3000, credits:3000, size:220000, share:0.95, splits:[{code:&quot;197328&quot;, pct:5}], docs:false, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
+    {id:18, who:&quot;Daniel V. M. 5&quot;, type:&quot;Advisory&quot;, company:&quot;Vanguard&quot;, product:&quot;Trust account&quot;, status:&quot;Deposited&quot;, detail:&quot;Funded&quot;, age:18, fyc:6000, credits:12000, size:600000, share:1, splits:[], docs:true, postDocs:true, funding:&quot;Transfer&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
+    {id:19, who:&quot;Henry T. S. 1&quot;, type:&quot;Life&quot;, company:&quot;Northwestern Mutual&quot;, product:&quot;Whole Life&quot;, status:&quot;Declined&quot;, detail:&quot;Freelook \u2014 not taken&quot;, age:47, fyc:0, credits:0, size:150000, share:0.5, splits:[{code:&quot;197328&quot;, pct:50}], docs:true, funding:&quot;&quot;, waitingOn:&quot;&quot;, stuck:false, tasks:[]},
+    {id:20, who:&quot;Kevin M. N. 10&quot;, type:&quot;Annuity&quot;, company:&quot;New York Life&quot;, product:&quot;IndexFlex VA&quot;, status:&quot;Submitted&quot;, detail:&quot;App submitted to carrier&quot;, age:9, fyc:3000, credits:3000, size:220000, share:0.95, splits:[{code:&quot;197328&quot;, pct:5}], docs:false, funding:&quot;Rollover&quot;, waitingOn:&quot;Carrier&quot;, stuck:false, tasks:[
       {t:&quot;Confirm funds release from prior carrier&quot;, done:false, due:inDays(3)}]}
   ],
   renewals: [
@@ -968,7 +968,7 @@ function familyOf(p){
   if (/dental/.test(p)) return &quot;Dental&quot;;
   if (/medicare|med supp/.test(p)) return &quot;Medicare&quot;;
   if (/annuit|myga|fia/.test(p)) return &quot;Annuity&quot;;
-  if (/eagle|advisor|managed|401/.test(p)) return &quot;Advisory&quot;;
+  if (/advisor|managed|401/.test(p)) return &quot;Advisory&quot;;
   if (/securit/.test(p)) return &quot;Securities&quot;;
   if (/life|svul|gul/.test(p)) return &quot;Life&quot;;
   if (/health|aca|medical/.test(p)) return &quot;Medical&quot;;
@@ -1364,10 +1364,10 @@ function handleAI(raw){
   if (stHit || /\bstatus\b|\bpipeline\b/.test(t)) { botMsg(statusText(stHit)); return; }
   /* --- add a case --- */
   if (/add.*case|new case/.test(t)) {
-    const type = /annuit|myga|fia/.test(t) ? &quot;Annuity&quot; : /medicare/.test(t) ? &quot;Medicare&quot; : /dental/.test(t) ? &quot;Dental&quot; : /financial plan/.test(t) ? &quot;Plan&quot; : /securit/.test(t) ? &quot;Securities&quot; : /health|aca/.test(t) ? &quot;Medical&quot; : /eagle|advisor|rollover|managed|401/.test(t) ? &quot;Advisory&quot; : &quot;Life&quot;;
-    const companies = [[&quot;NYL&quot;, /nyl|new york life/], [&quot;Allianz&quot;, /allianz/], [&quot;Athene&quot;, /athene/], [&quot;Foresters&quot;, /foresters/], [&quot;Transamerica&quot;, /transamerica/], [&quot;Protective&quot;, /protective/], [&quot;Mutual of Omaha&quot;, /mutual of omaha/], [&quot;North American&quot;, /north american/], [&quot;National Life&quot;, /national life/], [&quot;Eagle&quot;, /eagle/], [&quot;UHC&quot;, /uhc|unitedhealthcare/], [&quot;Humana&quot;, /humana/], [&quot;Anthem&quot;, /anthem/], [&quot;Delta&quot;, /delta/], [&quot;Schwab&quot;, /schwab/], [&quot;Fidelity&quot;, /fidelity/]];
+    const type = /annuit|myga|fia/.test(t) ? &quot;Annuity&quot; : /medicare/.test(t) ? &quot;Medicare&quot; : /dental/.test(t) ? &quot;Dental&quot; : /financial plan/.test(t) ? &quot;Plan&quot; : /securit/.test(t) ? &quot;Securities&quot; : /health|aca/.test(t) ? &quot;Medical&quot; : /advisor|rollover|managed|401/.test(t) ? &quot;Advisory&quot; : &quot;Life&quot;;
+    const companies = [[&quot;New York Life&quot;, /nyl|new york life/], [&quot;Northwestern Mutual&quot;, /northwestern/], [&quot;MassMutual&quot;, /massmutual|mass mutual/], [&quot;Allianz&quot;, /allianz/], [&quot;Athene&quot;, /athene/], [&quot;North American&quot;, /north american/], [&quot;Foresters&quot;, /foresters/], [&quot;Transamerica&quot;, /transamerica/], [&quot;Protective&quot;, /protective/], [&quot;Lincoln&quot;, /lincoln/], [&quot;National Life&quot;, /national life/], [&quot;Mutual of Omaha&quot;, /mutual of omaha/], [&quot;Fidelity&quot;, /fidelity/], [&quot;BlackRock&quot;, /blackrock/], [&quot;Vanguard&quot;, /vanguard/], [&quot;Schwab&quot;, /schwab/], [&quot;UnitedHealthcare&quot;, /uhc|unitedhealthcare|united healthcare/], [&quot;Humana&quot;, /humana/], [&quot;Anthem&quot;, /anthem/], [&quot;Aetna&quot;, /aetna/], [&quot;Cigna&quot;, /cigna/], [&quot;Delta Dental&quot;, /delta/]];
     const hit = companies.find(([n, r]) => r.test(t));
-    const company = hit ? hit[0] : (type === &quot;Life&quot; || type === &quot;Annuity&quot; ? &quot;NYL&quot; : &quot;&quot;);
+    const company = hit ? hit[0] : &quot;&quot;;
     const name = /svul/.test(t) ? &quot;SVUL&quot; : /iul/.test(t) ? &quot;IUL&quot; : /myga/.test(t) ? &quot;MYGA&quot; : /\bfia\b/.test(t) ? &quot;FIA&quot; : /gul/.test(t) ? &quot;GUL&quot; : /whole life/.test(t) ? &quot;Whole Life&quot; : /term/.test(t) ? &quot;Term&quot; : &quot;&quot;;
     const lm = text.match(/([A-Za-z]+)\s+([A-Za-z])\.\s+([A-Za-z])\.\s+(\d{1,5})/);
     const nextNum = S.cases.reduce((m, c) => { const mm = String(c.who).match(/(\d+)\s*$/); return mm ? Math.max(m, parseInt(mm[1], 10)) : m; }, 0) + 1;
@@ -1435,7 +1435,7 @@ function handleAI(raw){
     return;
   }
   if (/help|what can you/.test(t)) {
-    botMsg(&quot;I can:\n• Report what\u2019s stuck\n• Add a case (try \u201Cadd a case, NYL life, Thomas J. B. 24, 1800\u201D)\n• Close a task (\u201Cthe paramed exam is scheduled\u201D)\n• Answer license &amp; appointment questions\n• Tell you what\u2019s on any day this week\nI draft first — nothing saves without your confirm.&quot;);
+    botMsg(&quot;I can:\n• Report what\u2019s stuck\n• Add a case (try \u201Cadd a case, MassMutual life, Thomas J. B. 24, 1800\u201D)\n• Close a task (\u201Cthe paramed exam is scheduled\u201D)\n• Answer license &amp; appointment questions\n• Tell you what\u2019s on any day this week\nI draft first — nothing saves without your confirm.&quot;);
     return;
   }
   botMsg(&quot;I didn\u2019t catch that one — this prototype understands a defined set of commands (the full product won\u2019t have that limit). Try one of the suggestions below, or type \u201Chelp\u201D.&quot;);
@@ -1575,12 +1575,12 @@ const STATES = [&quot;Alabama&quot;,&quot;Alaska&quot;,&quot;Arizona&quot;,&quot
 const MONTHS = [&quot;jan&quot;,&quot;feb&quot;,&quot;mar&quot;,&quot;apr&quot;,&quot;may&quot;,&quot;jun&quot;,&quot;jul&quot;,&quot;aug&quot;,&quot;sep&quot;,&quot;oct&quot;,&quot;nov&quot;,&quot;dec&quot;];
 
 const SAMPLE_CSV = &quot;Client Name,SSN,Status,Product,FYC,Premium/Investment Amount,Agent Share,Notes\n&quot; +
-&quot;Daniel R Kim,000-12-3456,Awaiting Funds,NYL: Annuity,4100,212000,0.4,Funds coming from account 778899 - rollover\n&quot; +
-&quot;Maria L Torres,000-23-4567,Underwriting,NYL: Life,2900,40000,0.5,APS pending at clinic\n&quot; +
-&quot;James P O'Neil,000-34-5678,Pending,NYL: Life,1350,20000,1,New money\n&quot; +
-&quot;Kavita S Nair,000-45-6789,Deposited,Eagle,2100,225000,1,Transfer in from Schwab\n&quot; +
-&quot;Tom W Becker,000-56-7890,Delivered,Delta: Dental,95,1200,1,\n&quot; +
-&quot;Angela D Ruiz,000-67-8901,Submitted,NYL: Annuity,3300,150000,0.95,IndexFlex VA - bank acct ending 4417&quot;;
+&quot;Daniel R Kim,000-12-3456,Awaiting Funds,Allianz: Annuity,4100,212000,0.4,Funds coming from account 778899 - rollover\n&quot; +
+&quot;Maria L Torres,000-23-4567,Underwriting,Northwestern Mutual: Life,2900,40000,0.5,APS pending at clinic\n&quot; +
+&quot;James P O'Neil,000-34-5678,Pending,Transamerica: Life,1350,20000,1,New money\n&quot; +
+&quot;Kavita S Nair,000-45-6789,Deposited,Fidelity,2100,225000,1,Transfer in from Schwab\n&quot; +
+&quot;Tom W Becker,000-56-7890,Delivered,Delta Dental: Dental,95,1200,1,\n&quot; +
+&quot;Angela D Ruiz,000-67-8901,Submitted,New York Life: Annuity,3300,150000,0.95,IndexFlex VA - bank acct ending 4417&quot;;
 
 function parseCSV(text){
   const rows = []; let row = [], cur = &quot;&quot;, q = false;
@@ -1624,7 +1624,7 @@ function closeImport(){ document.getElementById(&quot;importBack&quot;).classLis
 function backImport(){ document.getElementById(&quot;importStep1&quot;).style.display = &quot;block&quot;; document.getElementById(&quot;importStep2&quot;).style.display = &quot;none&quot;; }
 function downloadTemplate(){
   const csv = &quot;Client Name,Status,Type,Company,Product,FYC,Premium/Investment Amount,Agent Share,App Date,Notes\n&quot; +
-    &quot;Example Client,Awaiting Funds,Annuity,NYL,Index Annuity,2500,100000,1,2026-11-01,\n&quot;;
+    &quot;Example Client,Awaiting Funds,Annuity,New York Life,Index Annuity,2500,100000,1,2026-11-01,\n&quot;;
   const a = document.createElement(&quot;a&quot;);
   a.href = URL.createObjectURL(new Blob([csv], {type: &quot;text/csv&quot;}));
   a.download = &quot;bookview-template.csv&quot;;
@@ -1679,7 +1679,7 @@ function typeName(x){
   if (/health|medical|aca/i.test(x)) return &quot;Medical&quot;;
   if (/disab/i.test(x)) return &quot;Disability&quot;;
   if (/plan/i.test(x)) return &quot;Plan&quot;;
-  if (/401|eagle|advisor/i.test(x)) return &quot;Advisory&quot;;
+  if (/401|advisor/i.test(x)) return &quot;Advisory&quot;;
   return x;
 }
 function splitFused(raw){
@@ -1688,9 +1688,11 @@ function splitFused(raw){
   const m = s.match(/^([^:]+):\s*(.+)$/);
   if (m) {
     const left = m[1].trim(), right = m[2].trim();
-    return {type: typeName(right), company: left === &quot;Non-NYL&quot; ? &quot;&quot; : left, name: &quot;&quot;};
+    return {type: typeName(right), company: left === &quot;Other&quot; ? &quot;&quot; : left, name: &quot;&quot;};
   }
-  if (/^eagle/i.test(s)) return {type: &quot;Advisory&quot;, company: &quot;Eagle&quot;, name: &quot;&quot;};
+  const advMap = {fidelity: &quot;Fidelity&quot;, vanguard: &quot;Vanguard&quot;, blackrock: &quot;BlackRock&quot;, schwab: &quot;Schwab&quot;};
+  const advHit = Object.keys(advMap).find(k => s.toLowerCase().startsWith(k));
+  if (advHit) return {type: &quot;Advisory&quot;, company: advMap[advHit], name: &quot;&quot;};
   if (/financial plan/i.test(s)) return {type: &quot;Plan&quot;, company: &quot;&quot;, name: &quot;&quot;};
   return {type: typeName(s), company: &quot;&quot;, name: &quot;&quot;};
 }
