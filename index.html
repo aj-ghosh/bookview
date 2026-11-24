@@ -1461,11 +1461,11 @@ function renderCredits(){
   const el = document.getElementById(&quot;vaCredits&quot;); if (!el) return;
   const n = creditsLeft();
   el.className = &quot;va-credits&quot; + (n <= 0 ? &quot; out&quot; : n < 100 ? &quot; low&quot; : &quot;&quot;);
-  el.innerHTML = &quot;<span>&quot; + n + &quot; credits left this month</span>&quot; + (n < 100 ? '<button onclick=&quot;demoTopUp()&quot;>Top up 250 \u00B7 $10</button>' : &quot;&quot;);
+  el.innerHTML = &quot;<span>&quot; + n + &quot; credits left</span>&quot; + (n < 100 ? '<button onclick=&quot;demoTopUp()&quot;>Top up 1,000 \u00B7 $40</button>' : &quot;&quot;);
 }
 function demoTopUp(){
-  S.vaCredits = creditsLeft() + 250; save(); renderCredits();
-  botMsg(&quot;250 credits added. Your balance is &quot; + creditsLeft() + &quot;.&quot;);
+  S.vaCredits = creditsLeft() + 1000; save(); renderCredits();
+  botMsg(&quot;1,000 credits added. Your balance is &quot; + creditsLeft() + &quot;.&quot;);
 }
 function sendAI(){
   const inp = document.getElementById(&quot;aiText&quot;);
@@ -1844,7 +1844,7 @@ maybeFirstRun();
       </div>
       <div class="va-meter">
         <div class="big">300 <span>credits / month</span></div>
-        <p>VA runs on credits — 1,000 included every month, far more than a working agent ever uses. Most agents never see the meter. Power users top up: 250 credits for $10.</p>
+        <p>VA runs on credits — 1,000 included every month, far more than a working agent ever uses. Unused credits roll over — bank up to 3,000. Power users top up: 1,000 credits for $40.</p>
       </div>
     </div>
   </section>
@@ -1884,7 +1884,7 @@ maybeFirstRun();
       </div>
       <ul>
         <li>The full one-screen dashboard</li>
-        <li>VA — 1,000 credits a month included</li>
+        <li>VA — 1,000 credits a month, rollovers banked to 3,000</li>
         <li>Stuck-case flags and aging</li>
         <li>Renewals and commissions views</li>
         <li>Licenses &amp; appointments tracking</li>
